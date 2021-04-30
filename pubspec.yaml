@@ -1,0 +1,119 @@
+name: jiu_jitsu_para_todos
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 2.0.2+11
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+  circular_countdown_timer: ^0.2.0
+  url_launcher: ^6.0.3
+  flutter_launcher_icons: ^0.9.0
+  image_gallery_saver: ^1.6.9
+  permission_handler: ^6.1.3
+  google_mobile_ads: ^0.12.1+1
+  just_audio: ^0.7.4
+  flutter_screenutil: ^5.0.0
+  video_player: ^2.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+
+
+
+flutter_icons:
+  image_path: 'assets/images/application_icon/res/mipmap-xxxhdpi/iconindigo.png'
+  ios: true
+  android: true
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+      - assets/music/alarm_sound.mp3
+      - assets/music/right_answer.mp3
+      - assets/music/wrong_answer.mp3
+      - assets/images/iconsbutton/historyofjiujitsu.png
+      - assets/images/iconsbutton/rules.png
+      - assets/images/iconsbutton/quiz.png
+      - assets/images/iconsbutton/fightmarker.png
+      - assets/images/iconsbutton/wallpapers.png
+      - assets/images/iconsbutton/india.png
+      - assets/images/iconsbutton/brasil.png
+      - assets/images/iconsbutton/faixabranca.png
+      - assets/images/iconsbutton/faixaazul.png
+      - assets/images/iconsbutton/faixapreta.png
+      - assets/images/iconsbutton/regrasbasicas.png
+      - assets/images/iconsbutton/cbjjrules.png
+      - assets/images/wallpapers/jonathan-borba-YcrcG17Kjmg-unsplash.jpg
+      - assets/images/wallpapers/jonathan-borba-Yf1SegAI84o-unsplash.jpg
+      - assets/images/wallpapers/mma-1575855_960_720.jpg
+      - assets/images/wallpapers/jiu-jitsu-5641080_1280.jpg
+      - assets/images/iconscredits/flaticon.png
+      - assets/images/quiz/quizArmllock.png
+
+
+  fonts:
+    - family: YatraOne
+      fonts:
+        - asset: assets/fonts/yatraone/YatraOne-Regular.ttf
+    - family: Ubuntu
+      fonts:
+        - asset: assets/fonts/ubuntu/Ubuntu-Regular.ttf
+
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware.
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
