@@ -14,10 +14,10 @@ Caso queira conhecer mais sobre o flutter:
 Aceito qualquer critica construtiva ou contribuição primeiramente gostaria de dizer que alguns arquivos não foram colocados no repositório por ter informações sensíveis, porem todo o código que foi restrito era em relação aos anúncios na admob ou configurações da loja Google play, mas ainda tem tudo que eu fiz para construir o aplicativo aqui.
 <br><br>
 
-Abaixo tenho a tela da home do app
+Abaixo tenho a tela da home e quiz do app
 
-<img src="assets/readme/1.png" width="411.4" height="820.6">
-<img src="assets/readme/3.png" width="411.4" height="820.6">
+<img src="assets/readme/1.png" width="411.4" height="820.6"><img src="assets/readme/3.png" width="411.4" height="820.6">
+
 
 # Arquitetura MVC
 
@@ -31,7 +31,7 @@ Todo o app foi feito usando a arquitetura mvc os models foram usados para armaze
 imagem da minha estrutura MVC:<br>
 <img src="assets/readme/mvc.png">
 
-# Testes unitarios
+# Testes unitários
 
 Foi uma novidade para mim fazer testes unitários e por mais que no começo eu me enrolava muito eu também gostei muito de fazer isso, tenho testes unitários para o quiz que verifica se ele trouxe as questões corretas e de forma aleatória e um outro teste para ver se o controller dos wallpapers retornava o path corretamente.
 
