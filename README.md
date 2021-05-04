@@ -30,7 +30,7 @@ Todo o app foi feito usando a arquitetura mvc os models foram usados para armaze
 <br><br><br>
 imagem da minha estrutura MVC:<br>
 <img src="assets/readme/mvc.png">
-<br><br><br>
+
 # Testes unitarios
 
 Foi uma novidade para mim fazer testes unitários e por mais que no começo eu me enrolava muito eu também gostei muito de fazer isso, tenho testes unitários para o quiz que verifica se ele trouxe as questões corretas e de forma aleatória e um outro teste para ver se o controller dos wallpapers retornava o path corretamente.
