@@ -35,62 +35,63 @@ class ControllerQuiz {
       .toList();
 
   List<Question> choice(difficulty) {
-    if (difficulty == 'easy') {
-      _questionseasy.shuffle();
-      _questionseasy.toList().forEach((element) {
-        element.options.shuffle();
-      });
-      return _questionseasy;
-    } else if (difficulty == 'medium') {
-      _questionsmedium.shuffle();
-      _questionsmedium.toList().forEach((element) {
-        element.options.shuffle();
-      });
-      return _questionsmedium;
-    } else if (difficulty == 'hard') {
-      _questionshard.shuffle();
-      _questionshard.toList().forEach((element) {
-        element.options.shuffle();
-      });
-      return _questionshard;
-    }
-    _questionseasy.shuffle();
-    return _questionseasy;
-  }
-
-  String textquestionreturn(myquestions) {
-    return myquestions.toList()[numberquestions].question;
-  }
-
-  String returntextanswerA(myquestions) {
-    return myquestions.toList()[numberquestions].options[0];
-  }
-
-  String returntextanswerB(myquestions) {
-    return myquestions.toList()[numberquestions].options[1];
-  }
-
-  String returntextanswerC(myquestions) {
-    return myquestions.toList()[numberquestions].options[2];
-  }
-
-  String returntextanswerD(myquestions) {
-    return myquestions.toList()[numberquestions].options[3];
-  }
-
-  bool checkanswer(String answer, myquestions) {
-    if (answer == myquestions.toList()[numberquestions].rightanswer) {
-      return true;
-    } else {
-      return false;
+    switch (difficulty) {
+      case 'easy':
+        {
+          _questionseasy.shuffle();
+          _questionseasy.toList().forEach((element) {
+            element.options.shuffle();
+          });
+          return _questionseasy;
+        }
+        break;
+      case 'medium':
+        {
+          _questionsmedium.shuffle();
+          _questionsmedium.toList().forEach((element) {
+            element.options.shuffle();
+          });
+          return _questionsmedium;
+        }
+        break;
+      case 'hard':
+        {
+          _questionshard.shuffle();
+          _questionshard.toList().forEach((element) {
+            element.options.shuffle();
+          });
+          return _questionshard;
+        }
+        break;
+      default:
+        {
+          return _questionseasy;
+        }
+        break;
     }
   }
 
-  String returnPathImage(myquestions) {
-    return myquestions.toList()[numberquestions].pathImage;
-  }
+  String textquestionreturn(myquestions) =>
+      myquestions.toList()[numberquestions].question;
 
-  String returnPathVideo(myquestions) {
-    return myquestions.toList()[numberquestions].pathVideo;
-  }
+  String returntextanswerA(myquestions) =>
+      myquestions.toList()[numberquestions].options[0];
+
+  String returntextanswerB(myquestions) =>
+      myquestions.toList()[numberquestions].options[1];
+
+  String returntextanswerC(myquestions) =>
+      myquestions.toList()[numberquestions].options[2];
+
+  String returntextanswerD(myquestions) =>
+      myquestions.toList()[numberquestions].options[3];
+
+  bool checkanswer(String answer, myquestions) =>
+      answer == myquestions.toList()[numberquestions].rightanswer;
+
+  String returnPathImage(myquestions) =>
+      myquestions.toList()[numberquestions].pathImage;
+
+  String returnPathVideo(myquestions) =>
+      myquestions.toList()[numberquestions].pathVideo;
 }
