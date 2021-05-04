@@ -10,10 +10,11 @@ class MyApp extends StatelessWidget {
       designSize: Size(411.4, 820.6),
       builder: () => MaterialApp(
         theme: ThemeData(
-            fontFamily: 'Ubuntu',
-            primaryColor: Color(0xff1b2c57),
-            accentColor: Colors.indigo, //Color(0xff65d1ba),
-            brightness: Brightness.dark),
+          fontFamily: 'Ubuntu',
+          primaryColor: Color(0xff1b2c57),
+          accentColor: Colors.indigo, // Color(0xff65d1ba),
+          brightness: Brightness.dark,
+        ),
         debugShowCheckedModeBanner: false,
         initialRoute: '/splash',
         routes: {
