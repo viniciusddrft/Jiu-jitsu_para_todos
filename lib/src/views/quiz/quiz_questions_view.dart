@@ -177,7 +177,7 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                       children: [
 //------------------------------------------------------------------------------
                         Container(
-                          margin: EdgeInsets.only(bottom: 40.w),
+                          margin: EdgeInsets.only(bottom: 40.h),
                           child: OutlinedButton(
                             onPressed: _isButtonDisabled
                                 ? null
@@ -271,10 +271,9 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                             ),
                           ),
                         ),
-
 //------------------------------------------------------------------------------
                         Container(
-                          margin: EdgeInsets.only(bottom: 40.w),
+                          margin: EdgeInsets.only(bottom: 40.h),
                           child: OutlinedButton(
                             onPressed: _isButtonDisabled
                                 ? null
@@ -371,7 +370,7 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
 
 //------------------------------------------------------------------------------
                         Container(
-                          margin: EdgeInsets.only(bottom: 40.w),
+                          margin: EdgeInsets.only(bottom: 40.h),
                           child: OutlinedButton(
                             onPressed: _isButtonDisabled
                                 ? null
@@ -464,10 +463,9 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                             ),
                           ),
                         ),
-
 //------------------------------------------------------------------------------
                         Container(
-                          margin: EdgeInsets.only(bottom: 40.w),
+                          margin: EdgeInsets.only(bottom: 40.h),
                           child: OutlinedButton(
                             onPressed: _isButtonDisabled
                                 ? null

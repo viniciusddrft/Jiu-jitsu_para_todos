@@ -77,17 +77,6 @@ final List dataquestionseasy = [
 final List dataquestionsmedium = [
   {
     "question":
-        "Qual o brasileiro com mais titulos mundias de jiu-jitsu(10 titulos)?",
-    "options": [
-      'Marcos Buchecha',
-      'Rodolfo Vieira',
-      'Fabrício Werdum',
-      'Bruno Malfacine'
-    ],
-    "rightanswer": "Marcos Buchecha"
-  },
-  {
-    "question":
         "Qual lutador brasileiro que conseguiu ultrapassar Royce Gracie em finalizações no UFC?",
     "options": [
       'Conor McGregor',
