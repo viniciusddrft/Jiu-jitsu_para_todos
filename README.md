@@ -16,7 +16,7 @@ Aceito qualquer critica construtiva ou contribuição primeiramente gostaria de 
 
 Abaixo tenho a tela da home e quiz do app
 
-<img src="assets/readme/1.png" width="411.4" height="820.6"><img src="assets/readme/3.png" width="411.4" height="820.6">
+<img src="assets/readme/1.png" width="411.4" height="820.6"> <img src="assets/readme/3.png" width="411.4" height="820.6">
 
 
 # Arquitetura MVC
