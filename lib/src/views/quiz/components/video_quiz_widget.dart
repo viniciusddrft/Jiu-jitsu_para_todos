@@ -72,9 +72,10 @@ class VideoPlayerWidget extends StatelessWidget {
         children: [
           buildVideoPlayer(),
           Positioned.fill(
-              child: BasicOverlayWidget(
-            controller: controller,
-          ))
+            child: BasicOverlayWidget(
+              controller: controller,
+            ),
+          )
         ],
       );
 

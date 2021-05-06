@@ -169,10 +169,7 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                 children: [
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 30.w),
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(25),
-                    ),
+                    color: Colors.transparent,
                     child: Column(
                       children: [
 //------------------------------------------------------------------------------
