@@ -56,13 +56,13 @@ class VideoPlayerWidget extends StatelessWidget {
                   right: 30.w, left: 30.w, top: 10.h, bottom: 10.h),
               child: Container(
                 width: 360.w,
-                height: 260.h,
+                height: 250.h,
                 alignment: Alignment.center,
                 child: buildVideo(),
               ),
             )
           : Container(
-              height: 260.h,
+              height: 250.h,
               child: Center(
                 child: CircularProgressIndicator(),
               ),

@@ -154,7 +154,7 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 30.h, left: 30.w, right: 30.w),
+              padding: EdgeInsets.only(top: 20.h, left: 30.w, right: 30.w),
               child: Text(
                 _controllerQuiz.textquestionreturn(_myquestions),
                 style: TextStyle(

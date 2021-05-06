@@ -27,7 +27,7 @@ Widget returnImageOrVideoOfQuiz(
     return _buildVideo
         ? VideoQuiz(videoPath: _controllerQuiz.returnPathVideo(_myquestions))
         : Container(
-            height: 260.h,
+            height: 250.h,
             child: Center(
               child: CircularProgressIndicator(),
             ),

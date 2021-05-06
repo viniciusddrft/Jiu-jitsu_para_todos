@@ -66,12 +66,6 @@ final List dataquestionseasy = [
     "options": ['2', '3', '4', '5'],
     "rightanswer": "3",
   },
-  {
-    "question": "Qual o nome dessa finalização?",
-    "options": ['Armlock', 'Kimura', 'Americana', 'Triângulo'],
-    "rightanswer": "Armlock",
-    "pathImage": "assets/images/quiz/quizArmllock.png"
-  }
 ];
 
 final List dataquestionsmedium = [
