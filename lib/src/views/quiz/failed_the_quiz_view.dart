@@ -6,18 +6,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class FailedInQuiz extends StatefulWidget {
   final int score;
   final String difficultyname;
-  FailedInQuiz({this.score, this.difficultyname});
+  final int totalQuestions;
+  FailedInQuiz(
+      {@required this.score,
+      @required this.difficultyname,
+      @required this.totalQuestions});
   @override
   _FailedInQuizState createState() => _FailedInQuizState();
 }
 
 class _FailedInQuizState extends State<FailedInQuiz> {
-  String difficultyname;
-  int score;
+  double scorePercentage;
+  String socrePercentageText;
+
   @override
   void initState() {
-    difficultyname = widget.difficultyname;
-    score = widget.score - 1;
+    scorePercentage = widget.score / widget.totalQuestions;
+    socrePercentageText = (scorePercentage * 100).toStringAsPrecision(2);
     super.initState();
   }
 
@@ -45,8 +50,33 @@ class _FailedInQuizState extends State<FailedInQuiz> {
             Container(
               width: MediaQuery.of(context).size.width / 1.2,
               child: Text(
-                'Você acertou $score na dificuldade $difficultyname ',
+                'Sua pontuação no quiz ${widget.difficultyname} foi',
                 style: TextStyle(fontSize: 20.sp),
+              ),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 10),
+            Container(
+              height: 150,
+              width: 150,
+              child: Stack(
+                children: [
+                  Container(
+                    height: 150,
+                    width: 150,
+                    child: CircularProgressIndicator(
+                        strokeWidth: 7,
+                        value: scorePercentage,
+                        backgroundColor: Color(0xff313959),
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(Colors.green)),
+                  ),
+                  Center(
+                    child: Text(
+                      socrePercentageText + '%',
+                      style: TextStyle(fontSize: 30.sp),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

@@ -5,19 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WinnerInQuiz extends StatefulWidget {
   final String difficultyname;
-  WinnerInQuiz({this.difficultyname});
+  WinnerInQuiz({@required this.difficultyname});
   @override
   _WinnerInQuizState createState() => _WinnerInQuizState();
 }
 
 class _WinnerInQuizState extends State<WinnerInQuiz> {
-  String difficultyname;
-  @override
-  void initState() {
-    difficultyname = widget.difficultyname;
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -40,8 +33,33 @@ class _WinnerInQuizState extends State<WinnerInQuiz> {
             Container(
               width: MediaQuery.of(context).size.width / 1.2,
               child: Text(
-                'Parabéns Você venceu na dificuldade $difficultyname',
+                'Parabens você conseguiu vencer a dificuldade ${widget.difficultyname}!!!',
                 style: TextStyle(fontSize: 20.sp),
+              ),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 10),
+            Container(
+              height: 150,
+              width: 150,
+              child: Stack(
+                children: [
+                  Container(
+                    height: 150,
+                    width: 150,
+                    child: CircularProgressIndicator(
+                        strokeWidth: 7,
+                        value: 1,
+                        backgroundColor: Color(0xff313959),
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(Colors.green)),
+                  ),
+                  Center(
+                    child: Text(
+                      '100%',
+                      style: TextStyle(fontSize: 30.sp),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

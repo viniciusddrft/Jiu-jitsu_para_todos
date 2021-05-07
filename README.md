@@ -14,9 +14,9 @@ Caso queira conhecer mais sobre o flutter:
 Aceito qualquer critica construtiva ou contribuição primeiramente gostaria de dizer que alguns arquivos não foram colocados no repositório por ter informações sensíveis, porem todo o código que foi restrito era em relação aos anúncios na admob ou configurações da loja Google play, mas ainda tem tudo que eu fiz para construir o aplicativo aqui.
 <br><br>
 
-Abaixo tenho a tela da home e quiz do app
+Abaixo tenho a tela da home
 
-<img src="assets/readme/1.png" width="411.4" height="820.6"> <img src="assets/readme/3.png" width="411.4" height="820.6">
+<img src="assets/readme/1.png" width="411.4" height="820.6">
 
 
 # Arquitetura MVC

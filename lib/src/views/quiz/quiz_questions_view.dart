@@ -106,7 +106,8 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
       await Navigator.of(context).pushReplacement(MyTransitionElasticOut(
           route: FailedInQuiz(
             difficultyname: widget.difficultyname,
-            score: counterquestions,
+            score: counterquestions - 1,
+            totalQuestions: totalnumberofquestions,
           ),
           duration: Duration(milliseconds: 500)));
     }
