@@ -3,12 +3,12 @@ import 'package:jiu_jitsu_para_todos/src/views/quiz/quiz_questions_view.dart';
 import 'package:jiu_jitsu_para_todos/src/views/shared/animated_page_route_builder/my_transition_elatic_out.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BottonOptionQuiz extends StatefulWidget {
+class ButtonOptionQuiz extends StatefulWidget {
   final String imagebotton;
   final String textbotton;
   final String difficulty;
   final String difficultyname;
-  BottonOptionQuiz(
+  ButtonOptionQuiz(
       {@required this.imagebotton,
       @required this.textbotton,
       @required this.difficulty,
@@ -25,10 +25,10 @@ class BottonOptionQuiz extends StatefulWidget {
                 .contains(difficultyname));
 
   @override
-  _BottonOptionQuizState createState() => _BottonOptionQuizState();
+  _ButtonOptionQuizState createState() => _ButtonOptionQuizState();
 }
 
-class _BottonOptionQuizState extends State<BottonOptionQuiz> {
+class _ButtonOptionQuizState extends State<ButtonOptionQuiz> {
   void _changeroute() async {
     await Navigator.of(context).push(
       MyTransitionElasticOut(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/views/quiz/components/botton_options_quiz_widget.dart';
+import 'package:jiu_jitsu_para_todos/src/views/quiz/components/button_options_quiz_widget.dart';
 
 class BodyQuiz extends StatefulWidget {
   @override
@@ -15,19 +15,19 @@ class _BodyQuizState extends State<BodyQuiz> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            BottonOptionQuiz(
+            ButtonOptionQuiz(
               imagebotton: 'assets/images/iconsbutton/faixabranca.png',
               textbotton: 'Nível Faixa Branca',
               difficulty: 'easy',
               difficultyname: 'Faixa Branca',
             ),
-            BottonOptionQuiz(
+            ButtonOptionQuiz(
               imagebotton: 'assets/images/iconsbutton/faixaazul.png',
               textbotton: 'Nível Faixa Azul',
               difficulty: 'medium',
               difficultyname: 'Faixa Azul',
             ),
-            BottonOptionQuiz(
+            ButtonOptionQuiz(
               imagebotton: 'assets/images/iconsbutton/faixapreta.png',
               textbotton: 'Nível Faixa Preta',
               difficulty: 'hard',
