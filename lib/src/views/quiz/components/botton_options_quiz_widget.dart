@@ -30,12 +30,15 @@ class BottonOptionQuiz extends StatefulWidget {
 
 class _BottonOptionQuizState extends State<BottonOptionQuiz> {
   void _changeroute() async {
-    await Navigator.of(context).push(MyTransitionElasticOut(
-        route: QuestionsQuiz(
+    await Navigator.of(context).push(
+      MyTransitionElasticOut(
+        route: QuizQuestions(
           difficulty: widget.difficulty,
           difficultyname: widget.difficultyname,
         ),
-        duration: Duration(milliseconds: 500)));
+        duration: Duration(milliseconds: 500),
+      ),
+    );
   }
 
   @override

@@ -8,7 +8,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Cbjjrules extends StatelessWidget {
   Future<void> _launchLink(String url) async {
     if (await canLaunch(url)) {
-      await launch(url, forceWebView: false, forceSafariVC: false);
+      await launch(
+        url,
+        forceWebView: false,
+        forceSafariVC: false,
+      );
     } else {}
   }
 

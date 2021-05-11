@@ -10,19 +10,19 @@ import 'package:jiu_jitsu_para_todos/src/views/shared/animated_page_route_builde
 import 'package:just_audio/just_audio.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class QuestionsQuiz extends StatefulWidget {
+class QuizQuestions extends StatefulWidget {
   final String difficulty;
   final String difficultyname;
-  QuestionsQuiz({@required this.difficulty, @required this.difficultyname})
+  QuizQuestions({@required this.difficulty, @required this.difficultyname})
       : assert(['easy', 'medium', 'hard'].contains(difficulty) &&
             ['Faixa Branca', 'Faixa Azul', 'Faixa Preta']
                 .contains(difficultyname));
 
   @override
-  _QuestionsQuizState createState() => _QuestionsQuizState();
+  _QuizQuestionsState createState() => _QuizQuestionsState();
 }
 
-class _QuestionsQuizState extends State<QuestionsQuiz> {
+class _QuizQuestionsState extends State<QuizQuestions> {
   //quiz
   var _controllerQuiz = ControllerQuiz();
   var _myquestions;
@@ -40,14 +40,14 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
   final _random = Random();
   var _num;
   // colors buttons
-  var colorbottonA = Colors.white;
-  var coloriconbottonA = Colors.transparent;
-  var colorbottonB = Colors.white;
-  var coloriconbottonB = Colors.transparent;
-  var colorbottonC = Colors.white;
-  var coloriconbottonC = Colors.transparent;
-  var colorbottonD = Colors.white;
-  var coloriconbottonD = Colors.transparent;
+  var _colorbottonA = Colors.white;
+  var _coloriconbottonA = Colors.transparent;
+  var _colorbottonB = Colors.white;
+  var _coloriconbottonB = Colors.transparent;
+  var _colorbottonC = Colors.white;
+  var _coloriconbottonC = Colors.transparent;
+  var _colorbottonD = Colors.white;
+  var _coloriconbottonD = Colors.transparent;
 
   @override
   void didChangeDependencies() {
@@ -189,8 +189,8 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                         _isButtonDisabled = true;
 
                                         iconButton = Icons.done;
-                                        colorbottonA = Colors.green;
-                                        coloriconbottonA = Colors.green;
+                                        _colorbottonA = Colors.green;
+                                        _coloriconbottonA = Colors.green;
                                       });
                                       Future.delayed(
                                           const Duration(milliseconds: 500),
@@ -207,8 +207,9 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                           } else {
                                             _controllerQuiz.numberquestions++;
                                           }
-                                          coloriconbottonA = Colors.transparent;
-                                          colorbottonA = Colors.white;
+                                          _coloriconbottonA =
+                                              Colors.transparent;
+                                          _colorbottonA = Colors.white;
                                           //mysound  onde posso fazer stop
 
                                           _buildVideo = true;
@@ -220,8 +221,8 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                       setState(() {
                                         _isButtonDisabled = true;
                                         iconButton = Icons.close;
-                                        colorbottonA = Colors.red;
-                                        coloriconbottonA = Colors.red;
+                                        _colorbottonA = Colors.red;
+                                        _coloriconbottonA = Colors.red;
                                       });
                                       Future.delayed(
                                           const Duration(milliseconds: 500),
@@ -238,7 +239,7 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                       .returntextanswerA(_myquestions),
                                   style: TextStyle(
                                       fontFamily: 'Ubuntu',
-                                      color: colorbottonA,
+                                      color: _colorbottonA,
                                       fontSize: 16.sp),
                                 ),
                                 Container(
@@ -247,12 +248,12 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                   decoration: BoxDecoration(
                                     color: Colors.transparent,
                                     borderRadius: BorderRadius.circular(50),
-                                    border: Border.all(color: colorbottonA),
+                                    border: Border.all(color: _colorbottonA),
                                   ),
                                   child: Icon(
                                     iconButton,
                                     size: 16.sp,
-                                    color: coloriconbottonA,
+                                    color: _coloriconbottonA,
                                   ),
                                 )
                               ],
@@ -264,7 +265,7 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
-                              side: BorderSide(color: colorbottonA),
+                              side: BorderSide(color: _colorbottonA),
                               padding: EdgeInsets.all(8),
                             ),
                           ),
@@ -285,8 +286,8 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                         _isButtonDisabled = true;
 
                                         iconButton = Icons.done;
-                                        colorbottonB = Colors.green;
-                                        coloriconbottonB = Colors.green;
+                                        _colorbottonB = Colors.green;
+                                        _coloriconbottonB = Colors.green;
                                       });
                                       Future.delayed(
                                           const Duration(milliseconds: 500),
@@ -303,8 +304,9 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                           } else {
                                             _controllerQuiz.numberquestions++;
                                           }
-                                          coloriconbottonB = Colors.transparent;
-                                          colorbottonB = Colors.white;
+                                          _coloriconbottonB =
+                                              Colors.transparent;
+                                          _colorbottonB = Colors.white;
                                           //mysound  onde posso fazer stop
 
                                           _buildVideo = true;
@@ -316,8 +318,8 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                       setState(() {
                                         _isButtonDisabled = true;
                                         iconButton = Icons.close;
-                                        colorbottonB = Colors.red;
-                                        coloriconbottonB = Colors.red;
+                                        _colorbottonB = Colors.red;
+                                        _coloriconbottonB = Colors.red;
                                       });
                                       Future.delayed(
                                           const Duration(milliseconds: 500),
@@ -334,7 +336,7 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                       .returntextanswerB(_myquestions),
                                   style: TextStyle(
                                       fontFamily: 'Ubuntu',
-                                      color: colorbottonB,
+                                      color: _colorbottonB,
                                       fontSize: 16.sp),
                                 ),
                                 Container(
@@ -343,12 +345,12 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                   decoration: BoxDecoration(
                                     color: Colors.transparent,
                                     borderRadius: BorderRadius.circular(50),
-                                    border: Border.all(color: colorbottonB),
+                                    border: Border.all(color: _colorbottonB),
                                   ),
                                   child: Icon(
                                     iconButton,
                                     size: 16.sp,
-                                    color: coloriconbottonB,
+                                    color: _coloriconbottonB,
                                   ),
                                 )
                               ],
@@ -360,7 +362,7 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
-                              side: BorderSide(color: colorbottonB),
+                              side: BorderSide(color: _colorbottonB),
                               padding: EdgeInsets.all(8),
                             ),
                           ),
@@ -381,8 +383,8 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                       setState(() {
                                         _isButtonDisabled = true;
                                         iconButton = Icons.done;
-                                        colorbottonC = Colors.green;
-                                        coloriconbottonC = Colors.green;
+                                        _colorbottonC = Colors.green;
+                                        _coloriconbottonC = Colors.green;
                                       });
                                       Future.delayed(
                                           const Duration(milliseconds: 500),
@@ -399,8 +401,9 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                           } else {
                                             _controllerQuiz.numberquestions++;
                                           }
-                                          coloriconbottonC = Colors.transparent;
-                                          colorbottonC = Colors.white;
+                                          _coloriconbottonC =
+                                              Colors.transparent;
+                                          _colorbottonC = Colors.white;
                                           //mysound  onde posso fazer stop
 
                                           _buildVideo = true;
@@ -412,8 +415,8 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                       setState(() {
                                         _isButtonDisabled = true;
                                         iconButton = Icons.close;
-                                        colorbottonC = Colors.red;
-                                        coloriconbottonC = Colors.red;
+                                        _colorbottonC = Colors.red;
+                                        _coloriconbottonC = Colors.red;
                                       });
                                       Future.delayed(
                                           const Duration(milliseconds: 500),
@@ -430,7 +433,7 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                       .returntextanswerC(_myquestions),
                                   style: TextStyle(
                                       fontFamily: 'Ubuntu',
-                                      color: colorbottonC,
+                                      color: _colorbottonC,
                                       fontSize: 16.sp),
                                 ),
                                 Container(
@@ -439,12 +442,12 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                   decoration: BoxDecoration(
                                     color: Colors.transparent,
                                     borderRadius: BorderRadius.circular(50),
-                                    border: Border.all(color: colorbottonC),
+                                    border: Border.all(color: _colorbottonC),
                                   ),
                                   child: Icon(
                                     iconButton,
                                     size: 16.sp,
-                                    color: coloriconbottonC,
+                                    color: _coloriconbottonC,
                                   ),
                                 )
                               ],
@@ -456,7 +459,7 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
-                              side: BorderSide(color: colorbottonC),
+                              side: BorderSide(color: _colorbottonC),
                               padding: EdgeInsets.all(8),
                             ),
                           ),
@@ -476,8 +479,8 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                       setState(() {
                                         _isButtonDisabled = true;
                                         iconButton = Icons.done;
-                                        colorbottonD = Colors.green;
-                                        coloriconbottonD = Colors.green;
+                                        _colorbottonD = Colors.green;
+                                        _coloriconbottonD = Colors.green;
                                       });
                                       Future.delayed(
                                           const Duration(milliseconds: 500),
@@ -494,8 +497,9 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                           } else {
                                             _controllerQuiz.numberquestions++;
                                           }
-                                          coloriconbottonD = Colors.transparent;
-                                          colorbottonD = Colors.white;
+                                          _coloriconbottonD =
+                                              Colors.transparent;
+                                          _colorbottonD = Colors.white;
                                           //mysound  onde posso fazer stop
 
                                           _buildVideo = true;
@@ -507,8 +511,8 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                       setState(() {
                                         _isButtonDisabled = true;
                                         iconButton = Icons.close;
-                                        colorbottonD = Colors.red;
-                                        coloriconbottonD = Colors.red;
+                                        _colorbottonD = Colors.red;
+                                        _coloriconbottonD = Colors.red;
                                       });
                                       Future.delayed(
                                           const Duration(milliseconds: 500),
@@ -525,7 +529,7 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                       .returntextanswerD(_myquestions),
                                   style: TextStyle(
                                       fontFamily: 'Ubuntu',
-                                      color: colorbottonD,
+                                      color: _colorbottonD,
                                       fontSize: 16.sp),
                                 ),
                                 Container(
@@ -534,12 +538,12 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                                   decoration: BoxDecoration(
                                     color: Colors.transparent,
                                     borderRadius: BorderRadius.circular(50),
-                                    border: Border.all(color: colorbottonD),
+                                    border: Border.all(color: _colorbottonD),
                                   ),
                                   child: Icon(
                                     iconButton,
                                     size: 16.sp,
-                                    color: coloriconbottonD,
+                                    color: _coloriconbottonD,
                                   ),
                                 )
                               ],
@@ -551,7 +555,7 @@ class _QuestionsQuizState extends State<QuestionsQuiz> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
-                              side: BorderSide(color: colorbottonD),
+                              side: BorderSide(color: _colorbottonD),
                               padding: EdgeInsets.all(8),
                             ),
                           ),
