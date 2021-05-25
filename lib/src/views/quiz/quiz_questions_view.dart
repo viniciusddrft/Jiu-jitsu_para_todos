@@ -9,14 +9,18 @@ import 'package:jiu_jitsu_para_todos/src/views/quiz/winner_in_the_quiz_view.dart
 import 'package:jiu_jitsu_para_todos/src/views/shared/animated_page_route_builder/my_transition_elatic_out.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class QuizQuestions extends StatefulWidget {
   final String difficulty;
   final String difficultyname;
   QuizQuestions({@required this.difficulty, @required this.difficultyname})
       : assert(['easy', 'medium', 'hard'].contains(difficulty) &&
-            ['Faixa Branca', 'Faixa Azul', 'Faixa Preta']
-                .contains(difficultyname));
+            [
+              'text_difficultyname_white_belt'.tr(),
+              'text_difficultyname_blue_belt'.tr(),
+              'text_difficultyname_black_belt'.tr()
+            ].contains(difficultyname));
 
   @override
   _QuizQuestionsState createState() => _QuizQuestionsState();
@@ -138,7 +142,8 @@ class _QuizQuestionsState extends State<QuizQuestions> {
             Padding(
               padding: EdgeInsets.only(left: 30.w),
               child: Text(
-                'Questão $counterquestions/$totalnumberofquestions',
+                'text_question'.tr() +
+                    ' $counterquestions/$totalnumberofquestions',
                 style: TextStyle(
                     fontFamily: 'Ubuntu', fontSize: 22.sp, color: Colors.white),
               ),

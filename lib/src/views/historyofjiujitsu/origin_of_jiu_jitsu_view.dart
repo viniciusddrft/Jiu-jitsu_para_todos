@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/controllers/admob/admob_controller.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class OriginOfJiujitsu extends StatelessWidget {
   @override
@@ -16,7 +17,7 @@ class OriginOfJiujitsu extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
-          'Origem do Jiu-jitsu',
+          'title_appbar_origin_of_jiujitsu_page'.tr(),
           style: TextStyle(fontFamily: 'YatraOne', color: Colors.grey[700]),
         ),
       ),
@@ -40,20 +41,25 @@ class OriginOfJiujitsu extends StatelessWidget {
                   children: [
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
-                        'Apesar de sua popularidade crescente no Japão, a história do jiu-jitsu começou na Índia (daí o nome "berço das arte artes marciais "), há mais de dois mil anos.',
-                        style: TextStyle(fontSize: 16.sp)),
+                      'text_origin_of_jiujitsu_paragraph1'.tr(),
+                      style: TextStyle(fontSize: 16.sp),
+                    ),
                     Text(
-                        ' A religião proibia monges monastérios indianos defender com armas. Mas em longas caminhadas, eles foram atacados por bandidos das tribos mongóis do norte da Ásia, e então necessidade de defesa corpo a corpo.',
-                        style: TextStyle(fontSize: 16.sp)),
+                      'text_origin_of_jiujitsu_paragraph2'.tr(),
+                      style: TextStyle(fontSize: 16.sp),
+                    ),
                     Text(
-                        ' Os conhecedores dos pontos vitais do corpo desenvolveram uma espécie defesa especial para as características físicas de seu povo, baixo e magro. Este tipo de embrião de jiu-jitsu finalmente cruzou a linha fronteiras da China e seguir para o arquipélago japonês onde estava localizado desenvolvido, mas conhecido apenas por nobres e samurais. No Japão O Jiu-jitsu é literalmente conhecido como "Arte Suave".',
-                        style: TextStyle(fontSize: 16.sp)),
+                      'text_origin_of_jiujitsu_paragraph3'.tr(),
+                      style: TextStyle(fontSize: 16.sp),
+                    ),
                     Text(
-                        ' O Jiu-jitsu foi a luta mais praticada no Japão por muito tempo, até o surgimento do judô como esporte em 1882, através do Mestre de Jiu-Jitsu, Jigoro Kano. Isso remove as técnicas traumáticas do jiu-jitsu mais perigoso e eficiente e cria o esporte como o conhecemos hoje.Mas havia vários estilos de jiu-jitsu e, de fato, todo competidor fazia seu próprio estilo.',
-                        style: TextStyle(fontSize: 16.sp)),
+                      'text_origin_of_jiujitsu_paragraph4'.tr(),
+                      style: TextStyle(fontSize: 16.sp),
+                    ),
                     Text(
-                        ' O Jiu-Jitsu foi proibido no Japão por um tempo Como um crime contra sua pátria. Com a promoção da introdução da cultura ocidental no Japão Imperador Muto (1867-1912), artes marciais esquecido. Até mais tarde, quando o Ocidente começou apreciar e a "importar" esse tipo de luta.',
-                        style: TextStyle(fontSize: 16.sp)),
+                      'text_origin_of_jiujitsu_paragraph5'.tr(),
+                      style: TextStyle(fontSize: 16.sp),
+                    ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                   ],
                 ),

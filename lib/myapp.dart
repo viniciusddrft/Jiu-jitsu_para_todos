@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/views/home/home_page_view.dart';
 import 'package:jiu_jitsu_para_todos/src/views/splash/splash_page_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -9,6 +10,9 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(411.4, 820.6),
       builder: () => MaterialApp(
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         theme: ThemeData(
           fontFamily: 'Ubuntu',
           primaryColor: Color(0xff1b2c57),

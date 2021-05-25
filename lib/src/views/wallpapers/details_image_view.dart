@@ -5,6 +5,7 @@ import 'package:jiu_jitsu_para_todos/src/controllers/admob/admob_controller.dart
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class DetailsImage extends StatelessWidget {
   final String imagePath;
@@ -24,9 +25,10 @@ class DetailsImage extends StatelessWidget {
         barrierDismissible: true,
         builder: (BuildContext context) {
           return AlertDialog(
+            backgroundColor: Color(0xff202848),
             actions: [
               TextButton(
-                child: Text('Aconteceu algum erro :/'),
+                child: Text('text_popup_error'.tr()),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -44,9 +46,10 @@ class DetailsImage extends StatelessWidget {
         barrierDismissible: true,
         builder: (BuildContext context) {
           return AlertDialog(
+            backgroundColor: Color(0xff202848),
             actions: [
               TextButton(
-                child: Text('Imagem salva com sucesso!!!'),
+                child: Text('text_popup_success'.tr()),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -123,7 +126,7 @@ class DetailsImage extends StatelessWidget {
                               side: BorderSide(color: Colors.white)),
                           onPressed: () => onpressed(imagePath),
                           child: Center(
-                            child: Text('Salvar imagem'),
+                            child: Text('button_save_image'.tr()),
                           ),
                         ),
                       )

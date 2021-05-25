@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/views/shared/appbar_gradient/appbar_gradient.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class WinnerInQuiz extends StatefulWidget {
   final String difficultyname;
@@ -11,6 +12,19 @@ class WinnerInQuiz extends StatefulWidget {
 }
 
 class _WinnerInQuizState extends State<WinnerInQuiz> {
+  String _text;
+  @override
+  void initState() {
+    if (widget.difficultyname == 'text_difficultyname_white_belt'.tr()) {
+      _text = 'text_winner_quiz_white_belt'.tr();
+    } else if (widget.difficultyname == 'text_difficultyname_blue_belt'.tr()) {
+      _text = 'text_winner_quiz_blue_belt'.tr();
+    } else if (widget.difficultyname == 'text_difficultyname_black_belt'.tr()) {
+      _text = 'text_winner_quiz_black_belt'.tr();
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -33,7 +47,7 @@ class _WinnerInQuizState extends State<WinnerInQuiz> {
             Container(
               width: MediaQuery.of(context).size.width / 1.2,
               child: Text(
-                'Parabens você conseguiu vencer a dificuldade ${widget.difficultyname}!!!',
+                _text,
                 style: TextStyle(fontSize: 20.sp),
               ),
             ),

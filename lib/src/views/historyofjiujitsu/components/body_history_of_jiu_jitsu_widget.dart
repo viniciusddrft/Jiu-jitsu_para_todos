@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/views/historyofjiujitsu/components/botton_options_history_widget.dart';
 import 'package:jiu_jitsu_para_todos/src/views/historyofjiujitsu/jiu_jitsu_in_brazil_view.dart';
 import 'package:jiu_jitsu_para_todos/src/views/historyofjiujitsu/origin_of_jiu_jitsu_view.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class BodyHistoryOfJiuJistu extends StatelessWidget {
   @override
@@ -14,12 +15,12 @@ class BodyHistoryOfJiuJistu extends StatelessWidget {
           children: [
             BottonOptionsHistory(
               imagebotton: 'assets/images/iconsbutton/india.png',
-              textbotton: 'Origem do Jiu-Jitsu',
+              textbotton: 'button_origin_of_jiujitsu'.tr(),
               routebotton: OriginOfJiujitsu(),
             ),
             BottonOptionsHistory(
               imagebotton: 'assets/images/iconsbutton/brasil.png',
-              textbotton: 'O Jiu-Jitsu no Brasil',
+              textbotton: 'button_jiujitsu_in_brazil'.tr(),
               routebotton: JiujitsuinBrazil(),
             ),
             SizedBox(

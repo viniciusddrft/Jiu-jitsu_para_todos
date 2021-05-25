@@ -4,6 +4,7 @@ import 'package:jiu_jitsu_para_todos/src/controllers/admob/admob_controller.dart
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class Cbjjrules extends StatelessWidget {
   Future<void> _launchLink(String url) async {
@@ -27,7 +28,7 @@ class Cbjjrules extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
-          'Regras da CBJJ',
+          'title_appbar_cbjj_rules_page'.tr(),
           style: TextStyle(fontFamily: 'YatraOne', color: Colors.grey[700]),
         ),
       ),
@@ -51,8 +52,9 @@ class Cbjjrules extends StatelessWidget {
                   children: [
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
-                        'As regras da CBJJ são as regras da grande maioria dos campeonatos, se você quer se aprofundar e entender como todas regras funcionam é só usar o botão a baixo.',
-                        style: TextStyle(fontSize: 16.sp)),
+                      'text_cbjj'.tr(),
+                      style: TextStyle(fontSize: 16.sp),
+                    ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Container(
                       height: 50.h,
@@ -69,7 +71,7 @@ class Cbjjrules extends StatelessWidget {
                         onPressed: () =>
                             _launchLink('https://cbjj.com.br/books-videos'),
                         child: Center(
-                          child: Text('Site Oficial'),
+                          child: Text('text_button_cbjj'.tr()),
                         ),
                       ),
                     )

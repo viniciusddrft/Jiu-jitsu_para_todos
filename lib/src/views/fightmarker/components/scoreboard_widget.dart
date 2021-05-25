@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class Scoreboard extends StatefulWidget {
   @override
@@ -116,7 +117,7 @@ class _ScoreboardState extends State<Scoreboard> {
               }),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           Text(
-            'V',
+            'text_abbreviated_advantage'.tr(),
             style: TextStyle(
                 fontSize: 60.sp, color: Colors.yellow, fontFamily: 'YatraOne'),
           ),
@@ -145,7 +146,7 @@ class _ScoreboardState extends State<Scoreboard> {
               }),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           Text(
-            'P',
+            'text_abbreviated_punishment'.tr(),
             style: TextStyle(
                 fontSize: 60.sp, color: Colors.red, fontFamily: 'YatraOne'),
           ),

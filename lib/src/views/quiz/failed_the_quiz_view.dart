@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/views/shared/appbar_gradient/appbar_gradient.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class FailedInQuiz extends StatefulWidget {
   final int score;
@@ -16,13 +17,21 @@ class FailedInQuiz extends StatefulWidget {
 }
 
 class _FailedInQuizState extends State<FailedInQuiz> {
-  double scorePercentage;
-  String socrePercentageText;
-
+  String _text;
+  String _socrePercentageText;
+  double _scorePercentage;
   @override
   void initState() {
-    scorePercentage = widget.score / widget.totalQuestions;
-    socrePercentageText = (scorePercentage * 100).toStringAsPrecision(2);
+    _scorePercentage = widget.score / widget.totalQuestions;
+    _socrePercentageText = (_scorePercentage * 100).toStringAsPrecision(2);
+
+    if (widget.difficultyname == 'text_difficultyname_white_belt'.tr()) {
+      _text = 'text_failed_quiz_white_belt'.tr();
+    } else if (widget.difficultyname == 'text_difficultyname_blue_belt'.tr()) {
+      _text = 'text_failed_quiz_blue_belt'.tr();
+    } else if (widget.difficultyname == 'text_difficultyname_black_belt'.tr()) {
+      _text = 'text_failed_quiz_black_belt'.tr();
+    }
     super.initState();
   }
 
@@ -36,8 +45,8 @@ class _FailedInQuizState extends State<FailedInQuiz> {
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: AppBarGradient(),
-        title:
-            Text('Não foi dessa vez', style: TextStyle(fontFamily: 'YatraOne')),
+        title: Text('title_appbar_failed_quiz_page'.tr(),
+            style: TextStyle(fontFamily: 'YatraOne')),
       ),
       backgroundColor: Color(0xff202848),
       body: Container(
@@ -50,7 +59,7 @@ class _FailedInQuizState extends State<FailedInQuiz> {
             Container(
               width: MediaQuery.of(context).size.width / 1.2,
               child: Text(
-                'Sua pontuação no quiz ${widget.difficultyname} foi',
+                _text,
                 style: TextStyle(fontSize: 20.sp),
               ),
             ),
@@ -65,14 +74,14 @@ class _FailedInQuizState extends State<FailedInQuiz> {
                     width: 150,
                     child: CircularProgressIndicator(
                         strokeWidth: 7,
-                        value: scorePercentage,
+                        value: _scorePercentage,
                         backgroundColor: Color(0xff313959),
                         valueColor:
                             AlwaysStoppedAnimation<Color>(Colors.green)),
                   ),
                   Center(
                     child: Text(
-                      socrePercentageText + '%',
+                      _socrePercentageText + '%',
                       style: TextStyle(fontSize: 30.sp),
                     ),
                   ),

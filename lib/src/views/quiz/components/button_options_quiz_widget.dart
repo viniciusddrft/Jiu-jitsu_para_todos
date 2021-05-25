@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/views/quiz/quiz_questions_view.dart';
 import 'package:jiu_jitsu_para_todos/src/views/shared/animated_page_route_builder/my_transition_elatic_out.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ButtonOptionQuiz extends StatefulWidget {
   final String imagebotton;
@@ -18,11 +19,17 @@ class ButtonOptionQuiz extends StatefulWidget {
               'assets/images/iconsbutton/faixaazul.png',
               'assets/images/iconsbutton/faixapreta.png'
             ].contains(imagebotton) &&
-            ['Nível Faixa Branca', 'Nível Faixa Azul', 'Nível Faixa Preta']
-                .contains(textbotton) &&
+            [
+              'button_white_belt_level'.tr(),
+              'button_blue_belt_level'.tr(),
+              'button_black_belt_level'.tr()
+            ].contains(textbotton) &&
             ['easy', 'medium', 'hard'].contains(difficulty) &&
-            ['Faixa Branca', 'Faixa Azul', 'Faixa Preta']
-                .contains(difficultyname));
+            [
+              'text_difficultyname_white_belt'.tr(),
+              'text_difficultyname_blue_belt'.tr(),
+              'text_difficultyname_black_belt'.tr()
+            ].contains(difficultyname));
 
   @override
   _ButtonOptionQuizState createState() => _ButtonOptionQuizState();

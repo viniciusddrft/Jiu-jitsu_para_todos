@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/views/quiz/components/button_options_quiz_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class BodyQuiz extends StatefulWidget {
   @override
@@ -17,21 +18,21 @@ class _BodyQuizState extends State<BodyQuiz> {
           children: [
             ButtonOptionQuiz(
               imagebotton: 'assets/images/iconsbutton/faixabranca.png',
-              textbotton: 'Nível Faixa Branca',
+              textbotton: 'button_white_belt_level'.tr(),
               difficulty: 'easy',
-              difficultyname: 'Faixa Branca',
+              difficultyname: 'text_difficultyname_white_belt'.tr(),
             ),
             ButtonOptionQuiz(
               imagebotton: 'assets/images/iconsbutton/faixaazul.png',
-              textbotton: 'Nível Faixa Azul',
+              textbotton: 'button_blue_belt_level'.tr(),
               difficulty: 'medium',
-              difficultyname: 'Faixa Azul',
+              difficultyname: 'text_difficultyname_blue_belt'.tr(),
             ),
             ButtonOptionQuiz(
               imagebotton: 'assets/images/iconsbutton/faixapreta.png',
-              textbotton: 'Nível Faixa Preta',
+              textbotton: 'button_black_belt_level'.tr(),
               difficulty: 'hard',
-              difficultyname: 'Faixa Preta',
+              difficultyname: 'text_difficultyname_black_belt'.tr(),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height / 10,

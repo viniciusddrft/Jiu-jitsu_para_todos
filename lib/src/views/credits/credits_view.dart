@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/views/shared/appbar_gradient/appbar_gradient.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CreditsView extends StatefulWidget {
   @override
@@ -25,7 +26,8 @@ class _CreditsViewState extends State<CreditsView> {
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: AppBarGradient(),
-        title: Text('Créditos', style: TextStyle(fontFamily: 'YatraOne')),
+        title: Text('title_appbar_credits_page'.tr(),
+            style: TextStyle(fontFamily: 'YatraOne')),
       ),
       backgroundColor: Color(0xff202848),
       body: Container(
@@ -37,7 +39,7 @@ class _CreditsViewState extends State<CreditsView> {
               height: MediaQuery.of(context).size.height / 20,
             ),
             Text(
-              'Todos ícones do aplicativo são da Flaticon.',
+              'text_all_application_icons_are_from_flaticon'.tr(),
               style: TextStyle(fontSize: 15.sp),
             ),
             SizedBox(
@@ -53,7 +55,7 @@ class _CreditsViewState extends State<CreditsView> {
             SizedBox(
               height: MediaQuery.of(context).size.height / 20,
             ),
-            Text('O aplivativo foi desenvolvido em Flutter.',
+            Text('text_the_application_was_developed_in_flutter'.tr(),
                 style: TextStyle(fontSize: 15.sp)),
             SizedBox(
               height: MediaQuery.of(context).size.height / 20,
@@ -70,7 +72,8 @@ class _CreditsViewState extends State<CreditsView> {
             Container(
               width: MediaQuery.of(context).size.width / 1.4,
               child: Text(
-                'Caso queira conhecer tanto o Flutter quanto a Flaticon basta clicar nos ícones.',
+                'text_if_you_want_to_know_both_the_flutter_and_the_flaticon_just_click_on_the_icons'
+                    .tr(),
                 style: TextStyle(fontSize: 15.sp),
               ),
             ),
@@ -78,14 +81,14 @@ class _CreditsViewState extends State<CreditsView> {
               height: MediaQuery.of(context).size.height / 10,
             ),
             Text(
-              'Contato do desenvolvedor',
+              'text_developer_contact'.tr(),
               style: TextStyle(fontSize: 15.sp),
             ),
             TextButton.icon(
               onPressed: () => _launchLink('mailto:viniciusddrft5@gmail.com'),
               icon: Icon(Icons.mail),
               label: Text(
-                'E-mail de contato',
+                'text_contact_email'.tr(),
                 style: TextStyle(fontSize: 15.sp),
               ),
             )

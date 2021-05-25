@@ -3,6 +3,7 @@ import 'package:jiu_jitsu_para_todos/src/controllers/clock/clock_controller.dart
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class Clock extends StatefulWidget {
   @override
@@ -26,6 +27,7 @@ class _ClockState extends State<Clock> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: Color(0xff202848),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
@@ -36,7 +38,7 @@ class _ClockState extends State<Clock> {
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                       icon: Icon(Icons.timer),
-                      labelText: 'Minutos',
+                      labelText: 'text_label_minutes_popup'.tr(),
                       border: OutlineInputBorder()),
                 ),
               ],
@@ -44,7 +46,7 @@ class _ClockState extends State<Clock> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Continuar'),
+              child: Text('text_button_popup_continue'.tr()),
               onPressed: () {
                 _myclock.minutebuttonpressed();
                 Navigator.of(context).pop();
@@ -57,13 +59,13 @@ class _ClockState extends State<Clock> {
   }
 
 //------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
   Future<void> _showMyDialogSeconds() async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: Color(0xff202848),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
@@ -74,7 +76,7 @@ class _ClockState extends State<Clock> {
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                       icon: Icon(Icons.timer),
-                      labelText: 'Segundos',
+                      labelText: 'text_label_seconds_popup'.tr(),
                       border: OutlineInputBorder()),
                 ),
               ],
@@ -82,7 +84,7 @@ class _ClockState extends State<Clock> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Continuar'),
+              child: Text('text_button_popup_continue'.tr()),
               onPressed: () {
                 if (_myclock.secondsbuttonpressed()) {
                   setState(() {
@@ -108,9 +110,10 @@ class _ClockState extends State<Clock> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: Color(0xff202848),
           actions: <Widget>[
             TextButton(
-              child: Text('Parar som'),
+              child: Text('text_button_stopsound'.tr()),
               onPressed: () async {
                 await _player.pause();
                 Navigator.of(context).pop();
