@@ -9,9 +9,9 @@ class BottonOptionsHome extends StatefulWidget {
   final bool needtorebuildthehouse;
   final bool needanimation;
   BottonOptionsHome(
-      {@required this.imagebotton,
-      @required this.textbotton,
-      @required this.routebotton,
+      {required this.imagebotton,
+      required this.textbotton,
+      required this.routebotton,
       this.needtorebuildthehouse = false,
       this.needanimation = true});
 

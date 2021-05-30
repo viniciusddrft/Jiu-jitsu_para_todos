@@ -6,13 +6,13 @@ import 'package:easy_localization/easy_localization.dart';
 
 class WinnerInQuiz extends StatefulWidget {
   final String difficultyname;
-  WinnerInQuiz({@required this.difficultyname});
+  WinnerInQuiz({required this.difficultyname});
   @override
   _WinnerInQuizState createState() => _WinnerInQuizState();
 }
 
 class _WinnerInQuizState extends State<WinnerInQuiz> {
-  String _text;
+  String? _text;
   @override
   void initState() {
     if (widget.difficultyname == 'text_difficultyname_white_belt'.tr()) {
@@ -47,7 +47,7 @@ class _WinnerInQuizState extends State<WinnerInQuiz> {
             Container(
               width: MediaQuery.of(context).size.width / 1.2,
               child: Text(
-                _text,
+                _text!,
                 style: TextStyle(fontSize: 20.sp),
               ),
             ),

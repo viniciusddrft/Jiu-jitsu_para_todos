@@ -10,10 +10,10 @@ class ButtonOptionQuiz extends StatefulWidget {
   final String difficulty;
   final String difficultyname;
   ButtonOptionQuiz(
-      {@required this.imagebotton,
-      @required this.textbotton,
-      @required this.difficulty,
-      @required this.difficultyname})
+      {required this.imagebotton,
+      required this.textbotton,
+      required this.difficulty,
+      required this.difficultyname})
       : assert([
               'assets/images/iconsbutton/faixabranca.png',
               'assets/images/iconsbutton/faixaazul.png',

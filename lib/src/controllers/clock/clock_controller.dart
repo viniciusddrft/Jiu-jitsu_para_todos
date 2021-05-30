@@ -1,10 +1,10 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
 class MyClock {
-  int minutes;
-  int seconds;
+  int? minutes;
+  int? seconds;
   int time;
-  int timeold;
+  int? timeold;
   bool ispause;
   CountDownController controller = CountDownController();
 
@@ -20,7 +20,7 @@ class MyClock {
       minutes = 0;
     }
     timeold = time;
-    time = minutes;
+    time = minutes!;
     minutes = 0;
   }
 
@@ -28,7 +28,7 @@ class MyClock {
     if (seconds == null) {
       seconds = 0;
     }
-    time += seconds;
+    time += seconds!;
     if (time > 0) {
       controller.restart(duration: time);
       controller.pause();
@@ -36,7 +36,7 @@ class MyClock {
       return true;
     }
     if (time == 0) {
-      time = timeold;
+      time = timeold!;
     }
     return false;
   }

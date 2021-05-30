@@ -4,7 +4,7 @@ class MyTransitionFromLeftToRightAnimated extends PageRouteBuilder {
   final Widget route;
   final Duration duration;
   MyTransitionFromLeftToRightAnimated(
-      {@required this.route, @required this.duration})
+      {required this.route, required this.duration})
       : super(
           transitionDuration: duration,
           reverseTransitionDuration: duration,

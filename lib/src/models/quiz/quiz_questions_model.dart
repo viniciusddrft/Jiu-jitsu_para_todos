@@ -1,16 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class Question {
   final String question;
   final List<String> options;
   final String rightanswer;
-  final String pathImage;
-  final String pathVideo;
+  final String? pathImage;
+  final String? pathVideo;
   Question({
-    @required this.question,
-    @required this.options,
-    @required this.rightanswer,
+    required this.question,
+    required this.options,
+    required this.rightanswer,
     this.pathImage,
     this.pathVideo,
   });

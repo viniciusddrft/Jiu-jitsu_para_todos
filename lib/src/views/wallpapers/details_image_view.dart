@@ -7,11 +7,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class DetailsImage extends StatelessWidget {
+class DetailsImage extends StatefulWidget {
   final String imagePath;
-  final index;
+  final int index;
 
-  DetailsImage({this.imagePath, this.index});
+  DetailsImage({required this.imagePath, required this.index});
+
+  @override
+  _DetailsImageState createState() => _DetailsImageState();
+}
+
+class _DetailsImageState extends State<DetailsImage> {
+  @override
+  void initState() {
+    Admob.createInterstitialAd();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -90,14 +102,14 @@ class DetailsImage extends StatelessWidget {
           children: [
             Expanded(
               child: Hero(
-                tag: 'logo$index',
+                tag: 'logo${widget.index}',
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(30),
                         bottomRight: Radius.circular(30)),
                     image: DecorationImage(
-                      image: AssetImage(imagePath),
+                      image: AssetImage(widget.imagePath),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -124,7 +136,7 @@ class DetailsImage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               side: BorderSide(color: Colors.white)),
-                          onPressed: () => onpressed(imagePath),
+                          onPressed: () => onpressed(widget.imagePath),
                           child: Center(
                             child: Text('button_save_image'.tr()),
                           ),

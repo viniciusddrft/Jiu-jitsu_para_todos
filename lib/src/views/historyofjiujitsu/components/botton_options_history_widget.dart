@@ -7,9 +7,9 @@ class BottonOptionsHistory extends StatefulWidget {
   final String textbotton;
   final routebotton;
   BottonOptionsHistory(
-      {@required this.imagebotton,
-      @required this.textbotton,
-      @required this.routebotton});
+      {required this.imagebotton,
+      required this.textbotton,
+      required this.routebotton});
 
   @override
   _BottonOptionsHistoryState createState() => _BottonOptionsHistoryState();

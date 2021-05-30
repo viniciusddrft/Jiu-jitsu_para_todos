@@ -6,13 +6,13 @@ import 'package:easy_localization/easy_localization.dart';
 
 class BodySettings extends StatefulWidget {
   final Locale locale;
-  BodySettings({@required this.locale});
+  BodySettings({required this.locale});
   @override
   _BodySettingsState createState() => _BodySettingsState();
 }
 
 class _BodySettingsState extends State<BodySettings> {
-  String _iconPath;
+  String _iconPath = '';
 
   @override
   void initState() {
@@ -26,38 +26,10 @@ class _BodySettingsState extends State<BodySettings> {
 
   @override
   Widget build(BuildContext context) {
-    //--------------------------------------------------------------------------
+//------------------------------------------------------------------------------
     void _changecredits() async {
       await Navigator.of(context).push(MyTransitionElasticOut(
           route: CreditsView(), duration: Duration(milliseconds: 500)));
-    }
-
-    //--------------------------------------------------------------------------
-    Future<void> _languageChangeNotice(Locale _locale) async {
-      return showDialog<void>(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: Color(0xff202848),
-            scrollable: true,
-            content: Container(
-              child: Center(
-                child: Text('text_change_language_popup'.tr()),
-              ),
-            ),
-            actions: [
-              TextButton(
-                child: Text('text_continue_popup'.tr()),
-                onPressed: () {
-                  context.setLocale(_locale);
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
     }
 
 //------------------------------------------------------------------------------
@@ -78,7 +50,10 @@ class _BodySettingsState extends State<BodySettings> {
                   GestureDetector(
                     onTap: () {
                       Navigator.pop(context);
-                      _languageChangeNotice(Locale('pt', 'BR'));
+                      setState(() {
+                        context.setLocale(Locale('pt', 'BR'));
+                        _iconPath = 'assets/images/languages/brasil.png';
+                      });
                     },
                     child: Container(
                       color: Colors.transparent,
@@ -100,7 +75,10 @@ class _BodySettingsState extends State<BodySettings> {
                   GestureDetector(
                     onTap: () {
                       Navigator.pop(context);
-                      _languageChangeNotice(Locale('en', 'US'));
+                      setState(() {
+                        context.setLocale(Locale('en', 'US'));
+                        _iconPath = 'assets/images/languages/united-states.png';
+                      });
                     },
                     child: Container(
                       color: Colors.transparent,

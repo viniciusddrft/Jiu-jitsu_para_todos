@@ -9,21 +9,21 @@ class FailedInQuiz extends StatefulWidget {
   final String difficultyname;
   final int totalQuestions;
   FailedInQuiz(
-      {@required this.score,
-      @required this.difficultyname,
-      @required this.totalQuestions});
+      {required this.score,
+      required this.difficultyname,
+      required this.totalQuestions});
   @override
   _FailedInQuizState createState() => _FailedInQuizState();
 }
 
 class _FailedInQuizState extends State<FailedInQuiz> {
-  String _text;
-  String _socrePercentageText;
-  double _scorePercentage;
+  String? _text;
+  String? _socrePercentageText;
+  double? _scorePercentage;
   @override
   void initState() {
     _scorePercentage = widget.score / widget.totalQuestions;
-    _socrePercentageText = (_scorePercentage * 100).toStringAsPrecision(2);
+    _socrePercentageText = (_scorePercentage! * 100).toStringAsPrecision(2);
 
     if (widget.difficultyname == 'text_difficultyname_white_belt'.tr()) {
       _text = 'text_failed_quiz_white_belt'.tr();
@@ -59,7 +59,7 @@ class _FailedInQuizState extends State<FailedInQuiz> {
             Container(
               width: MediaQuery.of(context).size.width / 1.2,
               child: Text(
-                _text,
+                _text!,
                 style: TextStyle(fontSize: 20.sp),
               ),
             ),
@@ -81,7 +81,7 @@ class _FailedInQuizState extends State<FailedInQuiz> {
                   ),
                   Center(
                     child: Text(
-                      _socrePercentageText + '%',
+                      _socrePercentageText! + '%',
                       style: TextStyle(fontSize: 30.sp),
                     ),
                   ),

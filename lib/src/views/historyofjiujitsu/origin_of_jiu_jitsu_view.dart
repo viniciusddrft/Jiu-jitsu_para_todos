@@ -23,7 +23,7 @@ class OriginOfJiujitsu extends StatelessWidget {
       ),
       backgroundColor: Color(0xff202848),
       bottomNavigationBar: Container(
-        height: 60.h,
+        height: 90.h,
         child: AdWidget(
           key: UniqueKey(),
           ad: Admob.createBannerAd()..load(),

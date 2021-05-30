@@ -14,7 +14,7 @@ import 'package:easy_localization/easy_localization.dart';
 class QuizQuestions extends StatefulWidget {
   final String difficulty;
   final String difficultyname;
-  QuizQuestions({@required this.difficulty, @required this.difficultyname})
+  QuizQuestions({required this.difficulty, required this.difficultyname})
       : assert(['easy', 'medium', 'hard'].contains(difficulty) &&
             [
               'text_difficultyname_white_belt'.tr(),
@@ -54,10 +54,17 @@ class _QuizQuestionsState extends State<QuizQuestions> {
   var _coloriconbottonD = Colors.transparent;
 
   @override
+  void initState() {
+    Admob.createInterstitialAd();
+    super.initState();
+  }
+
+  @override
   void didChangeDependencies() {
     _myquestions = _controllerQuiz.choice(widget.difficulty);
-    super.didChangeDependencies();
     _difficultyname = widget.difficultyname;
+
+    super.didChangeDependencies();
   }
 
   @override
@@ -92,6 +99,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
     void _switchToWinner() async {
       _num = _random.nextInt(10);
       if (_num >= 8) {
+        print('MOSTRAR ANUNCIO');
         Admob.showInterstitialAd();
       }
       await Navigator.of(context).pushReplacement(MyTransitionElasticOut(
@@ -105,6 +113,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
     void _switchToFailed() async {
       _num = _random.nextInt(10);
       if (_num >= 2) {
+        print('MOSTRAR ANUNCIO');
         Admob.showInterstitialAd();
       }
       await Navigator.of(context).pushReplacement(MyTransitionElasticOut(

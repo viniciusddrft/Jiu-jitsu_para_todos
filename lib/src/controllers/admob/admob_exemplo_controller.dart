@@ -2,30 +2,30 @@ import 'dart:io';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class Admob {
-  static BannerAd _bannerAd;
-  static InterstitialAd _interstitialAd;
+  static int _numInterstitialLoadAttempts = 0;
+  static int maxFailedLoadAttempts = 3;
+  static BannerAd? _bannerAd;
+  static InterstitialAd? _interstitialAd;
+  static BannerAd? get bannerAd => _bannerAd;
 
-  static BannerAd get bannerAd => _bannerAd;
   static String get bannerAdUnitId => Platform.isAndroid
-      ? 'ca-app-pub-3940256099942544/6300978111'//this is id for test
-      : 'ca-app-pub-3940256099942544/6300978111';//this is id for test
+      ? 'ca-app-pub-3940256099942544/6300978111' //this is id for test
+      : 'ca-app-pub-3940256099942544/6300978111'; //this is id for test
 
   static String get interstitialAdUnitID => Platform.isAndroid
-      ? 'ca-app-pub-3940256099942544/1033173712'//this is id for test
-      : 'ca-app-pub-3940256099942544/1033173712';//this is id for test
+      ? 'ca-app-pub-3940256099942544/1033173712' //this is id for test
+      : 'ca-app-pub-3940256099942544/1033173712'; //this is id for test
 
   static initialize() {
-    if (MobileAds.instance == null) {
-      MobileAds.instance.initialize();
-    }
+    MobileAds.instance.initialize();
   }
 
   static BannerAd createBannerAd() {
-    BannerAd ad = new BannerAd(
+    BannerAd ad = BannerAd(
       adUnitId: bannerAdUnitId,
-      size: AdSize.fullBanner,
+      size: AdSize.leaderboard,
       request: AdRequest(),
-      listener: AdListener(
+      listener: BannerAdListener(
         onAdLoaded: (Ad ad) => print('Ad loaded.'),
         onAdFailedToLoad: (Ad ad, LoadAdError error) {
           print('Ad failed to load: $error');
@@ -33,7 +33,6 @@ class Admob {
         },
         onAdOpened: (Ad ad) => print('Ad opened.'),
         onAdClosed: (Ad ad) => print('Ad closed.'),
-        onApplicationExit: (Ad ad) => print('Left application.'),
       ),
     );
 
@@ -45,7 +44,7 @@ class Admob {
       return;
     }
     _bannerAd = createBannerAd();
-    _bannerAd..load();
+    _bannerAd?..load();
   }
 
   void disposeAds() {
@@ -55,28 +54,46 @@ class Admob {
     }
   }
 
-  static InterstitialAd _createInterstitialAd() {
-    return InterstitialAd(
+  static void createInterstitialAd() {
+    InterstitialAd?.load(
       adUnitId: interstitialAdUnitID,
       request: AdRequest(),
-      listener: AdListener(
-        onAdLoaded: (Ad ad) => {_interstitialAd.show()},
-        onAdFailedToLoad: (Ad ad, LoadAdError error) {
-          print('Ad failed to load: $error');
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (InterstitialAd ad) {
+          print('$ad loaded :| ');
+          _interstitialAd = ad;
         },
-        onAdOpened: (Ad ad) => print('Ad opened.'),
-        onAdClosed: (Ad ad) => {_interstitialAd.dispose()},
-        onApplicationExit: (Ad ad) => {_interstitialAd.dispose()},
+        onAdFailedToLoad: (LoadAdError error) {
+          print('InterstitialAd failed to load: $error.');
+          _numInterstitialLoadAttempts++;
+          _interstitialAd = null;
+          if (_numInterstitialLoadAttempts != maxFailedLoadAttempts) {
+            createInterstitialAd();
+          }
+        },
       ),
+    );
+
+    _interstitialAd?.fullScreenContentCallback = FullScreenContentCallback(
+      onAdImpression: (_) => print('sucesso!'),
+      onAdShowedFullScreenContent: (InterstitialAd ad) =>
+          print('ad onAdShowedFullScreenContent.'),
+      onAdDismissedFullScreenContent: (InterstitialAd ad) {
+        print('$ad onAdDismissedFullScreenContent.');
+        ad.dispose();
+        createInterstitialAd();
+      },
+      onAdFailedToShowFullScreenContent: (InterstitialAd ad, AdError error) {
+        print('$ad onAdFailedToShowFullScreenContent: $error');
+        ad.dispose();
+        createInterstitialAd();
+      },
     );
   }
 
   static void showInterstitialAd() {
+    _interstitialAd?.show();
     _interstitialAd?.dispose();
     _interstitialAd = null;
-
-    if (_interstitialAd == null) _interstitialAd = _createInterstitialAd();
-
-    _interstitialAd.load();
   }
 }

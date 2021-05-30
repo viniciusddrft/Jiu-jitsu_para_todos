@@ -4,38 +4,38 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class VideoQuiz extends StatefulWidget {
   final String videoPath;
-  VideoQuiz({@required this.videoPath});
+  VideoQuiz({required this.videoPath});
   @override
   _VideoQuizState createState() => _VideoQuizState();
 }
 
 class _VideoQuizState extends State<VideoQuiz> {
-  VideoPlayerController controller;
+  VideoPlayerController? controller;
 
   @override
   void initState() {
     controller = VideoPlayerController.asset(widget.videoPath);
-    controller.addListener(() {
+    controller?.addListener(() {
       setState(() {});
     });
 
-    controller.setLooping(true);
-    controller.initialize().then((_) => setState(() {}));
-    controller.play();
+    controller?.setLooping(true);
+    controller?.initialize().then((_) => setState(() {}));
+    controller?.play();
 
     super.initState();
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    controller?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return VideoPlayerWidget(
-      controller: controller,
+      controller: controller!,
     );
   }
 }
@@ -45,28 +45,27 @@ class VideoPlayerWidget extends StatelessWidget {
   final VideoPlayerController controller;
 
   VideoPlayerWidget({
-    @required this.controller,
+    required this.controller,
   });
 
   @override
-  Widget build(BuildContext context) =>
-      controller != null && controller.value.isInitialized
-          ? Padding(
-              padding: EdgeInsets.only(
-                  right: 30.w, left: 30.w, top: 10.h, bottom: 10.h),
-              child: Container(
-                width: 360.w,
-                height: 250.h,
-                alignment: Alignment.center,
-                child: buildVideo(),
-              ),
-            )
-          : Container(
-              height: 250.h,
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
+  Widget build(BuildContext context) => controller.value.isInitialized
+      ? Padding(
+          padding:
+              EdgeInsets.only(right: 30.w, left: 30.w, top: 10.h, bottom: 10.h),
+          child: Container(
+            width: 360.w,
+            height: 250.h,
+            alignment: Alignment.center,
+            child: buildVideo(),
+          ),
+        )
+      : Container(
+          height: 250.h,
+          child: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
 
   Widget buildVideo() => Stack(
         children: [
@@ -88,7 +87,7 @@ class VideoPlayerWidget extends StatelessWidget {
 class BasicOverlayWidget extends StatefulWidget {
   final VideoPlayerController controller;
 
-  const BasicOverlayWidget({@required this.controller});
+  const BasicOverlayWidget({required this.controller});
 
   @override
   _BasicOverlayWidgetState createState() => _BasicOverlayWidgetState();

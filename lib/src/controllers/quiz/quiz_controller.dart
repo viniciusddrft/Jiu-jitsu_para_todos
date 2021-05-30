@@ -9,8 +9,8 @@ class ControllerQuiz {
             question: question['question'],
             options: question['options'],
             rightanswer: question['rightanswer'],
-            pathImage: question['pathImage'],
-            pathVideo: question['pathVideo']),
+            pathImage: question?['pathImage'],
+            pathVideo: question?['pathVideo']),
       )
       .toList();
   List<Question> _questionsmedium = dataquestionsmedium
@@ -19,8 +19,8 @@ class ControllerQuiz {
             question: question['question'],
             options: question['options'],
             rightanswer: question['rightanswer'],
-            pathImage: question['pathImage'],
-            pathVideo: question['pathVideo']),
+            pathImage: question?['pathImage'],
+            pathVideo: question?['pathVideo']),
       )
       .toList();
   List<Question> _questionshard = dataquestionshard
@@ -29,8 +29,8 @@ class ControllerQuiz {
             question: question['question'],
             options: question['options'],
             rightanswer: question['rightanswer'],
-            pathImage: question['pathImage'],
-            pathVideo: question['pathVideo']),
+            pathImage: question?['pathImage'],
+            pathVideo: question?['pathVideo']),
       )
       .toList();
 
@@ -44,7 +44,7 @@ class ControllerQuiz {
           });
           return _questionseasy;
         }
-        break;
+
       case 'medium':
         {
           _questionsmedium.shuffle();
@@ -53,7 +53,7 @@ class ControllerQuiz {
           });
           return _questionsmedium;
         }
-        break;
+
       case 'hard':
         {
           _questionshard.shuffle();
@@ -62,12 +62,11 @@ class ControllerQuiz {
           });
           return _questionshard;
         }
-        break;
+
       default:
         {
           return _questionseasy;
         }
-        break;
     }
   }
 
@@ -90,8 +89,8 @@ class ControllerQuiz {
       answer == myquestions.toList()[numberquestions].rightanswer;
 
   String returnPathImage(myquestions) =>
-      myquestions.toList()[numberquestions].pathImage;
+      myquestions.toList()[numberquestions].pathImage.toString();
 
   String returnPathVideo(myquestions) =>
-      myquestions.toList()[numberquestions].pathVideo;
+      myquestions.toList()[numberquestions].pathVideo.toString();
 }

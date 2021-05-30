@@ -8,9 +8,9 @@ class BottonOptionsRules extends StatefulWidget {
   final routebotton;
 
   BottonOptionsRules(
-      {@required this.imagebotton,
-      @required this.textbotton,
-      @required this.routebotton});
+      {required this.imagebotton,
+      required this.textbotton,
+      required this.routebotton});
 
   @override
   _BottonOptionsRulesState createState() => _BottonOptionsRulesState();
