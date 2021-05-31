@@ -5,7 +5,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class Basicrules extends StatelessWidget {
+class Basicrules extends StatefulWidget {
+  @override
+  _BasicrulesState createState() => _BasicrulesState();
+}
+
+class _BasicrulesState extends State<Basicrules> {
+  @override
+  void dispose() {
+    Admob.disposeBanner();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -23,7 +34,7 @@ class Basicrules extends StatelessWidget {
       ),
       backgroundColor: Color(0xff202848),
       bottomNavigationBar: Container(
-        height: 90.h,
+        height: 60, //this is the space where I will render the ad
         child: AdWidget(
           key: UniqueKey(),
           ad: Admob.createBannerAd()..load(),

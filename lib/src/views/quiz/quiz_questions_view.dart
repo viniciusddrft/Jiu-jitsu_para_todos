@@ -54,16 +54,9 @@ class _QuizQuestionsState extends State<QuizQuestions> {
   var _coloriconbottonD = Colors.transparent;
 
   @override
-  void initState() {
-    Admob.createInterstitialAd();
-    super.initState();
-  }
-
-  @override
   void didChangeDependencies() {
     _myquestions = _controllerQuiz.choice(widget.difficulty);
     _difficultyname = widget.difficultyname;
-
     super.didChangeDependencies();
   }
 
@@ -99,8 +92,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
     void _switchToWinner() async {
       _num = _random.nextInt(10);
       if (_num >= 8) {
-        print('MOSTRAR ANUNCIO');
-        Admob.showInterstitialAd();
+        Admob.createAndShowInterstitialAd();
       }
       await Navigator.of(context).pushReplacement(MyTransitionElasticOut(
           route: WinnerInQuiz(
@@ -113,8 +105,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
     void _switchToFailed() async {
       _num = _random.nextInt(10);
       if (_num >= 2) {
-        print('MOSTRAR ANUNCIO');
-        Admob.showInterstitialAd();
+        Admob.createAndShowInterstitialAd();
       }
       await Navigator.of(context).pushReplacement(MyTransitionElasticOut(
           route: FailedInQuiz(

@@ -19,12 +19,6 @@ class DetailsImage extends StatefulWidget {
 
 class _DetailsImageState extends State<DetailsImage> {
   @override
-  void initState() {
-    Admob.createInterstitialAd();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
@@ -87,7 +81,7 @@ class _DetailsImageState extends State<DetailsImage> {
 //------------------------------------------------------------------------------
     void onpressed(String imagePath) async {
       if (await Permission.storage.request().isGranted) {
-        Admob.showInterstitialAd();
+        Admob.createAndShowInterstitialAd();
         Future.delayed(Duration(seconds: 3), () {
           _saveimage(imagePath);
         });

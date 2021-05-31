@@ -6,7 +6,12 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class Cbjjrules extends StatelessWidget {
+class Cbjjrules extends StatefulWidget {
+  @override
+  _CbjjrulesState createState() => _CbjjrulesState();
+}
+
+class _CbjjrulesState extends State<Cbjjrules> {
   Future<void> _launchLink(String url) async {
     if (await canLaunch(url)) {
       await launch(
@@ -15,6 +20,12 @@ class Cbjjrules extends StatelessWidget {
         forceSafariVC: false,
       );
     } else {}
+  }
+
+  @override
+  void dispose() {
+    Admob.disposeBanner();
+    super.dispose();
   }
 
   @override
@@ -34,7 +45,7 @@ class Cbjjrules extends StatelessWidget {
       ),
       backgroundColor: Color(0xff202848),
       bottomNavigationBar: Container(
-        height: 90.h,
+        height: 60, //this is the space where I will render the ad
         child: AdWidget(
           key: UniqueKey(),
           ad: Admob.createBannerAd()..load(),

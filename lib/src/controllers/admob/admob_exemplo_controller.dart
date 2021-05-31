@@ -3,9 +3,13 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class Admob {
   static int _numInterstitialLoadAttempts = 0;
+  static int _numBannerLoadAttempts = 0;
   static int maxFailedLoadAttempts = 3;
+
   static BannerAd? _bannerAd;
+
   static InterstitialAd? _interstitialAd;
+
   static BannerAd? get bannerAd => _bannerAd;
 
   static String get bannerAdUnitId => Platform.isAndroid
@@ -23,16 +27,20 @@ class Admob {
   static BannerAd createBannerAd() {
     BannerAd ad = BannerAd(
       adUnitId: bannerAdUnitId,
-      size: AdSize.leaderboard,
+      size: AdSize.fullBanner,
       request: AdRequest(),
       listener: BannerAdListener(
         onAdLoaded: (Ad ad) => print('Ad loaded.'),
         onAdFailedToLoad: (Ad ad, LoadAdError error) {
           print('Ad failed to load: $error');
-          ad.dispose();
+          _numBannerLoadAttempts++;
+          _bannerAd = null;
+          if (_numBannerLoadAttempts != maxFailedLoadAttempts) {
+            createBannerAd();
+          }
         },
         onAdOpened: (Ad ad) => print('Ad opened.'),
-        onAdClosed: (Ad ad) => print('Ad closed.'),
+        onAdClosed: (Ad ad) => print('Ad closed'),
       ),
     );
 
@@ -40,21 +48,16 @@ class Admob {
   }
 
   static void showBannerAd() {
-    if (_bannerAd != null) {
-      return;
-    }
     _bannerAd = createBannerAd();
     _bannerAd?..load();
   }
 
-  void disposeAds() {
+  static void disposeBanner() {
     print("disposeAds");
-    if (_bannerAd != null) {
-      _bannerAd?.dispose();
-    }
+    _bannerAd?.dispose();
   }
 
-  static void createInterstitialAd() {
+  static void createAndShowInterstitialAd() {
     InterstitialAd?.load(
       adUnitId: interstitialAdUnitID,
       request: AdRequest(),
@@ -62,13 +65,16 @@ class Admob {
         onAdLoaded: (InterstitialAd ad) {
           print('$ad loaded :| ');
           _interstitialAd = ad;
+          _interstitialAd?.show();
+          _interstitialAd?.dispose();
+          _interstitialAd = null;
         },
         onAdFailedToLoad: (LoadAdError error) {
           print('InterstitialAd failed to load: $error.');
           _numInterstitialLoadAttempts++;
           _interstitialAd = null;
           if (_numInterstitialLoadAttempts != maxFailedLoadAttempts) {
-            createInterstitialAd();
+            createAndShowInterstitialAd();
           }
         },
       ),
@@ -81,19 +87,13 @@ class Admob {
       onAdDismissedFullScreenContent: (InterstitialAd ad) {
         print('$ad onAdDismissedFullScreenContent.');
         ad.dispose();
-        createInterstitialAd();
+        createAndShowInterstitialAd();
       },
       onAdFailedToShowFullScreenContent: (InterstitialAd ad, AdError error) {
         print('$ad onAdFailedToShowFullScreenContent: $error');
         ad.dispose();
-        createInterstitialAd();
+        createAndShowInterstitialAd();
       },
     );
-  }
-
-  static void showInterstitialAd() {
-    _interstitialAd?.show();
-    _interstitialAd?.dispose();
-    _interstitialAd = null;
   }
 }
