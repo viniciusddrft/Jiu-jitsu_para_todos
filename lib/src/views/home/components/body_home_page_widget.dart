@@ -17,31 +17,31 @@ class BodyHomePage extends StatelessWidget {
         child: Column(
           children: [
             BottonOptionsHome(
-              imagebotton: 'assets/images/iconsbutton/historyofjiujitsu.png',
-              textbotton: 'button_history_of_jiujitsu_home_page'.tr(),
-              routebotton: HistoryOfJiuJitsuView(), // <- '/historyofjiujitsu',
+              imageButton: 'assets/images/iconsbutton/historyofjiujitsu.png',
+              textButton: 'button_history_of_jiujitsu_home_page'.tr(),
+              routeButton: HistoryOfJiuJitsuView(), // <- '/historyofjiujitsu',
             ),
             BottonOptionsHome(
-              imagebotton: 'assets/images/iconsbutton/rules.png',
-              textbotton: 'button_rules_home_page'.tr(),
-              routebotton: RulesView(), // <- '/rules',
+              imageButton: 'assets/images/iconsbutton/rules.png',
+              textButton: 'button_rules_home_page'.tr(),
+              routeButton: RulesView(), // <- '/rules',
             ),
             BottonOptionsHome(
-                imagebotton: 'assets/images/iconsbutton/quiz.png',
-                textbotton: 'button_quiz_home_page'.tr(),
-                routebotton: QuizView() // <- '/quiz',
+                imageButton: 'assets/images/iconsbutton/quiz.png',
+                textButton: 'button_quiz_home_page'.tr(),
+                routeButton: QuizView() // <- '/quiz',
                 ),
             BottonOptionsHome(
-              imagebotton: 'assets/images/iconsbutton/fightmarker.png',
-              textbotton: 'button_fight_marker_home_page'.tr(),
-              routebotton: FightMakerView(), // <- '/fightmarker',
-              needtorebuildthehouse: true,
-              needanimation: false,
+              imageButton: 'assets/images/iconsbutton/fightmarker.png',
+              textButton: 'button_fight_marker_home_page'.tr(),
+              routeButton: FightMakerView(), // <- '/fightmarker',
+              needToRebuildTheHome: true,
+              needAnimation: false,
             ),
             BottonOptionsHome(
-              imagebotton: 'assets/images/iconsbutton/wallpapers.png',
-              textbotton: 'button_wallpapers_home_page'.tr(),
-              routebotton: WallpapersView(), // <- '/wallpapers',
+              imageButton: 'assets/images/iconsbutton/wallpapers.png',
+              textButton: 'button_wallpapers_home_page'.tr(),
+              routeButton: WallpapersView(), // <- '/wallpapers',
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height / 10,

@@ -3,19 +3,19 @@ import 'package:easy_localization/easy_localization.dart';
 class Question {
   final String question;
   final List<String> options;
-  final String rightanswer;
+  final String rightAnswer;
   final String? pathImage;
   final String? pathVideo;
   Question({
     required this.question,
     required this.options,
-    required this.rightanswer,
+    required this.rightAnswer,
     this.pathImage,
     this.pathVideo,
   });
 }
 
-final List dataquestionseasy = [
+final List dataQuestionsEasy = [
   {
     "question": "quiz_white_belt_text_question1".tr(),
     "options": [
@@ -24,7 +24,7 @@ final List dataquestionseasy = [
       'quiz_white_belt_question1_option_c'.tr(),
       'quiz_white_belt_question1_option_d'.tr()
     ],
-    "rightanswer": "quiz_white_belt_question1_option_a".tr()
+    "rightAnswer": "quiz_white_belt_question1_option_a".tr()
   },
   {
     "question": "quiz_white_belt_text_question2".tr(),
@@ -34,7 +34,7 @@ final List dataquestionseasy = [
       'quiz_white_belt_question2_option_c'.tr(),
       'quiz_white_belt_question2_option_d'.tr()
     ],
-    "rightanswer": "quiz_white_belt_question2_option_a".tr()
+    "rightAnswer": "quiz_white_belt_question2_option_a".tr()
   },
   {
     "question": "quiz_white_belt_text_question3".tr(),
@@ -44,7 +44,7 @@ final List dataquestionseasy = [
       'quiz_white_belt_question3_option_c'.tr(),
       'quiz_white_belt_question3_option_d'.tr()
     ],
-    "rightanswer": "quiz_white_belt_question3_option_a".tr()
+    "rightAnswer": "quiz_white_belt_question3_option_a".tr()
   },
   {
     "question": "quiz_white_belt_text_question4".tr(),
@@ -54,7 +54,7 @@ final List dataquestionseasy = [
       'quiz_white_belt_question4_option_c'.tr(),
       'quiz_white_belt_question4_option_d'.tr()
     ],
-    "rightanswer": "quiz_white_belt_question4_option_a".tr(),
+    "rightAnswer": "quiz_white_belt_question4_option_a".tr(),
   },
   {
     "question": "quiz_white_belt_text_question5".tr(),
@@ -64,7 +64,7 @@ final List dataquestionseasy = [
       'quiz_white_belt_question5_option_c'.tr(),
       'quiz_white_belt_question5_option_d'.tr()
     ],
-    "rightanswer": "quiz_white_belt_question5_option_d".tr()
+    "rightAnswer": "quiz_white_belt_question5_option_d".tr()
   },
   {
     "question": "quiz_white_belt_text_question6".tr(),
@@ -74,7 +74,7 @@ final List dataquestionseasy = [
       'quiz_white_belt_question6_option_c'.tr(),
       'quiz_white_belt_question6_option_d'.tr()
     ],
-    "rightanswer": "quiz_white_belt_question6_option_b".tr()
+    "rightAnswer": "quiz_white_belt_question6_option_b".tr()
   },
   {
     "question": "quiz_white_belt_text_question7".tr(),
@@ -84,7 +84,7 @@ final List dataquestionseasy = [
       'quiz_white_belt_question7_option_c'.tr(),
       'quiz_white_belt_question7_option_d'.tr()
     ],
-    "rightanswer": "quiz_white_belt_question7_option_c".tr()
+    "rightAnswer": "quiz_white_belt_question7_option_c".tr()
   },
   {
     "question": "quiz_white_belt_text_question8".tr(),
@@ -94,7 +94,7 @@ final List dataquestionseasy = [
       'quiz_white_belt_question8_option_c'.tr(),
       'quiz_white_belt_question8_option_d'.tr()
     ],
-    "rightanswer": "quiz_white_belt_question8_option_a".tr()
+    "rightAnswer": "quiz_white_belt_question8_option_a".tr()
   },
   {
     "question": "quiz_white_belt_text_question9".tr(),
@@ -104,11 +104,11 @@ final List dataquestionseasy = [
       'quiz_white_belt_question9_option_c'.tr(),
       'quiz_white_belt_question9_option_d'.tr()
     ],
-    "rightanswer": "quiz_white_belt_question9_option_b".tr(),
+    "rightAnswer": "quiz_white_belt_question9_option_b".tr(),
   },
 ];
 
-final List dataquestionsmedium = [
+final List dataQuestionsMedium = [
   {
     "question": "quiz_blue_belt_text_question1".tr(),
     "options": [
@@ -117,7 +117,7 @@ final List dataquestionsmedium = [
       'quiz_blue_belt_question1_option_c'.tr(),
       'quiz_blue_belt_question1_option_d'.tr()
     ],
-    "rightanswer": "quiz_blue_belt_question1_option_c".tr()
+    "rightAnswer": "quiz_blue_belt_question1_option_c".tr()
   },
   {
     "question": "quiz_blue_belt_text_question2".tr(),
@@ -127,7 +127,7 @@ final List dataquestionsmedium = [
       'quiz_blue_belt_question2_option_c'.tr(),
       'quiz_blue_belt_question2_option_d'.tr()
     ],
-    "rightanswer": "quiz_blue_belt_question2_option_a".tr()
+    "rightAnswer": "quiz_blue_belt_question2_option_a".tr()
   },
   {
     "question": "quiz_blue_belt_text_question3".tr(),
@@ -137,7 +137,7 @@ final List dataquestionsmedium = [
       'quiz_blue_belt_question3_option_c'.tr(),
       'quiz_blue_belt_question3_option_d'.tr()
     ],
-    "rightanswer": "quiz_blue_belt_question3_option_a".tr()
+    "rightAnswer": "quiz_blue_belt_question3_option_a".tr()
   },
   {
     "question": "quiz_blue_belt_text_question4".tr(),
@@ -147,7 +147,7 @@ final List dataquestionsmedium = [
       'quiz_blue_belt_question4_option_c'.tr(),
       'quiz_blue_belt_question4_option_d'.tr()
     ],
-    "rightanswer": "quiz_blue_belt_question4_option_a".tr()
+    "rightAnswer": "quiz_blue_belt_question4_option_a".tr()
   },
   {
     "question": "quiz_blue_belt_text_question5".tr(),
@@ -157,7 +157,7 @@ final List dataquestionsmedium = [
       'quiz_blue_belt_question5_option_c'.tr(),
       'quiz_blue_belt_question5_option_d'.tr()
     ],
-    "rightanswer": "quiz_blue_belt_question5_option_b".tr()
+    "rightAnswer": "quiz_blue_belt_question5_option_b".tr()
   },
   {
     "question": "quiz_blue_belt_text_question6".tr(),
@@ -167,11 +167,11 @@ final List dataquestionsmedium = [
       'quiz_blue_belt_question6_option_c'.tr(),
       'quiz_blue_belt_question6_option_d'.tr()
     ],
-    "rightanswer": "quiz_blue_belt_question6_option_a".tr()
+    "rightAnswer": "quiz_blue_belt_question6_option_a".tr()
   },
 ];
 
-final List dataquestionshard = [
+final List dataQuestionsHard = [
   {
     "question": "quiz_black_belt_text_question1".tr(),
     "options": [
@@ -180,7 +180,7 @@ final List dataquestionshard = [
       'quiz_black_belt_question1_option_c'.tr(),
       'quiz_black_belt_question1_option_d'.tr()
     ],
-    "rightanswer": "quiz_black_belt_question1_option_c".tr()
+    "rightAnswer": "quiz_black_belt_question1_option_c".tr()
   },
   {
     "question": "quiz_black_belt_text_question2".tr(),
@@ -190,7 +190,7 @@ final List dataquestionshard = [
       'quiz_black_belt_question2_option_c'.tr(),
       'quiz_black_belt_question2_option_d'.tr()
     ],
-    "rightanswer": "quiz_black_belt_question2_option_a".tr()
+    "rightAnswer": "quiz_black_belt_question2_option_a".tr()
   },
   {
     "question": "quiz_black_belt_text_question3".tr(),
@@ -200,7 +200,7 @@ final List dataquestionshard = [
       'quiz_black_belt_question3_option_c'.tr(),
       'quiz_black_belt_question3_option_d'.tr()
     ],
-    "rightanswer": "quiz_black_belt_question3_option_a".tr()
+    "rightAnswer": "quiz_black_belt_question3_option_a".tr()
   },
   {
     "question": "quiz_black_belt_text_question4".tr(),
@@ -210,7 +210,7 @@ final List dataquestionshard = [
       'quiz_black_belt_question4_option_c'.tr(),
       'quiz_black_belt_question4_option_d'.tr()
     ],
-    "rightanswer": "quiz_black_belt_question4_option_a".tr()
+    "rightAnswer": "quiz_black_belt_question4_option_a".tr()
   },
   {
     "question": "quiz_black_belt_text_question5".tr(),
@@ -220,7 +220,7 @@ final List dataquestionshard = [
       'quiz_black_belt_question5_option_c'.tr(),
       'quiz_black_belt_question5_option_d'.tr()
     ],
-    "rightanswer": "quiz_black_belt_question5_option_b".tr()
+    "rightAnswer": "quiz_black_belt_question5_option_b".tr()
   },
   {
     "question": "quiz_black_belt_text_question6".tr(),
@@ -230,6 +230,6 @@ final List dataquestionshard = [
       'quiz_black_belt_question6_option_c'.tr(),
       'quiz_black_belt_question6_option_d'.tr()
     ],
-    "rightanswer": "quiz_black_belt_question6_option_d".tr()
+    "rightAnswer": "quiz_black_belt_question6_option_d".tr()
   },
 ];

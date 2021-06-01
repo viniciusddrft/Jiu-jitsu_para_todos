@@ -1,6 +1,6 @@
 import 'package:jiu_jitsu_para_todos/src/controllers/wallpapers/wallpapers_controller.dart';
 
-List<ImageDetails> allimages = [
+List<ImageDetails> allImages = [
   ImageDetails(
     imagePath:
         'assets/images/wallpapers/jonathan-borba-YcrcG17Kjmg-unsplash.jpg',

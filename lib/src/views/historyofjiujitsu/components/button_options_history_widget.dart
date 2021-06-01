@@ -3,34 +3,34 @@ import 'package:jiu_jitsu_para_todos/src/views/shared/animated_page_route_builde
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BottonOptionsHistory extends StatefulWidget {
-  final String imagebotton;
-  final String textbotton;
-  final routebotton;
+  final String imageButton;
+  final String textButton;
+  final Widget routeButton;
   BottonOptionsHistory(
-      {required this.imagebotton,
-      required this.textbotton,
-      required this.routebotton});
+      {required this.imageButton,
+      required this.textButton,
+      required this.routeButton});
 
   @override
   _BottonOptionsHistoryState createState() => _BottonOptionsHistoryState();
 }
 
 class _BottonOptionsHistoryState extends State<BottonOptionsHistory> {
-  void _changeroute() async {
+  void _changeRoute() async {
     await Navigator.of(context).push(MyTransitionElasticOut(
-        route: widget.routebotton, duration: Duration(milliseconds: 500)));
+        route: widget.routeButton, duration: Duration(milliseconds: 500)));
   }
 
   @override
   Widget build(BuildContext context) {
     final thumbnail = GestureDetector(
-      onTap: _changeroute,
+      onTap: _changeRoute,
       child: Container(
         alignment: FractionalOffset(0.0, 0.5),
         margin: EdgeInsets.only(
           left: 24.0.w,
         ),
-        child: Image.asset(widget.imagebotton, width: 100.w, height: 100.h),
+        child: Image.asset(widget.imageButton, width: 100.w, height: 100.h),
       ),
     );
 
@@ -54,7 +54,7 @@ class _BottonOptionsHistoryState extends State<BottonOptionsHistory> {
             borderRadius: BorderRadius.circular(8.0),
           ),
         ),
-        onPressed: _changeroute,
+        onPressed: _changeRoute,
         child: Ink(
           decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -64,7 +64,7 @@ class _BottonOptionsHistoryState extends State<BottonOptionsHistory> {
               borderRadius: BorderRadius.circular(8.0)),
           child: Center(
             child: Text(
-              widget.textbotton,
+              widget.textButton,
               style: TextStyle(fontSize: 18.sp),
             ),
           ),

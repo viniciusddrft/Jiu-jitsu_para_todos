@@ -3,17 +3,17 @@ import 'package:jiu_jitsu_para_todos/src/views/shared/animated_page_route_builde
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BottonOptionsHome extends StatefulWidget {
-  final String imagebotton;
-  final String textbotton;
-  final routebotton;
-  final bool needtorebuildthehouse;
-  final bool needanimation;
+  final String imageButton;
+  final String textButton;
+  final Widget routeButton;
+  final bool needToRebuildTheHome;
+  final bool needAnimation;
   BottonOptionsHome(
-      {required this.imagebotton,
-      required this.textbotton,
-      required this.routebotton,
-      this.needtorebuildthehouse = false,
-      this.needanimation = true});
+      {required this.imageButton,
+      required this.textButton,
+      required this.routeButton,
+      this.needToRebuildTheHome = false,
+      this.needAnimation = true});
 
   @override
   _BottonOptionsHomeState createState() => _BottonOptionsHomeState();
@@ -21,17 +21,17 @@ class BottonOptionsHome extends StatefulWidget {
 
 //------------------------------------------------------------------------------
 class _BottonOptionsHomeState extends State<BottonOptionsHome> {
-  void _changeroute() async {
-    if (widget.needanimation) {
+  void _changeRoute() async {
+    if (widget.needAnimation) {
       await Navigator.of(context).push(MyTransitionElasticOut(
-          route: widget.routebotton, duration: Duration(milliseconds: 500)));
-      if (widget.needtorebuildthehouse) {
+          route: widget.routeButton, duration: Duration(milliseconds: 500)));
+      if (widget.needToRebuildTheHome) {
         Navigator.of(context).pushReplacementNamed('/home');
       }
     } else {
       await Navigator.of(context).push(MaterialPageRoute(
-          builder: (BuildContext context) => widget.routebotton));
-      if (widget.needtorebuildthehouse) {
+          builder: (BuildContext context) => widget.routeButton));
+      if (widget.needToRebuildTheHome) {
         Navigator.of(context).pushReplacementNamed('/home');
       }
     }
@@ -41,13 +41,13 @@ class _BottonOptionsHomeState extends State<BottonOptionsHome> {
   @override
   Widget build(BuildContext context) {
     final thumbnail = GestureDetector(
-      onTap: _changeroute,
+      onTap: _changeRoute,
       child: Container(
         alignment: FractionalOffset(0.0, 0.5),
         margin: EdgeInsets.only(
           left: 24.0.w,
         ),
-        child: Image.asset(widget.imagebotton, width: 100.w, height: 100.h),
+        child: Image.asset(widget.imageButton, width: 100.w, height: 100.h),
       ),
     );
 
@@ -71,7 +71,7 @@ class _BottonOptionsHomeState extends State<BottonOptionsHome> {
             borderRadius: BorderRadius.circular(8.0),
           ),
         ),
-        onPressed: _changeroute,
+        onPressed: _changeRoute,
         child: Ink(
           decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -81,7 +81,7 @@ class _BottonOptionsHomeState extends State<BottonOptionsHome> {
               borderRadius: BorderRadius.circular(8.0)),
           child: Center(
             child: Text(
-              widget.textbotton,
+              widget.textButton,
               style: TextStyle(fontSize: 18.sp),
             ),
           ),

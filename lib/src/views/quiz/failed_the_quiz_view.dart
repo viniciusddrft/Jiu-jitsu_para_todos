@@ -6,11 +6,11 @@ import 'package:easy_localization/easy_localization.dart';
 
 class FailedInQuiz extends StatefulWidget {
   final int score;
-  final String difficultyname;
+  final String difficultyName;
   final int totalQuestions;
   FailedInQuiz(
       {required this.score,
-      required this.difficultyname,
+      required this.difficultyName,
       required this.totalQuestions});
   @override
   _FailedInQuizState createState() => _FailedInQuizState();
@@ -25,11 +25,11 @@ class _FailedInQuizState extends State<FailedInQuiz> {
     _scorePercentage = widget.score / widget.totalQuestions;
     _socrePercentageText = (_scorePercentage! * 100).toStringAsPrecision(2);
 
-    if (widget.difficultyname == 'text_difficultyname_white_belt'.tr()) {
+    if (widget.difficultyName == 'text_difficultyname_white_belt'.tr()) {
       _text = 'text_failed_quiz_white_belt'.tr();
-    } else if (widget.difficultyname == 'text_difficultyname_blue_belt'.tr()) {
+    } else if (widget.difficultyName == 'text_difficultyname_blue_belt'.tr()) {
       _text = 'text_failed_quiz_blue_belt'.tr();
-    } else if (widget.difficultyname == 'text_difficultyname_black_belt'.tr()) {
+    } else if (widget.difficultyName == 'text_difficultyname_black_belt'.tr()) {
       _text = 'text_failed_quiz_black_belt'.tr();
     }
     super.initState();

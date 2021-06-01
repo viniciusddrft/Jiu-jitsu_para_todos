@@ -27,7 +27,7 @@ class _BodySettingsState extends State<BodySettings> {
   @override
   Widget build(BuildContext context) {
 //------------------------------------------------------------------------------
-    void _changecredits() async {
+    void _changeCredits() async {
       await Navigator.of(context).push(MyTransitionElasticOut(
           route: CreditsView(), duration: Duration(milliseconds: 500)));
     }
@@ -146,7 +146,7 @@ class _BodySettingsState extends State<BodySettings> {
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     side: BorderSide(color: Colors.white)),
-                onPressed: _changecredits,
+                onPressed: _changeCredits,
                 child: Center(
                   child: Text(
                     'button_credits_settings_page'.tr(),

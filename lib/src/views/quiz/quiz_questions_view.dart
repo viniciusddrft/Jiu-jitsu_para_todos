@@ -13,14 +13,14 @@ import 'package:easy_localization/easy_localization.dart';
 
 class QuizQuestions extends StatefulWidget {
   final String difficulty;
-  final String difficultyname;
-  QuizQuestions({required this.difficulty, required this.difficultyname})
+  final String difficultyName;
+  QuizQuestions({required this.difficulty, required this.difficultyName})
       : assert(['easy', 'medium', 'hard'].contains(difficulty) &&
             [
               'text_difficultyname_white_belt'.tr(),
               'text_difficultyname_blue_belt'.tr(),
               'text_difficultyname_black_belt'.tr()
-            ].contains(difficultyname));
+            ].contains(difficultyName));
 
   @override
   _QuizQuestionsState createState() => _QuizQuestionsState();
@@ -29,8 +29,8 @@ class QuizQuestions extends StatefulWidget {
 class _QuizQuestionsState extends State<QuizQuestions> {
   //quiz
   var _controllerQuiz = ControllerQuiz();
-  var _myquestions;
-  var _difficultyname;
+  var _myQuestions;
+  var _difficultyName;
   //disablebutton
   bool _isButtonDisabled = false;
   //build video
@@ -38,32 +38,32 @@ class _QuizQuestionsState extends State<QuizQuestions> {
   //icon button
   var iconButton = Icons.done;
   //song buttons
-  final _playerrightanswer = AudioPlayer();
-  final _playerwronganswer = AudioPlayer();
+  final _playerRightAnswer = AudioPlayer();
+  final _playerWrongAnswer = AudioPlayer();
   // randomness for ads
   final _random = Random();
   var _num;
   // colors buttons
-  var _colorbottonA = Colors.white;
-  var _coloriconbottonA = Colors.transparent;
-  var _colorbottonB = Colors.white;
-  var _coloriconbottonB = Colors.transparent;
-  var _colorbottonC = Colors.white;
-  var _coloriconbottonC = Colors.transparent;
-  var _colorbottonD = Colors.white;
-  var _coloriconbottonD = Colors.transparent;
+  var _colorButtonA = Colors.white;
+  var _colorIconButtonA = Colors.transparent;
+  var _colorButtonB = Colors.white;
+  var _colorIconButtonB = Colors.transparent;
+  var _colorButtonC = Colors.white;
+  var _colorIconButtonC = Colors.transparent;
+  var _colorButtonD = Colors.white;
+  var _colorIconButtonD = Colors.transparent;
 
   @override
   void didChangeDependencies() {
-    _myquestions = _controllerQuiz.choice(widget.difficulty);
-    _difficultyname = widget.difficultyname;
+    _myQuestions = _controllerQuiz.choice(widget.difficulty);
+    _difficultyName = widget.difficultyName;
     super.didChangeDependencies();
   }
 
   @override
   void dispose() {
-    _playerrightanswer.dispose();
-    _playerwronganswer.dispose();
+    _playerRightAnswer.dispose();
+    _playerWrongAnswer.dispose();
     super.dispose();
   }
 
@@ -74,18 +74,18 @@ class _QuizQuestionsState extends State<QuizQuestions> {
       DeviceOrientation.portraitDown,
     ]);
 
-    int counterquestions = _controllerQuiz.numberquestions + 1;
-    int totalnumberofquestions = _myquestions.length;
+    int counterQuestions = _controllerQuiz.numberOfQuestions + 1;
+    int totalNumberOfQuestions = _myQuestions.length;
 //------------------------------------------------------------------------------
     void playSoundRightAnswer() async {
-      await _playerrightanswer.setAsset('assets/music/right_answer.mp3');
-      _playerrightanswer.play();
+      await _playerRightAnswer.setAsset('assets/music/right_answer.mp3');
+      _playerRightAnswer.play();
     }
 
 //------------------------------------------------------------------------------
     void playSoundWrongAnswer() async {
-      await _playerwronganswer.setAsset('assets/music/wrong_answer.mp3');
-      _playerwronganswer.play();
+      await _playerWrongAnswer.setAsset('assets/music/wrong_answer.mp3');
+      _playerWrongAnswer.play();
     }
 
 //------------------------------------------------------------------------------
@@ -96,7 +96,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
       }
       await Navigator.of(context).pushReplacement(MyTransitionElasticOut(
           route: WinnerInQuiz(
-            difficultyname: widget.difficultyname,
+            difficultyName: widget.difficultyName,
           ),
           duration: Duration(milliseconds: 500)));
     }
@@ -109,9 +109,9 @@ class _QuizQuestionsState extends State<QuizQuestions> {
       }
       await Navigator.of(context).pushReplacement(MyTransitionElasticOut(
           route: FailedInQuiz(
-            difficultyname: widget.difficultyname,
-            score: counterquestions - 1,
-            totalQuestions: totalnumberofquestions,
+            difficultyName: widget.difficultyName,
+            score: counterQuestions - 1,
+            totalQuestions: totalNumberOfQuestions,
           ),
           duration: Duration(milliseconds: 500)));
     }
@@ -132,7 +132,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
             Padding(
               padding: EdgeInsets.only(left: 30.w, bottom: 10.h),
               child: Text(
-                'Quiz $_difficultyname',
+                'Quiz $_difficultyName',
                 style: TextStyle(
                     fontFamily: 'YatraOne',
                     fontSize: 20.sp,
@@ -143,7 +143,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
               padding: EdgeInsets.only(left: 30.w),
               child: Text(
                 'text_question'.tr() +
-                    ' $counterquestions/$totalnumberofquestions',
+                    ' $counterQuestions/$totalNumberOfQuestions',
                 style: TextStyle(
                     fontFamily: 'Ubuntu', fontSize: 22.sp, color: Colors.white),
               ),
@@ -162,13 +162,13 @@ class _QuizQuestionsState extends State<QuizQuestions> {
             Padding(
               padding: EdgeInsets.only(top: 20.h, left: 30.w, right: 30.w),
               child: Text(
-                _controllerQuiz.textquestionreturn(_myquestions),
+                _controllerQuiz.textQuestionReturn(_myQuestions),
                 style: TextStyle(
                     fontFamily: 'Ubuntu', fontSize: 18.sp, color: Colors.white),
               ),
             ),
             returnImageOrVideoOfQuiz(
-                _controllerQuiz, _myquestions, _buildVideo),
+                _controllerQuiz, _myQuestions, _buildVideo),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -185,17 +185,17 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                             onPressed: _isButtonDisabled
                                 ? null
                                 : () {
-                                    if (_controllerQuiz.checkanswer(
+                                    if (_controllerQuiz.checkAnswer(
                                         _controllerQuiz
-                                            .returntextanswerA(_myquestions),
-                                        _myquestions)) {
+                                            .returnTextAnswerA(_myQuestions),
+                                        _myQuestions)) {
                                       playSoundRightAnswer();
                                       setState(() {
                                         _isButtonDisabled = true;
 
                                         iconButton = Icons.done;
-                                        _colorbottonA = Colors.green;
-                                        _coloriconbottonA = Colors.green;
+                                        _colorButtonA = Colors.green;
+                                        _colorIconButtonA = Colors.green;
                                       });
                                       Future.delayed(
                                           const Duration(milliseconds: 500),
@@ -206,15 +206,15 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                         await Future.delayed(
                                             Duration(milliseconds: 100));
                                         setState(() {
-                                          if (counterquestions ==
-                                              _myquestions.length) {
+                                          if (counterQuestions ==
+                                              _myQuestions.length) {
                                             _switchToWinner();
                                           } else {
-                                            _controllerQuiz.numberquestions++;
+                                            _controllerQuiz.numberOfQuestions++;
                                           }
-                                          _coloriconbottonA =
+                                          _colorIconButtonA =
                                               Colors.transparent;
-                                          _colorbottonA = Colors.white;
+                                          _colorButtonA = Colors.white;
                                           //mysound  onde posso fazer stop
 
                                           _buildVideo = true;
@@ -226,8 +226,8 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                       setState(() {
                                         _isButtonDisabled = true;
                                         iconButton = Icons.close;
-                                        _colorbottonA = Colors.red;
-                                        _coloriconbottonA = Colors.red;
+                                        _colorButtonA = Colors.red;
+                                        _colorIconButtonA = Colors.red;
                                       });
                                       Future.delayed(
                                           const Duration(milliseconds: 500),
@@ -241,10 +241,10 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                               children: [
                                 Text(
                                   _controllerQuiz
-                                      .returntextanswerA(_myquestions),
+                                      .returnTextAnswerA(_myQuestions),
                                   style: TextStyle(
                                       fontFamily: 'Ubuntu',
-                                      color: _colorbottonA,
+                                      color: _colorButtonA,
                                       fontSize: 16.sp),
                                 ),
                                 Container(
@@ -253,12 +253,12 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                   decoration: BoxDecoration(
                                     color: Colors.transparent,
                                     borderRadius: BorderRadius.circular(50),
-                                    border: Border.all(color: _colorbottonA),
+                                    border: Border.all(color: _colorButtonA),
                                   ),
                                   child: Icon(
                                     iconButton,
                                     size: 16.sp,
-                                    color: _coloriconbottonA,
+                                    color: _colorIconButtonA,
                                   ),
                                 )
                               ],
@@ -270,7 +270,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
-                              side: BorderSide(color: _colorbottonA),
+                              side: BorderSide(color: _colorButtonA),
                               padding: EdgeInsets.all(8),
                             ),
                           ),
@@ -282,17 +282,17 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                             onPressed: _isButtonDisabled
                                 ? null
                                 : () {
-                                    if (_controllerQuiz.checkanswer(
+                                    if (_controllerQuiz.checkAnswer(
                                         _controllerQuiz
-                                            .returntextanswerB(_myquestions),
-                                        _myquestions)) {
+                                            .returnTextAnswerB(_myQuestions),
+                                        _myQuestions)) {
                                       playSoundRightAnswer();
                                       setState(() {
                                         _isButtonDisabled = true;
 
                                         iconButton = Icons.done;
-                                        _colorbottonB = Colors.green;
-                                        _coloriconbottonB = Colors.green;
+                                        _colorButtonB = Colors.green;
+                                        _colorIconButtonB = Colors.green;
                                       });
                                       Future.delayed(
                                           const Duration(milliseconds: 500),
@@ -303,15 +303,15 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                         await Future.delayed(
                                             Duration(milliseconds: 100));
                                         setState(() {
-                                          if (counterquestions ==
-                                              _myquestions.length) {
+                                          if (counterQuestions ==
+                                              _myQuestions.length) {
                                             _switchToWinner();
                                           } else {
-                                            _controllerQuiz.numberquestions++;
+                                            _controllerQuiz.numberOfQuestions++;
                                           }
-                                          _coloriconbottonB =
+                                          _colorIconButtonB =
                                               Colors.transparent;
-                                          _colorbottonB = Colors.white;
+                                          _colorButtonB = Colors.white;
                                           //mysound  onde posso fazer stop
 
                                           _buildVideo = true;
@@ -323,8 +323,8 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                       setState(() {
                                         _isButtonDisabled = true;
                                         iconButton = Icons.close;
-                                        _colorbottonB = Colors.red;
-                                        _coloriconbottonB = Colors.red;
+                                        _colorButtonB = Colors.red;
+                                        _colorIconButtonB = Colors.red;
                                       });
                                       Future.delayed(
                                           const Duration(milliseconds: 500),
@@ -338,10 +338,10 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                               children: [
                                 Text(
                                   _controllerQuiz
-                                      .returntextanswerB(_myquestions),
+                                      .returnTextAnswerB(_myQuestions),
                                   style: TextStyle(
                                       fontFamily: 'Ubuntu',
-                                      color: _colorbottonB,
+                                      color: _colorButtonB,
                                       fontSize: 16.sp),
                                 ),
                                 Container(
@@ -350,12 +350,12 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                   decoration: BoxDecoration(
                                     color: Colors.transparent,
                                     borderRadius: BorderRadius.circular(50),
-                                    border: Border.all(color: _colorbottonB),
+                                    border: Border.all(color: _colorButtonB),
                                   ),
                                   child: Icon(
                                     iconButton,
                                     size: 16.sp,
-                                    color: _coloriconbottonB,
+                                    color: _colorIconButtonB,
                                   ),
                                 )
                               ],
@@ -367,7 +367,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
-                              side: BorderSide(color: _colorbottonB),
+                              side: BorderSide(color: _colorButtonB),
                               padding: EdgeInsets.all(8),
                             ),
                           ),
@@ -380,16 +380,16 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                             onPressed: _isButtonDisabled
                                 ? null
                                 : () {
-                                    if (_controllerQuiz.checkanswer(
+                                    if (_controllerQuiz.checkAnswer(
                                         _controllerQuiz
-                                            .returntextanswerC(_myquestions),
-                                        _myquestions)) {
+                                            .returnTextAnswerC(_myQuestions),
+                                        _myQuestions)) {
                                       playSoundRightAnswer();
                                       setState(() {
                                         _isButtonDisabled = true;
                                         iconButton = Icons.done;
-                                        _colorbottonC = Colors.green;
-                                        _coloriconbottonC = Colors.green;
+                                        _colorButtonC = Colors.green;
+                                        _colorIconButtonC = Colors.green;
                                       });
                                       Future.delayed(
                                           const Duration(milliseconds: 500),
@@ -400,15 +400,15 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                         await Future.delayed(
                                             Duration(milliseconds: 100));
                                         setState(() {
-                                          if (counterquestions ==
-                                              _myquestions.length) {
+                                          if (counterQuestions ==
+                                              _myQuestions.length) {
                                             _switchToWinner();
                                           } else {
-                                            _controllerQuiz.numberquestions++;
+                                            _controllerQuiz.numberOfQuestions++;
                                           }
-                                          _coloriconbottonC =
+                                          _colorIconButtonC =
                                               Colors.transparent;
-                                          _colorbottonC = Colors.white;
+                                          _colorButtonC = Colors.white;
                                           //mysound  onde posso fazer stop
 
                                           _buildVideo = true;
@@ -420,8 +420,8 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                       setState(() {
                                         _isButtonDisabled = true;
                                         iconButton = Icons.close;
-                                        _colorbottonC = Colors.red;
-                                        _coloriconbottonC = Colors.red;
+                                        _colorButtonC = Colors.red;
+                                        _colorIconButtonC = Colors.red;
                                       });
                                       Future.delayed(
                                           const Duration(milliseconds: 500),
@@ -435,10 +435,10 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                               children: [
                                 Text(
                                   _controllerQuiz
-                                      .returntextanswerC(_myquestions),
+                                      .returnTextAnswerC(_myQuestions),
                                   style: TextStyle(
                                       fontFamily: 'Ubuntu',
-                                      color: _colorbottonC,
+                                      color: _colorButtonC,
                                       fontSize: 16.sp),
                                 ),
                                 Container(
@@ -447,12 +447,12 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                   decoration: BoxDecoration(
                                     color: Colors.transparent,
                                     borderRadius: BorderRadius.circular(50),
-                                    border: Border.all(color: _colorbottonC),
+                                    border: Border.all(color: _colorButtonC),
                                   ),
                                   child: Icon(
                                     iconButton,
                                     size: 16.sp,
-                                    color: _coloriconbottonC,
+                                    color: _colorIconButtonC,
                                   ),
                                 )
                               ],
@@ -464,7 +464,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
-                              side: BorderSide(color: _colorbottonC),
+                              side: BorderSide(color: _colorButtonC),
                               padding: EdgeInsets.all(8),
                             ),
                           ),
@@ -476,16 +476,16 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                             onPressed: _isButtonDisabled
                                 ? null
                                 : () {
-                                    if (_controllerQuiz.checkanswer(
+                                    if (_controllerQuiz.checkAnswer(
                                         _controllerQuiz
-                                            .returntextanswerD(_myquestions),
-                                        _myquestions)) {
+                                            .returnTextAnswerD(_myQuestions),
+                                        _myQuestions)) {
                                       playSoundRightAnswer();
                                       setState(() {
                                         _isButtonDisabled = true;
                                         iconButton = Icons.done;
-                                        _colorbottonD = Colors.green;
-                                        _coloriconbottonD = Colors.green;
+                                        _colorButtonD = Colors.green;
+                                        _colorIconButtonD = Colors.green;
                                       });
                                       Future.delayed(
                                           const Duration(milliseconds: 500),
@@ -496,15 +496,15 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                         await Future.delayed(
                                             Duration(milliseconds: 100));
                                         setState(() {
-                                          if (counterquestions ==
-                                              _myquestions.length) {
+                                          if (counterQuestions ==
+                                              _myQuestions.length) {
                                             _switchToWinner();
                                           } else {
-                                            _controllerQuiz.numberquestions++;
+                                            _controllerQuiz.numberOfQuestions++;
                                           }
-                                          _coloriconbottonD =
+                                          _colorIconButtonD =
                                               Colors.transparent;
-                                          _colorbottonD = Colors.white;
+                                          _colorButtonD = Colors.white;
                                           //mysound  onde posso fazer stop
 
                                           _buildVideo = true;
@@ -516,8 +516,8 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                       setState(() {
                                         _isButtonDisabled = true;
                                         iconButton = Icons.close;
-                                        _colorbottonD = Colors.red;
-                                        _coloriconbottonD = Colors.red;
+                                        _colorButtonD = Colors.red;
+                                        _colorIconButtonD = Colors.red;
                                       });
                                       Future.delayed(
                                           const Duration(milliseconds: 500),
@@ -531,10 +531,10 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                               children: [
                                 Text(
                                   _controllerQuiz
-                                      .returntextanswerD(_myquestions),
+                                      .returnTextAnswerD(_myQuestions),
                                   style: TextStyle(
                                       fontFamily: 'Ubuntu',
-                                      color: _colorbottonD,
+                                      color: _colorButtonD,
                                       fontSize: 16.sp),
                                 ),
                                 Container(
@@ -543,12 +543,12 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                   decoration: BoxDecoration(
                                     color: Colors.transparent,
                                     borderRadius: BorderRadius.circular(50),
-                                    border: Border.all(color: _colorbottonD),
+                                    border: Border.all(color: _colorButtonD),
                                   ),
                                   child: Icon(
                                     iconButton,
                                     size: 16.sp,
-                                    color: _coloriconbottonD,
+                                    color: _colorIconButtonD,
                                   ),
                                 )
                               ],
@@ -560,7 +560,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                               ),
-                              side: BorderSide(color: _colorbottonD),
+                              side: BorderSide(color: _colorButtonD),
                               padding: EdgeInsets.all(8),
                             ),
                           ),

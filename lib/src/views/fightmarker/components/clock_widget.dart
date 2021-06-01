@@ -11,7 +11,7 @@ class Clock extends StatefulWidget {
 }
 
 class _ClockState extends State<Clock> {
-  MyClock _myclock = MyClock();
+  MyClock _myClock = MyClock();
   final _player = AudioPlayer();
 
   @override
@@ -33,7 +33,7 @@ class _ClockState extends State<Clock> {
               children: <Widget>[
                 TextField(
                   onChanged: (minutes) {
-                    _myclock.minutes = int.parse(minutes) * 60;
+                    _myClock.minutes = int.parse(minutes) * 60;
                   },
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
@@ -48,7 +48,7 @@ class _ClockState extends State<Clock> {
             TextButton(
               child: Text('text_button_popup_continue'.tr()),
               onPressed: () {
-                _myclock.minutebuttonpressed();
+                _myClock.minuteButtonPressed();
                 Navigator.of(context).pop();
               },
             ),
@@ -71,7 +71,7 @@ class _ClockState extends State<Clock> {
               children: <Widget>[
                 TextField(
                   onChanged: (seconds) {
-                    _myclock.seconds = int.parse(seconds);
+                    _myClock.seconds = int.parse(seconds);
                   },
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
@@ -86,9 +86,9 @@ class _ClockState extends State<Clock> {
             TextButton(
               child: Text('text_button_popup_continue'.tr()),
               onPressed: () {
-                if (_myclock.secondsbuttonpressed()) {
+                if (_myClock.secondsButtonPressed()) {
                   setState(() {
-                    _myclock.ispause = true;
+                    _myClock.isPause = true;
                   });
                   Navigator.of(context).pop();
                 } else {
@@ -135,10 +135,10 @@ class _ClockState extends State<Clock> {
           GestureDetector(
             child: CircularCountDownTimer(
               // Countdown duration in Seconds
-              duration: _myclock.time,
+              duration: _myClock.time,
 
               // Controller to control (i.e Pause, Resume, Restart) the Countdown
-              controller: _myclock.controller,
+              controller: _myClock.controller,
 
               autoStart: false,
 
@@ -200,23 +200,23 @@ class _ClockState extends State<Clock> {
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
                     elevation: 7,
-                    primary: _myclock.ispause ? Colors.green : Colors.red,
+                    primary: _myClock.isPause ? Colors.green : Colors.red,
                     backgroundColor: Color(0xff202848),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                     side: BorderSide(
-                        color: _myclock.ispause ? Colors.green : Colors.red)),
+                        color: _myClock.isPause ? Colors.green : Colors.red)),
                 onPressed: () {
                   setState(() {
-                    _myclock.startandpausebutton();
+                    _myClock.startAndPauseButton();
                   });
                 },
                 child: Center(
                   child: Center(
                     child: Icon(
-                        _myclock.ispause ? Icons.play_arrow : Icons.pause,
-                        color: _myclock.ispause ? Colors.green : Colors.red),
+                        _myClock.isPause ? Icons.play_arrow : Icons.pause,
+                        color: _myClock.isPause ? Colors.green : Colors.red),
                   ),
                 ),
               ),
@@ -241,7 +241,7 @@ class _ClockState extends State<Clock> {
                     side: BorderSide(color: Colors.yellow)),
                 onPressed: () {
                   setState(() {
-                    _myclock.restartbutton();
+                    _myClock.restartButton();
                   });
                 },
                 child: Center(

@@ -5,43 +5,43 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class ButtonOptionQuiz extends StatefulWidget {
-  final String imagebotton;
-  final String textbotton;
+  final String imageButton;
+  final String textButton;
   final String difficulty;
-  final String difficultyname;
+  final String difficultyName;
   ButtonOptionQuiz(
-      {required this.imagebotton,
-      required this.textbotton,
+      {required this.imageButton,
+      required this.textButton,
       required this.difficulty,
-      required this.difficultyname})
+      required this.difficultyName})
       : assert([
               'assets/images/iconsbutton/faixabranca.png',
               'assets/images/iconsbutton/faixaazul.png',
               'assets/images/iconsbutton/faixapreta.png'
-            ].contains(imagebotton) &&
+            ].contains(imageButton) &&
             [
               'button_white_belt_level'.tr(),
               'button_blue_belt_level'.tr(),
               'button_black_belt_level'.tr()
-            ].contains(textbotton) &&
+            ].contains(textButton) &&
             ['easy', 'medium', 'hard'].contains(difficulty) &&
             [
               'text_difficultyname_white_belt'.tr(),
               'text_difficultyname_blue_belt'.tr(),
               'text_difficultyname_black_belt'.tr()
-            ].contains(difficultyname));
+            ].contains(difficultyName));
 
   @override
   _ButtonOptionQuizState createState() => _ButtonOptionQuizState();
 }
 
 class _ButtonOptionQuizState extends State<ButtonOptionQuiz> {
-  void _changeroute() async {
+  void _changeRoute() async {
     await Navigator.of(context).push(
       MyTransitionElasticOut(
         route: QuizQuestions(
           difficulty: widget.difficulty,
-          difficultyname: widget.difficultyname,
+          difficultyName: widget.difficultyName,
         ),
         duration: Duration(milliseconds: 500),
       ),
@@ -51,13 +51,13 @@ class _ButtonOptionQuizState extends State<ButtonOptionQuiz> {
   @override
   Widget build(BuildContext context) {
     final thumbnail = GestureDetector(
-      onTap: _changeroute,
+      onTap: _changeRoute,
       child: Container(
         alignment: FractionalOffset(0.0, 0.5),
         margin: EdgeInsets.only(
           left: 24.0.w,
         ),
-        child: Image.asset(widget.imagebotton, width: 100.w, height: 100.h),
+        child: Image.asset(widget.imageButton, width: 100.w, height: 100.h),
       ),
     );
 
@@ -81,7 +81,7 @@ class _ButtonOptionQuizState extends State<ButtonOptionQuiz> {
             borderRadius: BorderRadius.circular(8.0),
           ),
         ),
-        onPressed: _changeroute,
+        onPressed: _changeRoute,
         child: Ink(
           decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -91,7 +91,7 @@ class _ButtonOptionQuizState extends State<ButtonOptionQuiz> {
               borderRadius: BorderRadius.circular(8.0)),
           child: Center(
             child: Text(
-              widget.textbotton,
+              widget.textButton,
               style: TextStyle(fontSize: 18.sp),
             ),
           ),

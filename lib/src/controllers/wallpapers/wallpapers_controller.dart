@@ -9,5 +9,5 @@ class ImageDetails {
 }
 
 class ControllerWallpapers {
-  final images = allimages;
+  final images = allImages;
 }

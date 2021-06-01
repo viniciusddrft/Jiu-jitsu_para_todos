@@ -4,27 +4,27 @@ class MyClock {
   int? minutes;
   int? seconds;
   int time;
-  int? timeold;
-  bool ispause;
+  int? timeOld;
+  bool isPause;
   CountDownController controller = CountDownController();
 
   MyClock({
     this.minutes,
     this.seconds,
     this.time = 0,
-    this.ispause = true,
+    this.isPause = true,
   });
 
-  void minutebuttonpressed() {
+  void minuteButtonPressed() {
     if (minutes == null) {
       minutes = 0;
     }
-    timeold = time;
+    timeOld = time;
     time = minutes!;
     minutes = 0;
   }
 
-  bool secondsbuttonpressed() {
+  bool secondsButtonPressed() {
     if (seconds == null) {
       seconds = 0;
     }
@@ -36,28 +36,28 @@ class MyClock {
       return true;
     }
     if (time == 0) {
-      time = timeold!;
+      time = timeOld!;
     }
     return false;
   }
 
-  void startandpausebutton() {
-    if (ispause) {
-      ispause = false;
+  void startAndPauseButton() {
+    if (isPause) {
+      isPause = false;
       controller.resume();
     } else {
-      ispause = true;
+      isPause = true;
       controller.pause();
     }
   }
 
-  void restartbutton() {
+  void restartButton() {
     if (time != 0) {
       controller.restart(duration: time);
-      if (ispause) {
+      if (isPause) {
         controller.pause();
       } else {
-        ispause = true;
+        isPause = true;
         controller.pause();
       }
     }

@@ -8,25 +8,25 @@ class Scoreboard extends StatefulWidget {
 }
 
 class _ScoreboardState extends State<Scoreboard> {
-  int _fighterpoints = 0;
-  int _punishmentsofthefighter = 0;
-  int _advantagesofthefighter = 0;
+  int _fighterPoints = 0;
+  int _punishmentsOfTheFighter = 0;
+  int _advantagesOfTheFighter = 0;
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text('$_fighterpoints',
+          Text('$_fighterPoints',
               style: TextStyle(fontSize: 60.sp, fontFamily: 'YatraOne')),
           SizedBox(width: MediaQuery.of(context).size.width / 35),
-          Text('$_advantagesofthefighter',
+          Text('$_advantagesOfTheFighter',
               style: TextStyle(
                   fontSize: 60.sp,
                   color: Colors.yellow,
                   fontFamily: 'YatraOne')),
           SizedBox(width: MediaQuery.of(context).size.width / 35),
-          Text('$_punishmentsofthefighter',
+          Text('$_punishmentsOfTheFighter',
               style: TextStyle(
                   fontSize: 60.sp, color: Colors.red, fontFamily: 'YatraOne')),
         ]),
@@ -36,7 +36,7 @@ class _ScoreboardState extends State<Scoreboard> {
               icon: Icon(Icons.add),
               onPressed: () {
                 setState(() {
-                  _fighterpoints = _fighterpoints + 2;
+                  _fighterPoints = _fighterPoints + 2;
                 });
               }),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
@@ -50,8 +50,8 @@ class _ScoreboardState extends State<Scoreboard> {
               icon: Icon(Icons.remove),
               onPressed: () {
                 setState(() {
-                  if (_fighterpoints >= 2) {
-                    _fighterpoints = _fighterpoints - 2;
+                  if (_fighterPoints >= 2) {
+                    _fighterPoints = _fighterPoints - 2;
                   }
                 });
               }),
@@ -62,7 +62,7 @@ class _ScoreboardState extends State<Scoreboard> {
               icon: Icon(Icons.add),
               onPressed: () {
                 setState(() {
-                  _fighterpoints = _fighterpoints + 3;
+                  _fighterPoints = _fighterPoints + 3;
                 });
               }),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
@@ -76,8 +76,8 @@ class _ScoreboardState extends State<Scoreboard> {
               icon: Icon(Icons.remove),
               onPressed: () {
                 setState(() {
-                  if (_fighterpoints >= 3) {
-                    _fighterpoints = _fighterpoints - 3;
+                  if (_fighterPoints >= 3) {
+                    _fighterPoints = _fighterPoints - 3;
                   }
                 });
               }),
@@ -88,7 +88,7 @@ class _ScoreboardState extends State<Scoreboard> {
               icon: Icon(Icons.add),
               onPressed: () {
                 setState(() {
-                  _fighterpoints = _fighterpoints + 4;
+                  _fighterPoints = _fighterPoints + 4;
                 });
               }),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
@@ -99,8 +99,8 @@ class _ScoreboardState extends State<Scoreboard> {
               icon: Icon(Icons.remove),
               onPressed: () {
                 setState(() {
-                  if (_fighterpoints >= 4) {
-                    _fighterpoints = _fighterpoints - 4;
+                  if (_fighterPoints >= 4) {
+                    _fighterPoints = _fighterPoints - 4;
                   }
                 });
               }),
@@ -112,7 +112,7 @@ class _ScoreboardState extends State<Scoreboard> {
               icon: Icon(Icons.add),
               onPressed: () {
                 setState(() {
-                  _advantagesofthefighter++;
+                  _advantagesOfTheFighter++;
                 });
               }),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
@@ -128,8 +128,8 @@ class _ScoreboardState extends State<Scoreboard> {
               icon: Icon(Icons.remove),
               onPressed: () {
                 setState(() {
-                  if (_advantagesofthefighter >= 1) {
-                    _advantagesofthefighter--;
+                  if (_advantagesOfTheFighter >= 1) {
+                    _advantagesOfTheFighter--;
                   }
                 });
               }),
@@ -141,7 +141,7 @@ class _ScoreboardState extends State<Scoreboard> {
               icon: Icon(Icons.add),
               onPressed: () {
                 setState(() {
-                  _punishmentsofthefighter++;
+                  _punishmentsOfTheFighter++;
                 });
               }),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
@@ -157,8 +157,8 @@ class _ScoreboardState extends State<Scoreboard> {
               icon: Icon(Icons.remove),
               onPressed: () {
                 setState(() {
-                  if (_punishmentsofthefighter >= 1) {
-                    _punishmentsofthefighter--;
+                  if (_punishmentsOfTheFighter >= 1) {
+                    _punishmentsOfTheFighter--;
                   }
                 });
               }),

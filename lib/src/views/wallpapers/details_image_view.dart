@@ -66,7 +66,7 @@ class _DetailsImageState extends State<DetailsImage> {
       );
     }
 
-    void _saveimage(String imagePath) async {
+    void _saveImage(String imagePath) async {
       ByteData bytes = await rootBundle.load(imagePath);
       var result = await ImageGallerySaver.saveImage(
         bytes.buffer.asUint8List(),
@@ -79,11 +79,11 @@ class _DetailsImageState extends State<DetailsImage> {
     }
 
 //------------------------------------------------------------------------------
-    void onpressed(String imagePath) async {
+    void onPressed(String imagePath) async {
       if (await Permission.storage.request().isGranted) {
         Admob.createAndShowInterstitialAd();
         Future.delayed(Duration(seconds: 3), () {
-          _saveimage(imagePath);
+          _saveImage(imagePath);
         });
       }
     }
@@ -130,7 +130,7 @@ class _DetailsImageState extends State<DetailsImage> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               side: BorderSide(color: Colors.white)),
-                          onPressed: () => onpressed(widget.imagePath),
+                          onPressed: () => onPressed(widget.imagePath),
                           child: Center(
                             child: Text('button_save_image'.tr()),
                           ),

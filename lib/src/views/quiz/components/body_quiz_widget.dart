@@ -17,22 +17,22 @@ class _BodyQuizState extends State<BodyQuiz> {
         child: Column(
           children: [
             ButtonOptionQuiz(
-              imagebotton: 'assets/images/iconsbutton/faixabranca.png',
-              textbotton: 'button_white_belt_level'.tr(),
+              imageButton: 'assets/images/iconsbutton/faixabranca.png',
+              textButton: 'button_white_belt_level'.tr(),
               difficulty: 'easy',
-              difficultyname: 'text_difficultyname_white_belt'.tr(),
+              difficultyName: 'text_difficultyname_white_belt'.tr(),
             ),
             ButtonOptionQuiz(
-              imagebotton: 'assets/images/iconsbutton/faixaazul.png',
-              textbotton: 'button_blue_belt_level'.tr(),
+              imageButton: 'assets/images/iconsbutton/faixaazul.png',
+              textButton: 'button_blue_belt_level'.tr(),
               difficulty: 'medium',
-              difficultyname: 'text_difficultyname_blue_belt'.tr(),
+              difficultyName: 'text_difficultyname_blue_belt'.tr(),
             ),
             ButtonOptionQuiz(
-              imagebotton: 'assets/images/iconsbutton/faixapreta.png',
-              textbotton: 'button_black_belt_level'.tr(),
+              imageButton: 'assets/images/iconsbutton/faixapreta.png',
+              textButton: 'button_black_belt_level'.tr(),
               difficulty: 'hard',
-              difficultyname: 'text_difficultyname_black_belt'.tr(),
+              difficultyName: 'text_difficultyname_black_belt'.tr(),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height / 10,

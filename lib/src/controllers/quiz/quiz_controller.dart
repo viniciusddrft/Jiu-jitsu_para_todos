@@ -1,34 +1,34 @@
 import 'package:jiu_jitsu_para_todos/src/models/quiz/quiz_questions_model.dart';
 
 class ControllerQuiz {
-  int numberquestions = 0;
+  int numberOfQuestions = 0;
 
-  List<Question> _questionseasy = dataquestionseasy
+  List<Question> _questionsEasy = dataQuestionsEasy
       .map(
         (question) => Question(
             question: question['question'],
             options: question['options'],
-            rightanswer: question['rightanswer'],
+            rightAnswer: question['rightAnswer'],
             pathImage: question?['pathImage'],
             pathVideo: question?['pathVideo']),
       )
       .toList();
-  List<Question> _questionsmedium = dataquestionsmedium
+  List<Question> _questionsMedium = dataQuestionsMedium
       .map(
         (question) => Question(
             question: question['question'],
             options: question['options'],
-            rightanswer: question['rightanswer'],
+            rightAnswer: question['rightAnswer'],
             pathImage: question?['pathImage'],
             pathVideo: question?['pathVideo']),
       )
       .toList();
-  List<Question> _questionshard = dataquestionshard
+  List<Question> _questionsHard = dataQuestionsHard
       .map(
         (question) => Question(
             question: question['question'],
             options: question['options'],
-            rightanswer: question['rightanswer'],
+            rightAnswer: question['rightAnswer'],
             pathImage: question?['pathImage'],
             pathVideo: question?['pathVideo']),
       )
@@ -38,59 +38,59 @@ class ControllerQuiz {
     switch (difficulty) {
       case 'easy':
         {
-          _questionseasy.shuffle();
-          _questionseasy.toList().forEach((element) {
+          _questionsEasy.shuffle();
+          _questionsEasy.toList().forEach((element) {
             element.options.shuffle();
           });
-          return _questionseasy;
+          return _questionsEasy;
         }
 
       case 'medium':
         {
-          _questionsmedium.shuffle();
-          _questionsmedium.toList().forEach((element) {
+          _questionsMedium.shuffle();
+          _questionsMedium.toList().forEach((element) {
             element.options.shuffle();
           });
-          return _questionsmedium;
+          return _questionsMedium;
         }
 
       case 'hard':
         {
-          _questionshard.shuffle();
-          _questionshard.toList().forEach((element) {
+          _questionsHard.shuffle();
+          _questionsHard.toList().forEach((element) {
             element.options.shuffle();
           });
-          return _questionshard;
+          return _questionsHard;
         }
 
       default:
         {
-          return _questionseasy;
+          return _questionsEasy;
         }
     }
   }
 
-  String textquestionreturn(myquestions) =>
-      myquestions.toList()[numberquestions].question;
+  String textQuestionReturn(myQuestions) =>
+      myQuestions.toList()[numberOfQuestions].question;
 
-  String returntextanswerA(myquestions) =>
-      myquestions.toList()[numberquestions].options[0];
+  String returnTextAnswerA(myQuestions) =>
+      myQuestions.toList()[numberOfQuestions].options[0];
 
-  String returntextanswerB(myquestions) =>
-      myquestions.toList()[numberquestions].options[1];
+  String returnTextAnswerB(myQuestions) =>
+      myQuestions.toList()[numberOfQuestions].options[1];
 
-  String returntextanswerC(myquestions) =>
-      myquestions.toList()[numberquestions].options[2];
+  String returnTextAnswerC(myQuestions) =>
+      myQuestions.toList()[numberOfQuestions].options[2];
 
-  String returntextanswerD(myquestions) =>
-      myquestions.toList()[numberquestions].options[3];
+  String returnTextAnswerD(myQuestions) =>
+      myQuestions.toList()[numberOfQuestions].options[3];
 
-  bool checkanswer(String answer, myquestions) =>
-      answer == myquestions.toList()[numberquestions].rightanswer;
+  bool checkAnswer(String answer, myQuestions) =>
+      answer == myQuestions.toList()[numberOfQuestions].rightAnswer;
 
-  String returnPathImage(myquestions) =>
-      myquestions.toList()[numberquestions].pathImage.toString();
+  String returnPathImage(myQuestions) =>
+      myQuestions.toList()[numberOfQuestions].pathImage.toString();
 
-  String returnPathVideo(myquestions) =>
-      myquestions.toList()[numberquestions].pathVideo.toString();
+  String returnPathVideo(myQuestions) =>
+      myQuestions.toList()[numberOfQuestions].pathVideo.toString();
 }

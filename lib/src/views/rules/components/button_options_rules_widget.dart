@@ -3,14 +3,14 @@ import 'package:jiu_jitsu_para_todos/src/views/shared/animated_page_route_builde
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BottonOptionsRules extends StatefulWidget {
-  final String imagebotton;
-  final String textbotton;
-  final routebotton;
+  final String imageButton;
+  final String textButton;
+  final Widget routeButton;
 
   BottonOptionsRules(
-      {required this.imagebotton,
-      required this.textbotton,
-      required this.routebotton});
+      {required this.imageButton,
+      required this.textButton,
+      required this.routeButton});
 
   @override
   _BottonOptionsRulesState createState() => _BottonOptionsRulesState();
@@ -20,7 +20,7 @@ class _BottonOptionsRulesState extends State<BottonOptionsRules> {
 //------------------------------------------------------------------------------
   void _changeroute() async {
     await Navigator.of(context).push(MyTransitionElasticOut(
-        route: widget.routebotton, duration: Duration(milliseconds: 500)));
+        route: widget.routeButton, duration: Duration(milliseconds: 500)));
   }
 
 //------------------------------------------------------------------------------
@@ -33,7 +33,7 @@ class _BottonOptionsRulesState extends State<BottonOptionsRules> {
         margin: EdgeInsets.only(
           left: 24.0.w,
         ),
-        child: Image.asset(widget.imagebotton, width: 100.w, height: 100.h),
+        child: Image.asset(widget.imageButton, width: 100.w, height: 100.h),
       ),
     );
 
@@ -67,7 +67,7 @@ class _BottonOptionsRulesState extends State<BottonOptionsRules> {
               borderRadius: BorderRadius.circular(8.0)),
           child: Center(
             child: Text(
-              widget.textbotton,
+              widget.textButton,
               style: TextStyle(fontSize: 18.sp),
             ),
           ),
