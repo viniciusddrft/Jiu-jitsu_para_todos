@@ -27,31 +27,32 @@ class QuizQuestions extends StatefulWidget {
 }
 
 class _QuizQuestionsState extends State<QuizQuestions> {
+  //quiz controller
+  final ControllerQuiz _controllerQuiz = ControllerQuiz();
   //quiz
-  var _controllerQuiz = ControllerQuiz();
   var _myQuestions;
-  var _difficultyName;
+  String? _difficultyName;
   //disablebutton
   bool _isButtonDisabled = false;
   //build video
   bool _buildVideo = true;
-  //icon button
-  var iconButton = Icons.done;
-  //song buttons
-  final _playerRightAnswer = AudioPlayer();
-  final _playerWrongAnswer = AudioPlayer();
   // randomness for ads
-  final _random = Random();
-  var _num;
+  Random _random = Random();
+  int? _num;
+  //icon button
+  IconData _iconButton = Icons.done;
+  //song buttons
+  final AudioPlayer _playerRightAnswer = AudioPlayer();
+  final AudioPlayer _playerWrongAnswer = AudioPlayer();
   // colors buttons
-  var _colorButtonA = Colors.white;
-  var _colorIconButtonA = Colors.transparent;
-  var _colorButtonB = Colors.white;
-  var _colorIconButtonB = Colors.transparent;
-  var _colorButtonC = Colors.white;
-  var _colorIconButtonC = Colors.transparent;
-  var _colorButtonD = Colors.white;
-  var _colorIconButtonD = Colors.transparent;
+  Color _colorButtonA = Colors.white;
+  Color _colorIconButtonA = Colors.transparent;
+  Color _colorButtonB = Colors.white;
+  Color _colorIconButtonB = Colors.transparent;
+  Color _colorButtonC = Colors.white;
+  Color _colorIconButtonC = Colors.transparent;
+  Color _colorButtonD = Colors.white;
+  Color _colorIconButtonD = Colors.transparent;
 
   @override
   void didChangeDependencies() {
@@ -75,7 +76,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
     ]);
 
     int counterQuestions = _controllerQuiz.numberOfQuestions + 1;
-    int totalNumberOfQuestions = _myQuestions.length;
+    int totalNumberOfQuestions = _myQuestions!.length;
 //------------------------------------------------------------------------------
     void playSoundRightAnswer() async {
       await _playerRightAnswer.setAsset('assets/music/right_answer.mp3');
@@ -91,7 +92,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
 //------------------------------------------------------------------------------
     void _switchToWinner() async {
       _num = _random.nextInt(10);
-      if (_num >= 8) {
+      if (_num! >= 8) {
         Admob.createAndShowInterstitialAd();
       }
       await Navigator.of(context).pushReplacement(MyTransitionElasticOut(
@@ -104,7 +105,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
 //------------------------------------------------------------------------------
     void _switchToFailed() async {
       _num = _random.nextInt(10);
-      if (_num >= 2) {
+      if (_num! >= 2) {
         Admob.createAndShowInterstitialAd();
       }
       await Navigator.of(context).pushReplacement(MyTransitionElasticOut(
@@ -193,7 +194,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                       setState(() {
                                         _isButtonDisabled = true;
 
-                                        iconButton = Icons.done;
+                                        _iconButton = Icons.done;
                                         _colorButtonA = Colors.green;
                                         _colorIconButtonA = Colors.green;
                                       });
@@ -207,7 +208,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                             Duration(milliseconds: 100));
                                         setState(() {
                                           if (counterQuestions ==
-                                              _myQuestions.length) {
+                                              _myQuestions!.length) {
                                             _switchToWinner();
                                           } else {
                                             _controllerQuiz.numberOfQuestions++;
@@ -225,7 +226,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                       playSoundWrongAnswer();
                                       setState(() {
                                         _isButtonDisabled = true;
-                                        iconButton = Icons.close;
+                                        _iconButton = Icons.close;
                                         _colorButtonA = Colors.red;
                                         _colorIconButtonA = Colors.red;
                                       });
@@ -256,7 +257,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                     border: Border.all(color: _colorButtonA),
                                   ),
                                   child: Icon(
-                                    iconButton,
+                                    _iconButton,
                                     size: 16.sp,
                                     color: _colorIconButtonA,
                                   ),
@@ -290,7 +291,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                       setState(() {
                                         _isButtonDisabled = true;
 
-                                        iconButton = Icons.done;
+                                        _iconButton = Icons.done;
                                         _colorButtonB = Colors.green;
                                         _colorIconButtonB = Colors.green;
                                       });
@@ -304,7 +305,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                             Duration(milliseconds: 100));
                                         setState(() {
                                           if (counterQuestions ==
-                                              _myQuestions.length) {
+                                              _myQuestions!.length) {
                                             _switchToWinner();
                                           } else {
                                             _controllerQuiz.numberOfQuestions++;
@@ -322,7 +323,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                       playSoundWrongAnswer();
                                       setState(() {
                                         _isButtonDisabled = true;
-                                        iconButton = Icons.close;
+                                        _iconButton = Icons.close;
                                         _colorButtonB = Colors.red;
                                         _colorIconButtonB = Colors.red;
                                       });
@@ -353,7 +354,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                     border: Border.all(color: _colorButtonB),
                                   ),
                                   child: Icon(
-                                    iconButton,
+                                    _iconButton,
                                     size: 16.sp,
                                     color: _colorIconButtonB,
                                   ),
@@ -387,7 +388,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                       playSoundRightAnswer();
                                       setState(() {
                                         _isButtonDisabled = true;
-                                        iconButton = Icons.done;
+                                        _iconButton = Icons.done;
                                         _colorButtonC = Colors.green;
                                         _colorIconButtonC = Colors.green;
                                       });
@@ -401,7 +402,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                             Duration(milliseconds: 100));
                                         setState(() {
                                           if (counterQuestions ==
-                                              _myQuestions.length) {
+                                              _myQuestions!.length) {
                                             _switchToWinner();
                                           } else {
                                             _controllerQuiz.numberOfQuestions++;
@@ -419,7 +420,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                       playSoundWrongAnswer();
                                       setState(() {
                                         _isButtonDisabled = true;
-                                        iconButton = Icons.close;
+                                        _iconButton = Icons.close;
                                         _colorButtonC = Colors.red;
                                         _colorIconButtonC = Colors.red;
                                       });
@@ -450,7 +451,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                     border: Border.all(color: _colorButtonC),
                                   ),
                                   child: Icon(
-                                    iconButton,
+                                    _iconButton,
                                     size: 16.sp,
                                     color: _colorIconButtonC,
                                   ),
@@ -483,7 +484,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                       playSoundRightAnswer();
                                       setState(() {
                                         _isButtonDisabled = true;
-                                        iconButton = Icons.done;
+                                        _iconButton = Icons.done;
                                         _colorButtonD = Colors.green;
                                         _colorIconButtonD = Colors.green;
                                       });
@@ -497,7 +498,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                             Duration(milliseconds: 100));
                                         setState(() {
                                           if (counterQuestions ==
-                                              _myQuestions.length) {
+                                              _myQuestions!.length) {
                                             _switchToWinner();
                                           } else {
                                             _controllerQuiz.numberOfQuestions++;
@@ -515,7 +516,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                       playSoundWrongAnswer();
                                       setState(() {
                                         _isButtonDisabled = true;
-                                        iconButton = Icons.close;
+                                        _iconButton = Icons.close;
                                         _colorButtonD = Colors.red;
                                         _colorIconButtonD = Colors.red;
                                       });
@@ -546,7 +547,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                                     border: Border.all(color: _colorButtonD),
                                   ),
                                   child: Icon(
-                                    iconButton,
+                                    _iconButton,
                                     size: 16.sp,
                                     color: _colorIconButtonD,
                                   ),
