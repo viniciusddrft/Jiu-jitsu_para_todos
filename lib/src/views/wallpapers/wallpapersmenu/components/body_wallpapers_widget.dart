@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/controllers/wallpapers/wallpapers_controller.dart';
-import 'package:jiu_jitsu_para_todos/src/views/wallpapers/details_image_view.dart';
+import 'package:jiu_jitsu_para_todos/src/views/wallpapers/detailsimage/details_image_view.dart';
 
 class BodyWallpalers extends StatefulWidget {
   @override

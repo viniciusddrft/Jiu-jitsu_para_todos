@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/views/fightmarker/components/clock_widget.dart';
-import 'package:jiu_jitsu_para_todos/src/views/fightmarker/components/scoreboard_widget.dart';
+import 'package:jiu_jitsu_para_todos/src/views/fightmarker/components/components/clock_widget.dart';
+import 'package:jiu_jitsu_para_todos/src/views/fightmarker/components/components/scoreboard_widget.dart';
 
 class BodyFightMarker extends StatefulWidget {
   @override

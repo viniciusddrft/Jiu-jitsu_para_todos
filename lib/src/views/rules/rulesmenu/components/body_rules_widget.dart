@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/views/rules/basic_rules_view.dart';
-import 'package:jiu_jitsu_para_todos/src/views/rules/components/button_options_rules_widget.dart';
-import 'package:jiu_jitsu_para_todos/src/views/rules/cbjj_rules_view.dart';
+import 'package:jiu_jitsu_para_todos/src/views/rules/basicrules/basic_rules_view.dart';
+import 'package:jiu_jitsu_para_todos/src/views/rules/rulesmenu/components/components/button_options_rules_widget.dart';
+import 'package:jiu_jitsu_para_todos/src/views/rules/cbjjrules/cbjj_rules_view.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class BodyRules extends StatelessWidget {

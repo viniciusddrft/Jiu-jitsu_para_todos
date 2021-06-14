@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/views/settings/components/body_settings_widget.dart';
 import 'package:jiu_jitsu_para_todos/src/views/shared/appbar_gradient/appbar_gradient.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SettingsView extends StatefulWidget {
   @override
@@ -23,6 +24,15 @@ class _SettingsViewState extends State<SettingsView> {
             style: TextStyle(fontFamily: 'YatraOne')),
       ),
       backgroundColor: Color(0xff202848),
+      bottomNavigationBar: Container(
+        height: 60.h,
+        child: Center(
+          child: Text(
+            'text_version'.tr() + ' 2.0.6',
+            style: TextStyle(fontSize: 16.sp, color: Colors.grey[700]),
+          ),
+        ),
+      ),
       body: BodySettings(
         locale: context.locale,
       ),

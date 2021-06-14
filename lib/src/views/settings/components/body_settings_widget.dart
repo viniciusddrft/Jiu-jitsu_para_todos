@@ -12,7 +12,7 @@ class BodySettings extends StatefulWidget {
 }
 
 class _BodySettingsState extends State<BodySettings> {
-  String _iconPath = '';
+  late String _iconPath;
 
   @override
   void initState() {
@@ -33,7 +33,39 @@ class _BodySettingsState extends State<BodySettings> {
     }
 
 //------------------------------------------------------------------------------
-    Future<void> _changeLanguage() async {
+    Future<void> _noticeAndChangeLanguage(Locale locale) async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.all(10),
+            backgroundColor: Color(0xff202848),
+            scrollable: true,
+            content: Container(
+              child: Text('text_notice_popup'.tr()),
+            ),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    setState(() {
+                      context.setLocale(locale);
+                      locale == Locale('pt', 'BR')
+                          ? _iconPath = 'assets/images/languages/brasil.png'
+                          : _iconPath =
+                              'assets/images/languages/united-states.png';
+                    });
+                    Navigator.pop(context);
+                  },
+                  child: Text('text_continue_popup'.tr()))
+            ],
+          );
+        },
+      );
+    }
+
+//------------------------------------------------------------------------------
+    Future<void> _changeLanguageMenu() async {
       return showDialog<void>(
         context: context,
         barrierDismissible: false,
@@ -50,10 +82,7 @@ class _BodySettingsState extends State<BodySettings> {
                   GestureDetector(
                     onTap: () {
                       Navigator.pop(context);
-                      setState(() {
-                        context.setLocale(Locale('pt', 'BR'));
-                        _iconPath = 'assets/images/languages/brasil.png';
-                      });
+                      _noticeAndChangeLanguage(Locale('pt', 'BR'));
                     },
                     child: Container(
                       color: Colors.transparent,
@@ -75,10 +104,7 @@ class _BodySettingsState extends State<BodySettings> {
                   GestureDetector(
                     onTap: () {
                       Navigator.pop(context);
-                      setState(() {
-                        context.setLocale(Locale('en', 'US'));
-                        _iconPath = 'assets/images/languages/united-states.png';
-                      });
+                      _noticeAndChangeLanguage(Locale('en', 'US'));
                     },
                     child: Container(
                       color: Colors.transparent,
@@ -109,7 +135,7 @@ class _BodySettingsState extends State<BodySettings> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GestureDetector(
-              onTap: () => _changeLanguage(),
+              onTap: () => _changeLanguageMenu(),
               child: Container(
                 color: Colors.transparent,
                 width: MediaQuery.of(context).size.width / 1.6,

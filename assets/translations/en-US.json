@@ -13,6 +13,9 @@
     "button_language_settings_page":"Languages",
     "text_brazilian_portugese":"Brazilian Portuguese",
     "text_english_united_states":"Englis United States",
+    "text_notice_popup":"Close and open the app so that the language change is done completely.",
+    "text_continue_popup":"Continue",
+    "text_version":"Version",
 
     "title_appbar_credits_page":"Credits",
     "text_all_application_icons_are_from_flaticon":"All application icons are from Flaticon.",

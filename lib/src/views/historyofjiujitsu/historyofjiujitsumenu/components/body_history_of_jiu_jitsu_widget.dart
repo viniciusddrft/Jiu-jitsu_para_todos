@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/views/historyofjiujitsu/components/button_options_history_widget.dart';
-import 'package:jiu_jitsu_para_todos/src/views/historyofjiujitsu/jiu_jitsu_in_brazil_view.dart';
-import 'package:jiu_jitsu_para_todos/src/views/historyofjiujitsu/origin_of_jiu_jitsu_view.dart';
+import 'package:jiu_jitsu_para_todos/src/views/historyofjiujitsu/historyofjiujitsumenu/components/button_options_history_widget.dart';
+import 'package:jiu_jitsu_para_todos/src/views/historyofjiujitsu/jiujitsuinbrazil/jiu_jitsu_in_brazil_view.dart';
+import 'package:jiu_jitsu_para_todos/src/views/historyofjiujitsu/originofjiujitsu/origin_of_jiu_jitsu_view.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class BodyHistoryOfJiuJistu extends StatelessWidget {

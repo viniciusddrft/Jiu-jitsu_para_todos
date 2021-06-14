@@ -4,6 +4,7 @@ import 'package:jiu_jitsu_para_todos/src/views/home/components/body_home_page_wi
 import 'package:jiu_jitsu_para_todos/src/views/shared/appbar_gradient/appbar_gradient.dart';
 import 'package:jiu_jitsu_para_todos/src/views/settings/settings_view.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:wakelock/wakelock.dart';
 
 class HomePageView extends StatefulWidget {
   @override
@@ -36,6 +37,7 @@ class _HomePageViewState extends State<HomePageView> {
 //------------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
+    Wakelock.disable();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,

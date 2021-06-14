@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/views/fightmarker/fight_marker_view.dart';
-import 'package:jiu_jitsu_para_todos/src/views/historyofjiujitsu/history_of_jiu_jitsu_view.dart';
-import 'package:jiu_jitsu_para_todos/src/views/home/components/button_options_home_widget.dart';
-import 'package:jiu_jitsu_para_todos/src/views/quiz/quiz_view.dart';
-import 'package:jiu_jitsu_para_todos/src/views/rules/rules_view.dart';
-import 'package:jiu_jitsu_para_todos/src/views/wallpapers/wallpapers_view.dart';
+import 'package:jiu_jitsu_para_todos/src/views/historyofjiujitsu/historyofjiujitsumenu/history_of_jiu_jitsu_view.dart';
+import 'package:jiu_jitsu_para_todos/src/views/home/components/components/button_options_home_widget.dart';
+import 'package:jiu_jitsu_para_todos/src/views/quiz/quizmenu/quiz_view.dart';
+import 'package:jiu_jitsu_para_todos/src/views/rules/rulesmenu/rules_view.dart';
+import 'package:jiu_jitsu_para_todos/src/views/wallpapers/wallpapersmenu/wallpapers_view.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class BodyHomePage extends StatelessWidget {
