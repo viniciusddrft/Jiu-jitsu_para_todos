@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/myapp.dart';
+import 'package:jiu_jitsu_para_todos/core/myapp.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:easy_localization/easy_localization.dart';
 

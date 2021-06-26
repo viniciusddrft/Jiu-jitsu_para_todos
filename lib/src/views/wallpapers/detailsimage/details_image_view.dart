@@ -1,4 +1,4 @@
-import 'dart:typed_data';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/controllers/admob/admob_controller.dart';
@@ -18,6 +18,8 @@ class DetailsImage extends StatefulWidget {
 }
 
 class _DetailsImageState extends State<DetailsImage> {
+  Random _random = Random();
+  late int _numberRandomForAds;
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -81,7 +83,12 @@ class _DetailsImageState extends State<DetailsImage> {
 //------------------------------------------------------------------------------
     void onPressed(String imagePath) async {
       if (await Permission.storage.request().isGranted) {
-        Admob.createAndShowInterstitialAd();
+        _numberRandomForAds = _random.nextInt(10);
+        if (_numberRandomForAds <= 7) {
+          Admob.createAndShowInterstitialAd(isInterstitialWithVideo: true);
+        } else {
+          Admob.createAndShowInterstitialAd();
+        }
         Future.delayed(Duration(seconds: 3), () {
           _saveImage(imagePath);
         });

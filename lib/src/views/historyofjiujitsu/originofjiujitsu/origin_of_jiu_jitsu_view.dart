@@ -4,6 +4,7 @@ import 'package:jiu_jitsu_para_todos/src/controllers/admob/admob_controller.dart
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/screen_size_for_ad_banner/screen_size_for_ab_Banner.dart';
 
 class OriginOfJiujitsu extends StatefulWidget {
   @override
@@ -34,7 +35,9 @@ class _OriginOfJiujitsuState extends State<OriginOfJiujitsu> {
       ),
       backgroundColor: Color(0xff202848),
       bottomNavigationBar: Container(
-        height: 60, //this is the space where I will render the ad
+        height: screenSizeForAdBanner()
+            ? 90
+            : 60, //this is the space where I will render the ad
         child: AdWidget(
           key: UniqueKey(),
           ad: Admob.createBannerAd()..load(),

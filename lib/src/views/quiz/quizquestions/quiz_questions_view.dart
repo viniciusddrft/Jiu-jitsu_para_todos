@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/controllers/admob/admob_controller.dart';
 import 'package:jiu_jitsu_para_todos/src/controllers/quiz/quiz_controller.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_transition_elatic_out.dart';
 import 'package:jiu_jitsu_para_todos/src/views/quiz/quizquestions/components/button_quiz_questions_widget.dart';
 import 'package:jiu_jitsu_para_todos/src/views/quiz/quizquestions/components/return_midia_quiz_widget.dart';
 import 'package:jiu_jitsu_para_todos/src/views/quiz/failedthequiz/failed_the_quiz_view.dart';
 import 'package:jiu_jitsu_para_todos/src/views/quiz/winnerthequiz/winner_in_the_quiz_view.dart';
-import 'package:jiu_jitsu_para_todos/src/views/shared/animated_page_route_builder/my_transition_elatic_out.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -39,7 +39,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
   bool _buildVideo = true;
   // randomness for ads
   Random _random = Random();
-  int? _num;
+  late int _numberRandomForAds;
   //song buttons
   final AudioPlayer _playerRightAnswer = AudioPlayer();
   final AudioPlayer _playerWrongAnswer = AudioPlayer();
@@ -96,8 +96,8 @@ class _QuizQuestionsState extends State<QuizQuestions> {
 
 //------------------------------------------------------------------------------
     void _switchToWinner() {
-      _num = _random.nextInt(10);
-      if (_num! >= 8) {
+      _numberRandomForAds = _random.nextInt(10);
+      if (_numberRandomForAds >= 3) {
         Admob.createAndShowInterstitialAd();
       }
       Navigator.of(context).pushReplacement(MyTransitionElasticOut(
@@ -109,8 +109,10 @@ class _QuizQuestionsState extends State<QuizQuestions> {
 
 //------------------------------------------------------------------------------
     void _switchToFailed() {
-      _num = _random.nextInt(10);
-      if (_num! >= 2) {
+      _numberRandomForAds = _random.nextInt(10);
+      if (_numberRandomForAds == 9) {
+        Admob.createAndShowInterstitialAd(isInterstitialWithVideo: true);
+      } else if (_numberRandomForAds >= 3) {
         Admob.createAndShowInterstitialAd();
       }
       Navigator.of(context).pushReplacement(MyTransitionElasticOut(

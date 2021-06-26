@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_transition_from_left_to_right_animated.dart';
 import 'package:jiu_jitsu_para_todos/src/views/home/home_page_view.dart';
-import 'package:jiu_jitsu_para_todos/src/views/shared/animated_page_route_builder/my_transition_from_left_to_right_animated.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class SplashPageView extends StatelessWidget {

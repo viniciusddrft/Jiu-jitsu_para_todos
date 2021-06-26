@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/views/shared/animated_page_route_builder/my_transition_elatic_out.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_transition_elatic_out.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BottonOptionsRules extends StatefulWidget {

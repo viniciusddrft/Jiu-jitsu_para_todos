@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/appbar_gradient/appbar_gradient.dart';
 import 'package:jiu_jitsu_para_todos/src/views/quiz/quizmenu/components/body_quiz_widget.dart';
-import 'package:jiu_jitsu_para_todos/src/views/shared/appbar_gradient/appbar_gradient.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class QuizView extends StatefulWidget {

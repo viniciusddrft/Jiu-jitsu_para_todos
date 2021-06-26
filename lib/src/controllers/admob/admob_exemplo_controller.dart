@@ -1,10 +1,12 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/screen_size_for_ad_banner/screen_size_for_ab_Banner.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class Admob {
   static int _numInterstitialLoadAttempts = 0;
   static int _numBannerLoadAttempts = 0;
-  static int maxFailedLoadAttempts = 3;
+  static int _maxFailedLoadAttempts = 3;
 
   static BannerAd? _bannerAd;
 
@@ -20,6 +22,10 @@ class Admob {
       ? 'ca-app-pub-3940256099942544/1033173712' //this is id for test
       : 'ca-app-pub-3940256099942544/1033173712'; //this is id for test
 
+  static String get interstitialWithVideoAdUnitID => Platform.isAndroid
+      ? 'ca-app-pub-3940256099942544/8691691433' //this is id for test
+      : 'ca-app-pub-3940256099942544/8691691433'; //this is id for test
+
   static initialize() {
     MobileAds.instance.initialize();
   }
@@ -27,20 +33,20 @@ class Admob {
   static BannerAd createBannerAd() {
     BannerAd ad = BannerAd(
       adUnitId: bannerAdUnitId,
-      size: AdSize.fullBanner,
+      size: screenSizeForAdBanner() ? AdSize.leaderboard : AdSize.fullBanner,
       request: AdRequest(),
       listener: BannerAdListener(
-        onAdLoaded: (Ad ad) => print('Ad loaded.'),
+        onAdLoaded: (Ad ad) => debugPrint('Ad loaded.'),
         onAdFailedToLoad: (Ad ad, LoadAdError error) {
-          print('Ad failed to load: $error');
+          debugPrint('Ad failed to load: $error');
           _numBannerLoadAttempts++;
           _bannerAd = null;
-          if (_numBannerLoadAttempts != maxFailedLoadAttempts) {
+          if (_numBannerLoadAttempts != _maxFailedLoadAttempts) {
             createBannerAd();
           }
         },
-        onAdOpened: (Ad ad) => print('Ad opened.'),
-        onAdClosed: (Ad ad) => print('Ad closed'),
+        onAdOpened: (Ad ad) => debugPrint('Ad opened.'),
+        onAdClosed: (Ad ad) => debugPrint('Ad closed'),
       ),
     );
 
@@ -53,17 +59,20 @@ class Admob {
   }
 
   static void disposeBanner() {
-    print("disposeAds");
+    debugPrint("disposeAds");
     _bannerAd?.dispose();
   }
 
-  static void createAndShowInterstitialAd() {
+  static void createAndShowInterstitialAd(
+      {bool isInterstitialWithVideo = false}) {
     InterstitialAd?.load(
-      adUnitId: interstitialAdUnitID,
+      adUnitId: isInterstitialWithVideo
+          ? interstitialWithVideoAdUnitID
+          : interstitialAdUnitID,
       request: AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (InterstitialAd ad) {
-          print('$ad loaded :| ');
+          debugPrint('$ad loaded :| ');
           _interstitialAd = ad;
           _interstitialAd?.show();
           _interstitialAd?.dispose();
@@ -73,7 +82,7 @@ class Admob {
           print('InterstitialAd failed to load: $error.');
           _numInterstitialLoadAttempts++;
           _interstitialAd = null;
-          if (_numInterstitialLoadAttempts != maxFailedLoadAttempts) {
+          if (_numInterstitialLoadAttempts != _maxFailedLoadAttempts) {
             createAndShowInterstitialAd();
           }
         },
@@ -81,16 +90,16 @@ class Admob {
     );
 
     _interstitialAd?.fullScreenContentCallback = FullScreenContentCallback(
-      onAdImpression: (_) => print('sucesso!'),
+      onAdImpression: (_) => debugPrint('sucesso!'),
       onAdShowedFullScreenContent: (InterstitialAd ad) =>
-          print('ad onAdShowedFullScreenContent.'),
+          debugPrint('ad onAdShowedFullScreenContent.'),
       onAdDismissedFullScreenContent: (InterstitialAd ad) {
-        print('$ad onAdDismissedFullScreenContent.');
+        debugPrint('$ad onAdDismissedFullScreenContent.');
         ad.dispose();
         createAndShowInterstitialAd();
       },
       onAdFailedToShowFullScreenContent: (InterstitialAd ad, AdError error) {
-        print('$ad onAdFailedToShowFullScreenContent: $error');
+        debugPrint('$ad onAdFailedToShowFullScreenContent: $error');
         ad.dispose();
         createAndShowInterstitialAd();
       },
