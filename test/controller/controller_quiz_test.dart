@@ -1,4 +1,4 @@
-import 'package:jiu_jitsu_para_todos/src/controllers/quiz/quiz_controller.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/controller/quiz_controller.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 main() {

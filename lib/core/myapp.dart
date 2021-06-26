@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/views/home/home_page_view.dart';
-import 'package:jiu_jitsu_para_todos/src/views/splash/splash_page_view.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/home/view/home_page_view.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/splash/splash_page_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           '/splash': (BuildContext context) => SplashPageView(),
           '/home': (BuildContext context) => HomePageView(),
           /*
-          settings': (BuildContext context) => SettingsView(),
+          '/settings': (BuildContext context) => SettingsView(),
           '/fightmarker': (BuildContext context) => FightMakerView(),
           '/historyofjiujitsu': (BuildContext context) =>
               HistoryOfJiuJitsuView(),

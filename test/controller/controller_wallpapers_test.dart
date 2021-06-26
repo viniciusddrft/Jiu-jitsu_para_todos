@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:jiu_jitsu_para_todos/src/controllers/wallpapers/wallpapers_controller.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/controller/wallpapers_controller.dart';
 
 main() {
   /*
