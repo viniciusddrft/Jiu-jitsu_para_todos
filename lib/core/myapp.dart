@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/home/view/home_page_view.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/splash/splash_page_view.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/splash/view/splash_page_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
