@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/rules/view/rulesmenu/components/body_rules_widget.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/appbar_gradient/appbar_gradient.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
 class RulesView extends StatelessWidget {
   @override
@@ -17,7 +18,7 @@ class RulesView extends StatelessWidget {
         title: Text('title_appbar_rule_page'.tr(),
             style: TextStyle(fontFamily: 'YatraOne')),
       ),
-      backgroundColor: Color(0xff202848),
+      backgroundColor: AppColors.background,
       body: BodyRules(),
     );
   }

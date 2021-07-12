@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizmenu/components/components/button_options_quiz_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_path.dart';
 
 class BodyQuiz extends StatefulWidget {
   @override
@@ -17,19 +18,19 @@ class _BodyQuizState extends State<BodyQuiz> {
         child: Column(
           children: [
             ButtonOptionQuiz(
-              imageButton: 'assets/images/iconsbutton/faixabranca.png',
+              imageButton: AppIconsPath.faixaBranca,
               textButton: 'button_white_belt_level'.tr(),
               difficulty: 'easy',
               difficultyName: 'text_difficultyname_white_belt'.tr(),
             ),
             ButtonOptionQuiz(
-              imageButton: 'assets/images/iconsbutton/faixaazul.png',
+              imageButton: AppIconsPath.faixaAzul,
               textButton: 'button_blue_belt_level'.tr(),
               difficulty: 'medium',
               difficultyName: 'text_difficultyname_blue_belt'.tr(),
             ),
             ButtonOptionQuiz(
-              imageButton: 'assets/images/iconsbutton/faixapreta.png',
+              imageButton: AppIconsPath.faixaPreta,
               textButton: 'button_black_belt_level'.tr(),
               difficulty: 'hard',
               difficultyName: 'text_difficultyname_black_belt'.tr(),

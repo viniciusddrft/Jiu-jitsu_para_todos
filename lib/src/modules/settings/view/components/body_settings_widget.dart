@@ -3,6 +3,8 @@ import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_t
 import 'package:jiu_jitsu_para_todos/src/modules/credits/view/credits_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_languages_path.dart';
 
 class BodySettings extends StatefulWidget {
   final Locale locale;
@@ -16,11 +18,11 @@ class _BodySettingsState extends State<BodySettings> {
 
   @override
   void initState() {
-    if (widget.locale == Locale('en', 'US')) {
-      _iconPath = 'assets/images/languages/united-states.png';
-    } else if (widget.locale == Locale('pt', 'BR')) {
-      _iconPath = 'assets/images/languages/brasil.png';
-    }
+    if (widget.locale == Locale('en', 'US'))
+      _iconPath = AppIconsLanguages.unitedStates;
+    else if (widget.locale == Locale('pt', 'BR'))
+      _iconPath = AppIconsLanguages.brasil;
+
     super.initState();
   }
 
@@ -40,7 +42,7 @@ class _BodySettingsState extends State<BodySettings> {
         builder: (BuildContext context) {
           return AlertDialog(
             contentPadding: EdgeInsets.all(10),
-            backgroundColor: Color(0xff202848),
+            backgroundColor: AppColors.background,
             scrollable: true,
             content: Container(
               child: Text('text_notice_popup'.tr()),
@@ -51,9 +53,8 @@ class _BodySettingsState extends State<BodySettings> {
                     setState(() {
                       context.setLocale(locale);
                       locale == Locale('pt', 'BR')
-                          ? _iconPath = 'assets/images/languages/brasil.png'
-                          : _iconPath =
-                              'assets/images/languages/united-states.png';
+                          ? _iconPath = AppIconsLanguages.brasil
+                          : _iconPath = AppIconsLanguages.unitedStates;
                     });
                     Navigator.pop(context);
                   },
@@ -72,7 +73,7 @@ class _BodySettingsState extends State<BodySettings> {
         builder: (BuildContext context) {
           return AlertDialog(
             contentPadding: EdgeInsets.all(10),
-            backgroundColor: Color(0xff202848),
+            backgroundColor: AppColors.background,
             scrollable: true,
             content: Container(
               width: MediaQuery.of(context).size.width / 2,
@@ -91,7 +92,7 @@ class _BodySettingsState extends State<BodySettings> {
                         children: [
                           Text('text_brazilian_portugese'.tr()),
                           Image.asset(
-                            'assets/images/languages/brasil.png',
+                            AppIconsLanguages.brasil,
                             width: 50.w,
                           ),
                         ],
@@ -113,7 +114,7 @@ class _BodySettingsState extends State<BodySettings> {
                         children: [
                           Text('text_english_united_states'.tr()),
                           Image.asset(
-                            'assets/images/languages/united-states.png',
+                            AppIconsLanguages.unitedStates,
                             width: 50.w,
                           ),
                         ],
@@ -165,7 +166,7 @@ class _BodySettingsState extends State<BodySettings> {
               width: 200.w,
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                    backgroundColor: Color(0xff202848),
+                    backgroundColor: AppColors.background,
                     primary: Colors.white,
                     elevation: 7,
                     shape: RoundedRectangleBorder(

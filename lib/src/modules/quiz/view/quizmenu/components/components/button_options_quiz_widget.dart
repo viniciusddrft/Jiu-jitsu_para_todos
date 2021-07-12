@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizquestions/quiz_questions_view.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_transition_elatic_out.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -36,17 +37,15 @@ class ButtonOptionQuiz extends StatefulWidget {
 }
 
 class _ButtonOptionQuizState extends State<ButtonOptionQuiz> {
-  void _changeRoute() async {
-    await Navigator.of(context).push(
-      MyTransitionElasticOut(
-        route: QuizQuestions(
-          difficulty: widget.difficulty,
-          difficultyName: widget.difficultyName,
+  void _changeRoute() => Navigator.of(context).push(
+        MyTransitionElasticOut(
+          route: QuizQuestions(
+            difficulty: widget.difficulty,
+            difficultyName: widget.difficultyName,
+          ),
+          duration: Duration(milliseconds: 500),
         ),
-        duration: Duration(milliseconds: 500),
-      ),
-    );
-  }
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +84,7 @@ class _ButtonOptionQuizState extends State<ButtonOptionQuiz> {
         child: Ink(
           decoration: BoxDecoration(
               gradient: LinearGradient(
-                  colors: [Color(0xff202848), Colors.indigo],
+                  colors: [AppColors.background, Colors.indigo],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight),
               borderRadius: BorderRadius.circular(8.0)),

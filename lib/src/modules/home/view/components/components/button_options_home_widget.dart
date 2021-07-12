@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_transition_elatic_out.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BottonOptionsHome extends StatefulWidget {
   final String imageButton;
@@ -75,7 +76,7 @@ class _BottonOptionsHomeState extends State<BottonOptionsHome> {
         child: Ink(
           decoration: BoxDecoration(
               gradient: LinearGradient(
-                  colors: [Color(0xff202848), Colors.indigo],
+                  colors: [AppColors.background, Colors.indigo],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight),
               borderRadius: BorderRadius.circular(8.0)),

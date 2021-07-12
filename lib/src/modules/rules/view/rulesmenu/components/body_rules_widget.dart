@@ -3,6 +3,7 @@ import 'package:jiu_jitsu_para_todos/src/modules/rules/view/basicrules/basic_rul
 import 'package:jiu_jitsu_para_todos/src/modules/rules/view/cbjjrules/cbjj_rules_view.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/rules/view/rulesmenu/components/components/button_options_rules_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_path.dart';
 
 class BodyRules extends StatelessWidget {
   @override
@@ -14,11 +15,11 @@ class BodyRules extends StatelessWidget {
         child: Column(
           children: [
             BottonOptionsRules(
-                imageButton: 'assets/images/iconsbutton/regrasbasicas.png',
+                imageButton: AppIconsPath.regrasBasicas,
                 textButton: 'button_basic_rules'.tr(),
                 routeButton: Basicrules()), // <- '/basicrules'
             BottonOptionsRules(
-                imageButton: 'assets/images/iconsbutton/cbjjrules.png',
+                imageButton: AppIconsPath.cbjjRules,
                 textButton: 'button_cbjj_Rules'.tr(),
                 routeButton: Cbjjrules()), //' <- /cbjjrules'),
             SizedBox(

@@ -32,13 +32,10 @@ class _ScoreboardState extends State<Scoreboard> {
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
-              iconSize: 60.sp,
-              icon: Icon(Icons.add),
-              onPressed: () {
-                setState(() {
-                  _fighterPoints = _fighterPoints + 2;
-                });
-              }),
+            iconSize: 60.sp,
+            icon: Icon(Icons.add),
+            onPressed: () => setState(() => _fighterPoints += 2),
+          ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           Text(
             '2',
@@ -46,25 +43,19 @@ class _ScoreboardState extends State<Scoreboard> {
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           IconButton(
-              iconSize: 60.sp,
-              icon: Icon(Icons.remove),
-              onPressed: () {
-                setState(() {
-                  if (_fighterPoints >= 2) {
-                    _fighterPoints = _fighterPoints - 2;
-                  }
-                });
-              }),
+            iconSize: 60.sp,
+            icon: Icon(Icons.remove),
+            onPressed: () => setState(() {
+              if (_fighterPoints >= 2) _fighterPoints -= 2;
+            }),
+          ),
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
-              iconSize: 60.sp,
-              icon: Icon(Icons.add),
-              onPressed: () {
-                setState(() {
-                  _fighterPoints = _fighterPoints + 3;
-                });
-              }),
+            iconSize: 60.sp,
+            icon: Icon(Icons.add),
+            onPressed: () => setState(() => _fighterPoints += 3),
+          ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           Text(
             '3',
@@ -72,49 +63,37 @@ class _ScoreboardState extends State<Scoreboard> {
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           IconButton(
-              iconSize: 60.sp,
-              icon: Icon(Icons.remove),
-              onPressed: () {
-                setState(() {
-                  if (_fighterPoints >= 3) {
-                    _fighterPoints = _fighterPoints - 3;
-                  }
-                });
-              }),
+            iconSize: 60.sp,
+            icon: Icon(Icons.remove),
+            onPressed: () => setState(() {
+              if (_fighterPoints >= 3) _fighterPoints -= 3;
+            }),
+          ),
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
-              iconSize: 60.sp,
-              icon: Icon(Icons.add),
-              onPressed: () {
-                setState(() {
-                  _fighterPoints = _fighterPoints + 4;
-                });
-              }),
+            iconSize: 60.sp,
+            icon: Icon(Icons.add),
+            onPressed: () => setState(() => _fighterPoints += 4),
+          ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           Text('4', style: TextStyle(fontSize: 60.sp, fontFamily: 'YatraOne')),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           IconButton(
-              iconSize: 60.sp,
-              icon: Icon(Icons.remove),
-              onPressed: () {
-                setState(() {
-                  if (_fighterPoints >= 4) {
-                    _fighterPoints = _fighterPoints - 4;
-                  }
-                });
-              }),
+            iconSize: 60.sp,
+            icon: Icon(Icons.remove),
+            onPressed: () => setState(() {
+              if (_fighterPoints >= 4) _fighterPoints -= 4;
+            }),
+          ),
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
-              iconSize: 60.sp,
-              color: Colors.yellow,
-              icon: Icon(Icons.add),
-              onPressed: () {
-                setState(() {
-                  _advantagesOfTheFighter++;
-                });
-              }),
+            iconSize: 60.sp,
+            color: Colors.yellow,
+            icon: Icon(Icons.add),
+            onPressed: () => setState(() => _advantagesOfTheFighter++),
+          ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           Text(
             'text_abbreviated_advantage'.tr(),
@@ -123,27 +102,21 @@ class _ScoreboardState extends State<Scoreboard> {
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           IconButton(
-              iconSize: 60.sp,
-              color: Colors.yellow,
-              icon: Icon(Icons.remove),
-              onPressed: () {
-                setState(() {
-                  if (_advantagesOfTheFighter >= 1) {
-                    _advantagesOfTheFighter--;
-                  }
-                });
-              }),
+            iconSize: 60.sp,
+            color: Colors.yellow,
+            icon: Icon(Icons.remove),
+            onPressed: () => setState(() {
+              if (_advantagesOfTheFighter >= 1) _advantagesOfTheFighter--;
+            }),
+          ),
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
-              iconSize: 60.sp,
-              color: Colors.red,
-              icon: Icon(Icons.add),
-              onPressed: () {
-                setState(() {
-                  _punishmentsOfTheFighter++;
-                });
-              }),
+            iconSize: 60.sp,
+            color: Colors.red,
+            icon: Icon(Icons.add),
+            onPressed: () => setState(() => _punishmentsOfTheFighter++),
+          ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           Text(
             'text_abbreviated_punishment'.tr(),
@@ -152,16 +125,15 @@ class _ScoreboardState extends State<Scoreboard> {
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           IconButton(
-              iconSize: 50.sp,
-              color: Colors.red,
-              icon: Icon(Icons.remove),
-              onPressed: () {
-                setState(() {
-                  if (_punishmentsOfTheFighter >= 1) {
-                    _punishmentsOfTheFighter--;
-                  }
-                });
-              }),
+            iconSize: 50.sp,
+            color: Colors.red,
+            icon: Icon(Icons.remove),
+            onPressed: () => setState(
+              () {
+                if (_punishmentsOfTheFighter >= 1) _punishmentsOfTheFighter--;
+              },
+            ),
+          ),
         ]),
       ],
     );

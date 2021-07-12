@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
 class ButtonQuizQuestions extends StatelessWidget {
   final Function(String answer, String orderOfQuestions) onpressed;
@@ -52,7 +53,7 @@ class ButtonQuizQuestions extends StatelessWidget {
         style: OutlinedButton.styleFrom(
           elevation: 7,
           primary: colorButton,
-          backgroundColor: Color(0xff202848),
+          backgroundColor: AppColors.background,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),

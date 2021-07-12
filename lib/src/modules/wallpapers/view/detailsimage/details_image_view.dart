@@ -1,7 +1,7 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
@@ -18,8 +18,6 @@ class DetailsImage extends StatefulWidget {
 }
 
 class _DetailsImageState extends State<DetailsImage> {
-  Random _random = Random();
-  late int _numberRandomForAds;
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -33,7 +31,7 @@ class _DetailsImageState extends State<DetailsImage> {
         barrierDismissible: true,
         builder: (BuildContext context) {
           return AlertDialog(
-            backgroundColor: Color(0xff202848),
+            backgroundColor: AppColors.background,
             actions: [
               TextButton(
                 child: Text('text_popup_error'.tr()),
@@ -54,7 +52,7 @@ class _DetailsImageState extends State<DetailsImage> {
         barrierDismissible: true,
         builder: (BuildContext context) {
           return AlertDialog(
-            backgroundColor: Color(0xff202848),
+            backgroundColor: AppColors.background,
             actions: [
               TextButton(
                 child: Text('text_popup_success'.tr()),
@@ -83,12 +81,7 @@ class _DetailsImageState extends State<DetailsImage> {
 //------------------------------------------------------------------------------
     void onPressed(String imagePath) async {
       if (await Permission.storage.request().isGranted) {
-        _numberRandomForAds = _random.nextInt(10);
-        if (_numberRandomForAds <= 7) {
-          Admob.createAndShowInterstitialAd(isInterstitialWithVideo: true);
-        } else {
-          Admob.createAndShowInterstitialAd();
-        }
+        Admob.createAndShowInterstitialAd();
         Future.delayed(Duration(seconds: 3), () {
           _saveImage(imagePath);
         });
@@ -97,7 +90,7 @@ class _DetailsImageState extends State<DetailsImage> {
 
 //------------------------------------------------------------------------------
     return Scaffold(
-      backgroundColor: Color(0xff202848),
+      backgroundColor: AppColors.background,
       body: Container(
         child: Column(
           children: [
@@ -132,7 +125,7 @@ class _DetailsImageState extends State<DetailsImage> {
                           style: OutlinedButton.styleFrom(
                               primary: Colors.white,
                               elevation: 7,
-                              backgroundColor: Color(0xff202848),
+                              backgroundColor: AppColors.background,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0),
                               ),

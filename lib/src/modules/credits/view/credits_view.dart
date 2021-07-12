@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/appbar_gradient/appbar_gradient.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -29,7 +30,7 @@ class _CreditsViewState extends State<CreditsView> {
         title: Text('title_appbar_credits_page'.tr(),
             style: TextStyle(fontFamily: 'YatraOne')),
       ),
-      backgroundColor: Color(0xff202848),
+      backgroundColor: AppColors.background,
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,

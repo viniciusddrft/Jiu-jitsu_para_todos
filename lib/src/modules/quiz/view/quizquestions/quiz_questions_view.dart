@@ -1,13 +1,12 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizresult/result_quiz.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/controller/quiz_controller.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/failedthequiz/failed_the_quiz_view.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_transition_elatic_out.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/winnerthequiz/winner_in_the_quiz_view.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizquestions/components/button_quiz_questions_widget.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizquestions/components/return_midia_quiz_widget.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -37,9 +36,6 @@ class _QuizQuestionsState extends State<QuizQuestions> {
   bool isButtonDisabled = false;
   //build video
   bool _buildVideo = true;
-  // randomness for ads
-  Random _random = Random();
-  late int _numberRandomForAds;
   //song buttons
   final AudioPlayer _playerRightAnswer = AudioPlayer();
   final AudioPlayer _playerWrongAnswer = AudioPlayer();
@@ -83,47 +79,23 @@ class _QuizQuestionsState extends State<QuizQuestions> {
     int counterQuestions = _controllerQuiz.numberOfQuestions + 1;
     int totalNumberOfQuestions = _myQuestions!.length;
 //------------------------------------------------------------------------------
-    void playSoundRightAnswer() {
-      _playerRightAnswer.setAsset('assets/music/right_answer.mp3');
-      _playerRightAnswer.play();
-    }
-
+    void playSoundRightAnswer() => _playerRightAnswer
+        .setAsset('assets/music/right_answer.mp3')
+        .then((_) => _playerRightAnswer.play());
 //------------------------------------------------------------------------------
-    void playSoundWrongAnswer() {
-      _playerWrongAnswer.setAsset('assets/music/wrong_answer.mp3');
-      _playerWrongAnswer.play();
-    }
-
+    void playSoundWrongAnswer() => _playerWrongAnswer
+        .setAsset('assets/music/wrong_answer.mp3')
+        .then((_) => _playerWrongAnswer.play());
 //------------------------------------------------------------------------------
-    void _switchToWinner() {
-      _numberRandomForAds = _random.nextInt(10);
-      if (_numberRandomForAds >= 3) {
-        Admob.createAndShowInterstitialAd();
-      }
-      Navigator.of(context).pushReplacement(MyTransitionElasticOut(
-          route: WinnerInQuiz(
-            difficultyName: widget.difficultyName,
+    void _switchToResult() => Navigator.of(context).pushReplacement(
+          MyTransitionElasticOut(
+            route: ResultQuiz(
+                difficultyName: widget.difficultyName,
+                score: _controllerQuiz.score,
+                totalQuestions: totalNumberOfQuestions),
+            duration: Duration(milliseconds: 500),
           ),
-          duration: Duration(milliseconds: 500)));
-    }
-
-//------------------------------------------------------------------------------
-    void _switchToFailed() {
-      _numberRandomForAds = _random.nextInt(10);
-      if (_numberRandomForAds == 9) {
-        Admob.createAndShowInterstitialAd(isInterstitialWithVideo: true);
-      } else if (_numberRandomForAds >= 3) {
-        Admob.createAndShowInterstitialAd();
-      }
-      Navigator.of(context).pushReplacement(MyTransitionElasticOut(
-          route: FailedInQuiz(
-            difficultyName: widget.difficultyName,
-            score: counterQuestions - 1,
-            totalQuestions: totalNumberOfQuestions,
-          ),
-          duration: Duration(milliseconds: 500)));
-    }
-
+        );
 //------------------------------------------------------------------------------
     void buttonQuestionsOnPressed(String answer, String orderOfQuestions) {
       if (_controllerQuiz.checkAnswer(answer, _myQuestions)) {
@@ -158,9 +130,12 @@ class _QuizQuestionsState extends State<QuizQuestions> {
             const Duration(milliseconds: 500),
             () => setState(() {
                   if (counterQuestions == _myQuestions!.length) {
-                    _switchToWinner();
+                    _controllerQuiz.score++;
+                    Admob.createAndShowInterstitialAd();
+                    _switchToResult();
                   } else {
                     _controllerQuiz.numberOfQuestions++;
+                    _controllerQuiz.score++;
                   }
                   colorButtonA = Colors.white;
                   colorButtonB = Colors.white;
@@ -199,8 +174,28 @@ class _QuizQuestionsState extends State<QuizQuestions> {
             colorButtonD = Colors.red;
             colorIconButtonD = Colors.red;
           });
+
         Future.delayed(
-            const Duration(milliseconds: 500), () => _switchToFailed());
+          const Duration(milliseconds: 500),
+          () => setState(
+            () {
+              colorButtonA = Colors.white;
+              colorButtonB = Colors.white;
+              colorButtonC = Colors.white;
+              colorButtonD = Colors.white;
+              iconButtonA = null;
+              iconButtonB = null;
+              iconButtonC = null;
+              iconButtonD = null;
+              isButtonDisabled = false;
+              if (counterQuestions == _myQuestions!.length) {
+                Admob.createAndShowInterstitialAd();
+                _switchToResult();
+              } else
+                _controllerQuiz.numberOfQuestions++;
+            },
+          ),
+        );
       }
     }
 
@@ -210,7 +205,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      backgroundColor: Color(0xff202848),
+      backgroundColor: AppColors.background,
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -242,7 +237,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
               height: 1.h,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                    colors: [Colors.white, Color(0xff202848)],
+                    colors: [Colors.white, AppColors.background],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight),
               ),

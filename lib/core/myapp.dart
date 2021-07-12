@@ -3,6 +3,7 @@ import 'package:jiu_jitsu_para_todos/src/modules/home/view/home_page_view.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/splash/view/splash_page_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
         locale: context.locale,
         theme: ThemeData(
           fontFamily: 'Ubuntu',
-          primaryColor: Color(0xff1b2c57),
+          primaryColor: AppColors.primary,
           accentColor: Colors.indigo, // Color(0xff65d1ba),
           brightness: Brightness.dark,
         ),

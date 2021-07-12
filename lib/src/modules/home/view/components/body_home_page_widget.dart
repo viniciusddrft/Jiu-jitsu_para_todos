@@ -5,6 +5,7 @@ import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizmenu/quiz_view.da
 import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/view/fight_marker_view.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/rules/view/rulesmenu/rules_view.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/view/wallpapersmenu/wallpapers_view.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_path.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class BodyHomePage extends StatelessWidget {
@@ -17,29 +18,29 @@ class BodyHomePage extends StatelessWidget {
         child: Column(
           children: [
             BottonOptionsHome(
-              imageButton: 'assets/images/iconsbutton/historyofjiujitsu.png',
+              imageButton: AppIconsPath.iconHistoryOfJiujitsu,
               textButton: 'button_history_of_jiujitsu_home_page'.tr(),
               routeButton: HistoryOfJiuJitsuView(), // <- '/historyofjiujitsu',
             ),
             BottonOptionsHome(
-              imageButton: 'assets/images/iconsbutton/rules.png',
+              imageButton: AppIconsPath.rules,
               textButton: 'button_rules_home_page'.tr(),
               routeButton: RulesView(), // <- '/rules',
             ),
             BottonOptionsHome(
-                imageButton: 'assets/images/iconsbutton/quiz.png',
+                imageButton: AppIconsPath.quiz,
                 textButton: 'button_quiz_home_page'.tr(),
                 routeButton: QuizView() // <- '/quiz',
                 ),
             BottonOptionsHome(
-              imageButton: 'assets/images/iconsbutton/fightmarker.png',
+              imageButton: AppIconsPath.fightMarker,
               textButton: 'button_fight_marker_home_page'.tr(),
               routeButton: FightMakerView(), // <- '/fightmarker',
               needToRebuildTheHome: true,
               needAnimation: false,
             ),
             BottonOptionsHome(
-              imageButton: 'assets/images/iconsbutton/wallpapers.png',
+              imageButton: AppIconsPath.wallpapers,
               textButton: 'button_wallpapers_home_page'.tr(),
               routeButton: WallpapersView(), // <- '/wallpapers',
             ),

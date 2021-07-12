@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/screen_size_for_ad_banner/screen_size_for_ab_Banner.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -44,7 +46,7 @@ class _CbjjrulesState extends State<Cbjjrules> {
           style: TextStyle(fontFamily: 'YatraOne', color: Colors.grey[700]),
         ),
       ),
-      backgroundColor: Color(0xff202848),
+      backgroundColor: AppColors.background,
       bottomNavigationBar: Container(
         height: screenSizeForAdBanner()
             ? 90
@@ -77,7 +79,7 @@ class _CbjjrulesState extends State<Cbjjrules> {
                         style: OutlinedButton.styleFrom(
                             elevation: 7,
                             primary: Colors.white,
-                            backgroundColor: Color(0xff202848),
+                            backgroundColor: AppColors.background,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
                             ),

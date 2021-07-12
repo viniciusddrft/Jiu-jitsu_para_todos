@@ -195,12 +195,10 @@
     "quiz_black_belt_question6_option_c":"2006",
     "quiz_black_belt_question6_option_d":"2007",
 
-    "title_appbar_failed_quiz_page":"It was not this time",
-    "text_failed_quiz_white_belt":"His black white quiz score was",
-    "text_failed_quiz_blue_belt":"His blue belt quiz score was",
-    "text_failed_quiz_black_belt":"His black belt quiz score was",
-
-    "text_winner_quiz_white_belt":"Congratulations you managed to overcome the white belt difficulty !!!",
-    "text_winner_quiz_blue_belt":"Congratulations you managed to overcome the blue belt difficulty !!!",
-    "text_winner_quiz_black_belt":"Congratulations you managed to overcome the black belt difficulty !!!"
+    "text_result_quiz_white_belt":"His black white quiz score was:",
+    "text_result_quiz_blue_belt":"His blue belt quiz score was:",
+    "text_result_quiz_black_belt":"His black belt quiz score was:",
+    "text_message_quiz_very_well":"Oss, did very well!!!",
+    "text_message_quiz_almost":"Almost, study more.",
+    "text_message_quiz_sad":"It was not this time."
 }

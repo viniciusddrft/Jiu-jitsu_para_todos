@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/controller/clock_controller.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -27,7 +28,7 @@ class _ClockState extends State<Clock> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Color(0xff202848),
+          backgroundColor: AppColors.background,
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
@@ -65,7 +66,7 @@ class _ClockState extends State<Clock> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Color(0xff202848),
+          backgroundColor: AppColors.background,
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
@@ -110,7 +111,7 @@ class _ClockState extends State<Clock> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Color(0xff202848),
+          backgroundColor: AppColors.background,
           actions: <Widget>[
             TextButton(
               child: Text('text_button_stopsound'.tr()),
@@ -177,9 +178,8 @@ class _ClockState extends State<Clock> {
               isTimerTextShown: true,
 
               // Function which will execute when the Countdown Ends
-              onComplete: () async {
-                //mysound.playsound('alarm_sound.mp3');
-                await _player.setAsset('assets/music/alarm_sound.mp3');
+              onComplete: () {
+                _player.setAsset('assets/music/alarm_sound.mp3');
                 _player.play();
                 _showMyDialogstopsound();
               },
@@ -201,7 +201,7 @@ class _ClockState extends State<Clock> {
                 style: OutlinedButton.styleFrom(
                     elevation: 7,
                     primary: _myClock.isPause ? Colors.green : Colors.red,
-                    backgroundColor: Color(0xff202848),
+                    backgroundColor: AppColors.background,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
@@ -234,7 +234,7 @@ class _ClockState extends State<Clock> {
                 style: OutlinedButton.styleFrom(
                     elevation: 7,
                     primary: Colors.yellow,
-                    backgroundColor: Color(0xff202848),
+                    backgroundColor: AppColors.background,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),

@@ -195,12 +195,10 @@
     "quiz_black_belt_question6_option_c":"2006",
     "quiz_black_belt_question6_option_d":"2007",
 
-    "title_appbar_failed_quiz_page":"Não foi desta vez",
-    "text_failed_quiz_white_belt":"Sua pontuação no quiz da faixa branca foi",
-    "text_failed_quiz_blue_belt":"Sua pontuação no quiz da faixa azul foi",
-    "text_failed_quiz_black_belt":"Sua pontuação no quiz da faixa preta foi",
-
-    "text_winner_quiz_white_belt":"Parabens você conseguiu vencer a dificuldade faixa branca !!!",
-    "text_winner_quiz_blue_belt":"Parabens você conseguiu vencer a dificuldade faixa azul !!!",
-    "text_winner_quiz_black_belt":"Parabens você conseguiu vencer a dificuldade faixa preta !!!"
+    "text_result_quiz_white_belt":"Sua pontuação no quiz da faixa branca foi:",
+    "text_result_quiz_blue_belt":"Sua pontuação no quiz da faixa azul foi:",
+    "text_result_quiz_black_belt":"Sua pontuação no quiz da faixa preta foi:",
+    "text_message_quiz_very_well":"Oss, mandou muito bem!!!",
+    "text_message_quiz_almost":"Faltou pouco, estude mais.",
+    "text_message_quiz_sad":"Não foi dessa vez."
 }

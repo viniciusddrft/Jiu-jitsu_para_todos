@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/historyofjiujitsu/view/historyofjiujitsumenu/components/body_history_of_jiu_jitsu_widget.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/appbar_gradient/appbar_gradient.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
 class HistoryOfJiuJitsuView extends StatelessWidget {
   @override
@@ -17,7 +18,7 @@ class HistoryOfJiuJitsuView extends StatelessWidget {
         title: Text('title_appbar_history_of_jiujitsu_page'.tr(),
             style: TextStyle(fontFamily: 'YatraOne')),
       ),
-      backgroundColor: Color(0xff202848),
+      backgroundColor: AppColors.background,
       body: BodyHistoryOfJiuJistu(),
     );
   }

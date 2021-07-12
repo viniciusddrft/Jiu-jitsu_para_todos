@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_transition_elatic_out.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BottonOptionsHistory extends StatefulWidget {
@@ -16,10 +17,12 @@ class BottonOptionsHistory extends StatefulWidget {
 }
 
 class _BottonOptionsHistoryState extends State<BottonOptionsHistory> {
-  void _changeRoute() async {
-    await Navigator.of(context).push(MyTransitionElasticOut(
-        route: widget.routeButton, duration: Duration(milliseconds: 500)));
-  }
+  void _changeRoute() => Navigator.of(context).push(
+        MyTransitionElasticOut(
+          route: widget.routeButton,
+          duration: Duration(milliseconds: 500),
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +61,7 @@ class _BottonOptionsHistoryState extends State<BottonOptionsHistory> {
         child: Ink(
           decoration: BoxDecoration(
               gradient: LinearGradient(
-                  colors: [Color(0xff202848), Colors.indigo],
+                  colors: [AppColors.background, Colors.indigo],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight),
               borderRadius: BorderRadius.circular(8.0)),

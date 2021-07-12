@@ -24,18 +24,16 @@ class _BodyWallpalersState extends State<BodyWallpalers> {
           ),
           itemBuilder: (context, index) {
             return RawMaterialButton(
-              onPressed: () async {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DetailsImage(
-                      imagePath:
-                          controllerWallpapers.images.toList()[index].imagePath,
-                      index: index,
-                    ),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailsImage(
+                    imagePath:
+                        controllerWallpapers.images.toList()[index].imagePath,
+                    index: index,
                   ),
-                );
-              },
+                ),
+              ),
               child: Hero(
                 tag: 'logo$index',
                 child: Container(

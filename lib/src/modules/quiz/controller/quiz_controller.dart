@@ -2,6 +2,7 @@ import 'package:jiu_jitsu_para_todos/src/modules/quiz/model/quiz_questions_model
 
 class ControllerQuiz {
   int numberOfQuestions = 0;
+  int score = 0;
 
   List<Question> _questionsEasy = dataQuestionsEasy
       .map(
@@ -89,8 +90,14 @@ class ControllerQuiz {
       answer == myQuestions.toList()[numberOfQuestions].rightAnswer;
 
   String returnPathImage(myQuestions) =>
-      myQuestions.toList()[numberOfQuestions].pathImage.toString();
+      myQuestions.toList()[numberOfQuestions].pathImage;
 
   String returnPathVideo(myQuestions) =>
-      myQuestions.toList()[numberOfQuestions].pathVideo.toString();
+      myQuestions.toList()[numberOfQuestions].pathVideo;
+
+  bool existImage(myQuestions) =>
+      myQuestions.toList()[numberOfQuestions].pathImage != null;
+
+  bool existVideo(myQuestions) =>
+      myQuestions.toList()[numberOfQuestions].pathVideo != null;
 }

@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/screen_size_for_ad_banner/screen_size_for_ab_Banner.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/screen_size_for_ad_banner/screen_size_for_ab_Banner.dart';
 
 class Admob {
   static int _numInterstitialLoadAttempts = 0;
@@ -21,10 +21,6 @@ class Admob {
   static String get interstitialAdUnitID => Platform.isAndroid
       ? 'ca-app-pub-3940256099942544/1033173712' //this is id for test
       : 'ca-app-pub-3940256099942544/1033173712'; //this is id for test
-
-  static String get interstitialWithVideoAdUnitID => Platform.isAndroid
-      ? 'ca-app-pub-3940256099942544/8691691433' //this is id for test
-      : 'ca-app-pub-3940256099942544/8691691433'; //this is id for test
 
   static initialize() {
     MobileAds.instance.initialize();
@@ -63,12 +59,9 @@ class Admob {
     _bannerAd?.dispose();
   }
 
-  static void createAndShowInterstitialAd(
-      {bool isInterstitialWithVideo = false}) {
+  static void createAndShowInterstitialAd() {
     InterstitialAd?.load(
-      adUnitId: isInterstitialWithVideo
-          ? interstitialWithVideoAdUnitID
-          : interstitialAdUnitID,
+      adUnitId: interstitialAdUnitID,
       request: AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (InterstitialAd ad) {
@@ -79,12 +72,11 @@ class Admob {
           _interstitialAd = null;
         },
         onAdFailedToLoad: (LoadAdError error) {
-          print('InterstitialAd failed to load: $error.');
+          debugPrint('InterstitialAd failed to load: $error.');
           _numInterstitialLoadAttempts++;
           _interstitialAd = null;
-          if (_numInterstitialLoadAttempts != _maxFailedLoadAttempts) {
+          if (_numInterstitialLoadAttempts != _maxFailedLoadAttempts)
             createAndShowInterstitialAd();
-          }
         },
       ),
     );

@@ -3,12 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_transition_from_left_to_right_animated.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/home/view/home_page_view.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
 class SplashPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration(seconds: 2)).then(
-      (value) async => await Navigator.of(context).pushReplacement(
+      (_) async => await Navigator.of(context).pushReplacement(
         MyTransitionFromLeftToRightAnimated(
           route: HomePageView(),
           duration: Duration(milliseconds: 500),
@@ -25,7 +26,7 @@ class SplashPageView extends StatelessWidget {
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: <Color>[Color(0xff202848), Colors.indigo],
+                colors: <Color>[AppColors.background, Colors.indigo],
                 tileMode: TileMode.clamp)),
         child: Center(
           child: Text(
