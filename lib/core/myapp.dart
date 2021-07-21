@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(411.4, 820.6),
       builder: () => MaterialApp(
+        title: 'Jiu-jitsu para todos',
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,

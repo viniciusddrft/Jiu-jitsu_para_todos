@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 2.0.8+18
+version: 2.1.0+20
 
 environment:
   sdk: ">=2.13.4 <3.0.0"
@@ -62,36 +62,13 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-      - assets/translations/pt-BR.json
-      - assets/translations/en-US.json
-      - assets/music/alarm_sound.mp3
-      - assets/music/right_answer.mp3
-      - assets/music/wrong_answer.mp3
-      - assets/images/iconsbutton/historyofjiujitsu.png
-      - assets/images/iconsbutton/rules.png
-      - assets/images/iconsbutton/quiz.png
-      - assets/images/iconsbutton/fightmarker.png
-      - assets/images/iconsbutton/wallpapers.png
-      - assets/images/iconsbutton/india.png
-      - assets/images/iconsbutton/brasil.png
-      - assets/images/iconsbutton/faixabranca.png
-      - assets/images/iconsbutton/faixaazul.png
-      - assets/images/iconsbutton/faixapreta.png
-      - assets/images/iconsbutton/regrasbasicas.png
-      - assets/images/iconsbutton/cbjjrules.png
-      - assets/quiz/iconsresultquiz/reading-book.png
-      - assets/quiz/iconsresultquiz/victory.png
-      - assets/quiz/iconsresultquiz/sad.png
-      - assets/quiz/imagens/kimura.jpg
-      - assets/quiz/imagens/triangulo.jpg
-      - assets/quiz/videos/video_2021-07-01_18-10-01.mp4
-      - assets/images/wallpapers/jonathan-borba-YcrcG17Kjmg-unsplash.jpg
-      - assets/images/wallpapers/jonathan-borba-Yf1SegAI84o-unsplash.jpg
-      - assets/images/wallpapers/mma-1575855_960_720.jpg
-      - assets/images/wallpapers/jiu-jitsu-5641080_1280.jpg
-      - assets/images/iconscredits/flaticon.png
-      - assets/images/languages/brasil.png
-      - assets/images/languages/united-states.png
+      - assets/translations/
+      - assets/music/
+      - assets/images/iconsbutton/
+      - assets/quiz/iconsresultquiz/
+      - assets/images/wallpapers/
+      - assets/images/iconscredits/
+      - assets/images/languages/
 
   fonts:
     - family: YatraOne

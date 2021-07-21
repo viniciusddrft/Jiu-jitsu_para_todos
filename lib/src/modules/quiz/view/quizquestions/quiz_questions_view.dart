@@ -129,7 +129,8 @@ class _QuizQuestionsState extends State<QuizQuestions> {
         Future.delayed(
             const Duration(milliseconds: 500),
             () => setState(() {
-                  if (counterQuestions == _myQuestions!.length) {
+                  if (counterQuestions == _myQuestions!.length ||
+                      counterQuestions > _myQuestions!.length) {
                     _controllerQuiz.score++;
                     Admob.createAndShowInterstitialAd();
                     _switchToResult();
@@ -188,7 +189,8 @@ class _QuizQuestionsState extends State<QuizQuestions> {
               iconButtonC = null;
               iconButtonD = null;
               isButtonDisabled = false;
-              if (counterQuestions == _myQuestions!.length) {
+              if (counterQuestions == _myQuestions!.length ||
+                  counterQuestions > _myQuestions!.length) {
                 Admob.createAndShowInterstitialAd();
                 _switchToResult();
               } else

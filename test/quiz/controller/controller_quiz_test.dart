@@ -11,9 +11,9 @@ main() {
   int numberOfDifferentQuestions = 0;
   bool isQuestionsDifferents = false;
   ControllerQuiz _controllerquiz1 = ControllerQuiz();
-  var myquestions1 = _controllerquiz1.choice('easy');
+  var myquestions1 = _controllerquiz1.choice('hard');
   ControllerQuiz _controllerquiz2 = ControllerQuiz();
-  var myquestions2 = _controllerquiz2.choice('easy');
+  var myquestions2 = _controllerquiz2.choice('hard');
 
   test('deve retornar todas questões de forma aleatoria', () {
     List<String> _arrayTeste1 = [];

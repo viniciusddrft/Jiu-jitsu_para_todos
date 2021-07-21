@@ -39,6 +39,7 @@ class _OriginOfJiujitsuState extends State<OriginOfJiujitsu> {
         height: screenSizeForAdBanner()
             ? 90
             : 60, //this is the space where I will render the ad
+        width: double.maxFinite,
         child: AdWidget(
           key: UniqueKey(),
           ad: Admob.createBannerAd()..load(),

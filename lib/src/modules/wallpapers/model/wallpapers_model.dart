@@ -15,4 +15,8 @@ List<ImageDetails> allImages = [
   ImageDetails(
     imagePath: 'assets/images/wallpapers/jiu-jitsu-5641080_1280.jpg',
   ),
+  ImageDetails(
+    imagePath:
+        'assets/images/wallpapers/9fd26c62-2532-460a-a906-16e40c6d68f7.jpeg',
+  ),
 ];

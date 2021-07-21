@@ -35,8 +35,9 @@ class ButtonQuizQuestions extends StatelessWidget {
                   fontFamily: 'Ubuntu', color: colorButton, fontSize: 16.sp),
             ),
             Container(
+              //para deixar um circulo perfeito
               height: 26.h,
-              width: 26.w,
+              width: 26.h,
               decoration: BoxDecoration(
                 color: Colors.transparent,
                 borderRadius: BorderRadius.circular(50),
