@@ -3,7 +3,7 @@ import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/model/wallpapers_mod
 class ImageDetails {
   final String imagePath;
 
-  ImageDetails({
+  const ImageDetails({
     required this.imagePath,
   });
 }

@@ -7,7 +7,7 @@ class BottonOptionsHistory extends StatefulWidget {
   final String imageButton;
   final String textButton;
   final Widget routeButton;
-  BottonOptionsHistory(
+  const BottonOptionsHistory(
       {required this.imageButton,
       required this.textButton,
       required this.routeButton});

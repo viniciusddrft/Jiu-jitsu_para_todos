@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/home/view/home_page_view.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/splash/view/splash_page_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
 class MyApp extends StatelessWidget {
+  const MyApp();
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -22,9 +22,8 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: '/splash',
+        initialRoute: '/home',
         routes: {
-          '/splash': (BuildContext context) => SplashPageView(),
           '/home': (BuildContext context) => HomePageView(),
           /*
           '/settings': (BuildContext context) => SettingsView(),

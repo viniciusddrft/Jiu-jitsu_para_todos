@@ -1,4 +1,5 @@
 class AppIconsLanguages {
-  static String brasil = 'assets/images/languages/brasil.png';
-  static String unitedStates = 'assets/images/languages/united-states.png';
+  static const String brasil = 'assets/images/languages/brasil.png';
+  static const String unitedStates =
+      'assets/images/languages/united-states.png';
 }

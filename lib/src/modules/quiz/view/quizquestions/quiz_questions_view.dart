@@ -79,11 +79,11 @@ class _QuizQuestionsState extends State<QuizQuestions> {
     int counterQuestions = _controllerQuiz.numberOfQuestions + 1;
     int totalNumberOfQuestions = _myQuestions!.length;
 //------------------------------------------------------------------------------
-    void playSoundRightAnswer() => _playerRightAnswer
+    void _playSoundRightAnswer() => _playerRightAnswer
         .setAsset('assets/music/right_answer.mp3')
         .then((_) => _playerRightAnswer.play());
 //------------------------------------------------------------------------------
-    void playSoundWrongAnswer() => _playerWrongAnswer
+    void _playSoundWrongAnswer() => _playerWrongAnswer
         .setAsset('assets/music/wrong_answer.mp3')
         .then((_) => _playerWrongAnswer.play());
 //------------------------------------------------------------------------------
@@ -99,7 +99,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
 //------------------------------------------------------------------------------
     void buttonQuestionsOnPressed(String answer, String orderOfQuestions) {
       if (_controllerQuiz.checkAnswer(answer, _myQuestions)) {
-        playSoundRightAnswer();
+        _playSoundRightAnswer();
         isButtonDisabled = true;
         if (orderOfQuestions == 'A')
           setState(() {
@@ -149,7 +149,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                   isButtonDisabled = false;
                 }));
       } else {
-        playSoundWrongAnswer();
+        _playSoundWrongAnswer();
         isButtonDisabled = true;
         if (orderOfQuestions == 'A')
           setState(() {
@@ -264,7 +264,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                     child: Column(
                       children: [
                         ButtonQuizQuestions(
-                          onpressed: buttonQuestionsOnPressed,
+                          onPressed: buttonQuestionsOnPressed,
                           isButtonDisabled: isButtonDisabled,
                           answer:
                               _controllerQuiz.returnTextAnswerA(_myQuestions),
@@ -274,7 +274,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                           icon: iconButtonA,
                         ),
                         ButtonQuizQuestions(
-                          onpressed: buttonQuestionsOnPressed,
+                          onPressed: buttonQuestionsOnPressed,
                           isButtonDisabled: isButtonDisabled,
                           answer:
                               _controllerQuiz.returnTextAnswerB(_myQuestions),
@@ -284,7 +284,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                           icon: iconButtonB,
                         ),
                         ButtonQuizQuestions(
-                          onpressed: buttonQuestionsOnPressed,
+                          onPressed: buttonQuestionsOnPressed,
                           isButtonDisabled: isButtonDisabled,
                           answer:
                               _controllerQuiz.returnTextAnswerC(_myQuestions),
@@ -294,7 +294,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                           icon: iconButtonC,
                         ),
                         ButtonQuizQuestions(
-                          onpressed: buttonQuestionsOnPressed,
+                          onPressed: buttonQuestionsOnPressed,
                           isButtonDisabled: isButtonDisabled,
                           answer:
                               _controllerQuiz.returnTextAnswerD(_myQuestions),

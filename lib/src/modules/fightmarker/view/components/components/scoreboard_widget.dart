@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class Scoreboard extends StatefulWidget {
+  const Scoreboard();
   @override
   _ScoreboardState createState() => _ScoreboardState();
 }

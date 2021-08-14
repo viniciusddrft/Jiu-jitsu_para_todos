@@ -6,6 +6,7 @@ import 'package:jiu_jitsu_para_todos/src/modules/historyofjiujitsu/view/originof
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_path.dart';
 
 class BodyHistoryOfJiuJistu extends StatelessWidget {
+  const BodyHistoryOfJiuJistu();
   @override
   Widget build(BuildContext context) {
     return Container(

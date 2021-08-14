@@ -8,7 +8,7 @@ class BottonOptionsRules extends StatefulWidget {
   final String textButton;
   final Widget routeButton;
 
-  BottonOptionsRules(
+  const BottonOptionsRules(
       {required this.imageButton,
       required this.textButton,
       required this.routeButton});

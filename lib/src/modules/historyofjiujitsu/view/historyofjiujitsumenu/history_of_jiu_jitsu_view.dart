@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
 class HistoryOfJiuJitsuView extends StatelessWidget {
+  const HistoryOfJiuJitsuView();
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([

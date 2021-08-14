@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class VideoQuiz extends StatefulWidget {
   final String videoPath;
-  VideoQuiz({required this.videoPath});
+  const VideoQuiz({required this.videoPath});
   @override
   _VideoQuizState createState() => _VideoQuizState();
 }
@@ -44,7 +44,7 @@ class _VideoQuizState extends State<VideoQuiz> {
 class VideoPlayerWidget extends StatelessWidget {
   final VideoPlayerController controller;
 
-  VideoPlayerWidget({
+  const VideoPlayerWidget({
     required this.controller,
   });
 

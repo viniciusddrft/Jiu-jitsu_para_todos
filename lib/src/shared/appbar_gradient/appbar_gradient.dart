@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppBarGradient extends StatelessWidget {
+  const AppBarGradient();
   @override
   Widget build(BuildContext context) {
     return Container(

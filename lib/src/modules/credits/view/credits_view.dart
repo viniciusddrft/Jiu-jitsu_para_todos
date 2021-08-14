@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class CreditsView extends StatefulWidget {
+  const CreditsView();
   @override
   _CreditsViewState createState() => _CreditsViewState();
 }

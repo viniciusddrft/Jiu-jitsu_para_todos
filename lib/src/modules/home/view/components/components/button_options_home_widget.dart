@@ -9,7 +9,7 @@ class BottonOptionsHome extends StatefulWidget {
   final Widget routeButton;
   final bool needToRebuildTheHome;
   final bool needAnimation;
-  BottonOptionsHome(
+  const BottonOptionsHome(
       {required this.imageButton,
       required this.textButton,
       required this.routeButton,

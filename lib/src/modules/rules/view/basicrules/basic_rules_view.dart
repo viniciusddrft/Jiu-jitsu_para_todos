@@ -8,6 +8,7 @@ import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Basicrules extends StatefulWidget {
+  const Basicrules();
   @override
   _BasicrulesState createState() => _BasicrulesState();
 }

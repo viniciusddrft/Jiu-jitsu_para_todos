@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
 class SettingsView extends StatefulWidget {
+  const SettingsView();
   @override
   _SettingsViewState createState() => _SettingsViewState();
 }
@@ -29,7 +30,7 @@ class _SettingsViewState extends State<SettingsView> {
         height: 60.h,
         child: Center(
           child: Text(
-            'text_version'.tr() + ' 2.1.0',
+            'text_version'.tr() + ' 2.1.1',
             style: TextStyle(fontSize: 16.sp, color: Colors.grey[700]),
           ),
         ),

@@ -6,7 +6,7 @@ class Question {
   final String rightAnswer;
   final String? pathImage;
   final String? pathVideo;
-  Question({
+  const Question({
     required this.question,
     required this.options,
     required this.rightAnswer,

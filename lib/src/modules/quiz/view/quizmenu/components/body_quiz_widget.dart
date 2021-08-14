@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_path.dart';
 
 class BodyQuiz extends StatefulWidget {
+  const BodyQuiz();
   @override
   _BodyQuizState createState() => _BodyQuizState();
 }

@@ -11,7 +11,7 @@ class DetailsImage extends StatefulWidget {
   final String imagePath;
   final int index;
 
-  DetailsImage({required this.imagePath, required this.index});
+  const DetailsImage({required this.imagePath, required this.index});
 
   @override
   _DetailsImageState createState() => _DetailsImageState();

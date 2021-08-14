@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
 class ButtonQuizQuestions extends StatelessWidget {
-  final Function(String answer, String orderOfQuestions) onpressed;
+  final Function(String answer, String orderOfQuestions) onPressed;
   final bool isButtonDisabled;
   final String answer;
   final String orderOfQuestions;
@@ -11,7 +11,7 @@ class ButtonQuizQuestions extends StatelessWidget {
   final Color? colorIcon;
   final IconData? icon;
   ButtonQuizQuestions(
-      {required this.onpressed,
+      {required this.onPressed,
       required this.isButtonDisabled,
       required this.answer,
       required this.orderOfQuestions,
@@ -25,7 +25,7 @@ class ButtonQuizQuestions extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 40.h),
       child: OutlinedButton(
         onPressed:
-            isButtonDisabled ? null : () => onpressed(answer, orderOfQuestions),
+            isButtonDisabled ? null : () => onPressed(answer, orderOfQuestions),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

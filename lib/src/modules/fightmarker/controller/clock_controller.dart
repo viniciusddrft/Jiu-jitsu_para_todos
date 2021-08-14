@@ -6,7 +6,7 @@ class MyClock {
   int time;
   int? timeOld;
   bool isPause;
-  CountDownController controller = CountDownController();
+  final CountDownController controller = CountDownController();
 
   MyClock({
     this.minutes,

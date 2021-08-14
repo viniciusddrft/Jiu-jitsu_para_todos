@@ -7,6 +7,7 @@ import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:wakelock/wakelock.dart';
 
 class FightMakerView extends StatefulWidget {
+  const FightMakerView();
   @override
   _FightMakerViewState createState() => _FightMakerViewState();
 }

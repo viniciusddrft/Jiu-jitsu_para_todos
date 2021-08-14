@@ -9,6 +9,7 @@ import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_path.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class BodyHomePage extends StatelessWidget {
+  const BodyHomePage();
   @override
   Widget build(BuildContext context) {
     return Container(

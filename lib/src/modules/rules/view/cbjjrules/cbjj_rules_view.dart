@@ -10,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class Cbjjrules extends StatefulWidget {
+  const Cbjjrules();
   @override
   _CbjjrulesState createState() => _CbjjrulesState();
 }

@@ -8,13 +8,26 @@ import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_languages_path.
 
 class BodySettings extends StatefulWidget {
   final Locale locale;
-  BodySettings({required this.locale});
+  const BodySettings({required this.locale});
   @override
   _BodySettingsState createState() => _BodySettingsState();
 }
 
 class _BodySettingsState extends State<BodySettings> {
   late String _iconPath;
+
+  static List<Map<String, dynamic>> _allLocales = [
+    {
+      'locale': const Locale('pt', 'BR'),
+      'icon': AppIconsLanguages.brasil,
+      'text': 'text_brazilian_portuguese'.tr()
+    },
+    {
+      'locale': const Locale('en', 'US'),
+      'icon': AppIconsLanguages.unitedStates,
+      'text': 'text_english_united_states'.tr()
+    },
+  ];
 
   @override
   void initState() {
@@ -29,11 +42,8 @@ class _BodySettingsState extends State<BodySettings> {
   @override
   Widget build(BuildContext context) {
 //------------------------------------------------------------------------------
-    void _changeCredits() async {
-      await Navigator.of(context).push(MyTransitionElasticOut(
-          route: CreditsView(), duration: Duration(milliseconds: 500)));
-    }
-
+    void _changeCredits() => Navigator.of(context).push(MyTransitionElasticOut(
+        route: CreditsView(), duration: Duration(milliseconds: 500)));
 //------------------------------------------------------------------------------
     Future<void> _noticeAndChangeLanguage(Locale locale) async {
       return showDialog<void>(
@@ -49,16 +59,17 @@ class _BodySettingsState extends State<BodySettings> {
             ),
             actions: [
               TextButton(
-                  onPressed: () {
-                    setState(() {
-                      context.setLocale(locale);
-                      locale == Locale('pt', 'BR')
-                          ? _iconPath = AppIconsLanguages.brasil
-                          : _iconPath = AppIconsLanguages.unitedStates;
-                    });
-                    Navigator.pop(context);
-                  },
-                  child: Text('text_continue_popup'.tr()))
+                onPressed: () {
+                  context.setLocale(locale);
+                  locale == Locale('pt', 'BR')
+                      ? _iconPath = AppIconsLanguages.brasil
+                      : _iconPath = AppIconsLanguages.unitedStates;
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  'text_continue_popup'.tr(),
+                ),
+              ),
             ],
           );
         },
@@ -76,52 +87,32 @@ class _BodySettingsState extends State<BodySettings> {
             backgroundColor: AppColors.background,
             scrollable: true,
             content: Container(
-              width: MediaQuery.of(context).size.width / 2,
+              width: MediaQuery.of(context).size.width / 1.4,
               height: MediaQuery.of(context).size.height / 2,
-              child: Column(
-                children: [
-                  GestureDetector(
+              child: ListView.builder(
+                itemCount: _allLocales.length,
+                itemBuilder: (context, index) => Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GestureDetector(
                     onTap: () {
                       Navigator.pop(context);
-                      _noticeAndChangeLanguage(Locale('pt', 'BR'));
+                      _noticeAndChangeLanguage(_allLocales[index]['locale']);
                     },
                     child: Container(
                       color: Colors.transparent,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('text_brazilian_portugese'.tr()),
+                          Text(_allLocales[index]['text']),
                           Image.asset(
-                            AppIconsLanguages.brasil,
+                            _allLocales[index]['icon'],
                             width: 50.w,
                           ),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 30,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                      _noticeAndChangeLanguage(Locale('en', 'US'));
-                    },
-                    child: Container(
-                      color: Colors.transparent,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('text_english_united_states'.tr()),
-                          Image.asset(
-                            AppIconsLanguages.unitedStates,
-                            width: 50.w,
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
+                ),
               ),
             ),
           );
@@ -135,8 +126,17 @@ class _BodySettingsState extends State<BodySettings> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GestureDetector(
-              onTap: () => _changeLanguageMenu(),
+            OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                backgroundColor: AppColors.background,
+                primary: Colors.white,
+                elevation: 7,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                side: BorderSide(color: Colors.white),
+              ),
+              onPressed: _changeLanguageMenu,
               child: Container(
                 color: Colors.transparent,
                 width: MediaQuery.of(context).size.width / 1.6,
@@ -159,20 +159,21 @@ class _BodySettingsState extends State<BodySettings> {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height / 3.5,
+              height: MediaQuery.of(context).size.height / 4,
             ),
             Container(
               height: 50.h,
               width: 200.w,
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                    backgroundColor: AppColors.background,
-                    primary: Colors.white,
-                    elevation: 7,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    side: BorderSide(color: Colors.white)),
+                  backgroundColor: AppColors.background,
+                  primary: Colors.white,
+                  elevation: 7,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  side: BorderSide(color: Colors.white),
+                ),
                 onPressed: _changeCredits,
                 child: Center(
                   child: Text(

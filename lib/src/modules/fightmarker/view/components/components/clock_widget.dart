@@ -7,12 +7,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class Clock extends StatefulWidget {
+  const Clock();
   @override
   _ClockState createState() => _ClockState();
 }
 
 class _ClockState extends State<Clock> {
-  MyClock _myClock = MyClock();
+  final MyClock _myClock = MyClock();
   final _player = AudioPlayer();
 
   @override
@@ -22,7 +23,7 @@ class _ClockState extends State<Clock> {
   }
 
 //------------------------------------------------------------------------------
-  Future<void> _showMyDialogMinutes() async {
+  Future<void> _showMyDialogMinutes() {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -60,7 +61,7 @@ class _ClockState extends State<Clock> {
   }
 
 //------------------------------------------------------------------------------
-  Future<void> _showMyDialogSeconds() async {
+  Future<void> _showMyDialogSeconds() {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -105,7 +106,7 @@ class _ClockState extends State<Clock> {
 
 //------------------------------------------------------------------------------
 
-  Future<void> _showMyDialogstopsound() async {
+  Future<void> _showMyDialogstopsound() {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -135,49 +136,21 @@ class _ClockState extends State<Clock> {
         children: [
           GestureDetector(
             child: CircularCountDownTimer(
-              // Countdown duration in Seconds
               duration: _myClock.time,
-
-              // Controller to control (i.e Pause, Resume, Restart) the Countdown
               controller: _myClock.controller,
-
               autoStart: false,
-
-              // Width of the Countdown Widget
               width: MediaQuery.of(context).size.width / 3,
-
-              // Height of the Countdown Widget
               height: MediaQuery.of(context).size.height / 3,
-
               textFormat: CountdownTextFormat.MM_SS,
-              // Default Color for Countdown Timer
               ringColor: Colors.white,
-
-              // Filling Color for Countdown Timer
               fillColor: Colors.green,
-
-              // Background Color for Countdown Widget
               backgroundColor: null,
-
-              // Border Thickness of the Countdown Circle
               strokeWidth: 14.0.sp,
-
-              // Begin and end contours with a flat edge and no extension
               strokeCap: StrokeCap.butt,
-
-              // Text Style for Countdown Text
               textStyle: TextStyle(fontSize: 60.0.sp, fontFamily: 'YatraOne'),
-
-              // true for reverse countdown (max to 0), false for forward countdown (0 to max)
               isReverse: true,
-
-              // true for reverse animation, false for forward animation
               isReverseAnimation: false,
-
-              // Optional [bool] to hide the [Text] in this widget.
               isTimerTextShown: true,
-
-              // Function which will execute when the Countdown Ends
               onComplete: () {
                 _player.setAsset('assets/music/alarm_sound.mp3');
                 _player.play();
@@ -207,11 +180,7 @@ class _ClockState extends State<Clock> {
                     ),
                     side: BorderSide(
                         color: _myClock.isPause ? Colors.green : Colors.red)),
-                onPressed: () {
-                  setState(() {
-                    _myClock.startAndPauseButton();
-                  });
-                },
+                onPressed: () => setState(() => _myClock.startAndPauseButton()),
                 child: Center(
                   child: Center(
                     child: Icon(
@@ -239,11 +208,7 @@ class _ClockState extends State<Clock> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                     side: BorderSide(color: Colors.yellow)),
-                onPressed: () {
-                  setState(() {
-                    _myClock.restartButton();
-                  });
-                },
+                onPressed: () => setState(() => _myClock.restartButton()),
                 child: Center(
                   child: Center(
                     child: Icon(

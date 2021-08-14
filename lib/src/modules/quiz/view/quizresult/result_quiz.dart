@@ -7,7 +7,7 @@ class ResultQuiz extends StatefulWidget {
   final int score;
   final String difficultyName;
   final int totalQuestions;
-  ResultQuiz(
+  const ResultQuiz(
       {required this.score,
       required this.difficultyName,
       required this.totalQuestions});

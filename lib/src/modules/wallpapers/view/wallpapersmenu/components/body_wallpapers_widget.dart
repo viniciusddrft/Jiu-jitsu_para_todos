@@ -3,6 +3,7 @@ import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/controller/wallpaper
 import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/view/detailsimage/details_image_view.dart';
 
 class BodyWallpalers extends StatefulWidget {
+  const BodyWallpalers();
   @override
   _BodyWallpalersState createState() => _BodyWallpalersState();
 }

@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_path.dart';
 
 class BodyRules extends StatelessWidget {
+  const BodyRules();
   @override
   Widget build(BuildContext context) {
     return Container(
