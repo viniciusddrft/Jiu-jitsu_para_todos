@@ -3,20 +3,20 @@ import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_t
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BottonOptionsHistory extends StatefulWidget {
+class ButtonOptionsHistory extends StatefulWidget {
   final String imageButton;
   final String textButton;
   final Widget routeButton;
-  const BottonOptionsHistory(
+  const ButtonOptionsHistory(
       {required this.imageButton,
       required this.textButton,
       required this.routeButton});
 
   @override
-  _BottonOptionsHistoryState createState() => _BottonOptionsHistoryState();
+  _ButtonOptionsHistoryState createState() => _ButtonOptionsHistoryState();
 }
 
-class _BottonOptionsHistoryState extends State<BottonOptionsHistory> {
+class _ButtonOptionsHistoryState extends State<ButtonOptionsHistory> {
   void _changeRoute() => Navigator.of(context).push(
         MyTransitionElasticOut(
           route: widget.routeButton,

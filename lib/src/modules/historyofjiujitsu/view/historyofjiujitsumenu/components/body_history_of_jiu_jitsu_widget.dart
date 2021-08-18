@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/historyofjiujitsu/view/historyofjiujitsumenu/components/button_options_history_widget.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/historyofjiujitsu/view/historyofjiujitsumenu/components/components/button_options_history_widget.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/historyofjiujitsu/view/jiujitsuinbrazil/jiu_jitsu_in_brazil_view.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/historyofjiujitsu/view/originofjiujitsu/origin_of_jiu_jitsu_view.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_path.dart';
@@ -15,12 +15,12 @@ class BodyHistoryOfJiuJistu extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            BottonOptionsHistory(
+            ButtonOptionsHistory(
               imageButton: AppIconsPath.india,
               textButton: 'button_origin_of_jiujitsu'.tr(),
               routeButton: OriginOfJiujitsu(),
             ),
-            BottonOptionsHistory(
+            ButtonOptionsHistory(
               imageButton: AppIconsPath.brasil,
               textButton: 'button_jiujitsu_in_brazil'.tr(),
               routeButton: JiujitsuinBrazil(),

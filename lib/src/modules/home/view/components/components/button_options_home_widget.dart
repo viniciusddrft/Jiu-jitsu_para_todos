@@ -3,13 +3,13 @@ import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_t
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class BottonOptionsHome extends StatefulWidget {
+class ButtonOptionsHome extends StatefulWidget {
   final String imageButton;
   final String textButton;
   final Widget routeButton;
   final bool needToRebuildTheHome;
   final bool needAnimation;
-  const BottonOptionsHome(
+  const ButtonOptionsHome(
       {required this.imageButton,
       required this.textButton,
       required this.routeButton,
@@ -17,11 +17,11 @@ class BottonOptionsHome extends StatefulWidget {
       this.needAnimation = true});
 
   @override
-  _BottonOptionsHomeState createState() => _BottonOptionsHomeState();
+  _ButtonOptionsHomeState createState() => _ButtonOptionsHomeState();
 }
 
 //------------------------------------------------------------------------------
-class _BottonOptionsHomeState extends State<BottonOptionsHome> {
+class _ButtonOptionsHomeState extends State<ButtonOptionsHome> {
   void _changeRoute() async {
     if (widget.needAnimation) {
       await Navigator.of(context).push(MyTransitionElasticOut(

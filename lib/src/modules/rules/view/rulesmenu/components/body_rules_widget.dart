@@ -15,11 +15,11 @@ class BodyRules extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            BottonOptionsRules(
+            ButtonOptionsRules(
                 imageButton: AppIconsPath.regrasBasicas,
                 textButton: 'button_basic_rules'.tr(),
                 routeButton: Basicrules()), // <- '/basicrules'
-            BottonOptionsRules(
+            ButtonOptionsRules(
                 imageButton: AppIconsPath.cbjjRules,
                 textButton: 'button_cbjj_Rules'.tr(),
                 routeButton: Cbjjrules()), //' <- /cbjjrules'),

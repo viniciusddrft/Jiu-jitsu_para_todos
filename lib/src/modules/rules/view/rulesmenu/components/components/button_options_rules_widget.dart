@@ -3,21 +3,21 @@ import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_t
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
-class BottonOptionsRules extends StatefulWidget {
+class ButtonOptionsRules extends StatefulWidget {
   final String imageButton;
   final String textButton;
   final Widget routeButton;
 
-  const BottonOptionsRules(
+  const ButtonOptionsRules(
       {required this.imageButton,
       required this.textButton,
       required this.routeButton});
 
   @override
-  _BottonOptionsRulesState createState() => _BottonOptionsRulesState();
+  _ButtonOptionsRulesState createState() => _ButtonOptionsRulesState();
 }
 
-class _BottonOptionsRulesState extends State<BottonOptionsRules> {
+class _ButtonOptionsRulesState extends State<ButtonOptionsRules> {
 //------------------------------------------------------------------------------
   void _changeroute() => Navigator.of(context).push(
         MyTransitionElasticOut(

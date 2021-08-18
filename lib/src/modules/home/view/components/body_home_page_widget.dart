@@ -18,29 +18,29 @@ class BodyHomePage extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            BottonOptionsHome(
+            ButtonOptionsHome(
               imageButton: AppIconsPath.iconHistoryOfJiujitsu,
               textButton: 'button_history_of_jiujitsu_home_page'.tr(),
               routeButton: HistoryOfJiuJitsuView(), // <- '/historyofjiujitsu',
             ),
-            BottonOptionsHome(
+            ButtonOptionsHome(
               imageButton: AppIconsPath.rules,
               textButton: 'button_rules_home_page'.tr(),
               routeButton: RulesView(), // <- '/rules',
             ),
-            BottonOptionsHome(
+            ButtonOptionsHome(
                 imageButton: AppIconsPath.quiz,
                 textButton: 'button_quiz_home_page'.tr(),
                 routeButton: QuizView() // <- '/quiz',
                 ),
-            BottonOptionsHome(
+            ButtonOptionsHome(
               imageButton: AppIconsPath.fightMarker,
               textButton: 'button_fight_marker_home_page'.tr(),
               routeButton: FightMakerView(), // <- '/fightmarker',
               needToRebuildTheHome: true,
               needAnimation: false,
             ),
-            BottonOptionsHome(
+            ButtonOptionsHome(
               imageButton: AppIconsPath.wallpapers,
               textButton: 'button_wallpapers_home_page'.tr(),
               routeButton: WallpapersView(), // <- '/wallpapers',
