@@ -3,7 +3,7 @@ import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/view/components/com
 import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/view/components/components/scoreboard_widget.dart';
 
 class BodyFightMarker extends StatefulWidget {
-  const BodyFightMarker();
+  BodyFightMarker();
   @override
   _BodyFightMarkerState createState() => _BodyFightMarkerState();
 }

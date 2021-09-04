@@ -31,11 +31,12 @@ class _HomePageViewState extends State<HomePageView> {
     ]);
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: AppBarGradient(),
+        flexibleSpace: const AppBarGradient(),
         title: Text('title_appbar_home_page'.tr(),
-            style: TextStyle(fontFamily: 'YatraOne')),
+            style: const TextStyle(fontFamily: 'YatraOne')),
         actions: [
-          IconButton(icon: Icon(Icons.settings), onPressed: _changesettings),
+          IconButton(
+              icon: const Icon(Icons.settings), onPressed: _changesettings),
         ],
       ),
       backgroundColor: AppColors.background,

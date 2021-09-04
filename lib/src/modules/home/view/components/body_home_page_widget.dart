@@ -9,7 +9,7 @@ import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_path.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class BodyHomePage extends StatelessWidget {
-  const BodyHomePage();
+  BodyHomePage();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,29 +21,29 @@ class BodyHomePage extends StatelessWidget {
             ButtonOptionsHome(
               imageButton: AppIconsPath.iconHistoryOfJiujitsu,
               textButton: 'button_history_of_jiujitsu_home_page'.tr(),
-              routeButton: HistoryOfJiuJitsuView(), // <- '/historyofjiujitsu',
+              routeButton:
+                  const HistoryOfJiuJitsuView(), // <- '/historyofjiujitsu',
             ),
             ButtonOptionsHome(
               imageButton: AppIconsPath.rules,
               textButton: 'button_rules_home_page'.tr(),
-              routeButton: RulesView(), // <- '/rules',
+              routeButton: const RulesView(), // <- '/rules',
             ),
             ButtonOptionsHome(
                 imageButton: AppIconsPath.quiz,
                 textButton: 'button_quiz_home_page'.tr(),
-                routeButton: QuizView() // <- '/quiz',
+                routeButton: const QuizView() // <- '/quiz',
                 ),
             ButtonOptionsHome(
               imageButton: AppIconsPath.fightMarker,
               textButton: 'button_fight_marker_home_page'.tr(),
               routeButton: FightMakerView(), // <- '/fightmarker',
-              needToRebuildTheHome: true,
-              needAnimation: false,
+              isFightMakerView: true,
             ),
             ButtonOptionsHome(
               imageButton: AppIconsPath.wallpapers,
               textButton: 'button_wallpapers_home_page'.tr(),
-              routeButton: WallpapersView(), // <- '/wallpapers',
+              routeButton: const WallpapersView(), // <- '/wallpapers',
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height / 10,

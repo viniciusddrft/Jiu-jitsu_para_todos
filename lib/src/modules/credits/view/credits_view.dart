@@ -27,9 +27,9 @@ class _CreditsViewState extends State<CreditsView> {
     ]);
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: AppBarGradient(),
+        flexibleSpace: const AppBarGradient(),
         title: Text('title_appbar_credits_page'.tr(),
-            style: TextStyle(fontFamily: 'YatraOne')),
+            style: const TextStyle(fontFamily: 'YatraOne')),
       ),
       backgroundColor: AppColors.background,
       body: Container(
@@ -64,7 +64,7 @@ class _CreditsViewState extends State<CreditsView> {
             ),
             TextButton.icon(
                 onPressed: () => _launchLink('https://flutter.dev/'),
-                icon: FlutterLogo(
+                icon: const FlutterLogo(
                   size: 100,
                 ),
                 label: Text('')),
@@ -88,7 +88,7 @@ class _CreditsViewState extends State<CreditsView> {
             ),
             TextButton.icon(
               onPressed: () => _launchLink('mailto:viniciusddrft5@gmail.com'),
-              icon: Icon(Icons.mail),
+              icon: const Icon(Icons.mail),
               label: Text(
                 'text_contact_email'.tr(),
                 style: TextStyle(fontSize: 15.sp),

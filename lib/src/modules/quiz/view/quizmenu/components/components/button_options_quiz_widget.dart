@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizquestions/quiz_questions_view.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_transition_elatic_out.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/button_for_menu/button_for_menu.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class ButtonOptionQuiz extends StatefulWidget {
+class ButtonOptionQuiz extends ButtonForMenu {
   final String imageButton;
   final String textButton;
   final String difficulty;
@@ -30,80 +29,20 @@ class ButtonOptionQuiz extends StatefulWidget {
               'text_difficultyname_white_belt'.tr(),
               'text_difficultyname_blue_belt'.tr(),
               'text_difficultyname_black_belt'.tr()
-            ].contains(difficultyName));
-
-  @override
-  _ButtonOptionQuizState createState() => _ButtonOptionQuizState();
-}
-
-class _ButtonOptionQuizState extends State<ButtonOptionQuiz> {
-  void _changeRoute() => Navigator.of(context).push(
-        MyTransitionElasticOut(
-          route: QuizQuestions(
-            difficulty: widget.difficulty,
-            difficultyName: widget.difficultyName,
-          ),
-          duration: Duration(milliseconds: 500),
-        ),
-      );
+            ].contains(difficultyName)),
+        super(imageButton: imageButton, textButton: textButton);
 
   @override
   Widget build(BuildContext context) {
-    final thumbnail = GestureDetector(
-      onTap: _changeRoute,
-      child: Container(
-        alignment: FractionalOffset(0.0, 0.5),
-        margin: EdgeInsets.only(
-          left: 24.0.w,
-        ),
-        child: Image.asset(widget.imageButton, width: 100.w, height: 100.h),
-      ),
-    );
-
-    final card = Container(
-      width: MediaQuery.of(context).size.width / 1.6,
-      height: MediaQuery.of(context).size.height / 7,
-      margin: EdgeInsets.only(left: 72.0.w, right: 24.0.w),
-      decoration: BoxDecoration(
-        shape: BoxShape.rectangle,
-        borderRadius: BorderRadius.circular(8.0),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-              color: Colors.black, blurRadius: 10.0, offset: Offset(0.0, 10.0))
-        ],
-      ),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          elevation: 7,
-          padding: EdgeInsets.all(0),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-        ),
-        onPressed: _changeRoute,
-        child: Ink(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [AppColors.background, Colors.indigo],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight),
-              borderRadius: BorderRadius.circular(8.0)),
-          child: Center(
-            child: Text(
-              widget.textButton,
-              style: TextStyle(fontSize: 18.sp),
+    void changeRoute() => Navigator.of(context).push(
+          MyTransitionElasticOut(
+            route: QuizQuestions(
+              difficulty: difficulty,
+              difficultyName: difficultyName,
             ),
+            duration: Duration(milliseconds: 500),
           ),
-        ),
-      ),
-    );
-
-    return Container(
-      margin:
-          EdgeInsets.only(top: 30.0.h, bottom: 8.0.h, left: 10.w, right: 10.w),
-      child: Stack(
-        children: [card, thumbnail],
-      ),
-    );
+        );
+    return makeButton(changeRoute);
   }
 }

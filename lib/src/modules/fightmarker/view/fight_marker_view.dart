@@ -6,13 +6,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:wakelock/wakelock.dart';
 
-class FightMakerView extends StatefulWidget {
-  const FightMakerView();
-  @override
-  _FightMakerViewState createState() => _FightMakerViewState();
-}
+class FightMakerView extends StatelessWidget {
+  FightMakerView();
 
-class _FightMakerViewState extends State<FightMakerView> {
   @override
   Widget build(BuildContext context) {
     Wakelock.enable();
@@ -22,9 +18,9 @@ class _FightMakerViewState extends State<FightMakerView> {
     ]);
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: AppBarGradient(),
+        flexibleSpace: const AppBarGradient(),
         title: Text('title_appbar_fightmarker_page'.tr(),
-            style: TextStyle(fontFamily: 'YatraOne')),
+            style: const TextStyle(fontFamily: 'YatraOne')),
       ),
       backgroundColor: AppColors.background,
       body: BodyFightMarker(),

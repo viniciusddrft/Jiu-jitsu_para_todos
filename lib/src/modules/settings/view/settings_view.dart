@@ -21,16 +21,16 @@ class _SettingsViewState extends State<SettingsView> {
     ]);
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: AppBarGradient(),
+        flexibleSpace: const AppBarGradient(),
         title: Text('title_appbar_settings_page'.tr(),
-            style: TextStyle(fontFamily: 'YatraOne')),
+            style: const TextStyle(fontFamily: 'YatraOne')),
       ),
       backgroundColor: AppColors.background,
       bottomNavigationBar: Container(
         height: 60.h,
         child: Center(
           child: Text(
-            'text_version'.tr() + ' 2.1.1',
+            'text_version'.tr() + ' 2.1.2',
             style: TextStyle(fontSize: 16.sp, color: Colors.grey[700]),
           ),
         ),

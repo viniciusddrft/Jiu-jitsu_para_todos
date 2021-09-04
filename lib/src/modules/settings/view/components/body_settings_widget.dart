@@ -134,7 +134,7 @@ class _BodySettingsState extends State<BodySettings> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
-                side: BorderSide(color: Colors.white),
+                side: const BorderSide(color: Colors.white),
               ),
               onPressed: _changeLanguageMenu,
               child: Container(
@@ -172,7 +172,7 @@ class _BodySettingsState extends State<BodySettings> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
-                  side: BorderSide(color: Colors.white),
+                  side: const BorderSide(color: Colors.white),
                 ),
                 onPressed: _changeCredits,
                 child: Center(

@@ -129,7 +129,7 @@ class _DetailsImageState extends State<DetailsImage> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
-                              side: BorderSide(color: Colors.white)),
+                              side: const BorderSide(color: Colors.white)),
                           onPressed: () => onPressed(widget.imagePath),
                           child: Center(
                             child: Text('button_save_image'.tr()),

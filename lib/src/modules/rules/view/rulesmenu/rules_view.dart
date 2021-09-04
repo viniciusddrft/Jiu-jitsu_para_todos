@@ -15,12 +15,12 @@ class RulesView extends StatelessWidget {
     ]);
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: AppBarGradient(),
+        flexibleSpace: const AppBarGradient(),
         title: Text('title_appbar_rule_page'.tr(),
-            style: TextStyle(fontFamily: 'YatraOne')),
+            style: const TextStyle(fontFamily: 'YatraOne')),
       ),
       backgroundColor: AppColors.background,
-      body: BodyRules(),
+      body: const BodyRules(),
     );
   }
 }

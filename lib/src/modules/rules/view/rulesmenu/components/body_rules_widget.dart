@@ -18,11 +18,11 @@ class BodyRules extends StatelessWidget {
             ButtonOptionsRules(
                 imageButton: AppIconsPath.regrasBasicas,
                 textButton: 'button_basic_rules'.tr(),
-                routeButton: Basicrules()), // <- '/basicrules'
+                routeButton: const Basicrules()), // <- '/basicrules'
             ButtonOptionsRules(
                 imageButton: AppIconsPath.cbjjRules,
                 textButton: 'button_cbjj_Rules'.tr(),
-                routeButton: Cbjjrules()), //' <- /cbjjrules'),
+                routeButton: const Cbjjrules()), //' <- /cbjjrules'),
             SizedBox(
               height: MediaQuery.of(context).size.height / 10,
             )

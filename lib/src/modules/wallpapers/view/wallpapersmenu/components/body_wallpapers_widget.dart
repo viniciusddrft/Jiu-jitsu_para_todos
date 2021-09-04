@@ -9,7 +9,7 @@ class BodyWallpalers extends StatefulWidget {
 }
 
 class _BodyWallpalersState extends State<BodyWallpalers> {
-  ControllerWallpapers controllerWallpapers = ControllerWallpapers();
+  ControllerWallpapers _controllerWallpapers = ControllerWallpapers();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,7 +30,7 @@ class _BodyWallpalersState extends State<BodyWallpalers> {
                 MaterialPageRoute(
                   builder: (context) => DetailsImage(
                     imagePath:
-                        controllerWallpapers.images.toList()[index].imagePath,
+                        _controllerWallpapers.images.toList()[index].imagePath,
                     index: index,
                   ),
                 ),
@@ -41,7 +41,7 @@ class _BodyWallpalersState extends State<BodyWallpalers> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     image: DecorationImage(
-                      image: AssetImage(controllerWallpapers.images
+                      image: AssetImage(_controllerWallpapers.images
                           .toList()[index]
                           .imagePath),
                       fit: BoxFit.cover,
@@ -51,7 +51,7 @@ class _BodyWallpalersState extends State<BodyWallpalers> {
               ),
             );
           },
-          itemCount: controllerWallpapers.images.length,
+          itemCount: _controllerWallpapers.images.length,
         ),
       ),
     );

@@ -18,12 +18,12 @@ class BodyHistoryOfJiuJistu extends StatelessWidget {
             ButtonOptionsHistory(
               imageButton: AppIconsPath.india,
               textButton: 'button_origin_of_jiujitsu'.tr(),
-              routeButton: OriginOfJiujitsu(),
+              routeButton: const OriginOfJiujitsu(),
             ),
             ButtonOptionsHistory(
               imageButton: AppIconsPath.brasil,
               textButton: 'button_jiujitsu_in_brazil'.tr(),
-              routeButton: JiujitsuinBrazil(),
+              routeButton: const JiujitsuinBrazil(),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height / 10,

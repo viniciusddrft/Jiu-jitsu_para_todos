@@ -15,12 +15,12 @@ class HistoryOfJiuJitsuView extends StatelessWidget {
     ]);
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: AppBarGradient(),
+        flexibleSpace: const AppBarGradient(),
         title: Text('title_appbar_history_of_jiujitsu_page'.tr(),
-            style: TextStyle(fontFamily: 'YatraOne')),
+            style: const TextStyle(fontFamily: 'YatraOne')),
       ),
       backgroundColor: AppColors.background,
-      body: BodyHistoryOfJiuJistu(),
+      body: const BodyHistoryOfJiuJistu(),
     );
   }
 }

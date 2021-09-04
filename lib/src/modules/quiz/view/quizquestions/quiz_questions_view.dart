@@ -237,8 +237,8 @@ class _QuizQuestionsState extends State<QuizQuestions> {
               margin: EdgeInsets.only(left: 30.w, right: 30.w),
               width: MediaQuery.of(context).size.width,
               height: 1.h,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
+              decoration: const BoxDecoration(
+                gradient: const LinearGradient(
                     colors: [Colors.white, AppColors.background],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight),

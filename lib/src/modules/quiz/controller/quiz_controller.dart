@@ -4,7 +4,7 @@ class ControllerQuiz {
   int numberOfQuestions = 0;
   int score = 0;
 
-  List<Question> _questionsEasy = dataQuestionsEasy
+  final List<Question> _questionsEasy = dataQuestionsEasy
       .map(
         (question) => Question(
             question: question['question'],
@@ -14,7 +14,7 @@ class ControllerQuiz {
             pathVideo: question?['pathVideo']),
       )
       .toList();
-  List<Question> _questionsMedium = dataQuestionsMedium
+  final List<Question> _questionsMedium = dataQuestionsMedium
       .map(
         (question) => Question(
             question: question['question'],
@@ -24,7 +24,7 @@ class ControllerQuiz {
             pathVideo: question?['pathVideo']),
       )
       .toList();
-  List<Question> _questionsHard = dataQuestionsHard
+  final List<Question> _questionsHard = dataQuestionsHard
       .map(
         (question) => Question(
             question: question['question'],

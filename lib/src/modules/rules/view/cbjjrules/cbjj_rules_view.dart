@@ -4,7 +4,6 @@ import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controlle
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/screen_size_for_ad_banner/screen_size_for_ab_Banner.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
-
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';

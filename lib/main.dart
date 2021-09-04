@@ -16,7 +16,7 @@ void main() async {
       ],
       path: 'assets/translations',
       fallbackLocale: const Locale('en', 'US'),
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }

@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(411.4, 820.6),
+      designSize: const Size(411.4, 820.6),
       builder: () => MaterialApp(
         title: 'Jiu-jitsu para todos',
         localizationsDelegates: context.localizationDelegates,
@@ -25,21 +25,6 @@ class MyApp extends StatelessWidget {
         initialRoute: '/home',
         routes: {
           '/home': (BuildContext context) => HomePageView(),
-          /*
-          '/settings': (BuildContext context) => SettingsView(),
-          '/fightmarker': (BuildContext context) => FightMakerView(),
-          '/historyofjiujitsu': (BuildContext context) =>
-              HistoryOfJiuJitsuView(),
-          '/rules': (BuildContext context) => RulesView(),
-          '/quiz': (BuildContext context) => QuizView(),
-          '/questionsquiz': (BuildContext context) => QuestionsQuiz(),
-          '/failedinquiz': (BuildContext context) => FailedInQuiz(),
-          '/winnerinquiz': (BuildContext context) => WinnerInQuiz(),
-          '/basicrules': (BuildContext context) => Basicrules(),
-          '/cbjjrules': (BuildContext context) => Cbjjrules(),
-          '/wallpapers': (BuildContext context) => WallpapersView(),
-          '/credits': (BuildContext context) => CreditsView(),
-          '/detailsimage': (BuildContext context) => DetailsImage(),*/
         },
       ),
     );

@@ -15,12 +15,12 @@ class WallpapersView extends StatelessWidget {
     ]);
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: AppBarGradient(),
+        flexibleSpace: const AppBarGradient(),
         title: Text('title_appbar_wallpapers'.tr(),
-            style: TextStyle(fontFamily: 'YatraOne')),
+            style: const TextStyle(fontFamily: 'YatraOne')),
       ),
       backgroundColor: AppColors.background,
-      body: BodyWallpalers(),
+      body: const BodyWallpalers(),
     );
   }
 }

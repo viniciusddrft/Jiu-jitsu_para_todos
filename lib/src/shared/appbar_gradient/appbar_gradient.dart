@@ -5,8 +5,8 @@ class AppBarGradient extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
+      decoration: const BoxDecoration(
+        gradient: const LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: <Color>[Color(0xff1b2c57), Colors.indigo],

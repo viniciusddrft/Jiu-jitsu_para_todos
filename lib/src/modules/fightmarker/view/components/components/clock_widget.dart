@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class Clock extends StatefulWidget {
-  const Clock();
+  Clock();
   @override
   _ClockState createState() => _ClockState();
 }
@@ -34,14 +34,13 @@ class _ClockState extends State<Clock> {
             child: ListBody(
               children: <Widget>[
                 TextField(
-                  onChanged: (minutes) {
-                    _myClock.minutes = int.parse(minutes) * 60;
-                  },
+                  onChanged: (minutes) =>
+                      _myClock.minutes = int.parse(minutes) * 60,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                      icon: Icon(Icons.timer),
+                      icon: const Icon(Icons.timer),
                       labelText: 'text_label_minutes_popup'.tr(),
-                      border: OutlineInputBorder()),
+                      border: const OutlineInputBorder()),
                 ),
               ],
             ),
@@ -72,14 +71,12 @@ class _ClockState extends State<Clock> {
             child: ListBody(
               children: <Widget>[
                 TextField(
-                  onChanged: (seconds) {
-                    _myClock.seconds = int.parse(seconds);
-                  },
+                  onChanged: (seconds) => _myClock.seconds = int.parse(seconds),
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                      icon: Icon(Icons.timer),
+                      icon: const Icon(Icons.timer),
                       labelText: 'text_label_seconds_popup'.tr(),
-                      border: OutlineInputBorder()),
+                      border: const OutlineInputBorder()),
                 ),
               ],
             ),
@@ -89,9 +86,7 @@ class _ClockState extends State<Clock> {
               child: Text('text_button_popup_continue'.tr()),
               onPressed: () {
                 if (_myClock.secondsButtonPressed()) {
-                  setState(() {
-                    _myClock.isPause = true;
-                  });
+                  setState(() => _myClock.isPause = true);
                   Navigator.of(context).pop();
                 } else {
                   Navigator.of(context).pop();
@@ -116,10 +111,8 @@ class _ClockState extends State<Clock> {
           actions: <Widget>[
             TextButton(
               child: Text('text_button_stopsound'.tr()),
-              onPressed: () async {
-                await _player.pause();
-                Navigator.of(context).pop();
-              },
+              onPressed: () =>
+                  _player.pause().then((_) => Navigator.of(context).pop()),
             ),
           ],
         );
@@ -211,7 +204,7 @@ class _ClockState extends State<Clock> {
                 onPressed: () => setState(() => _myClock.restartButton()),
                 child: Center(
                   child: Center(
-                    child: Icon(
+                    child: const Icon(
                       Icons.refresh_rounded,
                       color: Colors.yellow,
                     ),

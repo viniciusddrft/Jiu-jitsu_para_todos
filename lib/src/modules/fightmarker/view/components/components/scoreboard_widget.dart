@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class Scoreboard extends StatefulWidget {
-  const Scoreboard();
+  Scoreboard();
   @override
   _ScoreboardState createState() => _ScoreboardState();
 }
@@ -34,7 +34,7 @@ class _ScoreboardState extends State<Scoreboard> {
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
             iconSize: 60.sp,
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             onPressed: () => setState(() => _fighterPoints += 2),
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
@@ -54,7 +54,7 @@ class _ScoreboardState extends State<Scoreboard> {
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
             iconSize: 60.sp,
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             onPressed: () => setState(() => _fighterPoints += 3),
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
@@ -65,7 +65,7 @@ class _ScoreboardState extends State<Scoreboard> {
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           IconButton(
             iconSize: 60.sp,
-            icon: Icon(Icons.remove),
+            icon: const Icon(Icons.remove),
             onPressed: () => setState(() {
               if (_fighterPoints >= 3) _fighterPoints -= 3;
             }),
@@ -74,7 +74,7 @@ class _ScoreboardState extends State<Scoreboard> {
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
             iconSize: 60.sp,
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             onPressed: () => setState(() => _fighterPoints += 4),
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
@@ -82,7 +82,7 @@ class _ScoreboardState extends State<Scoreboard> {
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           IconButton(
             iconSize: 60.sp,
-            icon: Icon(Icons.remove),
+            icon: const Icon(Icons.remove),
             onPressed: () => setState(() {
               if (_fighterPoints >= 4) _fighterPoints -= 4;
             }),
@@ -92,7 +92,7 @@ class _ScoreboardState extends State<Scoreboard> {
           IconButton(
             iconSize: 60.sp,
             color: Colors.yellow,
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             onPressed: () => setState(() => _advantagesOfTheFighter++),
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
@@ -105,7 +105,7 @@ class _ScoreboardState extends State<Scoreboard> {
           IconButton(
             iconSize: 60.sp,
             color: Colors.yellow,
-            icon: Icon(Icons.remove),
+            icon: const Icon(Icons.remove),
             onPressed: () => setState(() {
               if (_advantagesOfTheFighter >= 1) _advantagesOfTheFighter--;
             }),
@@ -115,7 +115,7 @@ class _ScoreboardState extends State<Scoreboard> {
           IconButton(
             iconSize: 60.sp,
             color: Colors.red,
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             onPressed: () => setState(() => _punishmentsOfTheFighter++),
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
@@ -128,7 +128,7 @@ class _ScoreboardState extends State<Scoreboard> {
           IconButton(
             iconSize: 50.sp,
             color: Colors.red,
-            icon: Icon(Icons.remove),
+            icon: const Icon(Icons.remove),
             onPressed: () => setState(
               () {
                 if (_punishmentsOfTheFighter >= 1) _punishmentsOfTheFighter--;
