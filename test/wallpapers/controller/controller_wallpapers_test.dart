@@ -7,13 +7,25 @@ main() {
 
     this test checks whether the driver is able to return all image paths
   */
-  ControllerWallpapers _controllerWallpapers = ControllerWallpapers();
+  final ControllerWallpapers _controllerWallpapers = ControllerWallpapers();
 
-  List<String> _allPathsImages = [
-    'assets/images/wallpapers/jonathan-borba-YcrcG17Kjmg-unsplash.jpg',
-    'assets/images/wallpapers/jonathan-borba-Yf1SegAI84o-unsplash.jpg',
-    'assets/images/wallpapers/mma-1575855_960_720.jpg',
-    'assets/images/wallpapers/jiu-jitsu-5641080_1280.jpg',
+  final List<String> _allPathsImages = [
+    'assets/images/wallpapers/1.jpg',
+    'assets/images/wallpapers/2.jpg',
+    'assets/images/wallpapers/3.jpg',
+    'assets/images/wallpapers/4.jpg',
+    'assets/images/wallpapers/5.jpeg',
+    'assets/images/wallpapers/6.png',
+    'assets/images/wallpapers/7.png',
+    'assets/images/wallpapers/8.png',
+    'assets/images/wallpapers/9.png',
+    'assets/images/wallpapers/10.png',
+    'assets/images/wallpapers/11.png',
+    'assets/images/wallpapers/12.png',
+    'assets/images/wallpapers/13.png',
+    'assets/images/wallpapers/14.png',
+    'assets/images/wallpapers/15.png',
+    'assets/images/wallpapers/16.png',
   ];
   test('deve retornar o caminho das images', () {
     List<String> _arrayTest = [];

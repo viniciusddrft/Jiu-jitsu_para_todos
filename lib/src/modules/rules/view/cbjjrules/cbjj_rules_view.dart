@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/screen_size_for_ad_banner/screen_size_for_ab_Banner.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,28 +13,33 @@ class Cbjjrules extends StatefulWidget {
 }
 
 class _CbjjrulesState extends State<Cbjjrules> {
+  bool _loadingAnchoredBanner = false;
+  final ValueNotifier<AdWidget?> _adWidget = ValueNotifier<AdWidget?>(null);
+
   Future<void> _launchLink(String url) async {
     if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceWebView: false,
-        forceSafariVC: false,
-      );
+      await launch(url, forceWebView: false, forceSafariVC: false);
     } else {}
   }
 
   @override
   void dispose() {
-    Admob.disposeBanner();
+    _adWidget.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    if (!_loadingAnchoredBanner)
+      Admob.createAnchoredBanner(context).then((BannerAd? banner) {
+        if (banner != null) {
+          _adWidget.value = AdWidget(key: UniqueKey(), ad: banner..load());
+          Admob.heightAnchoredBanner = banner.size.height;
+          Admob.widthAnchoredBanner = banner.size.width;
+        }
+      })
+        ..whenComplete(() => _loadingAnchoredBanner = true);
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -47,15 +50,19 @@ class _CbjjrulesState extends State<Cbjjrules> {
         ),
       ),
       backgroundColor: AppColors.background,
-      bottomNavigationBar: Container(
-        height: screenSizeForAdBanner()
-            ? 90
-            : 60, //this is the space where I will render the ad
-        width: double.maxFinite,
-        child: AdWidget(
-          key: UniqueKey(),
-          ad: Admob.createBannerAd()..load(),
-        ),
+      bottomNavigationBar: ValueListenableBuilder(
+        valueListenable: _adWidget,
+        builder: (BuildContext context, AdWidget? value, Widget? child) =>
+            _loadingAnchoredBanner == true
+                ? Container(
+                    height: Admob.heightAnchoredBanner.toDouble(),
+                    width: Admob.widthAnchoredBanner.toDouble(),
+                    child: value,
+                  )
+                : Container(
+                    height: MediaQuery.of(context).size.height * 0.15,
+                    color: Colors.transparent,
+                  ),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -88,7 +95,10 @@ class _CbjjrulesState extends State<Cbjjrules> {
                         onPressed: () =>
                             _launchLink('https://cbjj.com.br/books-videos'),
                         child: Center(
-                          child: Text('text_button_cbjj'.tr()),
+                          child: Text(
+                            'text_button_cbjj'.tr(),
+                            style: TextStyle(fontSize: 16.sp),
+                          ),
                         ),
                       ),
                     )

@@ -22,18 +22,14 @@ class ButtonOptionsHome extends ButtonForMenu {
 
   @override
   Widget build(BuildContext context) {
-    void changeRoute() {
-      if (isFightMakerView)
-        Navigator.of(context)
+    void changeRoute() => isFightMakerView
+        ? Navigator.of(context)
             .push(MaterialPageRoute(
                 builder: (BuildContext context) => FightMakerView()))
             .then((_) => Navigator.of(context)
-                .pushReplacementNamed('/home')); //routeButton
-
-      else
-        Navigator.of(context).push(MyTransitionElasticOut(
+                .pushReplacementNamed('/home')) //routeButton
+        : Navigator.of(context).push(MyTransitionElasticOut(
             route: routeButton, duration: Duration(milliseconds: 500)));
-    }
 
     return makeButton(changeRoute);
   }

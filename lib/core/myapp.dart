@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'Ubuntu',
           primaryColor: AppColors.primary,
-          accentColor: Colors.indigo, // Color(0xff65d1ba),
           brightness: Brightness.dark,
         ),
         debugShowCheckedModeBanner: false,

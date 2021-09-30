@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_languages_path.dart';
+import 'package:in_app_review/in_app_review.dart';
 
 class BodySettings extends StatefulWidget {
   final Locale locale;
@@ -14,6 +15,8 @@ class BodySettings extends StatefulWidget {
 }
 
 class _BodySettingsState extends State<BodySettings> {
+  final InAppReview _inAppReview = InAppReview.instance;
+
   late String _iconPath;
 
   static List<Map<String, dynamic>> _allLocales = [
@@ -35,7 +38,6 @@ class _BodySettingsState extends State<BodySettings> {
       _iconPath = AppIconsLanguages.unitedStates;
     else if (widget.locale == Locale('pt', 'BR'))
       _iconPath = AppIconsLanguages.brasil;
-
     super.initState();
   }
 
@@ -126,40 +128,66 @@ class _BodySettingsState extends State<BodySettings> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                backgroundColor: AppColors.background,
-                primary: Colors.white,
-                elevation: 7,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
+            Container(
+              height: 50.h,
+              width: 200.w,
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  backgroundColor: AppColors.background,
+                  primary: Colors.white,
+                  elevation: 7,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  side: const BorderSide(color: Colors.white),
                 ),
-                side: const BorderSide(color: Colors.white),
-              ),
-              onPressed: _changeLanguageMenu,
-              child: Container(
-                color: Colors.transparent,
-                width: MediaQuery.of(context).size.width / 1.6,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'button_language_settings_page'.tr(),
-                      style: TextStyle(fontSize: 18.sp),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width / 5,
-                    ),
-                    Image.asset(
-                      _iconPath,
-                      width: 50.w,
-                    )
-                  ],
+                onPressed: _changeLanguageMenu,
+                child: Container(
+                  color: Colors.transparent,
+                  width: MediaQuery.of(context).size.width / 1.6,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        'button_language_settings_page'.tr(),
+                        style: TextStyle(fontSize: 16.sp),
+                      ),
+                      Image.asset(
+                        _iconPath,
+                        width: 40.w,
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height / 4,
+              height: MediaQuery.of(context).size.height / 8,
+            ),
+            Container(
+              height: 50.h,
+              width: 200.w,
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  backgroundColor: AppColors.background,
+                  primary: Colors.white,
+                  elevation: 7,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  side: const BorderSide(color: Colors.white),
+                ),
+                onPressed: () => _inAppReview.requestReview(),
+                child: Center(
+                  child: Text(
+                    'Avalie o app',
+                    style: TextStyle(fontSize: 16.sp),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 8,
             ),
             Container(
               height: 50.h,
@@ -178,6 +206,7 @@ class _BodySettingsState extends State<BodySettings> {
                 child: Center(
                   child: Text(
                     'button_credits_settings_page'.tr(),
+                    style: TextStyle(fontSize: 16.sp),
                   ),
                 ),
               ),

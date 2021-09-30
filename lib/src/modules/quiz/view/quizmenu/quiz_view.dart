@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizmenu/components/body_quiz_widget.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/appbar_gradient/appbar_gradient.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -14,10 +13,6 @@ class QuizView extends StatefulWidget {
 class _QuizViewState extends State<QuizView> {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: const AppBarGradient(),

@@ -1,22 +1,26 @@
-import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/controller/wallpapers_controller.dart';
+class ImageDetails {
+  final String imagePath;
+
+  const ImageDetails({
+    required this.imagePath,
+  });
+}
 
 const List<ImageDetails> allImages = [
-  const ImageDetails(
-    imagePath:
-        'assets/images/wallpapers/jonathan-borba-YcrcG17Kjmg-unsplash.jpg',
-  ),
-  const ImageDetails(
-    imagePath:
-        'assets/images/wallpapers/jonathan-borba-Yf1SegAI84o-unsplash.jpg',
-  ),
-  const ImageDetails(
-    imagePath: 'assets/images/wallpapers/mma-1575855_960_720.jpg',
-  ),
-  const ImageDetails(
-    imagePath: 'assets/images/wallpapers/jiu-jitsu-5641080_1280.jpg',
-  ),
-  const ImageDetails(
-    imagePath:
-        'assets/images/wallpapers/9fd26c62-2532-460a-a906-16e40c6d68f7.jpeg',
-  ),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/1.jpg'),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/2.jpg'),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/3.jpg'),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/4.jpg'),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/5.jpeg'),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/6.png'),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/7.png'),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/8.png'),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/9.png'),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/10.png'),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/11.png'),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/12.png'),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/13.png'),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/14.png'),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/15.png'),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/16.png'),
 ];

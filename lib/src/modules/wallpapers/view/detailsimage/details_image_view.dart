@@ -19,11 +19,13 @@ class DetailsImage extends StatefulWidget {
 
 class _DetailsImageState extends State<DetailsImage> {
   @override
+  void didChangeDependencies() {
+    Admob.createInterstitialAd();
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
 //------------------------------------------------------------------------------
     Future<void> _showMyDialogsaveerro() async {
       return showDialog<void>(
@@ -35,9 +37,7 @@ class _DetailsImageState extends State<DetailsImage> {
             actions: [
               TextButton(
                 child: Text('text_popup_error'.tr()),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+                onPressed: () => Navigator.of(context).pop(),
               ),
             ],
           );
@@ -56,9 +56,7 @@ class _DetailsImageState extends State<DetailsImage> {
             actions: [
               TextButton(
                 child: Text('text_popup_success'.tr()),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+                onPressed: () => Navigator.of(context).pop(),
               ),
             ],
           );
@@ -68,23 +66,20 @@ class _DetailsImageState extends State<DetailsImage> {
 
     void _saveImage(String imagePath) async {
       ByteData bytes = await rootBundle.load(imagePath);
-      var result = await ImageGallerySaver.saveImage(
-        bytes.buffer.asUint8List(),
-      );
-      if ((result['isSuccess'])) {
+
+      var result =
+          await ImageGallerySaver.saveImage(bytes.buffer.asUint8List());
+      if ((result['isSuccess']))
         _showMyDialogsaveimage();
-      } else {
+      else
         _showMyDialogsaveerro();
-      }
     }
 
 //------------------------------------------------------------------------------
     void onPressed(String imagePath) async {
       if (await Permission.storage.request().isGranted) {
-        Admob.createAndShowInterstitialAd();
-        Future.delayed(Duration(seconds: 3), () {
-          _saveImage(imagePath);
-        });
+        Admob.showInterstitialAd();
+        Future.delayed(Duration(seconds: 3), () => _saveImage(imagePath));
       }
     }
 
@@ -132,7 +127,10 @@ class _DetailsImageState extends State<DetailsImage> {
                               side: const BorderSide(color: Colors.white)),
                           onPressed: () => onPressed(widget.imagePath),
                           child: Center(
-                            child: Text('button_save_image'.tr()),
+                            child: Text(
+                              'button_save_image'.tr(),
+                              style: TextStyle(fontSize: 16.sp),
+                            ),
                           ),
                         ),
                       )

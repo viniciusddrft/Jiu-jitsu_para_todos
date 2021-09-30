@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizresult/result_quiz.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/controller/quiz_controller.dart';
@@ -63,6 +62,12 @@ class _QuizQuestionsState extends State<QuizQuestions> {
   }
 
   @override
+  void didChangeDependencies() {
+    Admob.createInterstitialAd();
+    super.didChangeDependencies();
+  }
+
+  @override
   void dispose() {
     _playerRightAnswer.dispose();
     _playerWrongAnswer.dispose();
@@ -71,11 +76,6 @@ class _QuizQuestionsState extends State<QuizQuestions> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
-
     int counterQuestions = _controllerQuiz.numberOfQuestions + 1;
     int totalNumberOfQuestions = _myQuestions!.length;
 //------------------------------------------------------------------------------
@@ -132,7 +132,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                   if (counterQuestions == _myQuestions!.length ||
                       counterQuestions > _myQuestions!.length) {
                     _controllerQuiz.score++;
-                    Admob.createAndShowInterstitialAd();
+                    Admob.showInterstitialAd();
                     _switchToResult();
                   } else {
                     _controllerQuiz.numberOfQuestions++;
@@ -191,7 +191,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
               isButtonDisabled = false;
               if (counterQuestions == _myQuestions!.length ||
                   counterQuestions > _myQuestions!.length) {
-                Admob.createAndShowInterstitialAd();
+                Admob.showInterstitialAd();
                 _switchToResult();
               } else
                 _controllerQuiz.numberOfQuestions++;

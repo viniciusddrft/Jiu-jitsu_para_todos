@@ -8,8 +8,8 @@ main() {
     this test instantiates 2 controllers and tests whether they return all questions at random.
     they need to be the same size to be validated.
   */
-  int numberOfDifferentQuestions = 0;
-  bool isQuestionsDifferents = false;
+  int _numberOfDifferentQuestions = 0;
+  bool _isQuestionsDifferents = false;
   ControllerQuiz _controllerquiz1 = ControllerQuiz();
   var myquestions1 = _controllerquiz1.choice('hard');
   ControllerQuiz _controllerquiz2 = ControllerQuiz();
@@ -30,18 +30,18 @@ main() {
     if (_arrayTeste1.length == _arrayTeste2.length) {
       for (var _i = 0; _i != _arrayTeste1.length; _i++) {
         if (_arrayTeste1[_i] != _arrayTeste2[_i]) {
-          numberOfDifferentQuestions++;
-          isQuestionsDifferents = true;
+          _numberOfDifferentQuestions++;
+          _isQuestionsDifferents = true;
         }
       }
       print('Of ' +
           _arrayTeste1.length.toString() +
           ' questions ' +
-          numberOfDifferentQuestions.toString() +
+          _numberOfDifferentQuestions.toString() +
           ' were in different order');
-      expect(isQuestionsDifferents, true);
+      expect(_isQuestionsDifferents, true);
     } else {
-      expect(isQuestionsDifferents,
+      expect(_isQuestionsDifferents,
           true); //purposeful error if it returns different numbers of questions
     }
   });

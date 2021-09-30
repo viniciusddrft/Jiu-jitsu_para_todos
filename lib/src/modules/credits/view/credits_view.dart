@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/appbar_gradient/appbar_gradient.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -21,10 +20,6 @@ class _CreditsViewState extends State<CreditsView> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: const AppBarGradient(),
