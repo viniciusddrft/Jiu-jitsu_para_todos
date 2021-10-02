@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/appbar_gradient/appbar_gradient.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/launch_link/launch_link.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -12,12 +12,6 @@ class CreditsView extends StatefulWidget {
 }
 
 class _CreditsViewState extends State<CreditsView> {
-  Future<void> _launchLink(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url, forceWebView: false, forceSafariVC: false);
-    } else {}
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +37,7 @@ class _CreditsViewState extends State<CreditsView> {
               height: MediaQuery.of(context).size.height / 20,
             ),
             TextButton.icon(
-                onPressed: () => _launchLink('https://www.flaticon.com/'),
+                onPressed: () => launchLink('https://www.flaticon.com/'),
                 icon: Image.asset(
                   'assets/images/iconscredits/flaticon.png',
                   width: MediaQuery.of(context).size.width / 2,
@@ -58,7 +52,7 @@ class _CreditsViewState extends State<CreditsView> {
               height: MediaQuery.of(context).size.height / 20,
             ),
             TextButton.icon(
-                onPressed: () => _launchLink('https://flutter.dev/'),
+                onPressed: () => launchLink('https://flutter.dev/'),
                 icon: const FlutterLogo(
                   size: 100,
                 ),
@@ -74,21 +68,6 @@ class _CreditsViewState extends State<CreditsView> {
                 style: TextStyle(fontSize: 15.sp),
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 10,
-            ),
-            Text(
-              'text_developer_contact'.tr(),
-              style: TextStyle(fontSize: 15.sp),
-            ),
-            TextButton.icon(
-              onPressed: () => _launchLink('mailto:viniciusddrft5@gmail.com'),
-              icon: const Icon(Icons.mail),
-              label: Text(
-                'text_contact_email'.tr(),
-                style: TextStyle(fontSize: 15.sp),
-              ),
-            )
           ],
         ),
       ),

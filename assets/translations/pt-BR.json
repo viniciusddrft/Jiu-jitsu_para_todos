@@ -16,13 +16,14 @@
     "text_notice_popup":"Feche e abra o app para que a troca de idioma seja feita completamente.",
     "text_continue_popup":"Continuar",
     "text_version":"Versão",
+    "text_contact":"Contato",
+    "text_about_the_app":"Sobre o app",
+    "text_rate_the_app":"Avalie o app",
 
     "title_appbar_credits_page":"Créditos",
     "text_all_application_icons_are_from_flaticon":"Todos ícones do aplicativo são da Flaticon.",
     "text_the_application_was_developed_in_flutter":"O aplicativo foi desenvolvido em Flutter.",
     "text_if_you_want_to_know_both_the_flutter_and_the_flaticon_just_click_on_the_icons":"Caso queira conhecer tanto o Flutter quanto a Flaticon basta cliclar nos ícones.",
-    "text_developer_contact":"Contato do desenvolvedor",
-    "text_contact_email":"E-mail de contato",
 
     "title_appbar_history_of_jiujitsu_page":"Hístoria do Jiu-jitsu",
     "button_origin_of_jiujitsu":"Origem do Jiu-jitsu",

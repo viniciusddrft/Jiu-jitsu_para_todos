@@ -3,6 +3,7 @@ import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_t
 import 'package:jiu_jitsu_para_todos/src/modules/credits/view/credits_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/launch_link/launch_link.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_languages_path.dart';
 import 'package:in_app_review/in_app_review.dart';
@@ -128,86 +129,180 @@ class _BodySettingsState extends State<BodySettings> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              height: 50.h,
-              width: 200.w,
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: AppColors.background,
-                  primary: Colors.white,
-                  elevation: 7,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  side: const BorderSide(color: Colors.white),
-                ),
-                onPressed: _changeLanguageMenu,
-                child: Container(
-                  color: Colors.transparent,
-                  width: MediaQuery.of(context).size.width / 1.6,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              color: AppColors.cardColor,
+              child: Container(
+                height: 180.sp,
+                width: MediaQuery.of(context).size.width / 1.15,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 20.sp, bottom: 35.sp),
+                      child: Text(
                         'button_language_settings_page'.tr(),
-                        style: TextStyle(fontSize: 16.sp),
+                        style: TextStyle(fontSize: 20.sp),
                       ),
-                      Image.asset(
-                        _iconPath,
-                        width: 40.w,
-                      )
-                    ],
-                  ),
+                    ),
+                    Container(
+                      height: 50.h,
+                      width: 200.w,
+                      child: OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: AppColors.background,
+                          primary: Colors.white,
+                          elevation: 7,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          side: const BorderSide(color: Colors.white),
+                        ),
+                        onPressed: _changeLanguageMenu,
+                        child: Container(
+                          color: Colors.transparent,
+                          width: MediaQuery.of(context).size.width / 1.6,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                'button_language_settings_page'.tr(),
+                                style: TextStyle(fontSize: 16.sp),
+                              ),
+                              Image.asset(
+                                _iconPath,
+                                width: 40.w,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 8,
-            ),
-            Container(
-              height: 50.h,
-              width: 200.w,
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: AppColors.background,
-                  primary: Colors.white,
-                  elevation: 7,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  side: const BorderSide(color: Colors.white),
-                ),
-                onPressed: () => _inAppReview.requestReview(),
-                child: Center(
-                  child: Text(
-                    'Avalie o app',
-                    style: TextStyle(fontSize: 16.sp),
-                  ),
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              color: AppColors.cardColor,
+              child: Container(
+                height: 170,
+                width: MediaQuery.of(context).size.width / 1.15,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 20.sp, bottom: 35.sp),
+                      child: Text(
+                        'text_contact'.tr(),
+                        style: TextStyle(fontSize: 20.sp),
+                      ),
+                    ),
+                    Container(
+                      height: 50.h,
+                      width: 200.w,
+                      child: OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: AppColors.background,
+                          primary: Colors.white,
+                          elevation: 7,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          side: const BorderSide(color: Colors.white),
+                        ),
+                        onPressed: () => launchLink(
+                            'mailto:Jiu-jitsu_para_todos@protonmail.com'),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              'E-mail',
+                              style: TextStyle(fontSize: 16.sp),
+                            ),
+                            Icon(Icons.mail)
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 8,
-            ),
-            Container(
-              height: 50.h,
-              width: 200.w,
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: AppColors.background,
-                  primary: Colors.white,
-                  elevation: 7,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  side: const BorderSide(color: Colors.white),
-                ),
-                onPressed: _changeCredits,
-                child: Center(
-                  child: Text(
-                    'button_credits_settings_page'.tr(),
-                    style: TextStyle(fontSize: 16.sp),
-                  ),
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              color: AppColors.cardColor,
+              child: Container(
+                height: 250,
+                width: MediaQuery.of(context).size.width / 1.15,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 20.sp, bottom: 35.sp),
+                      child: Text(
+                        'text_about_the_app'.tr(),
+                        style: TextStyle(fontSize: 20.sp),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 35.sp),
+                      child: Container(
+                        height: 50.h,
+                        width: 200.w,
+                        child: OutlinedButton(
+                          style: OutlinedButton.styleFrom(
+                            backgroundColor: AppColors.background,
+                            primary: Colors.white,
+                            elevation: 7,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            side: const BorderSide(color: Colors.white),
+                          ),
+                          onPressed: () => _inAppReview.isAvailable().then(
+                              (isAvaliable) => isAvaliable
+                                  ? _inAppReview.requestReview()
+                                  : null),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                'text_rate_the_app'.tr(),
+                                style: TextStyle(fontSize: 16.sp),
+                              ),
+                              Icon(Icons.rate_review_outlined)
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 50.h,
+                      width: 200.w,
+                      child: OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: AppColors.background,
+                          primary: Colors.white,
+                          elevation: 7,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          side: const BorderSide(color: Colors.white),
+                        ),
+                        onPressed: _changeCredits,
+                        child: Center(
+                          child: Text(
+                            'button_credits_settings_page'.tr(),
+                            style: TextStyle(fontSize: 16.sp),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
