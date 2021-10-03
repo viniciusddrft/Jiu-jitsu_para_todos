@@ -9,7 +9,7 @@ main() {
   */
   final ControllerWallpapers _controllerWallpapers = ControllerWallpapers();
 
-  final List<String> _allPathsImages = [
+  const List<String> _allPathsImages = [
     'assets/images/wallpapers/1.jpg',
     'assets/images/wallpapers/2.jpg',
     'assets/images/wallpapers/3.jpg',
@@ -26,6 +26,9 @@ main() {
     'assets/images/wallpapers/14.png',
     'assets/images/wallpapers/15.png',
     'assets/images/wallpapers/16.png',
+    'assets/images/wallpapers/17.png',
+    'assets/images/wallpapers/18.png',
+    'assets/images/wallpapers/19.png',
   ];
   test('deve retornar o caminho das images', () {
     List<String> _arrayTest = [];

@@ -15,19 +15,19 @@ class Admob {
 
 //------------------------------------------------------------------------------
   static Future<BannerAd?> createAnchoredBanner(BuildContext context) async {
-    final AnchoredAdaptiveBannerAdSize? size =
+    final AnchoredAdaptiveBannerAdSize? _size =
         await AdSize.getAnchoredAdaptiveBannerAdSize(
       Orientation.portrait,
       MediaQuery.of(context).size.width.truncate(),
     );
 
-    if (size == null) {
+    if (_size == null) {
       debugPrint('Unable to get height of anchored banner.');
       return null;
     }
 
     final BannerAd banner = BannerAd(
-      size: size,
+      size: _size,
       request: AdRequest(),
       adUnitId: BannerAd.testAdUnitId,
       listener: BannerAdListener(
@@ -44,6 +44,7 @@ class Admob {
         },
         onAdOpened: (Ad ad) => debugPrint('$BannerAd onAdOpened.'),
         onAdClosed: (Ad ad) => debugPrint('$BannerAd onAdClosed.'),
+        onAdImpression: (Ad ad) => debugPrint('ad shown successfully \o/'),
       ),
     );
     return banner;
@@ -80,7 +81,7 @@ class Admob {
               ad.dispose();
               createInterstitialAd();
             },
-            onAdImpression: (ad) =>
+            onAdImpression: (InterstitialAd ad) =>
                 debugPrint('ad shown successfully \o/ | didChangeDependencies'),
           );
         },
@@ -139,7 +140,8 @@ class Admob {
               ad.dispose();
               _createAndShowInterstitialAd();
             },
-            onAdImpression: (ad) => debugPrint('ad shown successfully \o/'),
+            onAdImpression: (InterstitialAd ad) =>
+                debugPrint('ad shown successfully \o/'),
           );
           _interstitialAd?.show();
           _interstitialAd?.dispose();

@@ -23,4 +23,7 @@ const List<ImageDetails> allImages = [
   const ImageDetails(imagePath: 'assets/images/wallpapers/14.png'),
   const ImageDetails(imagePath: 'assets/images/wallpapers/15.png'),
   const ImageDetails(imagePath: 'assets/images/wallpapers/16.png'),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/17.png'),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/18.png'),
+  const ImageDetails(imagePath: 'assets/images/wallpapers/19.png'),
 ];

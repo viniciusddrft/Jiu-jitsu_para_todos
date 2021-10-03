@@ -124,62 +124,67 @@ class _BodySettingsState extends State<BodySettings> {
     }
 
     //--------------------------------------------------------------------------
-    return Container(
-      child: Center(
+    return SingleChildScrollView(
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              color: AppColors.cardColor,
-              child: Container(
-                height: 180.sp,
-                width: MediaQuery.of(context).size.width / 1.15,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: 20.sp, bottom: 35.sp),
-                      child: Text(
-                        'button_language_settings_page'.tr(),
-                        style: TextStyle(fontSize: 20.sp),
-                      ),
-                    ),
-                    Container(
-                      height: 50.h,
-                      width: 200.w,
-                      child: OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          backgroundColor: AppColors.background,
-                          primary: Colors.white,
-                          elevation: 7,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          side: const BorderSide(color: Colors.white),
-                        ),
-                        onPressed: _changeLanguageMenu,
-                        child: Container(
-                          color: Colors.transparent,
-                          width: MediaQuery.of(context).size.width / 1.6,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                'button_language_settings_page'.tr(),
-                                style: TextStyle(fontSize: 16.sp),
-                              ),
-                              Image.asset(
-                                _iconPath,
-                                width: 40.w,
-                              )
-                            ],
-                          ),
+            Padding(
+              padding: EdgeInsets.only(top: 20.h),
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                color: AppColors.cardColor,
+                child: Container(
+                  height: 155.h,
+                  width: MediaQuery.of(context).size.width / 1.15,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 20.sp, bottom: 35.sp),
+                        child: Text(
+                          'button_language_settings_page'.tr(),
+                          style: TextStyle(fontSize: 20.sp),
                         ),
                       ),
-                    ),
-                  ],
+                      Container(
+                        height: 50.h,
+                        width: 200.w,
+                        child: OutlinedButton(
+                          style: OutlinedButton.styleFrom(
+                            backgroundColor: AppColors.background,
+                            primary: Colors.white,
+                            elevation: 7,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            side: const BorderSide(color: Colors.white),
+                          ),
+                          onPressed: _changeLanguageMenu,
+                          child: Container(
+                            color: Colors.transparent,
+                            width: MediaQuery.of(context).size.width / 1.6,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  'button_language_settings_page'.tr(),
+                                  style: TextStyle(fontSize: 16.sp),
+                                ),
+                                Image.asset(
+                                  _iconPath,
+                                  width: 40.w,
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -189,7 +194,7 @@ class _BodySettingsState extends State<BodySettings> {
               ),
               color: AppColors.cardColor,
               child: Container(
-                height: 170,
+                height: 240.h,
                 width: MediaQuery.of(context).size.width / 1.15,
                 child: Column(
                   children: [
@@ -198,6 +203,36 @@ class _BodySettingsState extends State<BodySettings> {
                       child: Text(
                         'text_contact'.tr(),
                         style: TextStyle(fontSize: 20.sp),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 35.sp),
+                      child: Container(
+                        height: 50.h,
+                        width: 200.w,
+                        child: OutlinedButton(
+                          style: OutlinedButton.styleFrom(
+                            backgroundColor: AppColors.background,
+                            primary: Colors.white,
+                            elevation: 7,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            side: const BorderSide(color: Colors.white),
+                          ),
+                          onPressed: () => launchLink(
+                              'mailto:Jiu-jitsu_para_todos@protonmail.com'),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                'E-mail',
+                                style: TextStyle(fontSize: 16.sp),
+                              ),
+                              Icon(Icons.mail)
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                     Container(
@@ -214,15 +249,15 @@ class _BodySettingsState extends State<BodySettings> {
                           side: const BorderSide(color: Colors.white),
                         ),
                         onPressed: () => launchLink(
-                            'mailto:Jiu-jitsu_para_todos@protonmail.com'),
+                            'https://www.facebook.com/Jiujitsuparatodos2021/'),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
-                              'E-mail',
+                              'Facebook',
                               style: TextStyle(fontSize: 16.sp),
                             ),
-                            Icon(Icons.mail)
+                            Icon(Icons.facebook)
                           ],
                         ),
                       ),
@@ -237,7 +272,7 @@ class _BodySettingsState extends State<BodySettings> {
               ),
               color: AppColors.cardColor,
               child: Container(
-                height: 250,
+                height: 240.h,
                 width: MediaQuery.of(context).size.width / 1.15,
                 child: Column(
                   children: [
@@ -263,10 +298,7 @@ class _BodySettingsState extends State<BodySettings> {
                             ),
                             side: const BorderSide(color: Colors.white),
                           ),
-                          onPressed: () => _inAppReview.isAvailable().then(
-                              (isAvaliable) => isAvaliable
-                                  ? _inAppReview.requestReview()
-                                  : null),
+                          onPressed: () => _inAppReview.openStoreListing(),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
