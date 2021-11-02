@@ -16,20 +16,8 @@ class _CbjjrulesState extends State<Cbjjrules> {
   bool _loadingAnchoredBanner = false;
   final ValueNotifier<AdWidget?> _adWidget = ValueNotifier<AdWidget?>(null);
 
-  Future<void> _launchLink(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url, forceWebView: false, forceSafariVC: false);
-    } else {}
-  }
-
   @override
-  void dispose() {
-    _adWidget.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  void didChangeDependencies() {
     if (!_loadingAnchoredBanner)
       Admob.createAnchoredBanner(context).then((BannerAd? banner) {
         if (banner != null) {
@@ -39,7 +27,23 @@ class _CbjjrulesState extends State<Cbjjrules> {
         }
       })
         ..whenComplete(() => _loadingAnchoredBanner = true);
+    super.didChangeDependencies();
+  }
 
+  @override
+  void dispose() {
+    _adWidget.dispose();
+    super.dispose();
+  }
+
+  Future<void> _launchLink(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url, forceWebView: false, forceSafariVC: false);
+    } else {}
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,

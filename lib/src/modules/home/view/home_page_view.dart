@@ -15,20 +15,31 @@ class HomePageView extends StatefulWidget {
 }
 
 class _HomePageViewState extends State<HomePageView> {
-//------------------------------------------------------------------------------
-  void _changesettings() => Navigator.of(context)
-      .push(MyTransitionElasticOut(
-          route: SettingsView(), duration: Duration(milliseconds: 500)))
-      .then((_) => setState(() {}));
-
-//------------------------------------------------------------------------------
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     Wakelock.disable();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+    super.initState();
+  }
+
+//------------------------------------------------------------------------------
+  void _changesettings() => Navigator.of(context)
+      .push(
+        MyTransitionElasticOut(
+          route: SettingsView(),
+          duration: Duration(milliseconds: 500),
+        ),
+      )
+      .then(
+        (_) => setState(() {}),
+      );
+
+//------------------------------------------------------------------------------
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: const AppBarGradient(),

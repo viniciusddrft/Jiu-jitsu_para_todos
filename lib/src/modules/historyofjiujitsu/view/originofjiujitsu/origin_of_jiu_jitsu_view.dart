@@ -22,7 +22,7 @@ class _OriginOfJiujitsuState extends State<OriginOfJiujitsu> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  void didChangeDependencies() {
     if (!_loadingAnchoredBanner)
       Admob.createAnchoredBanner(context).then((BannerAd? banner) {
         if (banner != null) {
@@ -33,6 +33,11 @@ class _OriginOfJiujitsuState extends State<OriginOfJiujitsu> {
       })
         ..whenComplete(() => _loadingAnchoredBanner = true);
 
+    super.didChangeDependencies();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,

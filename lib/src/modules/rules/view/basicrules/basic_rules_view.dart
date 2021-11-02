@@ -22,7 +22,7 @@ class _BasicrulesState extends State<Basicrules> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  void didChangeDependencies() {
     if (!_loadingAnchoredBanner)
       Admob.createAnchoredBanner(context).then((BannerAd? banner) {
         if (banner != null) {
@@ -32,7 +32,11 @@ class _BasicrulesState extends State<Basicrules> {
         }
       })
         ..whenComplete(() => _loadingAnchoredBanner = true);
+    super.didChangeDependencies();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,

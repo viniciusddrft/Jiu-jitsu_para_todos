@@ -42,88 +42,88 @@ class _BodySettingsState extends State<BodySettings> {
     super.initState();
   }
 
-  @override
-  Widget build(BuildContext context) {
 //------------------------------------------------------------------------------
-    void _changeCredits() => Navigator.of(context).push(MyTransitionElasticOut(
-        route: CreditsView(), duration: Duration(milliseconds: 500)));
+  void _changeCredits() => Navigator.of(context).push(MyTransitionElasticOut(
+      route: CreditsView(), duration: Duration(milliseconds: 500)));
 //------------------------------------------------------------------------------
-    Future<void> _noticeAndChangeLanguage(Locale locale) async {
-      return showDialog<void>(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            contentPadding: EdgeInsets.all(10),
-            backgroundColor: AppColors.background,
-            scrollable: true,
-            content: Container(
-              child: Text('text_notice_popup'.tr()),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  context.setLocale(locale);
-                  locale == Locale('pt', 'BR')
-                      ? _iconPath = AppIconsLanguages.brasil
-                      : _iconPath = AppIconsLanguages.unitedStates;
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  'text_continue_popup'.tr(),
-                ),
+  Future<void> _noticeAndChangeLanguage(Locale locale) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.all(10),
+          backgroundColor: AppColors.background,
+          scrollable: true,
+          content: Container(
+            child: Text('text_notice_popup'.tr()),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                context.setLocale(locale);
+                locale == Locale('pt', 'BR')
+                    ? _iconPath = AppIconsLanguages.brasil
+                    : _iconPath = AppIconsLanguages.unitedStates;
+                Navigator.pop(context);
+              },
+              child: Text(
+                'text_continue_popup'.tr(),
               ),
-            ],
-          );
-        },
-      );
-    }
+            ),
+          ],
+        );
+      },
+    );
+  }
 
 //------------------------------------------------------------------------------
-    Future<void> _changeLanguageMenu() async {
-      return showDialog<void>(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            contentPadding: EdgeInsets.all(10),
-            backgroundColor: AppColors.background,
-            scrollable: true,
-            content: Container(
-              width: MediaQuery.of(context).size.width / 1.4,
-              height: MediaQuery.of(context).size.height / 2,
-              child: ListView.builder(
-                itemCount: _allLocales.length,
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                      _noticeAndChangeLanguage(_allLocales[index]['locale']);
-                    },
-                    child: Container(
-                      color: Colors.transparent,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(_allLocales[index]['text']),
-                          Image.asset(
-                            _allLocales[index]['icon'],
-                            width: 50.w,
-                          ),
-                        ],
-                      ),
+  Future<void> _changeLanguageMenu() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.all(10),
+          backgroundColor: AppColors.background,
+          scrollable: true,
+          content: Container(
+            width: MediaQuery.of(context).size.width / 1.4,
+            height: MediaQuery.of(context).size.height / 2,
+            child: ListView.builder(
+              itemCount: _allLocales.length,
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                    _noticeAndChangeLanguage(_allLocales[index]['locale']);
+                  },
+                  child: Container(
+                    color: Colors.transparent,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(_allLocales[index]['text']),
+                        Image.asset(
+                          _allLocales[index]['icon'],
+                          width: 50.w,
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),
             ),
-          );
-        },
-      );
-    }
+          ),
+        );
+      },
+    );
+  }
 
-    //--------------------------------------------------------------------------
+  //--------------------------------------------------------------------------
+  @override
+  Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
         height: MediaQuery.of(context).size.height,

@@ -10,7 +10,7 @@ class BodyWallpalers extends StatefulWidget {
 }
 
 class _BodyWallpalersState extends State<BodyWallpalers> {
-  ControllerWallpapers _controllerWallpapers = ControllerWallpapers();
+  final ControllerWallpapers _controllerWallpapers = ControllerWallpapers();
   @override
   Widget build(BuildContext context) {
     return Container(

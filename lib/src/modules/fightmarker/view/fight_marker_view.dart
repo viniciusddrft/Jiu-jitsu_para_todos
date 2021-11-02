@@ -6,16 +6,26 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:wakelock/wakelock.dart';
 
-class FightMakerView extends StatelessWidget {
+class FightMakerView extends StatefulWidget {
   FightMakerView();
 
   @override
-  Widget build(BuildContext context) {
+  State<FightMakerView> createState() => _FightMakerViewState();
+}
+
+class _FightMakerViewState extends State<FightMakerView> {
+  @override
+  void initState() {
     Wakelock.enable();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: const AppBarGradient(),

@@ -24,66 +24,66 @@ class _DetailsImageState extends State<DetailsImage> {
     super.didChangeDependencies();
   }
 
+  //------------------------------------------------------------------------------
+  Future<void> _showMyDialogsaveerro() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: AppColors.background,
+          actions: [
+            TextButton(
+              child: Text('text_popup_error'.tr()),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+//------------------------------------------------------------------------------
+  Future<void> _showMyDialogsaveimage() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: AppColors.background,
+          actions: [
+            TextButton(
+              child: Text('text_popup_success'.tr()),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _saveImage(String imagePath) async {
+    ByteData bytes = await rootBundle.load(imagePath);
+
+    var result = await ImageGallerySaver.saveImage(bytes.buffer.asUint8List());
+    if ((result['isSuccess']))
+      _showMyDialogsaveimage();
+    else
+      _showMyDialogsaveerro();
+  }
+
+//------------------------------------------------------------------------------
+  void onPressed(String imagePath) async {
+    if (await Permission.storage.request().isGranted) {
+      Admob.showInterstitialAd();
+      Future.delayed(Duration(seconds: 3), () => _saveImage(imagePath));
+    }
+  }
+
+//------------------------------------------------------------------------------
+
   @override
   Widget build(BuildContext context) {
-//------------------------------------------------------------------------------
-    Future<void> _showMyDialogsaveerro() async {
-      return showDialog<void>(
-        context: context,
-        barrierDismissible: true,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: AppColors.background,
-            actions: [
-              TextButton(
-                child: Text('text_popup_error'.tr()),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-            ],
-          );
-        },
-      );
-    }
-
-//------------------------------------------------------------------------------
-    Future<void> _showMyDialogsaveimage() async {
-      return showDialog<void>(
-        context: context,
-        barrierDismissible: true,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: AppColors.background,
-            actions: [
-              TextButton(
-                child: Text('text_popup_success'.tr()),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-            ],
-          );
-        },
-      );
-    }
-
-    void _saveImage(String imagePath) async {
-      ByteData bytes = await rootBundle.load(imagePath);
-
-      var result =
-          await ImageGallerySaver.saveImage(bytes.buffer.asUint8List());
-      if ((result['isSuccess']))
-        _showMyDialogsaveimage();
-      else
-        _showMyDialogsaveerro();
-    }
-
-//------------------------------------------------------------------------------
-    void onPressed(String imagePath) async {
-      if (await Permission.storage.request().isGranted) {
-        Admob.showInterstitialAd();
-        Future.delayed(Duration(seconds: 3), () => _saveImage(imagePath));
-      }
-    }
-
-//------------------------------------------------------------------------------
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Container(

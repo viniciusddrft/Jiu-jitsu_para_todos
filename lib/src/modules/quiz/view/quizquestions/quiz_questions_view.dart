@@ -54,6 +54,9 @@ class _QuizQuestionsState extends State<QuizQuestions> {
   Color? colorIconButtonC;
   Color? colorIconButtonD;
 
+  int get counterQuestions => _controllerQuiz.numberOfQuestions + 1;
+  int get totalNumberOfQuestions => _myQuestions!.length;
+
   @override
   void initState() {
     _myQuestions = _controllerQuiz.choice(widget.difficulty);
@@ -74,134 +77,132 @@ class _QuizQuestionsState extends State<QuizQuestions> {
     super.dispose();
   }
 
+//------------------------------------------------------------------------------
+  void _playSoundRightAnswer() => _playerRightAnswer
+      .setAsset('assets/music/right_answer.mp3')
+      .then((_) => _playerRightAnswer.play());
+//------------------------------------------------------------------------------
+  void _playSoundWrongAnswer() => _playerWrongAnswer
+      .setAsset('assets/music/wrong_answer.mp3')
+      .then((_) => _playerWrongAnswer.play());
+//------------------------------------------------------------------------------
+  void _switchToResult() => Navigator.of(context).pushReplacement(
+        MyTransitionElasticOut(
+          route: ResultQuiz(
+              difficultyName: widget.difficultyName,
+              score: _controllerQuiz.score,
+              totalQuestions: totalNumberOfQuestions),
+          duration: Duration(milliseconds: 500),
+        ),
+      );
+//------------------------------------------------------------------------------
+  void buttonQuestionsOnPressed(String answer, String orderOfQuestions) {
+    if (_controllerQuiz.checkAnswer(answer, _myQuestions)) {
+      _playSoundRightAnswer();
+      isButtonDisabled = true;
+      if (orderOfQuestions == 'A')
+        setState(() {
+          iconButtonA = Icons.done;
+          colorButtonA = Colors.green;
+          colorIconButtonA = Colors.green;
+        });
+      else if (orderOfQuestions == 'B')
+        setState(() {
+          iconButtonB = Icons.done;
+          colorButtonB = Colors.green;
+          colorIconButtonB = Colors.green;
+        });
+      else if (orderOfQuestions == 'C')
+        setState(() {
+          iconButtonC = Icons.done;
+          colorButtonC = Colors.green;
+          colorIconButtonC = Colors.green;
+        });
+      else if (orderOfQuestions == 'D')
+        setState(() {
+          iconButtonD = Icons.done;
+          colorButtonD = Colors.green;
+          colorIconButtonD = Colors.green;
+        });
+
+      Future.delayed(
+          const Duration(milliseconds: 500),
+          () => setState(() {
+                if (counterQuestions == _myQuestions!.length ||
+                    counterQuestions > _myQuestions!.length) {
+                  _controllerQuiz.score++;
+                  Admob.showInterstitialAd();
+                  _switchToResult();
+                } else {
+                  _controllerQuiz.numberOfQuestions++;
+                  _controllerQuiz.score++;
+                }
+                colorButtonA = Colors.white;
+                colorButtonB = Colors.white;
+                colorButtonC = Colors.white;
+                colorButtonD = Colors.white;
+                iconButtonA = null;
+                iconButtonB = null;
+                iconButtonC = null;
+                iconButtonD = null;
+                isButtonDisabled = false;
+              }));
+    } else {
+      _playSoundWrongAnswer();
+      isButtonDisabled = true;
+      if (orderOfQuestions == 'A')
+        setState(() {
+          iconButtonA = Icons.close;
+          colorButtonA = Colors.red;
+          colorIconButtonA = Colors.red;
+        });
+      else if (orderOfQuestions == 'B')
+        setState(() {
+          iconButtonB = Icons.close;
+          colorButtonB = Colors.red;
+          colorIconButtonB = Colors.red;
+        });
+      else if (orderOfQuestions == 'C')
+        setState(() {
+          iconButtonC = Icons.close;
+          colorButtonC = Colors.red;
+          colorIconButtonC = Colors.red;
+        });
+      else if (orderOfQuestions == 'D')
+        setState(() {
+          iconButtonD = Icons.close;
+          colorButtonD = Colors.red;
+          colorIconButtonD = Colors.red;
+        });
+
+      Future.delayed(
+        const Duration(milliseconds: 500),
+        () => setState(
+          () {
+            colorButtonA = Colors.white;
+            colorButtonB = Colors.white;
+            colorButtonC = Colors.white;
+            colorButtonD = Colors.white;
+            iconButtonA = null;
+            iconButtonB = null;
+            iconButtonC = null;
+            iconButtonD = null;
+            isButtonDisabled = false;
+            if (counterQuestions == _myQuestions!.length ||
+                counterQuestions > _myQuestions!.length) {
+              Admob.showInterstitialAd();
+              _switchToResult();
+            } else
+              _controllerQuiz.numberOfQuestions++;
+          },
+        ),
+      );
+    }
+  }
+
+//------------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
-    int counterQuestions = _controllerQuiz.numberOfQuestions + 1;
-    int totalNumberOfQuestions = _myQuestions!.length;
-//------------------------------------------------------------------------------
-    void _playSoundRightAnswer() => _playerRightAnswer
-        .setAsset('assets/music/right_answer.mp3')
-        .then((_) => _playerRightAnswer.play());
-//------------------------------------------------------------------------------
-    void _playSoundWrongAnswer() => _playerWrongAnswer
-        .setAsset('assets/music/wrong_answer.mp3')
-        .then((_) => _playerWrongAnswer.play());
-//------------------------------------------------------------------------------
-    void _switchToResult() => Navigator.of(context).pushReplacement(
-          MyTransitionElasticOut(
-            route: ResultQuiz(
-                difficultyName: widget.difficultyName,
-                score: _controllerQuiz.score,
-                totalQuestions: totalNumberOfQuestions),
-            duration: Duration(milliseconds: 500),
-          ),
-        );
-//------------------------------------------------------------------------------
-    void buttonQuestionsOnPressed(String answer, String orderOfQuestions) {
-      if (_controllerQuiz.checkAnswer(answer, _myQuestions)) {
-        _playSoundRightAnswer();
-        isButtonDisabled = true;
-        if (orderOfQuestions == 'A')
-          setState(() {
-            iconButtonA = Icons.done;
-            colorButtonA = Colors.green;
-            colorIconButtonA = Colors.green;
-          });
-        else if (orderOfQuestions == 'B')
-          setState(() {
-            iconButtonB = Icons.done;
-            colorButtonB = Colors.green;
-            colorIconButtonB = Colors.green;
-          });
-        else if (orderOfQuestions == 'C')
-          setState(() {
-            iconButtonC = Icons.done;
-            colorButtonC = Colors.green;
-            colorIconButtonC = Colors.green;
-          });
-        else if (orderOfQuestions == 'D')
-          setState(() {
-            iconButtonD = Icons.done;
-            colorButtonD = Colors.green;
-            colorIconButtonD = Colors.green;
-          });
-
-        Future.delayed(
-            const Duration(milliseconds: 500),
-            () => setState(() {
-                  if (counterQuestions == _myQuestions!.length ||
-                      counterQuestions > _myQuestions!.length) {
-                    _controllerQuiz.score++;
-                    Admob.showInterstitialAd();
-                    _switchToResult();
-                  } else {
-                    _controllerQuiz.numberOfQuestions++;
-                    _controllerQuiz.score++;
-                  }
-                  colorButtonA = Colors.white;
-                  colorButtonB = Colors.white;
-                  colorButtonC = Colors.white;
-                  colorButtonD = Colors.white;
-                  iconButtonA = null;
-                  iconButtonB = null;
-                  iconButtonC = null;
-                  iconButtonD = null;
-                  isButtonDisabled = false;
-                }));
-      } else {
-        _playSoundWrongAnswer();
-        isButtonDisabled = true;
-        if (orderOfQuestions == 'A')
-          setState(() {
-            iconButtonA = Icons.close;
-            colorButtonA = Colors.red;
-            colorIconButtonA = Colors.red;
-          });
-        else if (orderOfQuestions == 'B')
-          setState(() {
-            iconButtonB = Icons.close;
-            colorButtonB = Colors.red;
-            colorIconButtonB = Colors.red;
-          });
-        else if (orderOfQuestions == 'C')
-          setState(() {
-            iconButtonC = Icons.close;
-            colorButtonC = Colors.red;
-            colorIconButtonC = Colors.red;
-          });
-        else if (orderOfQuestions == 'D')
-          setState(() {
-            iconButtonD = Icons.close;
-            colorButtonD = Colors.red;
-            colorIconButtonD = Colors.red;
-          });
-
-        Future.delayed(
-          const Duration(milliseconds: 500),
-          () => setState(
-            () {
-              colorButtonA = Colors.white;
-              colorButtonB = Colors.white;
-              colorButtonC = Colors.white;
-              colorButtonD = Colors.white;
-              iconButtonA = null;
-              iconButtonB = null;
-              iconButtonC = null;
-              iconButtonD = null;
-              isButtonDisabled = false;
-              if (counterQuestions == _myQuestions!.length ||
-                  counterQuestions > _myQuestions!.length) {
-                Admob.showInterstitialAd();
-                _switchToResult();
-              } else
-                _controllerQuiz.numberOfQuestions++;
-            },
-          ),
-        );
-      }
-    }
-
-//------------------------------------------------------------------------------
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -228,7 +229,9 @@ class _QuizQuestionsState extends State<QuizQuestions> {
               padding: EdgeInsets.only(left: 30.w),
               child: Text(
                 'text_question'.tr() +
-                    ' $counterQuestions/$totalNumberOfQuestions',
+                    ' ' +
+                    counterQuestions.toString() +
+                    '/$totalNumberOfQuestions',
                 style: TextStyle(
                     fontFamily: 'Ubuntu', fontSize: 22.sp, color: Colors.white),
               ),
