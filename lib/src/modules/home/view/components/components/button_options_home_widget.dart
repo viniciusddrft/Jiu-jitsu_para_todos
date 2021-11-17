@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/view/fight_marker_view.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_transition_elatic_out.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/button_for_menu/button_for_menu.dart';
 
 class ButtonOptionsHome extends ButtonForMenu {
   final String imageButton;
   final String textButton;
-  final Widget routeButton;
+  final String routeButton;
   /*added because for this route it generates a bug if the routeButton variable is used,
   in this only case it needs to be hard code in line 28*/
   final bool isFightMakerView;
@@ -23,13 +21,10 @@ class ButtonOptionsHome extends ButtonForMenu {
   @override
   Widget build(BuildContext context) {
     void changeRoute() => isFightMakerView
-        ? Navigator.of(context)
-            .push(MaterialPageRoute(
-                builder: (BuildContext context) => FightMakerView()))
-            .then((_) => Navigator.of(context)
-                .pushReplacementNamed('/home')) //routeButton
-        : Navigator.of(context).push(MyTransitionElasticOut(
-            route: routeButton, duration: Duration(milliseconds: 500)));
+        ? Navigator.pushNamed(context, routeButton).then(
+            (_) => Navigator.pushReplacementNamed(context, '/Home'),
+          ) //routeButton
+        : Navigator.pushNamed(context, routeButton);
 
     return makeButton(changeRoute);
   }

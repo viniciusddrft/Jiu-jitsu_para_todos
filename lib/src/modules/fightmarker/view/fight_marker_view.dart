@@ -24,6 +24,13 @@ class _FightMakerViewState extends State<FightMakerView> {
     super.initState();
   }
 
+  //this setState fixes the size of texts on this screen due to rotation
+  @override
+  void didChangeDependencies() {
+    Future.delayed(Duration.zero, () => setState(() {}));
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

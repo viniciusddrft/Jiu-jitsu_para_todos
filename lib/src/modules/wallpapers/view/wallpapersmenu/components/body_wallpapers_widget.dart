@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/controller/wallpapers_controller.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/view/detailsimage/details_image_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BodyWallpalers extends StatefulWidget {
@@ -24,16 +23,12 @@ class _BodyWallpalersState extends State<BodyWallpalers> {
           mainAxisSpacing: 10.sp,
         ),
         itemBuilder: (context, index) => RawMaterialButton(
-          onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DetailsImage(
-                imagePath:
+          onPressed: () => Navigator.pushNamed(context, '/DetailsImage',
+              arguments: <String, dynamic>{
+                'imagePath':
                     _controllerWallpapers.images.toList()[index].imagePath,
-                index: index,
-              ),
-            ),
-          ),
+                'index': index
+              }),
           child: Hero(
             tag: 'logo$index',
             child: Container(

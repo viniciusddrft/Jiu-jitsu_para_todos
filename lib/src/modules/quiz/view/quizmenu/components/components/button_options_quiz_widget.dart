@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizquestions/quiz_questions_view.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_transition_elatic_out.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/button_for_menu/button_for_menu.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -34,15 +32,12 @@ class ButtonOptionQuiz extends ButtonForMenu {
 
   @override
   Widget build(BuildContext context) {
-    void changeRoute() => Navigator.of(context).push(
-          MyTransitionElasticOut(
-            route: QuizQuestions(
-              difficulty: difficulty,
-              difficultyName: difficultyName,
-            ),
-            duration: Duration(milliseconds: 500),
-          ),
-        );
+    void changeRoute() => Navigator.pushNamed(context, '/QuizQuestions',
+            arguments: <String, String>{
+              'difficulty': difficulty,
+              'difficultyName': difficultyName
+            });
+
     return makeButton(changeRoute);
   }
 }

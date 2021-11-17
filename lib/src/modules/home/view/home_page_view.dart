@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/home/view/components/body_home_page_widget.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/settings/view/settings_view.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_transition_elatic_out.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/appbar_gradient/appbar_gradient.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
@@ -25,19 +23,8 @@ class _HomePageViewState extends State<HomePageView> {
     super.initState();
   }
 
-//------------------------------------------------------------------------------
-  void _changesettings() => Navigator.of(context)
-      .push(
-        MyTransitionElasticOut(
-          route: SettingsView(),
-          duration: Duration(milliseconds: 500),
-        ),
-      )
-      .then(
-        (_) => setState(() {}),
-      );
+  void _changesettings() => Navigator.pushNamed(context, '/Settings');
 
-//------------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
     return Scaffold(

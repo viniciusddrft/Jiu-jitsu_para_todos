@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_transition_elatic_out.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/credits/view/credits_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/launch_link/launch_link.dart';
@@ -42,10 +40,8 @@ class _BodySettingsState extends State<BodySettings> {
     super.initState();
   }
 
-//------------------------------------------------------------------------------
-  void _changeCredits() => Navigator.of(context).push(MyTransitionElasticOut(
-      route: CreditsView(), duration: Duration(milliseconds: 500)));
-//------------------------------------------------------------------------------
+  void _changeCredits() => Navigator.pushNamed(context, '/Credits');
+
   Future<void> _noticeAndChangeLanguage(Locale locale) async {
     return showDialog<void>(
       context: context,

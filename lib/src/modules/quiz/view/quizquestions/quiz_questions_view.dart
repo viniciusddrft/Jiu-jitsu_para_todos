@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizresult/result_quiz.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/controller/quiz_controller.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/animated_page_route_builder/my_transition_elatic_out.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizquestions/components/button_quiz_questions_widget.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizquestions/components/return_midia_quiz_widget.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
@@ -44,15 +42,9 @@ class _QuizQuestionsState extends State<QuizQuestions> {
   Color colorButtonC = Colors.white;
   Color colorButtonD = Colors.white;
   //icon button
-  IconData? iconButtonA;
-  IconData? iconButtonB;
-  IconData? iconButtonC;
-  IconData? iconButtonD;
+  IconData? iconButtonA, iconButtonB, iconButtonC, iconButtonD;
   // colors icon
-  Color? colorIconButtonA;
-  Color? colorIconButtonB;
-  Color? colorIconButtonC;
-  Color? colorIconButtonD;
+  Color? colorIconButtonA, colorIconButtonB, colorIconButtonC, colorIconButtonD;
 
   int get counterQuestions => _controllerQuiz.numberOfQuestions + 1;
   int get totalNumberOfQuestions => _myQuestions!.length;
@@ -86,15 +78,14 @@ class _QuizQuestionsState extends State<QuizQuestions> {
       .setAsset('assets/music/wrong_answer.mp3')
       .then((_) => _playerWrongAnswer.play());
 //------------------------------------------------------------------------------
-  void _switchToResult() => Navigator.of(context).pushReplacement(
-        MyTransitionElasticOut(
-          route: ResultQuiz(
-              difficultyName: widget.difficultyName,
-              score: _controllerQuiz.score,
-              totalQuestions: totalNumberOfQuestions),
-          duration: Duration(milliseconds: 500),
-        ),
-      );
+  void _switchToResult() =>
+      Navigator.pushReplacementNamed(context, '/ResultQuiz',
+          arguments: <String, dynamic>{
+            'difficultyName': widget.difficultyName,
+            'score': _controllerQuiz.score,
+            'totalQuestions': totalNumberOfQuestions
+          });
+
 //------------------------------------------------------------------------------
   void buttonQuestionsOnPressed(String answer, String orderOfQuestions) {
     if (_controllerQuiz.checkAnswer(answer, _myQuestions)) {

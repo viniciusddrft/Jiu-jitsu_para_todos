@@ -4,9 +4,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
 class ResultQuiz extends StatefulWidget {
-  final int score;
+  final int score, totalQuestions;
   final String difficultyName;
-  final int totalQuestions;
+
   const ResultQuiz(
       {required this.score,
       required this.difficultyName,
@@ -16,10 +16,7 @@ class ResultQuiz extends StatefulWidget {
 }
 
 class _ResultQuizState extends State<ResultQuiz> {
-  late String _iconPath;
-  late String _textShowResult;
-  late String _textMessage;
-  late String _scorePercentageText;
+  late String _iconPath, _textShowResult, _textMessage, _scorePercentageText;
   late double _scorePercentage;
 
   @override

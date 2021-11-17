@@ -126,7 +126,7 @@ class _ScoreboardState extends State<Scoreboard> {
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           IconButton(
-            iconSize: 50.sp,
+            iconSize: 60.sp,
             color: Colors.red,
             icon: const Icon(Icons.remove),
             onPressed: () => setState(
