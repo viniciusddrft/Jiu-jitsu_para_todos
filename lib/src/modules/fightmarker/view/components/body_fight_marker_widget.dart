@@ -9,6 +9,13 @@ class BodyFightMarker extends StatefulWidget {
 }
 
 class _BodyFightMarkerState extends State<BodyFightMarker> {
+  //this setState fixes the size of texts on this screen due to rotation
+  @override
+  void didChangeDependencies() {
+    Future.delayed(Duration.zero, () => setState(() {}));
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
