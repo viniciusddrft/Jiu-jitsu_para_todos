@@ -3,7 +3,7 @@ import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/controller/wallpaper
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BodyWallpalers extends StatefulWidget {
-  const BodyWallpalers();
+  const BodyWallpalers({Key? key}) : super(key: key);
   @override
   _BodyWallpalersState createState() => _BodyWallpalersState();
 }
@@ -12,7 +12,7 @@ class _BodyWallpalersState extends State<BodyWallpalers> {
   final ControllerWallpapers _controllerWallpapers = ControllerWallpapers();
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: GridView.builder(

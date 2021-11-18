@@ -4,23 +4,23 @@ import 'package:jiu_jitsu_para_todos/src/modules/historyofjiujitsu/view/historyo
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_path.dart';
 
 class BodyHistoryOfJiuJistu extends StatelessWidget {
-  const BodyHistoryOfJiuJistu();
+  const BodyHistoryOfJiuJistu({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.height,
       child: SingleChildScrollView(
         child: Column(
           children: [
             ButtonOptionsHistory(
-              imageButton: AppIconsPath.india,
-              textButton: 'button_origin_of_jiujitsu'.tr(),
+              imageButtonOptionsHistory: AppIconsPath.india,
+              textButtonOptionsHistory: 'button_origin_of_jiujitsu'.tr(),
               routeButton: '/OriginOfJiujitsu',
             ),
             ButtonOptionsHistory(
-              imageButton: AppIconsPath.brasil,
-              textButton: 'button_jiujitsu_in_brazil'.tr(),
+              imageButtonOptionsHistory: AppIconsPath.brasil,
+              textButtonOptionsHistory: 'button_jiujitsu_in_brazil'.tr(),
               routeButton: '/JiujitsuInBrazil',
             ),
             SizedBox(

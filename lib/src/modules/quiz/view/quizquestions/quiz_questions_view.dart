@@ -11,13 +11,15 @@ import 'package:easy_localization/easy_localization.dart';
 class QuizQuestions extends StatefulWidget {
   final String difficulty;
   final String difficultyName;
-  QuizQuestions({required this.difficulty, required this.difficultyName})
+  QuizQuestions(
+      {Key? key, required this.difficulty, required this.difficultyName})
       : assert(['easy', 'medium', 'hard'].contains(difficulty) &&
             [
               'text_difficultyname_white_belt'.tr(),
               'text_difficultyname_blue_belt'.tr(),
               'text_difficultyname_black_belt'.tr()
-            ].contains(difficultyName));
+            ].contains(difficultyName)),
+        super(key: key);
 
   @override
   _QuizQuestionsState createState() => _QuizQuestionsState();
@@ -27,12 +29,12 @@ class _QuizQuestionsState extends State<QuizQuestions> {
   //quiz controller
   final ControllerQuiz _controllerQuiz = ControllerQuiz();
   //quiz
-  var _myQuestions;
+  late List<dynamic> _myQuestions;
   String? _difficultyName;
   //disablebutton for all buttons
   bool isButtonDisabled = false;
   //build video
-  bool _buildVideo = true;
+  final bool _buildVideo = true;
   //song buttons
   final AudioPlayer _playerRightAnswer = AudioPlayer();
   final AudioPlayer _playerWrongAnswer = AudioPlayer();
@@ -47,7 +49,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
   Color? colorIconButtonA, colorIconButtonB, colorIconButtonC, colorIconButtonD;
 
   int get counterQuestions => _controllerQuiz.numberOfQuestions + 1;
-  int get totalNumberOfQuestions => _myQuestions!.length;
+  int get totalNumberOfQuestions => _myQuestions.length;
 
   @override
   void initState() {
@@ -91,36 +93,43 @@ class _QuizQuestionsState extends State<QuizQuestions> {
     if (_controllerQuiz.checkAnswer(answer, _myQuestions)) {
       _playSoundRightAnswer();
       isButtonDisabled = true;
-      if (orderOfQuestions == 'A')
+      if (orderOfQuestions == 'A') {
         setState(() {
           iconButtonA = Icons.done;
           colorButtonA = Colors.green;
           colorIconButtonA = Colors.green;
         });
-      else if (orderOfQuestions == 'B')
-        setState(() {
-          iconButtonB = Icons.done;
-          colorButtonB = Colors.green;
-          colorIconButtonB = Colors.green;
-        });
-      else if (orderOfQuestions == 'C')
-        setState(() {
-          iconButtonC = Icons.done;
-          colorButtonC = Colors.green;
-          colorIconButtonC = Colors.green;
-        });
-      else if (orderOfQuestions == 'D')
-        setState(() {
-          iconButtonD = Icons.done;
-          colorButtonD = Colors.green;
-          colorIconButtonD = Colors.green;
-        });
+      } else {
+        if (orderOfQuestions == 'B') {
+          setState(() {
+            iconButtonB = Icons.done;
+            colorButtonB = Colors.green;
+            colorIconButtonB = Colors.green;
+          });
+        } else {
+          if (orderOfQuestions == 'C') {
+            setState(() {
+              iconButtonC = Icons.done;
+              colorButtonC = Colors.green;
+              colorIconButtonC = Colors.green;
+            });
+          } else {
+            if (orderOfQuestions == 'D') {
+              setState(() {
+                iconButtonD = Icons.done;
+                colorButtonD = Colors.green;
+                colorIconButtonD = Colors.green;
+              });
+            }
+          }
+        }
+      }
 
       Future.delayed(
           const Duration(milliseconds: 500),
           () => setState(() {
-                if (counterQuestions == _myQuestions!.length ||
-                    counterQuestions > _myQuestions!.length) {
+                if (counterQuestions == _myQuestions.length ||
+                    counterQuestions > _myQuestions.length) {
                   _controllerQuiz.score++;
                   Admob.showInterstitialAd();
                   _switchToResult();
@@ -141,30 +150,37 @@ class _QuizQuestionsState extends State<QuizQuestions> {
     } else {
       _playSoundWrongAnswer();
       isButtonDisabled = true;
-      if (orderOfQuestions == 'A')
+      if (orderOfQuestions == 'A') {
         setState(() {
           iconButtonA = Icons.close;
           colorButtonA = Colors.red;
           colorIconButtonA = Colors.red;
         });
-      else if (orderOfQuestions == 'B')
-        setState(() {
-          iconButtonB = Icons.close;
-          colorButtonB = Colors.red;
-          colorIconButtonB = Colors.red;
-        });
-      else if (orderOfQuestions == 'C')
-        setState(() {
-          iconButtonC = Icons.close;
-          colorButtonC = Colors.red;
-          colorIconButtonC = Colors.red;
-        });
-      else if (orderOfQuestions == 'D')
-        setState(() {
-          iconButtonD = Icons.close;
-          colorButtonD = Colors.red;
-          colorIconButtonD = Colors.red;
-        });
+      } else {
+        if (orderOfQuestions == 'B') {
+          setState(() {
+            iconButtonB = Icons.close;
+            colorButtonB = Colors.red;
+            colorIconButtonB = Colors.red;
+          });
+        } else {
+          if (orderOfQuestions == 'C') {
+            setState(() {
+              iconButtonC = Icons.close;
+              colorButtonC = Colors.red;
+              colorIconButtonC = Colors.red;
+            });
+          } else {
+            if (orderOfQuestions == 'D') {
+              setState(() {
+                iconButtonD = Icons.close;
+                colorButtonD = Colors.red;
+                colorIconButtonD = Colors.red;
+              });
+            }
+          }
+        }
+      }
 
       Future.delayed(
         const Duration(milliseconds: 500),
@@ -179,12 +195,13 @@ class _QuizQuestionsState extends State<QuizQuestions> {
             iconButtonC = null;
             iconButtonD = null;
             isButtonDisabled = false;
-            if (counterQuestions == _myQuestions!.length ||
-                counterQuestions > _myQuestions!.length) {
+            if (counterQuestions == _myQuestions.length ||
+                counterQuestions > _myQuestions.length) {
               Admob.showInterstitialAd();
               _switchToResult();
-            } else
+            } else {
               _controllerQuiz.numberOfQuestions++;
+            }
           },
         ),
       );
@@ -200,7 +217,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
         elevation: 0,
       ),
       backgroundColor: AppColors.background,
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Column(
@@ -232,7 +249,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
               width: MediaQuery.of(context).size.width,
               height: 1.h,
               decoration: const BoxDecoration(
-                gradient: const LinearGradient(
+                gradient: LinearGradient(
                     colors: [Colors.white, AppColors.background],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight),

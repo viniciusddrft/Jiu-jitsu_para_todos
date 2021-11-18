@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
 class SettingsView extends StatefulWidget {
-  const SettingsView();
+  const SettingsView({Key? key}) : super(key: key);
   @override
   _SettingsViewState createState() => _SettingsViewState();
 }
@@ -21,11 +21,11 @@ class _SettingsViewState extends State<SettingsView> {
             style: const TextStyle(fontFamily: 'YatraOne')),
       ),
       backgroundColor: AppColors.background,
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: 60.h,
         child: Center(
           child: Text(
-            'text_version'.tr() + ' 2.1.7',
+            'text_version'.tr() + ' 2.1.8',
             style: TextStyle(fontSize: 14.sp, color: Colors.grey[700]),
           ),
         ),

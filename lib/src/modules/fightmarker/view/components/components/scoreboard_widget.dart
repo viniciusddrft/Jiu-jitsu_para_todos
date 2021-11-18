@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class Scoreboard extends StatefulWidget {
-  Scoreboard();
+  const Scoreboard({Key? key}) : super(key: key);
   @override
   _ScoreboardState createState() => _ScoreboardState();
 }
@@ -12,6 +12,14 @@ class _ScoreboardState extends State<Scoreboard> {
   int _fighterPoints = 0;
   int _punishmentsOfTheFighter = 0;
   int _advantagesOfTheFighter = 0;
+
+  //this setState fixes the size of texts on this screen due to rotation
+  @override
+  void didChangeDependencies() {
+    Future.delayed(Duration.zero, () => setState(() {}));
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -45,7 +53,7 @@ class _ScoreboardState extends State<Scoreboard> {
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           IconButton(
             iconSize: 60.sp,
-            icon: Icon(Icons.remove),
+            icon: const Icon(Icons.remove),
             onPressed: () => setState(() {
               if (_fighterPoints >= 2) _fighterPoints -= 2;
             }),

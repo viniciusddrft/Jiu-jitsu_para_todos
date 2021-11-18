@@ -16,18 +16,14 @@ class MyClock {
   });
 
   void minuteButtonPressed() {
-    if (minutes == null) {
-      minutes = 0;
-    }
+    minutes ??= 0;
     timeOld = time;
     time = minutes!;
     minutes = 0;
   }
 
   bool secondsButtonPressed() {
-    if (seconds == null) {
-      seconds = 0;
-    }
+    seconds ??= 0;
     time += seconds!;
     if (time > 0) {
       controller.restart(duration: time);

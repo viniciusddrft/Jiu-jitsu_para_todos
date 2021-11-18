@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class Cbjjrules extends StatefulWidget {
-  const Cbjjrules();
+  const Cbjjrules({Key? key}) : super(key: key);
   @override
   _CbjjrulesState createState() => _CbjjrulesState();
 }
@@ -18,15 +18,15 @@ class _CbjjrulesState extends State<Cbjjrules> {
 
   @override
   void didChangeDependencies() {
-    if (!_loadingAnchoredBanner)
+    if (!_loadingAnchoredBanner) {
       Admob.createAnchoredBanner(context).then((BannerAd? banner) {
         if (banner != null) {
           _adWidget.value = AdWidget(key: UniqueKey(), ad: banner..load());
           Admob.heightAnchoredBanner = banner.size.height;
           Admob.widthAnchoredBanner = banner.size.width;
         }
-      })
-        ..whenComplete(() => _loadingAnchoredBanner = true);
+      }).whenComplete(() => _loadingAnchoredBanner = true);
+    }
     super.didChangeDependencies();
   }
 
@@ -58,7 +58,7 @@ class _CbjjrulesState extends State<Cbjjrules> {
         valueListenable: _adWidget,
         builder: (BuildContext context, AdWidget? value, Widget? child) =>
             _loadingAnchoredBanner == true
-                ? Container(
+                ? SizedBox(
                     height: Admob.heightAnchoredBanner.toDouble(),
                     width: Admob.widthAnchoredBanner.toDouble(),
                     child: value,
@@ -68,13 +68,13 @@ class _CbjjrulesState extends State<Cbjjrules> {
                     color: Colors.transparent,
                   ),
       ),
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width / 1.2,
                 child: Column(
                   children: [
@@ -84,7 +84,7 @@ class _CbjjrulesState extends State<Cbjjrules> {
                       style: TextStyle(fontSize: 16.sp),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
-                    Container(
+                    SizedBox(
                       height: 50.h,
                       width: 200.w,
                       child: OutlinedButton(
@@ -95,7 +95,7 @@ class _CbjjrulesState extends State<Cbjjrules> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
                             ),
-                            side: BorderSide(color: Colors.white)),
+                            side: const BorderSide(color: Colors.white)),
                         onPressed: () =>
                             _launchLink('https://cbjj.com.br/books-videos'),
                         child: Center(

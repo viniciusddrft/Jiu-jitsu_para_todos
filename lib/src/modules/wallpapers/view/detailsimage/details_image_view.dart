@@ -11,7 +11,8 @@ class DetailsImage extends StatefulWidget {
   final String imagePath;
   final int index;
 
-  const DetailsImage({required this.imagePath, required this.index});
+  const DetailsImage({Key? key, required this.imagePath, required this.index})
+      : super(key: key);
 
   @override
   _DetailsImageState createState() => _DetailsImageState();
@@ -66,17 +67,18 @@ class _DetailsImageState extends State<DetailsImage> {
     ByteData bytes = await rootBundle.load(imagePath);
 
     var result = await ImageGallerySaver.saveImage(bytes.buffer.asUint8List());
-    if ((result['isSuccess']))
+    if ((result['isSuccess'])) {
       _showMyDialogsaveimage();
-    else
+    } else {
       _showMyDialogsaveerro();
+    }
   }
 
 //------------------------------------------------------------------------------
   void onPressed(String imagePath) async {
     if (await Permission.storage.request().isGranted) {
       Admob.showInterstitialAd();
-      Future.delayed(Duration(seconds: 3), () => _saveImage(imagePath));
+      Future.delayed(const Duration(seconds: 1), () => _saveImage(imagePath));
     }
   }
 
@@ -86,61 +88,59 @@ class _DetailsImageState extends State<DetailsImage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: Container(
-        child: Column(
-          children: [
-            Expanded(
-              child: Hero(
-                tag: 'logo${widget.index}',
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30)),
-                    image: DecorationImage(
-                      image: AssetImage(widget.imagePath),
-                      fit: BoxFit.cover,
-                    ),
+      body: Column(
+        children: [
+          Expanded(
+            child: Hero(
+              tag: 'logo${widget.index}',
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30)),
+                  image: DecorationImage(
+                    image: AssetImage(widget.imagePath),
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
             ),
-            Container(
-              height: MediaQuery.of(context).size.height / 3.2,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        height: 50.h,
-                        width: 200.w,
-                        child: OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                              primary: Colors.white,
-                              elevation: 7,
-                              backgroundColor: AppColors.background,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              side: const BorderSide(color: Colors.white)),
-                          onPressed: () => onPressed(widget.imagePath),
-                          child: Center(
-                            child: Text(
-                              'button_save_image'.tr(),
-                              style: TextStyle(fontSize: 16.sp),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 3.2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 50.h,
+                      width: 200.w,
+                      child: OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                            primary: Colors.white,
+                            elevation: 7,
+                            backgroundColor: AppColors.background,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
                             ),
+                            side: const BorderSide(color: Colors.white)),
+                        onPressed: () => onPressed(widget.imagePath),
+                        child: Center(
+                          child: Text(
+                            'button_save_image'.tr(),
+                            style: TextStyle(fontSize: 16.sp),
                           ),
                         ),
-                      )
-                    ],
-                  )
-                ],
-              ),
+                      ),
+                    )
+                  ],
+                )
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

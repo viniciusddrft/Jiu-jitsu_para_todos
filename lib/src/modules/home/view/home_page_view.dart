@@ -7,7 +7,7 @@ import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:wakelock/wakelock.dart';
 
 class HomePageView extends StatefulWidget {
-  const HomePageView();
+  const HomePageView({Key? key}) : super(key: key);
   @override
   _HomePageViewState createState() => _HomePageViewState();
 }
@@ -38,7 +38,7 @@ class _HomePageViewState extends State<HomePageView> {
         ],
       ),
       backgroundColor: AppColors.background,
-      body: BodyHomePage(),
+      body: const BodyHomePage(),
     );
   }
 }

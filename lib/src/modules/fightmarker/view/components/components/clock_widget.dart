@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class Clock extends StatefulWidget {
-  Clock();
+  const Clock({Key? key}) : super(key: key);
   @override
   _ClockState createState() => _ClockState();
 }
@@ -15,6 +15,13 @@ class Clock extends StatefulWidget {
 class _ClockState extends State<Clock> {
   final MyClock _myClock = MyClock();
   final _player = AudioPlayer();
+
+  //this setState fixes the size of texts on this screen due to rotation
+  @override
+  void didChangeDependencies() {
+    Future.delayed(Duration.zero, () => setState(() {}));
+    super.didChangeDependencies();
+  }
 
   @override
   void dispose() {
@@ -123,98 +130,88 @@ class _ClockState extends State<Clock> {
 //------------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          GestureDetector(
-            child: CircularCountDownTimer(
-              duration: _myClock.time,
-              controller: _myClock.controller,
-              autoStart: false,
-              width: MediaQuery.of(context).size.width / 3,
-              height: MediaQuery.of(context).size.height / 3,
-              textFormat: CountdownTextFormat.MM_SS,
-              ringColor: Colors.white,
-              fillColor: Colors.green,
-              backgroundColor: null,
-              strokeWidth: 14.0.sp,
-              strokeCap: StrokeCap.butt,
-              textStyle: TextStyle(fontSize: 60.0.sp, fontFamily: 'YatraOne'),
-              isReverse: true,
-              isReverseAnimation: false,
-              isTimerTextShown: true,
-              onComplete: () {
-                _player.setAsset('assets/music/alarm_sound.mp3');
-                _player.play();
-                _showMyDialogstopsound();
-              },
-            ),
-            onTap: () {
-              _showMyDialogSeconds();
-              _showMyDialogMinutes();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        GestureDetector(
+          child: CircularCountDownTimer(
+            duration: _myClock.time,
+            controller: _myClock.controller,
+            autoStart: false,
+            width: MediaQuery.of(context).size.width / 3,
+            height: MediaQuery.of(context).size.height / 3,
+            textFormat: CountdownTextFormat.MM_SS,
+            ringColor: Colors.white,
+            fillColor: Colors.green,
+            backgroundColor: null,
+            strokeWidth: 14.0.sp,
+            strokeCap: StrokeCap.butt,
+            textStyle: TextStyle(fontSize: 60.0.sp, fontFamily: 'YatraOne'),
+            isReverse: true,
+            isReverseAnimation: false,
+            isTimerTextShown: true,
+            onComplete: () {
+              _player.setAsset('assets/music/alarm_sound.mp3');
+              _player.play();
+              _showMyDialogstopsound();
             },
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height / 12,
-          ),
-          ConstrainedBox(
-            constraints: BoxConstraints.tightFor(
-                width: MediaQuery.of(context).size.width / 9,
-                height: MediaQuery.of(context).size.height / 12),
-            child: Container(
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                    elevation: 7,
-                    primary: _myClock.isPause ? Colors.green : Colors.red,
-                    backgroundColor: AppColors.background,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    side: BorderSide(
-                        color: _myClock.isPause ? Colors.green : Colors.red)),
-                onPressed: () => setState(() => _myClock.startAndPauseButton()),
-                child: Center(
-                  child: Center(
-                    child: Icon(
-                        _myClock.isPause ? Icons.play_arrow : Icons.pause,
-                        color: _myClock.isPause ? Colors.green : Colors.red),
-                  ),
+          onTap: () {
+            _showMyDialogSeconds();
+            _showMyDialogMinutes();
+          },
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height / 12,
+        ),
+        ConstrainedBox(
+          constraints: BoxConstraints.tightFor(
+              width: MediaQuery.of(context).size.width / 9,
+              height: MediaQuery.of(context).size.height / 12),
+          child: OutlinedButton(
+            style: OutlinedButton.styleFrom(
+                elevation: 7,
+                primary: _myClock.isPause ? Colors.green : Colors.red,
+                backgroundColor: AppColors.background,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
                 ),
+                side: BorderSide(
+                    color: _myClock.isPause ? Colors.green : Colors.red)),
+            onPressed: () => setState(() => _myClock.startAndPauseButton()),
+            child: Center(
+              child: Icon(_myClock.isPause ? Icons.play_arrow : Icons.pause,
+                  color: _myClock.isPause ? Colors.green : Colors.red),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height / 15,
+        ),
+        ConstrainedBox(
+          constraints: BoxConstraints.tightFor(
+              width: MediaQuery.of(context).size.width / 9,
+              height: MediaQuery.of(context).size.height / 12),
+          child: OutlinedButton(
+            style: OutlinedButton.styleFrom(
+              elevation: 7,
+              primary: Colors.yellow,
+              backgroundColor: AppColors.background,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+              side: const BorderSide(color: Colors.yellow),
+            ),
+            onPressed: () => setState(() => _myClock.restartButton()),
+            child: const Center(
+              child: Icon(
+                Icons.refresh_rounded,
+                color: Colors.yellow,
               ),
             ),
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height / 15,
-          ),
-          ConstrainedBox(
-            constraints: BoxConstraints.tightFor(
-                width: MediaQuery.of(context).size.width / 9,
-                height: MediaQuery.of(context).size.height / 12),
-            child: Container(
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                    elevation: 7,
-                    primary: Colors.yellow,
-                    backgroundColor: AppColors.background,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    side: BorderSide(color: Colors.yellow)),
-                onPressed: () => setState(() => _myClock.restartButton()),
-                child: Center(
-                  child: Center(
-                    child: const Icon(
-                      Icons.refresh_rounded,
-                      color: Colors.yellow,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

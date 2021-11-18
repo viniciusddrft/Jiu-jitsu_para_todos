@@ -7,7 +7,7 @@ import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:wakelock/wakelock.dart';
 
 class FightMakerView extends StatefulWidget {
-  FightMakerView();
+  const FightMakerView({Key? key}) : super(key: key);
 
   @override
   State<FightMakerView> createState() => _FightMakerViewState();
@@ -33,7 +33,7 @@ class _FightMakerViewState extends State<FightMakerView> {
             style: const TextStyle(fontFamily: 'YatraOne')),
       ),
       backgroundColor: AppColors.background,
-      body: BodyFightMarker(),
+      body: const BodyFightMarker(),
     );
   }
 }

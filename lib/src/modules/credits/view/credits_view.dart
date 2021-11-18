@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class CreditsView extends StatefulWidget {
-  const CreditsView();
+  const CreditsView({Key? key}) : super(key: key);
   @override
   _CreditsViewState createState() => _CreditsViewState();
 }
@@ -21,7 +21,7 @@ class _CreditsViewState extends State<CreditsView> {
             style: const TextStyle(fontFamily: 'YatraOne')),
       ),
       backgroundColor: AppColors.background,
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Column(
@@ -42,7 +42,7 @@ class _CreditsViewState extends State<CreditsView> {
                   'assets/images/iconscredits/flaticon.png',
                   width: MediaQuery.of(context).size.width / 2,
                 ),
-                label: Text('')),
+                label: const Text('')),
             SizedBox(
               height: MediaQuery.of(context).size.height / 20,
             ),
@@ -56,11 +56,11 @@ class _CreditsViewState extends State<CreditsView> {
                 icon: const FlutterLogo(
                   size: 100,
                 ),
-                label: Text('')),
+                label: const Text('')),
             SizedBox(
               height: MediaQuery.of(context).size.height / 20,
             ),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width / 1.4,
               child: Text(
                 'text_if_you_want_to_know_both_the_flutter_and_the_flaticon_just_click_on_the_icons'

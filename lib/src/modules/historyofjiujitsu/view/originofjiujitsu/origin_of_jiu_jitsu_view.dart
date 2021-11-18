@@ -6,7 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OriginOfJiujitsu extends StatefulWidget {
-  const OriginOfJiujitsu();
+  const OriginOfJiujitsu({Key? key}) : super(key: key);
   @override
   _OriginOfJiujitsuState createState() => _OriginOfJiujitsuState();
 }
@@ -23,15 +23,15 @@ class _OriginOfJiujitsuState extends State<OriginOfJiujitsu> {
 
   @override
   void didChangeDependencies() {
-    if (!_loadingAnchoredBanner)
+    if (!_loadingAnchoredBanner) {
       Admob.createAnchoredBanner(context).then((BannerAd? banner) {
         if (banner != null) {
           _adWidget.value = AdWidget(key: UniqueKey(), ad: banner..load());
           Admob.heightAnchoredBanner = banner.size.height;
           Admob.widthAnchoredBanner = banner.size.width;
         }
-      })
-        ..whenComplete(() => _loadingAnchoredBanner = true);
+      }).whenComplete(() => _loadingAnchoredBanner = true);
+    }
 
     super.didChangeDependencies();
   }
@@ -52,7 +52,7 @@ class _OriginOfJiujitsuState extends State<OriginOfJiujitsu> {
         valueListenable: _adWidget,
         builder: (BuildContext context, AdWidget? value, Widget? child) =>
             _loadingAnchoredBanner == true
-                ? Container(
+                ? SizedBox(
                     height: Admob.heightAnchoredBanner.toDouble(),
                     width: Admob.widthAnchoredBanner.toDouble(),
                     child: value,
@@ -62,13 +62,13 @@ class _OriginOfJiujitsuState extends State<OriginOfJiujitsu> {
                     color: Colors.transparent,
                   ),
       ),
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width / 1.2,
                 child: Column(
                   children: [

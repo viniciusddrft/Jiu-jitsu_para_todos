@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/controller/quiz_controller.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -34,7 +35,7 @@ main() {
           _isQuestionsDifferents = true;
         }
       }
-      print('Of ' +
+      debugPrint('Of ' +
           _arrayTeste1.length.toString() +
           ' questions ' +
           _numberOfDifferentQuestions.toString() +

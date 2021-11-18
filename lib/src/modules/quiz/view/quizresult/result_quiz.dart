@@ -10,7 +10,9 @@ class ResultQuiz extends StatefulWidget {
   const ResultQuiz(
       {required this.score,
       required this.difficultyName,
-      required this.totalQuestions});
+      required this.totalQuestions,
+      Key? key})
+      : super(key: key);
   @override
   _ResultQuizState createState() => _ResultQuizState();
 }
@@ -53,7 +55,7 @@ class _ResultQuizState extends State<ResultQuiz> {
         elevation: 0,
       ),
       backgroundColor: AppColors.background,
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Column(
@@ -71,7 +73,7 @@ class _ResultQuizState extends State<ResultQuiz> {
               style: TextStyle(fontSize: 20.sp),
             ),
             SizedBox(height: MediaQuery.of(context).size.height / 15),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width / 1.4,
               child: Center(
                 child: Text(
@@ -81,20 +83,20 @@ class _ResultQuizState extends State<ResultQuiz> {
               ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height / 10),
-            Container(
+            SizedBox(
               height: 150,
               width: 150,
               child: Stack(
                 children: [
-                  Container(
+                  SizedBox(
                     height: 150,
                     width: 150,
                     child: CircularProgressIndicator(
                         strokeWidth: 7,
                         value: _scorePercentage,
-                        backgroundColor: Color(0xff313959),
+                        backgroundColor: const Color(0xff313959),
                         valueColor:
-                            AlwaysStoppedAnimation<Color>(Colors.green)),
+                            const AlwaysStoppedAnimation<Color>(Colors.green)),
                   ),
                   Center(
                     child: Text(

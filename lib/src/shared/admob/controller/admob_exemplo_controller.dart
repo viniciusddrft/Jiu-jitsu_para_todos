@@ -5,7 +5,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 class Admob {
   static int _numInterstitialLoadAttempts = 0;
   static int _numBannerLoadAttempts = 0;
-  static int _maxFailedLoadAttempts = 3;
+  static const int _maxFailedLoadAttempts = 3;
 
   static InterstitialAd? _interstitialAd;
 
@@ -28,7 +28,7 @@ class Admob {
 
     final BannerAd banner = BannerAd(
       size: _size,
-      request: AdRequest(),
+      request: const AdRequest(),
       adUnitId: BannerAd.testAdUnitId,
       listener: BannerAdListener(
         onAdLoaded: (Ad ad) {
@@ -37,14 +37,15 @@ class Admob {
         onAdFailedToLoad: (Ad ad, LoadAdError error) {
           debugPrint('Ad failed to load: $error');
           _numBannerLoadAttempts++;
-          if (_numBannerLoadAttempts != _maxFailedLoadAttempts)
+          if (_numBannerLoadAttempts != _maxFailedLoadAttempts) {
             createAnchoredBanner(context);
-          else
+          } else {
             ad.dispose();
+          }
         },
         onAdOpened: (Ad ad) => debugPrint('$BannerAd onAdOpened.'),
         onAdClosed: (Ad ad) => debugPrint('$BannerAd onAdClosed.'),
-        onAdImpression: (Ad ad) => debugPrint('ad shown successfully \o/'),
+        onAdImpression: (Ad ad) => debugPrint('ad shown successfully |o/'),
       ),
     );
     return banner;
@@ -55,7 +56,7 @@ class Admob {
   static void createInterstitialAd() {
     InterstitialAd.load(
       adUnitId: InterstitialAd.testAdUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (InterstitialAd ad) {
           debugPrint('$ad loaded in didChangeDependencies :)');
@@ -82,7 +83,7 @@ class Admob {
               createInterstitialAd();
             },
             onAdImpression: (InterstitialAd ad) =>
-                debugPrint('ad shown successfully \o/ | didChangeDependencies'),
+                debugPrint('ad shown successfully |o/ | didChangeDependencies'),
           );
         },
         onAdFailedToLoad: (LoadAdError error) {
@@ -114,7 +115,7 @@ class Admob {
   static void _createAndShowInterstitialAd() {
     InterstitialAd.load(
       adUnitId: InterstitialAd.testAdUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (InterstitialAd ad) {
           debugPrint('$ad loaded');
@@ -141,7 +142,7 @@ class Admob {
               _createAndShowInterstitialAd();
             },
             onAdImpression: (InterstitialAd ad) =>
-                debugPrint('ad shown successfully \o/'),
+                debugPrint('ad shown successfully |o/'),
           );
           _interstitialAd?.show();
           _interstitialAd?.dispose();

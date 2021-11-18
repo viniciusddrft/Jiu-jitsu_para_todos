@@ -5,7 +5,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
 class RulesView extends StatelessWidget {
-  const RulesView();
+  const RulesView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

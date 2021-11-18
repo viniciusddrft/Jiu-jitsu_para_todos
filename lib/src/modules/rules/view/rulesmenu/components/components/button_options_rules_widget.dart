@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/button_for_menu/button_for_menu.dart';
 
 class ButtonOptionsRules extends ButtonForMenu {
-  final String imageButton;
-  final String textButton;
+  final String imageButtonOptionsRules;
+  final String textButtonOptionsRules;
   final String routeButton;
 
   const ButtonOptionsRules(
-      {required this.imageButton,
-      required this.textButton,
+      {Key? key,
+      required this.imageButtonOptionsRules,
+      required this.textButtonOptionsRules,
       required this.routeButton})
-      : super(imageButton: imageButton, textButton: textButton);
+      : super(
+            key: key,
+            imageButton: imageButtonOptionsRules,
+            textButton: textButtonOptionsRules);
 
   @override
   Widget build(BuildContext context) {

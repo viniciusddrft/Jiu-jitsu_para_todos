@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class VideoQuiz extends StatefulWidget {
   final String videoPath;
-  const VideoQuiz({required this.videoPath});
+  const VideoQuiz({Key? key, required this.videoPath}) : super(key: key);
   @override
   _VideoQuizState createState() => _VideoQuizState();
 }
@@ -44,9 +44,8 @@ class _VideoQuizState extends State<VideoQuiz> {
 class VideoPlayerWidget extends StatelessWidget {
   final VideoPlayerController controller;
 
-  const VideoPlayerWidget({
-    required this.controller,
-  });
+  const VideoPlayerWidget({required this.controller, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) => controller.value.isInitialized
@@ -60,9 +59,9 @@ class VideoPlayerWidget extends StatelessWidget {
             child: buildVideo(),
           ),
         )
-      : Container(
+      : SizedBox(
           height: 250.h,
-          child: Center(
+          child: const Center(
             child: CircularProgressIndicator(),
           ),
         );
@@ -87,7 +86,8 @@ class VideoPlayerWidget extends StatelessWidget {
 class BasicOverlayWidget extends StatefulWidget {
   final VideoPlayerController controller;
 
-  const BasicOverlayWidget({required this.controller});
+  const BasicOverlayWidget({required this.controller, Key? key})
+      : super(key: key);
 
   @override
   _BasicOverlayWidgetState createState() => _BasicOverlayWidgetState();

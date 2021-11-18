@@ -6,7 +6,7 @@ import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Basicrules extends StatefulWidget {
-  const Basicrules();
+  const Basicrules({Key? key}) : super(key: key);
   @override
   _BasicrulesState createState() => _BasicrulesState();
 }
@@ -23,15 +23,15 @@ class _BasicrulesState extends State<Basicrules> {
 
   @override
   void didChangeDependencies() {
-    if (!_loadingAnchoredBanner)
+    if (!_loadingAnchoredBanner) {
       Admob.createAnchoredBanner(context).then((BannerAd? banner) {
         if (banner != null) {
           _adWidget.value = AdWidget(key: UniqueKey(), ad: banner..load());
           Admob.heightAnchoredBanner = banner.size.height;
           Admob.widthAnchoredBanner = banner.size.width;
         }
-      })
-        ..whenComplete(() => _loadingAnchoredBanner = true);
+      }).whenComplete(() => _loadingAnchoredBanner = true);
+    }
     super.didChangeDependencies();
   }
 
@@ -51,7 +51,7 @@ class _BasicrulesState extends State<Basicrules> {
         valueListenable: _adWidget,
         builder: (BuildContext context, AdWidget? value, Widget? child) =>
             _loadingAnchoredBanner == true
-                ? Container(
+                ? SizedBox(
                     height: Admob.heightAnchoredBanner.toDouble(),
                     width: Admob.widthAnchoredBanner.toDouble(),
                     child: value,
@@ -61,13 +61,13 @@ class _BasicrulesState extends State<Basicrules> {
                     color: Colors.transparent,
                   ),
       ),
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width / 1.2,
                 child: Column(
                   children: [

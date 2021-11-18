@@ -6,15 +6,14 @@ abstract class ButtonForMenu extends StatelessWidget {
   final String imageButton;
   final String textButton;
 
-  const ButtonForMenu({
-    required this.imageButton,
-    required this.textButton,
-  });
+  const ButtonForMenu(
+      {required this.imageButton, required this.textButton, Key? key})
+      : super(key: key);
 
   Widget _makeThumbnail(VoidCallback changeRoute) => GestureDetector(
         onTap: changeRoute,
         child: Container(
-          alignment: FractionalOffset(0.0, 0.5),
+          alignment: const FractionalOffset(0.0, 0.5),
           margin: EdgeInsets.only(
             left: 24.0.w,
           ),
@@ -29,7 +28,7 @@ abstract class ButtonForMenu extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.circular(8.0),
-          boxShadow: <BoxShadow>[
+          boxShadow: const <BoxShadow>[
             BoxShadow(
                 color: Colors.black,
                 blurRadius: 10.0,
@@ -39,7 +38,7 @@ abstract class ButtonForMenu extends StatelessWidget {
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             elevation: 7,
-            padding: EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
             ),
@@ -47,7 +46,7 @@ abstract class ButtonForMenu extends StatelessWidget {
           onPressed: changeRoute,
           child: Ink(
             decoration: BoxDecoration(
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                     colors: [AppColors.background, Colors.indigo],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight),

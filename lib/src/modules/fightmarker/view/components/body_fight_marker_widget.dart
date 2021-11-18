@@ -3,38 +3,31 @@ import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/view/components/com
 import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/view/components/components/scoreboard_widget.dart';
 
 class BodyFightMarker extends StatefulWidget {
-  BodyFightMarker();
+  const BodyFightMarker({Key? key}) : super(key: key);
   @override
   _BodyFightMarkerState createState() => _BodyFightMarkerState();
 }
 
 class _BodyFightMarkerState extends State<BodyFightMarker> {
-  //this setState fixes the size of texts on this screen due to rotation
-  @override
-  void didChangeDependencies() {
-    Future.delayed(Duration.zero, () => setState(() {}));
-    super.didChangeDependencies();
-  }
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Container(
+      child: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height / 1.3,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Scoreboard(),
+            const Scoreboard(),
             SizedBox(
               width: MediaQuery.of(context).size.width / 20,
             ),
-            Clock(),
+            const Clock(),
             SizedBox(
               width: MediaQuery.of(context).size.width / 20,
             ),
-            Scoreboard(),
+            const Scoreboard(),
           ],
         ),
       ),

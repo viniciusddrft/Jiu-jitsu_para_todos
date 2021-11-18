@@ -8,7 +8,7 @@ import 'package:in_app_review/in_app_review.dart';
 
 class BodySettings extends StatefulWidget {
   final Locale locale;
-  const BodySettings({required this.locale});
+  const BodySettings({required this.locale, Key? key}) : super(key: key);
   @override
   _BodySettingsState createState() => _BodySettingsState();
 }
@@ -18,7 +18,7 @@ class _BodySettingsState extends State<BodySettings> {
 
   late String _iconPath;
 
-  static List<Map<String, dynamic>> _allLocales = [
+  static final List<Map<String, dynamic>> _allLocales = [
     {
       'locale': const Locale('pt', 'BR'),
       'icon': AppIconsLanguages.brasil,
@@ -33,10 +33,11 @@ class _BodySettingsState extends State<BodySettings> {
 
   @override
   void initState() {
-    if (widget.locale == Locale('en', 'US'))
+    if (widget.locale == const Locale('en', 'US')) {
       _iconPath = AppIconsLanguages.unitedStates;
-    else if (widget.locale == Locale('pt', 'BR'))
+    } else if (widget.locale == const Locale('pt', 'BR')) {
       _iconPath = AppIconsLanguages.brasil;
+    }
     super.initState();
   }
 
@@ -48,17 +49,15 @@ class _BodySettingsState extends State<BodySettings> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          contentPadding: EdgeInsets.all(10),
+          contentPadding: const EdgeInsets.all(10),
           backgroundColor: AppColors.background,
           scrollable: true,
-          content: Container(
-            child: Text('text_notice_popup'.tr()),
-          ),
+          content: Text('text_notice_popup'.tr()),
           actions: [
             TextButton(
               onPressed: () {
                 context.setLocale(locale);
-                locale == Locale('pt', 'BR')
+                locale == const Locale('pt', 'BR')
                     ? _iconPath = AppIconsLanguages.brasil
                     : _iconPath = AppIconsLanguages.unitedStates;
                 Navigator.pop(context);
@@ -80,10 +79,10 @@ class _BodySettingsState extends State<BodySettings> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          contentPadding: EdgeInsets.all(10),
+          contentPadding: const EdgeInsets.all(10),
           backgroundColor: AppColors.background,
           scrollable: true,
-          content: Container(
+          content: SizedBox(
             width: MediaQuery.of(context).size.width / 1.4,
             height: MediaQuery.of(context).size.height / 2,
             child: ListView.builder(
@@ -121,7 +120,7 @@ class _BodySettingsState extends State<BodySettings> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Container(
+      child: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Column(
@@ -134,7 +133,7 @@ class _BodySettingsState extends State<BodySettings> {
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 color: AppColors.cardColor,
-                child: Container(
+                child: SizedBox(
                   height: 155.h,
                   width: MediaQuery.of(context).size.width / 1.15,
                   child: Column(
@@ -146,7 +145,7 @@ class _BodySettingsState extends State<BodySettings> {
                           style: TextStyle(fontSize: 20.sp),
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         height: 50.h,
                         width: 200.w,
                         child: OutlinedButton(
@@ -189,7 +188,7 @@ class _BodySettingsState extends State<BodySettings> {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               color: AppColors.cardColor,
-              child: Container(
+              child: SizedBox(
                 height: 240.h,
                 width: MediaQuery.of(context).size.width / 1.15,
                 child: Column(
@@ -203,7 +202,7 @@ class _BodySettingsState extends State<BodySettings> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 35.sp),
-                      child: Container(
+                      child: SizedBox(
                         height: 50.h,
                         width: 200.w,
                         child: OutlinedButton(
@@ -225,13 +224,13 @@ class _BodySettingsState extends State<BodySettings> {
                                 'E-mail',
                                 style: TextStyle(fontSize: 16.sp),
                               ),
-                              Icon(Icons.mail)
+                              const Icon(Icons.mail)
                             ],
                           ),
                         ),
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       height: 50.h,
                       width: 200.w,
                       child: OutlinedButton(
@@ -253,7 +252,7 @@ class _BodySettingsState extends State<BodySettings> {
                               'Facebook',
                               style: TextStyle(fontSize: 16.sp),
                             ),
-                            Icon(Icons.facebook)
+                            const Icon(Icons.facebook)
                           ],
                         ),
                       ),
@@ -267,7 +266,7 @@ class _BodySettingsState extends State<BodySettings> {
                 borderRadius: BorderRadius.circular(20.0),
               ),
               color: AppColors.cardColor,
-              child: Container(
+              child: SizedBox(
                 height: 240.h,
                 width: MediaQuery.of(context).size.width / 1.15,
                 child: Column(
@@ -281,7 +280,7 @@ class _BodySettingsState extends State<BodySettings> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 35.sp),
-                      child: Container(
+                      child: SizedBox(
                         height: 50.h,
                         width: 200.w,
                         child: OutlinedButton(
@@ -302,13 +301,13 @@ class _BodySettingsState extends State<BodySettings> {
                                 'text_rate_the_app'.tr(),
                                 style: TextStyle(fontSize: 16.sp),
                               ),
-                              Icon(Icons.rate_review_outlined)
+                              const Icon(Icons.rate_review_outlined)
                             ],
                           ),
                         ),
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       height: 50.h,
                       width: 200.w,
                       child: OutlinedButton(

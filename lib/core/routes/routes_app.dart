@@ -21,62 +21,62 @@ class Routes {
   static Route<dynamic>? routes(RouteSettings settings) {
     if (settings.name == "/Home") {
       return MaterialPageRoute(
-        builder: (BuildContext context) => HomePageView(),
+        builder: (BuildContext context) => const HomePageView(),
       );
     } else if (settings.name == "/Settings") {
       return TransitionElasticOut(
-        duration: Duration(milliseconds: 500),
-        route: SettingsView(),
+        duration: const Duration(milliseconds: 500),
+        route: const SettingsView(),
       );
     } else if (settings.name == "/Credits") {
       return TransitionLeftToRight(
-        duration: Duration(milliseconds: 300),
-        route: CreditsView(),
+        duration: const Duration(milliseconds: 300),
+        route: const CreditsView(),
       );
     } else if (settings.name == "/HistoryOfJiujitsu") {
       return TransitionElasticOut(
-        duration: Duration(milliseconds: 500),
-        route: HistoryOfJiuJitsuView(),
+        duration: const Duration(milliseconds: 500),
+        route: const HistoryOfJiuJitsuView(),
       );
     } else if (settings.name == "/Rules") {
       return TransitionElasticOut(
-        duration: Duration(milliseconds: 500),
-        route: RulesView(),
+        duration: const Duration(milliseconds: 500),
+        route: const RulesView(),
       );
     } else if (settings.name == "/Quiz") {
       return TransitionElasticOut(
-        duration: Duration(milliseconds: 500),
-        route: QuizView(),
+        duration: const Duration(milliseconds: 500),
+        route: const QuizView(),
       );
     } else if (settings.name == "/Fightmarker") {
       return TransitionElasticOut(
-        duration: Duration(milliseconds: 500),
-        route: FightMakerView(),
+        duration: const Duration(milliseconds: 500),
+        route: const FightMakerView(),
       );
     } else if (settings.name == "/Wallpapers") {
       return TransitionElasticOut(
-        duration: Duration(milliseconds: 500),
-        route: WallpapersView(),
+        duration: const Duration(milliseconds: 500),
+        route: const WallpapersView(),
       );
     } else if (settings.name == "/JiujitsuInBrazil") {
       return TransitionLeftToRight(
-        duration: Duration(milliseconds: 300),
-        route: JiujitsuinBrazil(),
+        duration: const Duration(milliseconds: 300),
+        route: const JiujitsuinBrazil(),
       );
     } else if (settings.name == "/OriginOfJiujitsu") {
       return TransitionLeftToRight(
-        duration: Duration(milliseconds: 300),
-        route: OriginOfJiujitsu(),
+        duration: const Duration(milliseconds: 300),
+        route: const OriginOfJiujitsu(),
       );
     } else if (settings.name == "/BasicRules") {
       return TransitionLeftToRight(
-        duration: Duration(milliseconds: 300),
-        route: Basicrules(),
+        duration: const Duration(milliseconds: 300),
+        route: const Basicrules(),
       );
     } else if (settings.name == "/CbjjRules") {
       return TransitionLeftToRight(
-        duration: Duration(milliseconds: 300),
-        route: Cbjjrules(),
+        duration: const Duration(milliseconds: 300),
+        route: const Cbjjrules(),
       );
     } else if (settings.name == "/DetailsImage" && settings.arguments != null) {
       return MaterialPageRoute(
@@ -88,7 +88,7 @@ class Routes {
     } else if (settings.name == "/QuizQuestions" &&
         settings.arguments != null) {
       return TransitionLeftToRight(
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         route: QuizQuestions(
           difficulty:
               (settings.arguments as Map<String, String>)['difficulty']!,
@@ -98,7 +98,7 @@ class Routes {
       );
     } else if (settings.name == "/ResultQuiz" && settings.arguments != null) {
       return TransitionElasticOut(
-        duration: Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 500),
         route: ResultQuiz(
           difficultyName:
               (settings.arguments as Map<String, dynamic>)['difficultyName'],

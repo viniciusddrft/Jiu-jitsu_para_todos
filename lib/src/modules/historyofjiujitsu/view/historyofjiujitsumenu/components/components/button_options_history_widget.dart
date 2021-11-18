@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/button_for_menu/button_for_menu.dart';
 
 class ButtonOptionsHistory extends ButtonForMenu {
-  final String imageButton;
-  final String textButton;
+  final String imageButtonOptionsHistory;
+  final String textButtonOptionsHistory;
   final String routeButton;
   const ButtonOptionsHistory(
-      {required this.imageButton,
-      required this.textButton,
-      required this.routeButton})
-      : super(imageButton: imageButton, textButton: textButton);
+      {required this.imageButtonOptionsHistory,
+      required this.textButtonOptionsHistory,
+      required this.routeButton,
+      Key? key})
+      : super(
+            imageButton: imageButtonOptionsHistory,
+            textButton: textButtonOptionsHistory,
+            key: key);
 
   @override
   Widget build(BuildContext context) {

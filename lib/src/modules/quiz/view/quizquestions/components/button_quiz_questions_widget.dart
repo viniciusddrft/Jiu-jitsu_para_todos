@@ -11,14 +11,16 @@ class ButtonQuizQuestions extends StatelessWidget {
   final Color? colorIcon;
   final IconData? icon;
   ButtonQuizQuestions(
-      {required this.onPressed,
+      {Key? key,
+      required this.onPressed,
       required this.isButtonDisabled,
       required this.answer,
       required this.orderOfQuestions,
       required this.colorButton,
       this.colorIcon,
       this.icon})
-      : assert(['A', 'B', 'C', 'D'].contains(orderOfQuestions));
+      : assert(['A', 'B', 'C', 'D'].contains(orderOfQuestions)),
+        super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -58,7 +60,7 @@ class ButtonQuizQuestions extends StatelessWidget {
             borderRadius: BorderRadius.circular(15.0),
           ),
           side: BorderSide(color: colorButton),
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
         ),
       ),
     );

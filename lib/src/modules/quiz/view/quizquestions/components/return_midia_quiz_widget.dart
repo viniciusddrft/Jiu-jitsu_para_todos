@@ -14,7 +14,7 @@ Widget returnImageOrVideoOfQuiz(
           width: 350.w,
           height: 254.h,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(30)),
+            borderRadius: const BorderRadius.all(Radius.circular(30)),
             image: DecorationImage(
               image: AssetImage(_controllerQuiz.returnPathImage(_myquestions)),
               fit: BoxFit.cover,
@@ -26,9 +26,9 @@ Widget returnImageOrVideoOfQuiz(
   } else if (_controllerQuiz.existVideo(_myquestions)) {
     return _buildVideo
         ? VideoQuiz(videoPath: _controllerQuiz.returnPathVideo(_myquestions))
-        : Container(
+        : SizedBox(
             height: 250.h,
-            child: Center(
+            child: const Center(
               child: CircularProgressIndicator(),
             ),
           );
