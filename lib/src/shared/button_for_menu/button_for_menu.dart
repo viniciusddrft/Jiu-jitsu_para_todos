@@ -10,6 +10,8 @@ abstract class ButtonForMenu extends StatelessWidget {
       {required this.imageButton, required this.textButton, Key? key})
       : super(key: key);
 
+  // changeRoute need context to be created and so it created in build method and parameter passed
+
   Widget _makeThumbnail(VoidCallback changeRoute) => GestureDetector(
         onTap: changeRoute,
         child: Container(

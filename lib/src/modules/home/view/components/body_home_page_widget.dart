@@ -27,30 +27,29 @@ class _BodyHomePageState extends State<BodyHomePage> {
         child: Column(
           children: [
             ButtonOptionsHome(
-              imageButtonOptionsHome: AppIconsPath.iconHistoryOfJiujitsu,
-              textButtonOptionsHome:
-                  'button_history_of_jiujitsu_home_page'.tr(),
+              imageButton: AppIconsPath.iconHistoryOfJiujitsu,
+              textButton: 'button_history_of_jiujitsu_home_page'.tr(),
               routeButton: '/HistoryOfJiujitsu', // <- '/historyofjiujitsu',
             ),
             ButtonOptionsHome(
-              imageButtonOptionsHome: AppIconsPath.rules,
-              textButtonOptionsHome: 'button_rules_home_page'.tr(),
+              imageButton: AppIconsPath.rules,
+              textButton: 'button_rules_home_page'.tr(),
               routeButton: '/Rules', // <- '/rules',
             ),
             ButtonOptionsHome(
-                imageButtonOptionsHome: AppIconsPath.quiz,
-                textButtonOptionsHome: 'button_quiz_home_page'.tr(),
+                imageButton: AppIconsPath.quiz,
+                textButton: 'button_quiz_home_page'.tr(),
                 routeButton: '/Quiz' // <- '/quiz',
                 ),
             ButtonOptionsHome(
-              imageButtonOptionsHome: AppIconsPath.fightMarker,
-              textButtonOptionsHome: 'button_fight_marker_home_page'.tr(),
+              imageButton: AppIconsPath.fightMarker,
+              textButton: 'button_fight_marker_home_page'.tr(),
               routeButton: '/Fightmarker', // <- '/fightmarker',
               isFightMakerView: true,
             ),
             ButtonOptionsHome(
-              imageButtonOptionsHome: AppIconsPath.wallpapers,
-              textButtonOptionsHome: 'button_wallpapers_home_page'.tr(),
+              imageButton: AppIconsPath.wallpapers,
+              textButton: 'button_wallpapers_home_page'.tr(),
               routeButton: '/Wallpapers', // <- '/wallpapers',
             ),
             SizedBox(

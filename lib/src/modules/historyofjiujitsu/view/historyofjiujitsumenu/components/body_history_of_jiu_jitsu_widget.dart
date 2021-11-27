@@ -14,13 +14,13 @@ class BodyHistoryOfJiuJistu extends StatelessWidget {
         child: Column(
           children: [
             ButtonOptionsHistory(
-              imageButtonOptionsHistory: AppIconsPath.india,
-              textButtonOptionsHistory: 'button_origin_of_jiujitsu'.tr(),
+              imageButton: AppIconsPath.india,
+              textButton: 'button_origin_of_jiujitsu'.tr(),
               routeButton: '/OriginOfJiujitsu',
             ),
             ButtonOptionsHistory(
-              imageButtonOptionsHistory: AppIconsPath.brasil,
-              textButtonOptionsHistory: 'button_jiujitsu_in_brazil'.tr(),
+              imageButton: AppIconsPath.brasil,
+              textButton: 'button_jiujitsu_in_brazil'.tr(),
               routeButton: '/JiujitsuInBrazil',
             ),
             SizedBox(

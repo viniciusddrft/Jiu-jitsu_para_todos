@@ -19,20 +19,20 @@ class _BodyQuizState extends State<BodyQuiz> {
         child: Column(
           children: [
             ButtonOptionQuiz(
-              imageButtonOptionQuiz: AppIconsPath.faixaBranca,
-              textButtonOptionQuiz: 'button_white_belt_level'.tr(),
+              imageButton: AppIconsPath.faixaBranca,
+              textButton: 'button_white_belt_level'.tr(),
               difficulty: 'easy',
               difficultyName: 'text_difficultyname_white_belt'.tr(),
             ),
             ButtonOptionQuiz(
-              imageButtonOptionQuiz: AppIconsPath.faixaAzul,
-              textButtonOptionQuiz: 'button_blue_belt_level'.tr(),
+              imageButton: AppIconsPath.faixaAzul,
+              textButton: 'button_blue_belt_level'.tr(),
               difficulty: 'medium',
               difficultyName: 'text_difficultyname_blue_belt'.tr(),
             ),
             ButtonOptionQuiz(
-              imageButtonOptionQuiz: AppIconsPath.faixaPreta,
-              textButtonOptionQuiz: 'button_black_belt_level'.tr(),
+              imageButton: AppIconsPath.faixaPreta,
+              textButton: 'button_black_belt_level'.tr(),
               difficulty: 'hard',
               difficultyName: 'text_difficultyname_black_belt'.tr(),
             ),

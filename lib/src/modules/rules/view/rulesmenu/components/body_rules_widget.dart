@@ -14,12 +14,12 @@ class BodyRules extends StatelessWidget {
         child: Column(
           children: [
             ButtonOptionsRules(
-                imageButtonOptionsRules: AppIconsPath.regrasBasicas,
-                textButtonOptionsRules: 'button_basic_rules'.tr(),
+                imageButton: AppIconsPath.regrasBasicas,
+                textButton: 'button_basic_rules'.tr(),
                 routeButton: '/BasicRules'), // <- '/basicrules'
             ButtonOptionsRules(
-                imageButtonOptionsRules: AppIconsPath.cbjjRules,
-                textButtonOptionsRules: 'button_cbjj_Rules'.tr(),
+                imageButton: AppIconsPath.cbjjRules,
+                textButton: 'button_cbjj_Rules'.tr(),
                 routeButton: '/CbjjRules'), //' <- /cbjjrules'),
             SizedBox(
               height: MediaQuery.of(context).size.height / 10,
