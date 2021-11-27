@@ -10,8 +10,8 @@ class PluginJustAudio implements InterfacePluginSound {
   void dispose() => _audioPlayer.dispose();
 
   @override
-  void play(String soundpath) =>
-      _audioPlayer.setAsset(soundpath).then((_) => _audioPlayer.play());
+  void play(String soundPath) =>
+      _audioPlayer.setAsset(soundPath).then((_) => _audioPlayer.play());
 
   @override
   void stop() => _audioPlayer.stop();
