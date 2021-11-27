@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/controller/clock_controller.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/plugins/plugin_sound_implements_just_audio.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -14,7 +14,8 @@ class Clock extends StatefulWidget {
 
 class _ClockState extends State<Clock> {
   final MyClock _myClock = MyClock();
-  final _player = AudioPlayer();
+
+  final _playerAudio = PluginJustAudio();
 
   //this setState fixes the size of texts on this screen due to rotation
   @override
@@ -25,7 +26,7 @@ class _ClockState extends State<Clock> {
 
   @override
   void dispose() {
-    _player.dispose();
+    _playerAudio.dispose();
     super.dispose();
   }
 
@@ -118,8 +119,10 @@ class _ClockState extends State<Clock> {
           actions: <Widget>[
             TextButton(
               child: Text('text_button_stopsound'.tr()),
-              onPressed: () =>
-                  _player.pause().then((_) => Navigator.of(context).pop()),
+              onPressed: () {
+                _playerAudio.stop();
+                Navigator.of(context).pop();
+              },
             ),
           ],
         );
@@ -151,8 +154,7 @@ class _ClockState extends State<Clock> {
             isReverseAnimation: false,
             isTimerTextShown: true,
             onComplete: () {
-              _player.setAsset('assets/music/alarm_sound.mp3');
-              _player.play();
+              _playerAudio.play('assets/music/alarm_sound.mp3');
               _showMyDialogstopsound();
             },
           ),

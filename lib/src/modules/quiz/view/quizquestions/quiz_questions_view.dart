@@ -3,8 +3,8 @@ import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controlle
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/controller/quiz_controller.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizquestions/components/button_quiz_questions_widget.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizquestions/components/return_midia_quiz_widget.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/plugins/plugin_sound_implements_just_audio.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -36,8 +36,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
   //build video
   final bool _buildVideo = true;
   //song buttons
-  final AudioPlayer _playerRightAnswer = AudioPlayer();
-  final AudioPlayer _playerWrongAnswer = AudioPlayer();
+  final _playerAudio = PluginJustAudio();
   // colors buttons
   Color colorButtonA = Colors.white;
   Color colorButtonB = Colors.white;
@@ -66,19 +65,16 @@ class _QuizQuestionsState extends State<QuizQuestions> {
 
   @override
   void dispose() {
-    _playerRightAnswer.dispose();
-    _playerWrongAnswer.dispose();
+    _playerAudio.dispose();
     super.dispose();
   }
 
 //------------------------------------------------------------------------------
-  void _playSoundRightAnswer() => _playerRightAnswer
-      .setAsset('assets/music/right_answer.mp3')
-      .then((_) => _playerRightAnswer.play());
+  void _playSoundRightAnswer() =>
+      _playerAudio.play('assets/music/right_answer.mp3');
 //------------------------------------------------------------------------------
-  void _playSoundWrongAnswer() => _playerWrongAnswer
-      .setAsset('assets/music/wrong_answer.mp3')
-      .then((_) => _playerWrongAnswer.play());
+  void _playSoundWrongAnswer() =>
+      _playerAudio.play('assets/music/wrong_answer.mp3');
 //------------------------------------------------------------------------------
   void _switchToResult() =>
       Navigator.pushReplacementNamed(context, '/ResultQuiz',
