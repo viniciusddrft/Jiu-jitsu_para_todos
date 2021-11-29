@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-abstract class ButtonForMenu extends StatelessWidget {
+abstract class ButtonForMenu extends StatefulWidget {
   final String imageButton;
   final String textButton;
 

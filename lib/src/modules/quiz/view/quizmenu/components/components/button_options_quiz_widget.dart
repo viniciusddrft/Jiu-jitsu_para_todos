@@ -28,15 +28,19 @@ class ButtonOptionQuiz extends ButtonForMenu {
               'text_difficultyname_black_belt'.tr()
             ].contains(difficultyName)),
         super(key: key, imageButton: imageButton, textButton: textButton);
+  @override
+  _ButtonOptionQuizState createState() => _ButtonOptionQuizState();
+}
+
+class _ButtonOptionQuizState extends State<ButtonOptionQuiz> {
+  void changeRoute() => Navigator.pushNamed(context, '/QuizQuestions',
+          arguments: <String, String>{
+            'difficulty': widget.difficulty,
+            'difficultyName': widget.difficultyName
+          });
 
   @override
   Widget build(BuildContext context) {
-    void changeRoute() => Navigator.pushNamed(context, '/QuizQuestions',
-            arguments: <String, String>{
-              'difficulty': difficulty,
-              'difficultyName': difficultyName
-            });
-
-    return makeButton(changeRoute);
+    return widget.makeButton(changeRoute);
   }
 }

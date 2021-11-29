@@ -15,13 +15,18 @@ class ButtonOptionsHome extends ButtonForMenu {
       : super(imageButton: imageButton, textButton: textButton, key: key);
 
   @override
-  Widget build(BuildContext context) {
-    void changeRoute() => isFightMakerView
-        ? Navigator.pushNamed(context, routeButton).then(
-            (_) => Navigator.pushReplacementNamed(context, '/Home'),
-          )
-        : Navigator.pushNamed(context, routeButton);
+  _ButtonOptionsHomeState createState() => _ButtonOptionsHomeState();
+}
 
-    return makeButton(changeRoute);
+class _ButtonOptionsHomeState extends State<ButtonOptionsHome> {
+  void changeRoute() => widget.isFightMakerView
+      ? Navigator.pushNamed(context, widget.routeButton).then(
+          (_) => Navigator.pushReplacementNamed(context, '/Home'),
+        )
+      : Navigator.pushNamed(context, widget.routeButton);
+
+  @override
+  Widget build(BuildContext context) {
+    return widget.makeButton(changeRoute);
   }
 }

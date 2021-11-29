@@ -13,7 +13,7 @@ class BodySettings extends StatefulWidget {
   _BodySettingsState createState() => _BodySettingsState();
 }
 
-class _BodySettingsState extends State<BodySettings> {
+class _BodySettingsState extends State<BodySettings> with OpenLink {
   final InAppReview _inAppReview = InAppReview.instance;
 
   late String _iconPath;
@@ -215,7 +215,7 @@ class _BodySettingsState extends State<BodySettings> {
                             ),
                             side: const BorderSide(color: Colors.white),
                           ),
-                          onPressed: () => launchLink(
+                          onPressed: () => openLink(
                               'mailto:Jiu-jitsu_para_todos@protonmail.com'),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -243,7 +243,7 @@ class _BodySettingsState extends State<BodySettings> {
                           ),
                           side: const BorderSide(color: Colors.white),
                         ),
-                        onPressed: () => launchLink(
+                        onPressed: () => openLink(
                             'https://www.facebook.com/Jiujitsuparatodos2021/'),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

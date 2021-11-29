@@ -11,7 +11,7 @@ class CreditsView extends StatefulWidget {
   _CreditsViewState createState() => _CreditsViewState();
 }
 
-class _CreditsViewState extends State<CreditsView> {
+class _CreditsViewState extends State<CreditsView> with OpenLink {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +37,7 @@ class _CreditsViewState extends State<CreditsView> {
               height: MediaQuery.of(context).size.height / 20,
             ),
             TextButton.icon(
-                onPressed: () => launchLink('https://www.flaticon.com/'),
+                onPressed: () => openLink('https://www.flaticon.com/'),
                 icon: Image.asset(
                   'assets/images/iconscredits/flaticon.png',
                   width: MediaQuery.of(context).size.width / 2,
@@ -52,7 +52,7 @@ class _CreditsViewState extends State<CreditsView> {
               height: MediaQuery.of(context).size.height / 20,
             ),
             TextButton.icon(
-                onPressed: () => launchLink('https://flutter.dev/'),
+                onPressed: () => openLink('https://flutter.dev/'),
                 icon: const FlutterLogo(
                   size: 100,
                 ),

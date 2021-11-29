@@ -12,9 +12,14 @@ class ButtonOptionsRules extends ButtonForMenu {
       : super(key: key, imageButton: imageButton, textButton: textButton);
 
   @override
-  Widget build(BuildContext context) {
-    void changeRoute() => Navigator.pushNamed(context, routeButton);
+  _ButtonOptionsRulesState createState() => _ButtonOptionsRulesState();
+}
 
-    return makeButton(changeRoute);
+class _ButtonOptionsRulesState extends State<ButtonOptionsRules> {
+  void changeRoute() => Navigator.pushNamed(context, widget.routeButton);
+
+  @override
+  Widget build(BuildContext context) {
+    return widget.makeButton(changeRoute);
   }
 }

@@ -9,11 +9,15 @@ class ButtonOptionsHistory extends ButtonForMenu {
       required this.routeButton,
       Key? key})
       : super(imageButton: imageButton, textButton: textButton, key: key);
+  @override
+  _ButtonOptionsHistoryState createState() => _ButtonOptionsHistoryState();
+}
+
+class _ButtonOptionsHistoryState extends State<ButtonOptionsHistory> {
+  void changeRoute() => Navigator.pushNamed(context, widget.routeButton);
 
   @override
   Widget build(BuildContext context) {
-    void changeRoute() => Navigator.pushNamed(context, routeButton);
-
-    return makeButton(changeRoute);
+    return widget.makeButton(changeRoute);
   }
 }
