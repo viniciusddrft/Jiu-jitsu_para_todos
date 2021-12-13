@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Scoreboard extends StatefulWidget {
   const Scoreboard({Key? key}) : super(key: key);
@@ -27,32 +27,32 @@ class _ScoreboardState extends State<Scoreboard> {
       children: [
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text('$_fighterPoints',
-              style: TextStyle(fontSize: 60.sp, fontFamily: 'YatraOne')),
+              style: TextStyle(fontSize: 40.sp, fontFamily: 'YatraOne')),
           SizedBox(width: MediaQuery.of(context).size.width / 35),
           Text('$_advantagesOfTheFighter',
               style: TextStyle(
-                  fontSize: 60.sp,
+                  fontSize: 40.sp,
                   color: Colors.yellow,
                   fontFamily: 'YatraOne')),
           SizedBox(width: MediaQuery.of(context).size.width / 35),
           Text('$_punishmentsOfTheFighter',
               style: TextStyle(
-                  fontSize: 60.sp, color: Colors.red, fontFamily: 'YatraOne')),
+                  fontSize: 40.sp, color: Colors.red, fontFamily: 'YatraOne')),
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
-            iconSize: 60.sp,
+            iconSize: 40.sp,
             icon: const Icon(Icons.add),
             onPressed: () => setState(() => _fighterPoints += 2),
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           Text(
             '2',
-            style: TextStyle(fontSize: 60.sp, fontFamily: 'YatraOne'),
+            style: TextStyle(fontSize: 40.sp, fontFamily: 'YatraOne'),
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           IconButton(
-            iconSize: 60.sp,
+            iconSize: 40.sp,
             icon: const Icon(Icons.remove),
             onPressed: () => setState(() {
               if (_fighterPoints >= 2) _fighterPoints -= 2;
@@ -61,18 +61,18 @@ class _ScoreboardState extends State<Scoreboard> {
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
-            iconSize: 60.sp,
+            iconSize: 40.sp,
             icon: const Icon(Icons.add),
             onPressed: () => setState(() => _fighterPoints += 3),
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           Text(
             '3',
-            style: TextStyle(fontSize: 60.sp, fontFamily: 'YatraOne'),
+            style: TextStyle(fontSize: 40.sp, fontFamily: 'YatraOne'),
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           IconButton(
-            iconSize: 60.sp,
+            iconSize: 40.sp,
             icon: const Icon(Icons.remove),
             onPressed: () => setState(() {
               if (_fighterPoints >= 3) _fighterPoints -= 3;
@@ -81,15 +81,15 @@ class _ScoreboardState extends State<Scoreboard> {
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
-            iconSize: 60.sp,
+            iconSize: 40.sp,
             icon: const Icon(Icons.add),
             onPressed: () => setState(() => _fighterPoints += 4),
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
-          Text('4', style: TextStyle(fontSize: 60.sp, fontFamily: 'YatraOne')),
+          Text('4', style: TextStyle(fontSize: 40.sp, fontFamily: 'YatraOne')),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           IconButton(
-            iconSize: 60.sp,
+            iconSize: 40.sp,
             icon: const Icon(Icons.remove),
             onPressed: () => setState(() {
               if (_fighterPoints >= 4) _fighterPoints -= 4;
@@ -98,20 +98,20 @@ class _ScoreboardState extends State<Scoreboard> {
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
-            iconSize: 60.sp,
+            iconSize: 40.sp,
             color: Colors.yellow,
             icon: const Icon(Icons.add),
             onPressed: () => setState(() => _advantagesOfTheFighter++),
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           Text(
-            'text_abbreviated_advantage'.tr(),
+            AppLocalizations.of(context)!.text_abbreviated_advantage,
             style: TextStyle(
-                fontSize: 60.sp, color: Colors.yellow, fontFamily: 'YatraOne'),
+                fontSize: 40.sp, color: Colors.yellow, fontFamily: 'YatraOne'),
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           IconButton(
-            iconSize: 60.sp,
+            iconSize: 40.sp,
             color: Colors.yellow,
             icon: const Icon(Icons.remove),
             onPressed: () => setState(() {
@@ -121,20 +121,20 @@ class _ScoreboardState extends State<Scoreboard> {
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
-            iconSize: 60.sp,
+            iconSize: 40.sp,
             color: Colors.red,
             icon: const Icon(Icons.add),
             onPressed: () => setState(() => _punishmentsOfTheFighter++),
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           Text(
-            'text_abbreviated_punishment'.tr(),
+            AppLocalizations.of(context)!.text_abbreviated_punishment,
             style: TextStyle(
-                fontSize: 60.sp, color: Colors.red, fontFamily: 'YatraOne'),
+                fontSize: 40.sp, color: Colors.red, fontFamily: 'YatraOne'),
           ),
           SizedBox(width: MediaQuery.of(context).size.width / 70),
           IconButton(
-            iconSize: 60.sp,
+            iconSize: 40.sp,
             color: Colors.red,
             icon: const Icon(Icons.remove),
             onPressed: () => setState(

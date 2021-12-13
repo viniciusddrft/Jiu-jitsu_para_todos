@@ -4,7 +4,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Cbjjrules extends StatefulWidget {
   const Cbjjrules({Key? key}) : super(key: key);
@@ -49,7 +49,7 @@ class _CbjjrulesState extends State<Cbjjrules> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
-          'title_appbar_cbjj_rules_page'.tr(),
+          AppLocalizations.of(context)!.title_appbar_cbjj_rules_page,
           style: TextStyle(fontFamily: 'YatraOne', color: Colors.grey[700]),
         ),
       ),
@@ -80,7 +80,7 @@ class _CbjjrulesState extends State<Cbjjrules> {
                   children: [
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
-                      'text_cbjj'.tr(),
+                      AppLocalizations.of(context)!.text_cbjj,
                       style: TextStyle(fontSize: 16.sp),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
@@ -100,7 +100,7 @@ class _CbjjrulesState extends State<Cbjjrules> {
                             _launchLink('https://cbjj.com.br/books-videos'),
                         child: Center(
                           child: Text(
-                            'text_button_cbjj'.tr(),
+                            AppLocalizations.of(context)!.text_button_cbjj,
                             style: TextStyle(fontSize: 16.sp),
                           ),
                         ),

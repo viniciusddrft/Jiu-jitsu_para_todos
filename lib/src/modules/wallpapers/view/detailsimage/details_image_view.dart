@@ -5,7 +5,7 @@ import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DetailsImage extends StatefulWidget {
   final String imagePath;
@@ -35,7 +35,7 @@ class _DetailsImageState extends State<DetailsImage> {
           backgroundColor: AppColors.background,
           actions: [
             TextButton(
-              child: Text('text_popup_error'.tr()),
+              child: Text(AppLocalizations.of(context)!.text_popup_error),
               onPressed: () => Navigator.of(context).pop(),
             ),
           ],
@@ -54,7 +54,7 @@ class _DetailsImageState extends State<DetailsImage> {
           backgroundColor: AppColors.background,
           actions: [
             TextButton(
-              child: Text('text_popup_success'.tr()),
+              child: Text(AppLocalizations.of(context)!.text_popup_success),
               onPressed: () => Navigator.of(context).pop(),
             ),
           ],
@@ -129,7 +129,7 @@ class _DetailsImageState extends State<DetailsImage> {
                         onPressed: () => onPressed(widget.imagePath),
                         child: Center(
                           child: Text(
-                            'button_save_image'.tr(),
+                            AppLocalizations.of(context)!.button_save_image,
                             style: TextStyle(fontSize: 16.sp),
                           ),
                         ),

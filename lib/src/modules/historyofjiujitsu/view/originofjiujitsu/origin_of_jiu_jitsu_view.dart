@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OriginOfJiujitsu extends StatefulWidget {
@@ -43,7 +43,7 @@ class _OriginOfJiujitsuState extends State<OriginOfJiujitsu> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
-          'title_appbar_origin_of_jiujitsu_page'.tr(),
+          AppLocalizations.of(context)!.title_appbar_origin_of_jiujitsu_page,
           style: TextStyle(fontFamily: 'YatraOne', color: Colors.grey[700]),
         ),
       ),
@@ -74,23 +74,28 @@ class _OriginOfJiujitsuState extends State<OriginOfJiujitsu> {
                   children: [
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
-                      'text_origin_of_jiujitsu_paragraph1'.tr(),
+                      AppLocalizations.of(context)!
+                          .text_origin_of_jiujitsu_paragraph1,
                       style: TextStyle(fontSize: 16.sp),
                     ),
                     Text(
-                      'text_origin_of_jiujitsu_paragraph2'.tr(),
+                      AppLocalizations.of(context)!
+                          .text_origin_of_jiujitsu_paragraph2,
                       style: TextStyle(fontSize: 16.sp),
                     ),
                     Text(
-                      'text_origin_of_jiujitsu_paragraph3'.tr(),
+                      AppLocalizations.of(context)!
+                          .text_origin_of_jiujitsu_paragraph3,
                       style: TextStyle(fontSize: 16.sp),
                     ),
                     Text(
-                      'text_origin_of_jiujitsu_paragraph4'.tr(),
+                      AppLocalizations.of(context)!
+                          .text_origin_of_jiujitsu_paragraph4,
                       style: TextStyle(fontSize: 16.sp),
                     ),
                     Text(
-                      'text_origin_of_jiujitsu_paragraph5'.tr(),
+                      AppLocalizations.of(context)!
+                          .text_origin_of_jiujitsu_paragraph5,
                       style: TextStyle(fontSize: 16.sp),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),

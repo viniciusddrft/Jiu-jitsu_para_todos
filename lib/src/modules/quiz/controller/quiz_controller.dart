@@ -1,72 +1,56 @@
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/model/quiz_questions_model.dart';
+import 'package:flutter/widgets.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/model/questions_model.dart';
 
 class ControllerQuiz {
   int numberOfQuestions = 0;
   int score = 0;
 
-  final List<Question> _questionsEasy = dataQuestionsEasy
-      .map(
-        (question) => Question(
-            question: question['question'],
-            options: question['options'],
-            rightAnswer: question['rightAnswer'],
-            pathImage: question?['pathImage'],
-            pathVideo: question?['pathVideo']),
-      )
-      .toList();
-  final List<Question> _questionsMedium = dataQuestionsMedium
-      .map(
-        (question) => Question(
-            question: question['question'],
-            options: question['options'],
-            rightAnswer: question['rightAnswer'],
-            pathImage: question?['pathImage'],
-            pathVideo: question?['pathVideo']),
-      )
-      .toList();
-  final List<Question> _questionsHard = dataQuestionsHard
-      .map(
-        (question) => Question(
-            question: question['question'],
-            options: question['options'],
-            rightAnswer: question['rightAnswer'],
-            pathImage: question?['pathImage'],
-            pathVideo: question?['pathVideo']),
-      )
-      .toList();
-
-  List<Question> choice(difficulty) {
+  List<QuestionsModel> choice(BuildContext context,
+      {required String difficulty}) {
     switch (difficulty) {
       case 'easy':
         {
-          _questionsEasy.shuffle();
-          _questionsEasy.toList().forEach((element) {
-            element.options.shuffle();
-          });
-          return _questionsEasy;
+          final List<QuestionsModel> _questionsEasy =
+              QuestionsModel.questionsEasy(context);
+
+          return _questionsEasy
+            ..shuffle()
+            ..toList().forEach(
+                (QuestionsModel question) => question.options.shuffle());
         }
 
       case 'medium':
         {
-          _questionsMedium.shuffle();
-          _questionsMedium.toList().forEach((element) {
-            element.options.shuffle();
-          });
-          return _questionsMedium;
+          final List<QuestionsModel> _questionsMedium =
+              QuestionsModel.questionsMedium(context);
+
+          return _questionsMedium
+            ..shuffle()
+            ..toList().forEach(
+                (QuestionsModel question) => question.options.shuffle());
         }
 
       case 'hard':
         {
-          _questionsHard.shuffle();
-          _questionsHard.toList().forEach((element) {
-            element.options.shuffle();
-          });
-          return _questionsHard;
+          final List<QuestionsModel> _questionsHard =
+              QuestionsModel.questionsHard(context);
+
+          return _questionsHard
+            ..shuffle()
+            ..toList().forEach(
+                (QuestionsModel question) => question.options.shuffle());
         }
 
       default:
         {
-          return _questionsEasy;
+          //
+          final List<QuestionsModel> _questionsEasy =
+              QuestionsModel.questionsEasy(context);
+
+          return _questionsEasy
+            ..shuffle()
+            ..toList().forEach(
+                (QuestionsModel question) => question.options.shuffle());
         }
     }
   }

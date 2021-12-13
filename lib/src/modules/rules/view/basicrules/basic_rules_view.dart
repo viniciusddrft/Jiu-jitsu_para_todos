@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -42,7 +42,7 @@ class _BasicrulesState extends State<Basicrules> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
-          'title_appbar_basic_rules_page'.tr(),
+          AppLocalizations.of(context)!.title_appbar_basic_rules_page,
           style: TextStyle(fontFamily: 'YatraOne', color: Colors.grey[700]),
         ),
       ),
@@ -73,78 +73,84 @@ class _BasicrulesState extends State<Basicrules> {
                   children: [
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
-                      'text_overview_title'.tr(),
+                      AppLocalizations.of(context)!.text_overview_title,
                       style: TextStyle(fontSize: 18.sp),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
-                      'text_overview'.tr(),
+                      AppLocalizations.of(context)!.text_overview,
                       style: TextStyle(fontSize: 16.sp),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
-                      'text_scores_title'.tr(),
+                      AppLocalizations.of(context)!.text_scores_title,
                       style: TextStyle(fontSize: 18.sp),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
-                      'text_scores'.tr(),
+                      AppLocalizations.of(context)!.text_scores,
                       style: TextStyle(fontSize: 16.sp),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
-                      'text_moves_that_gives_2_scores_title'.tr(),
+                      AppLocalizations.of(context)!
+                          .text_moves_that_gives_2_scores_title,
                       style: TextStyle(fontSize: 18.sp),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
-                      'text_throws'.tr(),
+                      AppLocalizations.of(context)!.text_throws,
                       style: TextStyle(fontSize: 16.sp),
                     ),
                     Text(
-                      'text_knee_in_belly'.tr(),
+                      AppLocalizations.of(context)!.text_knee_in_belly,
                       style: TextStyle(fontSize: 16.sp),
                     ),
                     Text(
-                      'text_sweep'.tr(),
+                      AppLocalizations.of(context)!.text_sweep,
                       style: TextStyle(fontSize: 16.sp),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
-                      'text_moves_that_gives_3_scores_title'.tr(),
+                      AppLocalizations.of(context)!
+                          .text_moves_that_gives_3_scores_title,
                       style: TextStyle(fontSize: 18.sp),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
-                      'text_moves_that_gives_3_scores'.tr(),
+                      AppLocalizations.of(context)!
+                          .text_moves_that_gives_3_scores,
                       style: TextStyle(fontSize: 16.sp),
                     ),
                     Text(
-                      'text_guard_pass'.tr(),
+                      AppLocalizations.of(context)!.text_guard_pass,
                       style: TextStyle(fontSize: 16.sp),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
-                      'text_moves_that_gives_4_scores_title'.tr(),
+                      AppLocalizations.of(context)!
+                          .text_moves_that_gives_4_scores_title,
                       style: TextStyle(fontSize: 18.sp),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
-                      'text_mount'.tr(),
+                      AppLocalizations.of(context)!.text_mount,
                       style: TextStyle(fontSize: 16.sp),
                     ),
                     Text(
-                      'text_backward_grip'.tr(),
+                      AppLocalizations.of(context)!.text_backward_grip,
                       style: TextStyle(fontSize: 16.sp),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
-                      'text_advantage_and_penalties_title'.tr(),
+                      AppLocalizations.of(context)!
+                          .text_advantage_and_penalties_title,
                       style: TextStyle(fontSize: 18.sp),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
-                      'text_advantage_and_penalties'.tr(),
+                      AppLocalizations.of(context)!
+                          .text_advantage_and_penalties,
                       style: TextStyle(fontSize: 16.sp),
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 20),

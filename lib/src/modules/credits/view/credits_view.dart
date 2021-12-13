@@ -3,7 +3,7 @@ import 'package:jiu_jitsu_para_todos/src/shared/appbar_gradient/appbar_gradient.
 import 'package:jiu_jitsu_para_todos/src/shared/launch_link/launch_link.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CreditsView extends StatefulWidget {
   const CreditsView({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class _CreditsViewState extends State<CreditsView> with OpenLink {
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: const AppBarGradient(),
-        title: Text('title_appbar_credits_page'.tr(),
+        title: Text(AppLocalizations.of(context)!.title_appbar_credits_page,
             style: const TextStyle(fontFamily: 'YatraOne')),
       ),
       backgroundColor: AppColors.background,
@@ -30,7 +30,8 @@ class _CreditsViewState extends State<CreditsView> with OpenLink {
               height: MediaQuery.of(context).size.height / 20,
             ),
             Text(
-              'text_all_application_icons_are_from_flaticon'.tr(),
+              AppLocalizations.of(context)!
+                  .text_all_application_icons_are_from_flaticon,
               style: TextStyle(fontSize: 15.sp),
             ),
             SizedBox(
@@ -46,7 +47,9 @@ class _CreditsViewState extends State<CreditsView> with OpenLink {
             SizedBox(
               height: MediaQuery.of(context).size.height / 20,
             ),
-            Text('text_the_application_was_developed_in_flutter'.tr(),
+            Text(
+                AppLocalizations.of(context)!
+                    .text_the_application_was_developed_in_flutter,
                 style: TextStyle(fontSize: 15.sp)),
             SizedBox(
               height: MediaQuery.of(context).size.height / 20,
@@ -63,8 +66,8 @@ class _CreditsViewState extends State<CreditsView> with OpenLink {
             SizedBox(
               width: MediaQuery.of(context).size.width / 1.4,
               child: Text(
-                'text_if_you_want_to_know_both_the_flutter_and_the_flaticon_just_click_on_the_icons'
-                    .tr(),
+                AppLocalizations.of(context)!
+                    .text_if_you_want_to_know_both_the_flutter_and_the_flaticon_just_click_on_the_icons,
                 style: TextStyle(fontSize: 15.sp),
               ),
             ),

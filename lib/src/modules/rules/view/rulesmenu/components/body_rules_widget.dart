@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/rules/view/rulesmenu/components/components/button_options_rules_widget.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_path.dart';
 
 class BodyRules extends StatelessWidget {
@@ -15,11 +15,11 @@ class BodyRules extends StatelessWidget {
           children: [
             ButtonOptionsRules(
                 imageButton: AppIconsPath.regrasBasicas,
-                textButton: 'button_basic_rules'.tr(),
+                textButton: AppLocalizations.of(context)!.button_basic_rules,
                 routeButton: '/BasicRules'), // <- '/basicrules'
             ButtonOptionsRules(
                 imageButton: AppIconsPath.cbjjRules,
-                textButton: 'button_cbjj_Rules'.tr(),
+                textButton: AppLocalizations.of(context)!.button_cbjj_Rules,
                 routeButton: '/CbjjRules'), //' <- /cbjjrules'),
             SizedBox(
               height: MediaQuery.of(context).size.height / 10,

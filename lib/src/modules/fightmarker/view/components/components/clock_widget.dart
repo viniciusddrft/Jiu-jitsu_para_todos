@@ -4,7 +4,7 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/plugin_sound_implements_just_audio.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Clock extends StatefulWidget {
   const Clock({Key? key}) : super(key: key);
@@ -47,7 +47,8 @@ class _ClockState extends State<Clock> {
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                       icon: const Icon(Icons.timer),
-                      labelText: 'text_label_minutes_popup'.tr(),
+                      labelText: AppLocalizations.of(context)!
+                          .text_label_minutes_popup,
                       border: const OutlineInputBorder()),
                 ),
               ],
@@ -55,7 +56,8 @@ class _ClockState extends State<Clock> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('text_button_popup_continue'.tr()),
+              child: Text(
+                  AppLocalizations.of(context)!.text_button_popup_continue),
               onPressed: () {
                 _myClock.minuteButtonPressed();
                 Navigator.of(context).pop();
@@ -83,7 +85,8 @@ class _ClockState extends State<Clock> {
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                       icon: const Icon(Icons.timer),
-                      labelText: 'text_label_seconds_popup'.tr(),
+                      labelText: AppLocalizations.of(context)!
+                          .text_label_seconds_popup,
                       border: const OutlineInputBorder()),
                 ),
               ],
@@ -91,7 +94,8 @@ class _ClockState extends State<Clock> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('text_button_popup_continue'.tr()),
+              child: Text(
+                  AppLocalizations.of(context)!.text_button_popup_continue),
               onPressed: () {
                 if (_myClock.secondsButtonPressed()) {
                   setState(() => _myClock.isPause = true);
@@ -118,7 +122,7 @@ class _ClockState extends State<Clock> {
           backgroundColor: AppColors.background,
           actions: <Widget>[
             TextButton(
-              child: Text('text_button_stopsound'.tr()),
+              child: Text(AppLocalizations.of(context)!.text_button_stopsound),
               onPressed: () {
                 _playerAudio.stop();
                 Navigator.of(context).pop();
@@ -147,9 +151,9 @@ class _ClockState extends State<Clock> {
             ringColor: Colors.white,
             fillColor: Colors.green,
             backgroundColor: null,
-            strokeWidth: 14.0.sp,
+            strokeWidth: 10.0.sp,
             strokeCap: StrokeCap.butt,
-            textStyle: TextStyle(fontSize: 60.0.sp, fontFamily: 'YatraOne'),
+            textStyle: TextStyle(fontSize: 40.0.sp, fontFamily: 'YatraOne'),
             isReverse: true,
             isReverseAnimation: false,
             isTimerTextShown: true,

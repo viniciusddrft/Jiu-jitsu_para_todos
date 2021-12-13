@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
 class ResultQuiz extends StatefulWidget {
@@ -22,29 +22,35 @@ class _ResultQuizState extends State<ResultQuiz> {
   late double _scorePercentage;
 
   @override
-  void initState() {
+  void didChangeDependencies() {
     _scorePercentage = widget.score / widget.totalQuestions;
     _scorePercentageText = (_scorePercentage * 100).toStringAsPrecision(2);
     if (_scorePercentage == 1.0) {
       _scorePercentageText = '100';
       _iconPath = 'assets/quiz/iconsresultquiz/victory.png';
-      _textMessage = 'text_message_quiz_very_well'.tr();
+      _textMessage = AppLocalizations.of(context)!.text_message_quiz_very_well;
     } else if (_scorePercentage >= 0.75 && _scorePercentage < 1.0) {
       _iconPath = 'assets/quiz/iconsresultquiz/reading-book.png';
-      _textMessage = 'text_message_quiz_almost'.tr();
+      _textMessage = AppLocalizations.of(context)!.text_message_quiz_almost;
     } else {
       _iconPath = 'assets/quiz/iconsresultquiz/sad.png';
-      _textMessage = 'text_message_quiz_sad'.tr();
+      _textMessage = AppLocalizations.of(context)!.text_message_quiz_sad;
     }
 
-    if (widget.difficultyName == 'text_difficultyname_white_belt'.tr()) {
-      _textShowResult = 'text_result_quiz_white_belt'.tr();
-    } else if (widget.difficultyName == 'text_difficultyname_blue_belt'.tr()) {
-      _textShowResult = 'text_result_quiz_blue_belt'.tr();
-    } else if (widget.difficultyName == 'text_difficultyname_black_belt'.tr()) {
-      _textShowResult = 'text_result_quiz_black_belt'.tr();
+    if (widget.difficultyName ==
+        AppLocalizations.of(context)!.text_difficultyname_white_belt) {
+      _textShowResult =
+          AppLocalizations.of(context)!.text_result_quiz_white_belt;
+    } else if (widget.difficultyName ==
+        AppLocalizations.of(context)!.text_difficultyname_blue_belt) {
+      _textShowResult =
+          AppLocalizations.of(context)!.text_result_quiz_blue_belt;
+    } else if (widget.difficultyName ==
+        AppLocalizations.of(context)!.text_difficultyname_black_belt) {
+      _textShowResult =
+          AppLocalizations.of(context)!.text_result_quiz_black_belt;
     }
-    super.initState();
+    super.didChangeDependencies();
   }
 
   @override

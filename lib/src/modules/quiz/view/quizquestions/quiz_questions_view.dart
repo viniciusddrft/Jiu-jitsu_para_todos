@@ -6,19 +6,14 @@ import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizquestions/compone
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/plugin_sound_implements_just_audio.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class QuizQuestions extends StatefulWidget {
   final String difficulty;
   final String difficultyName;
   QuizQuestions(
       {Key? key, required this.difficulty, required this.difficultyName})
-      : assert(['easy', 'medium', 'hard'].contains(difficulty) &&
-            [
-              'text_difficultyname_white_belt'.tr(),
-              'text_difficultyname_blue_belt'.tr(),
-              'text_difficultyname_black_belt'.tr()
-            ].contains(difficultyName)),
+      : assert(['easy', 'medium', 'hard'].contains(difficulty)),
         super(key: key);
 
   @override
@@ -52,13 +47,14 @@ class _QuizQuestionsState extends State<QuizQuestions> {
 
   @override
   void initState() {
-    _myQuestions = _controllerQuiz.choice(widget.difficulty);
     _difficultyName = widget.difficultyName;
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
+    _myQuestions =
+        _controllerQuiz.choice(context, difficulty: widget.difficulty);
     Admob.createInterstitialAd();
     super.didChangeDependencies();
   }
@@ -232,7 +228,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
             Padding(
               padding: EdgeInsets.only(left: 30.w),
               child: Text(
-                'text_question'.tr() +
+                AppLocalizations.of(context)!.text_question +
                     ' ' +
                     counterQuestions.toString() +
                     '/$totalNumberOfQuestions',

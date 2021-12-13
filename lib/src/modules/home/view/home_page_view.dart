@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/home/view/components/body_home_page_widget.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/appbar_gradient/appbar_gradient.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:wakelock/wakelock.dart';
 
@@ -30,7 +30,7 @@ class _HomePageViewState extends State<HomePageView> {
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: const AppBarGradient(),
-        title: Text('title_appbar_home_page'.tr(),
+        title: Text(AppLocalizations.of(context)!.title_appbar_home_page,
             style: const TextStyle(fontFamily: 'YatraOne')),
         actions: [
           IconButton(

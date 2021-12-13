@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/button_for_menu/button_for_menu.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ButtonOptionQuiz extends ButtonForMenu {
   final String difficulty;
   final String difficultyName;
-  ButtonOptionQuiz(
+  ButtonOptionQuiz(BuildContext context,
       {Key? key,
       required imageButton,
       required textButton,
@@ -17,15 +17,15 @@ class ButtonOptionQuiz extends ButtonForMenu {
               'assets/images/iconsbutton/faixapreta.png'
             ].contains(imageButton) &&
             [
-              'button_white_belt_level'.tr(),
-              'button_blue_belt_level'.tr(),
-              'button_black_belt_level'.tr()
+              AppLocalizations.of(context)!.button_white_belt_level,
+              AppLocalizations.of(context)!.button_blue_belt_level,
+              AppLocalizations.of(context)!.button_black_belt_level
             ].contains(textButton) &&
             ['easy', 'medium', 'hard'].contains(difficulty) &&
             [
-              'text_difficultyname_white_belt'.tr(),
-              'text_difficultyname_blue_belt'.tr(),
-              'text_difficultyname_black_belt'.tr()
+              AppLocalizations.of(context)!.text_difficultyname_white_belt,
+              AppLocalizations.of(context)!.text_difficultyname_blue_belt,
+              AppLocalizations.of(context)!.text_difficultyname_black_belt
             ].contains(difficultyName)),
         super(key: key, imageButton: imageButton, textButton: textButton);
   @override

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/home/view/components/components/button_options_home_widget.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_path.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BodyHomePage extends StatefulWidget {
   const BodyHomePage({Key? key}) : super(key: key);
@@ -28,28 +28,31 @@ class _BodyHomePageState extends State<BodyHomePage> {
           children: [
             ButtonOptionsHome(
               imageButton: AppIconsPath.iconHistoryOfJiujitsu,
-              textButton: 'button_history_of_jiujitsu_home_page'.tr(),
+              textButton: AppLocalizations.of(context)!
+                  .button_history_of_jiujitsu_home_page,
               routeButton: '/HistoryOfJiujitsu', // <- '/historyofjiujitsu',
             ),
             ButtonOptionsHome(
               imageButton: AppIconsPath.rules,
-              textButton: 'button_rules_home_page'.tr(),
+              textButton: AppLocalizations.of(context)!.button_rules_home_page,
               routeButton: '/Rules', // <- '/rules',
             ),
             ButtonOptionsHome(
                 imageButton: AppIconsPath.quiz,
-                textButton: 'button_quiz_home_page'.tr(),
+                textButton: AppLocalizations.of(context)!.button_quiz_home_page,
                 routeButton: '/Quiz' // <- '/quiz',
                 ),
             ButtonOptionsHome(
               imageButton: AppIconsPath.fightMarker,
-              textButton: 'button_fight_marker_home_page'.tr(),
+              textButton:
+                  AppLocalizations.of(context)!.button_fight_marker_home_page,
               routeButton: '/Fightmarker', // <- '/fightmarker',
               isFightMakerView: true,
             ),
             ButtonOptionsHome(
               imageButton: AppIconsPath.wallpapers,
-              textButton: 'button_wallpapers_home_page'.tr(),
+              textButton:
+                  AppLocalizations.of(context)!.button_wallpapers_home_page,
               routeButton: '/Wallpapers', // <- '/wallpapers',
             ),
             SizedBox(

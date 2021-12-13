@@ -19,6 +19,7 @@
     "text_contact":"Contact",
     "text_about_the_app":"About the app",
     "text_rate_the_app":"Rate the app",
+    "text_cancel":"Cancel",
 
     "title_appbar_credits_page":"Credits",
     "text_all_application_icons_are_from_flaticon":"All application icons are from Flaticon.",
