@@ -5,7 +5,6 @@ import 'package:jiu_jitsu_para_todos/core/locale/locale_app.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/launch_link/launch_link.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_languages_path.dart';
-import 'package:in_app_review/in_app_review.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BodySettings extends StatefulWidget {
@@ -15,8 +14,6 @@ class BodySettings extends StatefulWidget {
 }
 
 class _BodySettingsState extends State<BodySettings> with OpenLink {
-  final InAppReview _inAppReview = InAppReview.instance;
-
   final ValueNotifier<String?> _iconPath = ValueNotifier<String?>(null);
 
   List<Map<String, dynamic>> _allLocales() {
@@ -305,7 +302,8 @@ class _BodySettingsState extends State<BodySettings> with OpenLink {
                             ),
                             side: const BorderSide(color: Colors.white),
                           ),
-                          onPressed: () => _inAppReview.openStoreListing(),
+                          onPressed: () => openLink(
+                              'https://play.google.com/store/apps/details?id=com.jiu_jitsu_para_todos'),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [

@@ -4,7 +4,7 @@ import 'package:jiu_jitsu_para_todos/src/shared/button_for_menu/button_for_menu.
 class ButtonOptionsHome extends ButtonForMenu {
   final String routeButton;
   /*added because for this route it generates a bug if the routeButton variable is used,
-  in this only case it needs to be hard code in line 28*/
+  in this only case it needs to be hard code in line 26*/
   final bool isFightMakerView;
   const ButtonOptionsHome(
       {required textButton,

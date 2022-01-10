@@ -25,7 +25,7 @@ class _SettingsViewState extends State<SettingsView> {
         height: 60.h,
         child: Center(
           child: Text(
-            AppLocalizations.of(context)!.text_version + ' 2.1.9',
+            AppLocalizations.of(context)!.text_version + ' 2.1.10',
             style: TextStyle(fontSize: 14.sp, color: Colors.grey[700]),
           ),
         ),

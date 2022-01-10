@@ -46,7 +46,7 @@ class _MyAppState extends State<MyApp> {
           ),
           debugShowCheckedModeBanner: false,
           initialRoute: '/Home',
-          onGenerateRoute: (RouteSettings settings) => Routes.routes(settings),
+          onGenerateRoute: Routes.routes,
         ),
       ),
     );
