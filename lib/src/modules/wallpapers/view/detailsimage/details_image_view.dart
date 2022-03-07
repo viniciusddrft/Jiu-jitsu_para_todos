@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -21,12 +20,12 @@ class DetailsImage extends StatefulWidget {
 class _DetailsImageState extends State<DetailsImage> {
   @override
   void didChangeDependencies() {
-    Admob.createInterstitialAd();
+    AdmobController.createInterstitialAd();
     super.didChangeDependencies();
   }
 
   //------------------------------------------------------------------------------
-  Future<void> _showMyDialogsaveerro() async {
+  Future<void> _showMyDialogSaveErro() async {
     return showDialog<void>(
       context: context,
       barrierDismissible: true,
@@ -45,7 +44,7 @@ class _DetailsImageState extends State<DetailsImage> {
   }
 
 //------------------------------------------------------------------------------
-  Future<void> _showMyDialogsaveimage() async {
+  Future<void> _showMyDialogSaveImage() async {
     return showDialog<void>(
       context: context,
       barrierDismissible: true,
@@ -63,22 +62,22 @@ class _DetailsImageState extends State<DetailsImage> {
     );
   }
 
-  void _saveImage(String imagePath) async {
-    ByteData bytes = await rootBundle.load(imagePath);
+  void _saveImage() async {
+    ByteData bytes = await rootBundle.load(widget.imagePath);
 
     var result = await ImageGallerySaver.saveImage(bytes.buffer.asUint8List());
     if ((result['isSuccess'])) {
-      _showMyDialogsaveimage();
+      _showMyDialogSaveImage();
     } else {
-      _showMyDialogsaveerro();
+      _showMyDialogSaveErro();
     }
   }
 
 //------------------------------------------------------------------------------
-  void onPressed(String imagePath) async {
+  void onPressed() async {
     if (await Permission.storage.request().isGranted) {
-      Admob.showInterstitialAd();
-      Future.delayed(const Duration(seconds: 1), () => _saveImage(imagePath));
+      AdmobController.showInterstitialAd();
+      Future.delayed(const Duration(seconds: 1), () => _saveImage());
     }
   }
 
@@ -86,6 +85,8 @@ class _DetailsImageState extends State<DetailsImage> {
 
   @override
   Widget build(BuildContext context) {
+    final Size _size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Column(
@@ -107,31 +108,28 @@ class _DetailsImageState extends State<DetailsImage> {
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height / 3.2,
+            height: _size.height * 0.3,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Column(
                   children: [
-                    SizedBox(
-                      height: 50.h,
-                      width: 200.w,
-                      child: OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                            primary: Colors.white,
-                            elevation: 7,
-                            backgroundColor: AppColors.background,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            side: const BorderSide(color: Colors.white)),
-                        onPressed: () => onPressed(widget.imagePath),
-                        child: Center(
-                          child: Text(
-                            AppLocalizations.of(context)!.button_save_image,
-                            style: TextStyle(fontSize: 16.sp),
+                    OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                          fixedSize: const Size(200, 50),
+                          primary: Colors.white,
+                          elevation: 7,
+                          backgroundColor: AppColors.background,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
                           ),
+                          side: const BorderSide(color: Colors.white)),
+                      onPressed: onPressed,
+                      child: Center(
+                        child: Text(
+                          AppLocalizations.of(context)!.button_save_image,
+                          style: const TextStyle(fontSize: 16),
                         ),
                       ),
                     )

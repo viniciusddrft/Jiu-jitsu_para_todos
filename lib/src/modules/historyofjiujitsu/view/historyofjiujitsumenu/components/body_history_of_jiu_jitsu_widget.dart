@@ -7,9 +7,10 @@ class BodyHistoryOfJiuJistu extends StatelessWidget {
   const BodyHistoryOfJiuJistu({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final Size _size = MediaQuery.of(context).size;
     return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.height,
+      height: _size.height,
+      width: _size.height,
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -25,9 +26,6 @@ class BodyHistoryOfJiuJistu extends StatelessWidget {
                   AppLocalizations.of(context)!.button_jiujitsu_in_brazil,
               routeButton: '/JiujitsuInBrazil',
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 10,
-            )
           ],
         ),
       ),

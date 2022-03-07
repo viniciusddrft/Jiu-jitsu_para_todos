@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/admob/widget/admob_native_ad.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OriginOfJiujitsu extends StatefulWidget {
   const OriginOfJiujitsu({Key? key}) : super(key: key);
@@ -12,32 +11,10 @@ class OriginOfJiujitsu extends StatefulWidget {
 }
 
 class _OriginOfJiujitsuState extends State<OriginOfJiujitsu> {
-  bool _loadingAnchoredBanner = false;
-  final ValueNotifier<AdWidget?> _adWidget = ValueNotifier<AdWidget?>(null);
-
-  @override
-  void dispose() {
-    _adWidget.dispose();
-    super.dispose();
-  }
-
-  @override
-  void didChangeDependencies() {
-    if (!_loadingAnchoredBanner) {
-      Admob.createAnchoredBanner(context).then((BannerAd? banner) {
-        if (banner != null) {
-          _adWidget.value = AdWidget(key: UniqueKey(), ad: banner..load());
-          Admob.heightAnchoredBanner = banner.size.height;
-          Admob.widthAnchoredBanner = banner.size.width;
-        }
-      }).whenComplete(() => _loadingAnchoredBanner = true);
-    }
-
-    super.didChangeDependencies();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final Size _size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -48,62 +25,59 @@ class _OriginOfJiujitsuState extends State<OriginOfJiujitsu> {
         ),
       ),
       backgroundColor: AppColors.background,
-      bottomNavigationBar: ValueListenableBuilder(
-        valueListenable: _adWidget,
-        builder: (BuildContext context, AdWidget? value, Widget? child) =>
-            _loadingAnchoredBanner == true
-                ? SizedBox(
-                    height: Admob.heightAnchoredBanner.toDouble(),
-                    width: Admob.widthAnchoredBanner.toDouble(),
-                    child: value,
-                  )
-                : Container(
-                    height: MediaQuery.of(context).size.height * 0.15,
-                    color: Colors.transparent,
-                  ),
-      ),
       body: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+        width: _size.width,
+        height: _size.height,
         child: SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(
-                width: MediaQuery.of(context).size.width / 1.2,
+                width: _size.width * 0.9,
                 child: Column(
                   children: [
-                    SizedBox(height: MediaQuery.of(context).size.height / 20),
-                    Text(
-                      AppLocalizations.of(context)!
-                          .text_origin_of_jiujitsu_paragraph1,
-                      style: TextStyle(fontSize: 16.sp),
+                    Padding(
+                      padding: EdgeInsets.only(top: _size.height * 0.03),
+                      child: Text(
+                        AppLocalizations.of(context)!
+                            .text_origin_of_jiujitsu_paragraph1,
+                        style: const TextStyle(fontSize: 16),
+                      ),
                     ),
                     Text(
                       AppLocalizations.of(context)!
                           .text_origin_of_jiujitsu_paragraph2,
-                      style: TextStyle(fontSize: 16.sp),
+                      style: const TextStyle(fontSize: 16),
                     ),
                     Text(
                       AppLocalizations.of(context)!
                           .text_origin_of_jiujitsu_paragraph3,
-                      style: TextStyle(fontSize: 16.sp),
+                      style: const TextStyle(fontSize: 16),
                     ),
                     Text(
                       AppLocalizations.of(context)!
                           .text_origin_of_jiujitsu_paragraph4,
-                      style: TextStyle(fontSize: 16.sp),
+                      style: const TextStyle(fontSize: 16),
                     ),
-                    Text(
-                      AppLocalizations.of(context)!
-                          .text_origin_of_jiujitsu_paragraph5,
-                      style: TextStyle(fontSize: 16.sp),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: _size.height * 0.05),
+                      child: Text(
+                        AppLocalizations.of(context)!
+                            .text_origin_of_jiujitsu_paragraph5,
+                        style: const TextStyle(fontSize: 16),
+                      ),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 20),
                   ],
                 ),
               ),
             ],
           ),
+        ),
+      ),
+      bottomNavigationBar: SizedBox(
+        height: 75,
+        child: AdmobNativeAd(
+          factoryId: 'listTile',
+          adUnitId: AdmobController.nativeAdUnitIDListTile,
         ),
       ),
     );

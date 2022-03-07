@@ -12,9 +12,11 @@ class BodyQuiz extends StatefulWidget {
 class _BodyQuizState extends State<BodyQuiz> {
   @override
   Widget build(BuildContext context) {
+    final Size _size = MediaQuery.of(context).size;
+
     return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.height,
+      height: _size.height,
+      width: _size.height,
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -42,9 +44,6 @@ class _BodyQuizState extends State<BodyQuiz> {
               difficultyName:
                   AppLocalizations.of(context)!.text_difficultyname_black_belt,
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 10,
-            )
           ],
         ),
       ),

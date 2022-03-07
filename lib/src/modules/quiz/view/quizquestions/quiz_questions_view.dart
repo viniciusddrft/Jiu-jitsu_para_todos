@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/controller/quiz_controller.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizquestions/components/button_quiz_questions_widget.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizquestions/components/return_midia_quiz_widget.dart';
+//import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizquestions/components/return_midia_quiz_widget.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/plugin_sound_implements_just_audio.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../../shared/admob/controller/admob_controller.dart';
 
 class QuizQuestions extends StatefulWidget {
   final String difficulty;
@@ -29,7 +29,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
   //disablebutton for all buttons
   bool isButtonDisabled = false;
   //build video
-  final bool _buildVideo = true;
+  //final bool _buildVideo = true;
   //song buttons
   final _playerAudio = PluginJustAudio();
   // colors buttons
@@ -55,7 +55,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
   void didChangeDependencies() {
     _myQuestions =
         _controllerQuiz.choice(context, difficulty: widget.difficulty);
-    Admob.createInterstitialAd();
+    AdmobController.createInterstitialAd();
     super.didChangeDependencies();
   }
 
@@ -123,7 +123,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                 if (counterQuestions == _myQuestions.length ||
                     counterQuestions > _myQuestions.length) {
                   _controllerQuiz.score++;
-                  Admob.showInterstitialAd();
+                  AdmobController.showInterstitialAd();
                   _switchToResult();
                 } else {
                   _controllerQuiz.numberOfQuestions++;
@@ -189,7 +189,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
             isButtonDisabled = false;
             if (counterQuestions == _myQuestions.length ||
                 counterQuestions > _myQuestions.length) {
-              Admob.showInterstitialAd();
+              AdmobController.showInterstitialAd();
               _switchToResult();
             } else {
               _controllerQuiz.numberOfQuestions++;
@@ -203,6 +203,8 @@ class _QuizQuestionsState extends State<QuizQuestions> {
 //------------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
+    final Size _size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -210,36 +212,38 @@ class _QuizQuestionsState extends State<QuizQuestions> {
       ),
       backgroundColor: AppColors.background,
       body: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+        width: _size.width,
+        height: _size.height,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.only(left: 30.w, bottom: 10.h),
+              padding: EdgeInsets.only(
+                  left: _size.width * 0.07, bottom: _size.height * 0.01),
               child: Text(
                 'Quiz $_difficultyName',
                 style: TextStyle(
                     fontFamily: 'YatraOne',
-                    fontSize: 20.sp,
+                    fontSize: 20,
                     color: Colors.grey[700]),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 30.w),
+              padding: EdgeInsets.only(left: _size.width * 0.07),
               child: Text(
                 AppLocalizations.of(context)!.text_question +
                     ' ' +
                     counterQuestions.toString() +
                     '/$totalNumberOfQuestions',
-                style: TextStyle(
-                    fontFamily: 'Ubuntu', fontSize: 22.sp, color: Colors.white),
+                style: const TextStyle(
+                    fontFamily: 'Ubuntu', fontSize: 22, color: Colors.white),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 30.w, right: 30.w),
-              width: MediaQuery.of(context).size.width,
-              height: 1.h,
+              margin: EdgeInsets.only(
+                  left: _size.width * 0.07, right: _size.width * 0.07),
+              width: _size.width,
+              height: 1,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                     colors: [Colors.white, AppColors.background],
@@ -248,21 +252,25 @@ class _QuizQuestionsState extends State<QuizQuestions> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 20.h, left: 30.w, right: 30.w),
+              padding: EdgeInsets.only(
+                  top: _size.height * 0.03,
+                  left: _size.width * 0.07,
+                  right: _size.width * 0.07),
               child: Text(
                 _controllerQuiz.textQuestionReturn(_myQuestions),
-                style: TextStyle(
-                    fontFamily: 'Ubuntu', fontSize: 18.sp, color: Colors.white),
+                style: const TextStyle(
+                    fontFamily: 'Ubuntu', fontSize: 18, color: Colors.white),
               ),
             ),
-            returnImageOrVideoOfQuiz(
-                _controllerQuiz, _myQuestions, _buildVideo),
+            //returnImageOrVideoOfQuiz(
+            //    _controllerQuiz, _myQuestions, _buildVideo),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 30.w),
+                    margin:
+                        EdgeInsets.symmetric(horizontal: _size.width * 0.07),
                     color: Colors.transparent,
                     child: Column(
                       children: [

@@ -7,9 +7,11 @@ class BodyRules extends StatelessWidget {
   const BodyRules({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final Size _size = MediaQuery.of(context).size;
+
     return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.height,
+      height: _size.height,
+      width: _size.height,
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -21,9 +23,6 @@ class BodyRules extends StatelessWidget {
                 imageButton: AppIconsPath.cbjjRules,
                 textButton: AppLocalizations.of(context)!.button_cbjj_Rules,
                 routeButton: '/CbjjRules'), //' <- /cbjjrules'),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 10,
-            )
           ],
         ),
       ),

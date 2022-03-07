@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../shared/admob/widget/admob_native_ad.dart';
 
 class Basicrules extends StatefulWidget {
   const Basicrules({Key? key}) : super(key: key);
@@ -12,31 +12,10 @@ class Basicrules extends StatefulWidget {
 }
 
 class _BasicrulesState extends State<Basicrules> {
-  bool _loadingAnchoredBanner = false;
-  final ValueNotifier<AdWidget?> _adWidget = ValueNotifier<AdWidget?>(null);
-
-  @override
-  void dispose() {
-    _adWidget.dispose();
-    super.dispose();
-  }
-
-  @override
-  void didChangeDependencies() {
-    if (!_loadingAnchoredBanner) {
-      Admob.createAnchoredBanner(context).then((BannerAd? banner) {
-        if (banner != null) {
-          _adWidget.value = AdWidget(key: UniqueKey(), ad: banner..load());
-          Admob.heightAnchoredBanner = banner.size.height;
-          Admob.widthAnchoredBanner = banner.size.width;
-        }
-      }).whenComplete(() => _loadingAnchoredBanner = true);
-    }
-    super.didChangeDependencies();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final Size _size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -47,118 +26,133 @@ class _BasicrulesState extends State<Basicrules> {
         ),
       ),
       backgroundColor: AppColors.background,
-      bottomNavigationBar: ValueListenableBuilder(
-        valueListenable: _adWidget,
-        builder: (BuildContext context, AdWidget? value, Widget? child) =>
-            _loadingAnchoredBanner == true
-                ? SizedBox(
-                    height: Admob.heightAnchoredBanner.toDouble(),
-                    width: Admob.widthAnchoredBanner.toDouble(),
-                    child: value,
-                  )
-                : Container(
-                    height: MediaQuery.of(context).size.height * 0.15,
-                    color: Colors.transparent,
-                  ),
-      ),
       body: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+        width: _size.width,
+        height: _size.height,
         child: SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(
-                width: MediaQuery.of(context).size.width / 1.2,
+                width: _size.width * 0.9,
                 child: Column(
                   children: [
-                    SizedBox(height: MediaQuery.of(context).size.height / 20),
-                    Text(
-                      AppLocalizations.of(context)!.text_overview_title,
-                      style: TextStyle(fontSize: 18.sp),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: _size.height * 0.03),
+                      child: Text(
+                        AppLocalizations.of(context)!.text_overview_title,
+                        style: const TextStyle(fontSize: 18),
+                      ),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
                       AppLocalizations.of(context)!.text_overview,
-                      style: TextStyle(fontSize: 16.sp),
+                      style: const TextStyle(fontSize: 16),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 20),
-                    Text(
-                      AppLocalizations.of(context)!.text_scores_title,
-                      style: TextStyle(fontSize: 18.sp),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: _size.height * 0.03),
+                      child: Text(
+                        AppLocalizations.of(context)!.text_scores_title,
+                        style: const TextStyle(fontSize: 18),
+                      ),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
                       AppLocalizations.of(context)!.text_scores,
-                      style: TextStyle(fontSize: 16.sp),
+                      style: const TextStyle(fontSize: 16),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 20),
-                    Text(
-                      AppLocalizations.of(context)!
-                          .text_moves_that_gives_2_scores_title,
-                      style: TextStyle(fontSize: 18.sp),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: _size.height * 0.03),
+                      child: Text(
+                        AppLocalizations.of(context)!
+                            .text_moves_that_gives_2_scores_title,
+                        style: const TextStyle(fontSize: 18),
+                      ),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
                       AppLocalizations.of(context)!.text_throws,
-                      style: TextStyle(fontSize: 16.sp),
+                      style: const TextStyle(fontSize: 16),
                     ),
-                    Text(
-                      AppLocalizations.of(context)!.text_knee_in_belly,
-                      style: TextStyle(fontSize: 16.sp),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: _size.height * 0.03),
+                      child: Text(
+                        AppLocalizations.of(context)!.text_knee_in_belly,
+                        style: const TextStyle(fontSize: 16),
+                      ),
                     ),
                     Text(
                       AppLocalizations.of(context)!.text_sweep,
-                      style: TextStyle(fontSize: 16.sp),
+                      style: const TextStyle(fontSize: 16),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 20),
-                    Text(
-                      AppLocalizations.of(context)!
-                          .text_moves_that_gives_3_scores_title,
-                      style: TextStyle(fontSize: 18.sp),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: _size.height * 0.03),
+                      child: Text(
+                        AppLocalizations.of(context)!
+                            .text_moves_that_gives_3_scores_title,
+                        style: const TextStyle(fontSize: 18),
+                      ),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
                       AppLocalizations.of(context)!
                           .text_moves_that_gives_3_scores,
-                      style: TextStyle(fontSize: 16.sp),
+                      style: const TextStyle(fontSize: 16),
                     ),
-                    Text(
-                      AppLocalizations.of(context)!.text_guard_pass,
-                      style: TextStyle(fontSize: 16.sp),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: _size.height * 0.03),
+                      child: Text(
+                        AppLocalizations.of(context)!.text_guard_pass,
+                        style: const TextStyle(fontSize: 16),
+                      ),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 20),
                     Text(
                       AppLocalizations.of(context)!
                           .text_moves_that_gives_4_scores_title,
-                      style: TextStyle(fontSize: 18.sp),
+                      style: const TextStyle(fontSize: 18),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 20),
-                    Text(
-                      AppLocalizations.of(context)!.text_mount,
-                      style: TextStyle(fontSize: 16.sp),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: _size.height * 0.03),
+                      child: Text(
+                        AppLocalizations.of(context)!.text_mount,
+                        style: const TextStyle(fontSize: 16),
+                      ),
                     ),
                     Text(
                       AppLocalizations.of(context)!.text_backward_grip,
-                      style: TextStyle(fontSize: 16.sp),
+                      style: const TextStyle(fontSize: 16),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 20),
-                    Text(
-                      AppLocalizations.of(context)!
-                          .text_advantage_and_penalties_title,
-                      style: TextStyle(fontSize: 18.sp),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: _size.height * 0.03),
+                      child: Text(
+                        AppLocalizations.of(context)!
+                            .text_advantage_and_penalties_title,
+                        style: const TextStyle(fontSize: 18),
+                      ),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 20),
-                    Text(
-                      AppLocalizations.of(context)!
-                          .text_advantage_and_penalties,
-                      style: TextStyle(fontSize: 16.sp),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: _size.height * 0.05),
+                      child: Text(
+                        AppLocalizations.of(context)!
+                            .text_advantage_and_penalties,
+                        style: const TextStyle(fontSize: 16),
+                      ),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 20),
                   ],
                 ),
               ),
             ],
           ),
+        ),
+      ),
+      bottomNavigationBar: SizedBox(
+        height: 75,
+        child: AdmobNativeAd(
+          factoryId: 'listTile',
+          adUnitId: AdmobController.nativeAdUnitIDListTile,
         ),
       ),
     );

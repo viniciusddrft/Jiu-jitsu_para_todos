@@ -20,9 +20,11 @@ class _BodyHomePageState extends State<BodyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final Size _size = MediaQuery.of(context).size;
+
     return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.height,
+      height: _size.height,
+      width: _size.height,
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -49,15 +51,15 @@ class _BodyHomePageState extends State<BodyHomePage> {
               routeButton: '/Fightmarker', // <- '/fightmarker',
               isFightMakerView: true,
             ),
-            ButtonOptionsHome(
-              imageButton: AppIconsPath.wallpapers,
-              textButton:
-                  AppLocalizations.of(context)!.button_wallpapers_home_page,
-              routeButton: '/Wallpapers', // <- '/wallpapers',
+            Padding(
+              padding: EdgeInsets.only(bottom: _size.height * 0.1),
+              child: ButtonOptionsHome(
+                imageButton: AppIconsPath.wallpapers,
+                textButton:
+                    AppLocalizations.of(context)!.button_wallpapers_home_page,
+                routeButton: '/Wallpapers', // <- '/wallpapers',
+              ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 10,
-            )
           ],
         ),
       ),

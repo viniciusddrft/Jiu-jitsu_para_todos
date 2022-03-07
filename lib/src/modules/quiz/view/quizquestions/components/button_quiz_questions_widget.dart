@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
 class ButtonQuizQuestions extends StatelessWidget {
-  final Function(String answer, String orderOfQuestions) onPressed;
+  final void Function(String answer, String orderOfQuestions) onPressed;
   final bool isButtonDisabled;
   final String answer;
   final String orderOfQuestions;
@@ -23,8 +22,10 @@ class ButtonQuizQuestions extends StatelessWidget {
         super(key: key);
   @override
   Widget build(BuildContext context) {
+    final Size _size = MediaQuery.of(context).size;
+
     return Container(
-      margin: EdgeInsets.only(bottom: 40.h),
+      margin: EdgeInsets.only(bottom: _size.height * 0.05),
       child: OutlinedButton(
         onPressed:
             isButtonDisabled ? null : () => onPressed(answer, orderOfQuestions),
@@ -34,11 +35,11 @@ class ButtonQuizQuestions extends StatelessWidget {
             Text(
               answer,
               style: TextStyle(
-                  fontFamily: 'Ubuntu', color: colorButton, fontSize: 16.sp),
+                  fontFamily: 'Ubuntu', color: colorButton, fontSize: 16),
             ),
             Container(
-              height: 26.sp,
-              width: 26.sp,
+              height: _size.height * 0.03,
+              width: _size.height * 0.03,
               decoration: BoxDecoration(
                 color: Colors.transparent,
                 borderRadius: BorderRadius.circular(50),
@@ -46,7 +47,7 @@ class ButtonQuizQuestions extends StatelessWidget {
               ),
               child: Icon(
                 (icon),
-                size: 16.sp,
+                size: 16,
                 color: colorIcon,
               ),
             )

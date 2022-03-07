@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/core/locale/locale_app.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/launch_link/launch_link.dart';
@@ -16,20 +15,18 @@ class BodySettings extends StatefulWidget {
 class _BodySettingsState extends State<BodySettings> with OpenLink {
   final ValueNotifier<String?> _iconPath = ValueNotifier<String?>(null);
 
-  List<Map<String, dynamic>> _allLocales() {
-    return [
-      {
-        'locale': const Locale('pt', 'BR'),
-        'icon': AppIconsLanguages.brasil,
-        'text': AppLocalizations.of(context)!.text_brazilian_portuguese
-      },
-      {
-        'locale': const Locale('en', 'US'),
-        'icon': AppIconsLanguages.unitedStates,
-        'text': AppLocalizations.of(context)!.text_english_united_states
-      },
-    ];
-  }
+  List<Map<String, dynamic>> _allLocales() => [
+        {
+          'locale': const Locale('pt', 'BR'),
+          'icon': AppIconsLanguages.brasil,
+          'text': AppLocalizations.of(context)!.text_brazilian_portuguese
+        },
+        {
+          'locale': const Locale('en', 'US'),
+          'icon': AppIconsLanguages.unitedStates,
+          'text': AppLocalizations.of(context)!.text_english_united_states
+        },
+      ];
 
   List<Map<String, dynamic>> get allLocales => _allLocales();
 
@@ -53,6 +50,8 @@ class _BodySettingsState extends State<BodySettings> with OpenLink {
 
 //------------------------------------------------------------------------------
   Future<void> _changeLanguageMenu() async {
+    final Size _size = MediaQuery.of(context).size;
+
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -64,12 +63,15 @@ class _BodySettingsState extends State<BodySettings> with OpenLink {
           title:
               Text(AppLocalizations.of(context)!.button_language_settings_page),
           content: SizedBox(
-            width: MediaQuery.of(context).size.width / 1.4,
-            height: MediaQuery.of(context).size.height / 2.4,
+            width: _size.width * 0.7,
+            height: _size.height * 0.4,
             child: ListView.builder(
               itemCount: allLocales.length,
               itemBuilder: (context, index) => Padding(
-                padding: EdgeInsets.only(top: 16.h, left: 10.w, right: 10.w),
+                padding: EdgeInsets.only(
+                    top: _size.height * 0.02,
+                    left: _size.width * 0.02,
+                    right: _size.width * 0.02),
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
                     backgroundColor: AppColors.background,
@@ -99,7 +101,7 @@ class _BodySettingsState extends State<BodySettings> with OpenLink {
                         Text(allLocales[index]['text']),
                         Image.asset(
                           allLocales[index]['icon'],
-                          width: 50.w,
+                          width: 50,
                         ),
                       ],
                     ),
@@ -110,8 +112,9 @@ class _BodySettingsState extends State<BodySettings> with OpenLink {
           ),
           actions: [
             TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text(AppLocalizations.of(context)!.text_cancel))
+              onPressed: () => Navigator.pop(context),
+              child: Text(AppLocalizations.of(context)!.text_cancel),
+            )
           ],
         );
       },
@@ -121,129 +124,131 @@ class _BodySettingsState extends State<BodySettings> with OpenLink {
   //--------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 20.h),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                color: AppColors.cardColor,
-                child: SizedBox(
-                  height: 155.h,
-                  width: MediaQuery.of(context).size.width / 1.15,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 20.sp, bottom: 35.sp),
-                        child: Text(
-                          AppLocalizations.of(context)!
-                              .button_language_settings_page,
-                          style: TextStyle(fontSize: 20.sp),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 50.h,
-                        width: 200.w,
-                        child: OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            backgroundColor: AppColors.background,
-                            primary: Colors.white,
-                            elevation: 7,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            side: const BorderSide(color: Colors.white),
-                          ),
-                          onPressed: _changeLanguageMenu,
-                          child: Container(
-                            color: Colors.transparent,
-                            width: MediaQuery.of(context).size.width / 1.6,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  AppLocalizations.of(context)!
-                                      .button_language_settings_page,
-                                  style: TextStyle(fontSize: 16.sp),
-                                ),
-                                ValueListenableBuilder(
-                                  valueListenable: _iconPath,
-                                  builder: (BuildContext context, String? value,
-                                          Widget? child) =>
-                                      Image.asset(
-                                    value!,
-                                    width: 40.w,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Card(
+    final Size _size = MediaQuery.of(context).size;
+
+    return SizedBox(
+      height: _size.height,
+      width: _size.width,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          const Spacer(),
+          Flexible(
+            flex: 15,
+            child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),
               color: AppColors.cardColor,
               child: SizedBox(
-                height: 240.h,
-                width: MediaQuery.of(context).size.width / 1.15,
+                width: _size.width * 0.85,
                 child: Column(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: 20.sp, bottom: 35.sp),
+                    const Spacer(),
+                    Flexible(
                       child: Text(
-                        AppLocalizations.of(context)!.text_contact,
-                        style: TextStyle(fontSize: 20.sp),
+                        AppLocalizations.of(context)!
+                            .button_language_settings_page,
+                        style: const TextStyle(fontSize: 20),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 35.sp),
-                      child: SizedBox(
-                        height: 50.h,
-                        width: 200.w,
-                        child: OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            backgroundColor: AppColors.background,
-                            primary: Colors.white,
-                            elevation: 7,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            side: const BorderSide(color: Colors.white),
+                    const Spacer(),
+                    Flexible(
+                      flex: 3,
+                      child: OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          fixedSize: const Size(200, 50),
+                          backgroundColor: AppColors.background,
+                          primary: Colors.white,
+                          elevation: 7,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
                           ),
-                          onPressed: () => openLink(
-                              'mailto:Jiu-jitsu_para_todos@protonmail.com'),
+                          side: const BorderSide(color: Colors.white),
+                        ),
+                        onPressed: _changeLanguageMenu,
+                        child: Container(
+                          color: Colors.transparent,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text(
-                                'E-mail',
-                                style: TextStyle(fontSize: 16.sp),
+                                AppLocalizations.of(context)!
+                                    .button_language_settings_page,
+                                style: const TextStyle(fontSize: 16),
                               ),
-                              const Icon(Icons.mail)
+                              ValueListenableBuilder(
+                                valueListenable: _iconPath,
+                                builder: (BuildContext context, String? value,
+                                        Widget? child) =>
+                                    Image.asset(
+                                  value!,
+                                  width: 40,
+                                ),
+                              )
                             ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 50.h,
-                      width: 200.w,
+                    const Spacer(),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 20,
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              color: AppColors.cardColor,
+              child: SizedBox(
+                width: _size.width * 0.85,
+                child: Column(
+                  children: [
+                    const Spacer(),
+                    Flexible(
+                      child: Text(
+                        AppLocalizations.of(context)!.text_contact,
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ),
+                    const Spacer(),
+                    Flexible(
+                      flex: 3,
                       child: OutlinedButton(
                         style: OutlinedButton.styleFrom(
+                          fixedSize: const Size(200, 50),
+                          backgroundColor: AppColors.background,
+                          primary: Colors.white,
+                          elevation: 7,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          side: const BorderSide(color: Colors.white),
+                        ),
+                        onPressed: () => openLink(
+                            'mailto:Jiu-jitsu_para_todos@protonmail.com'),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: const [
+                            Text(
+                              'E-mail',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                            Icon(Icons.mail)
+                          ],
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    Flexible(
+                      flex: 3,
+                      child: OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          fixedSize: const Size(200, 50),
                           backgroundColor: AppColors.background,
                           primary: Colors.white,
                           elevation: 7,
@@ -256,44 +261,47 @@ class _BodySettingsState extends State<BodySettings> with OpenLink {
                             'https://www.facebook.com/Jiujitsuparatodos2021/'),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
+                          children: const [
                             Text(
                               'Facebook',
-                              style: TextStyle(fontSize: 16.sp),
+                              style: TextStyle(fontSize: 16),
                             ),
-                            const Icon(Icons.facebook)
+                            Icon(Icons.facebook)
                           ],
                         ),
                       ),
                     ),
+                    const Spacer(),
                   ],
                 ),
               ),
             ),
-            Card(
+          ),
+          Flexible(
+            flex: 20,
+            child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),
               color: AppColors.cardColor,
               child: SizedBox(
-                height: 240.h,
-                width: MediaQuery.of(context).size.width / 1.15,
+                width: _size.width * 0.85,
                 child: Column(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: 20.sp, bottom: 35.sp),
+                    const Spacer(),
+                    Flexible(
                       child: Text(
                         AppLocalizations.of(context)!.text_about_the_app,
-                        style: TextStyle(fontSize: 20.sp),
+                        style: const TextStyle(fontSize: 20),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 35.sp),
+                    const Spacer(),
+                    Flexible(
+                      flex: 3,
                       child: SizedBox(
-                        height: 50.h,
-                        width: 200.w,
                         child: OutlinedButton(
                           style: OutlinedButton.styleFrom(
+                            fixedSize: const Size(200, 50),
                             backgroundColor: AppColors.background,
                             primary: Colors.white,
                             elevation: 7,
@@ -309,7 +317,7 @@ class _BodySettingsState extends State<BodySettings> with OpenLink {
                             children: [
                               Text(
                                 AppLocalizations.of(context)!.text_rate_the_app,
-                                style: TextStyle(fontSize: 16.sp),
+                                style: const TextStyle(fontSize: 16),
                               ),
                               const Icon(Icons.rate_review_outlined)
                             ],
@@ -317,35 +325,39 @@ class _BodySettingsState extends State<BodySettings> with OpenLink {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 50.h,
-                      width: 200.w,
-                      child: OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          backgroundColor: AppColors.background,
-                          primary: Colors.white,
-                          elevation: 7,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
+                    const Spacer(),
+                    Flexible(
+                      flex: 3,
+                      child: SizedBox(
+                        child: OutlinedButton(
+                          style: OutlinedButton.styleFrom(
+                            fixedSize: const Size(200, 50),
+                            backgroundColor: AppColors.background,
+                            primary: Colors.white,
+                            elevation: 7,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            side: const BorderSide(color: Colors.white),
                           ),
-                          side: const BorderSide(color: Colors.white),
-                        ),
-                        onPressed: _changeCredits,
-                        child: Center(
-                          child: Text(
-                            AppLocalizations.of(context)!
-                                .button_credits_settings_page,
-                            style: TextStyle(fontSize: 16.sp),
+                          onPressed: _changeCredits,
+                          child: Center(
+                            child: Text(
+                              AppLocalizations.of(context)!
+                                  .button_credits_settings_page,
+                              style: const TextStyle(fontSize: 16),
+                            ),
                           ),
                         ),
                       ),
                     ),
+                    const Spacer(),
                   ],
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -3,7 +3,6 @@ import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/controller/clock_co
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/plugin_sound_implements_just_audio.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Clock extends StatefulWidget {
@@ -46,10 +45,11 @@ class _ClockState extends State<Clock> {
                       _myClock.minutes = int.parse(minutes) * 60,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                      icon: const Icon(Icons.timer),
-                      labelText: AppLocalizations.of(context)!
-                          .text_label_minutes_popup,
-                      border: const OutlineInputBorder()),
+                    icon: const Icon(Icons.timer),
+                    labelText:
+                        AppLocalizations.of(context)!.text_label_minutes_popup,
+                    border: const OutlineInputBorder(),
+                  ),
                 ),
               ],
             ),
@@ -137,43 +137,47 @@ class _ClockState extends State<Clock> {
 //------------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
+    final Size _size = MediaQuery.of(context).size;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        GestureDetector(
-          child: CircularCountDownTimer(
-            duration: _myClock.time,
-            controller: _myClock.controller,
-            autoStart: false,
-            width: MediaQuery.of(context).size.width / 3,
-            height: MediaQuery.of(context).size.height / 3,
-            textFormat: CountdownTextFormat.MM_SS,
-            ringColor: Colors.white,
-            fillColor: Colors.green,
-            backgroundColor: null,
-            strokeWidth: 5.0.sp,
-            strokeCap: StrokeCap.butt,
-            textStyle: TextStyle(fontSize: 18.0.sp, fontFamily: 'YatraOne'),
-            isReverse: true,
-            isReverseAnimation: false,
-            isTimerTextShown: true,
-            onComplete: () {
-              _playerAudio.play('assets/music/alarm_sound.mp3');
-              _showMyDialogstopsound();
+        Padding(
+          padding: EdgeInsets.only(bottom: _size.height * 0.1),
+          child: GestureDetector(
+            child: CircularCountDownTimer(
+              duration: _myClock.time,
+              controller: _myClock.controller,
+              autoStart: false,
+              width: _size.width * 0.3333,
+              height: _size.height * 0.3333,
+              textFormat: CountdownTextFormat.MM_SS,
+              ringColor: Colors.white,
+              fillColor: Colors.green,
+              backgroundColor: null,
+              strokeWidth: 5.0,
+              strokeCap: StrokeCap.butt,
+              textStyle:
+                  const TextStyle(fontSize: 30.0, fontFamily: 'YatraOne'),
+              isReverse: true,
+              isReverseAnimation: false,
+              isTimerTextShown: true,
+              onComplete: () {
+                _playerAudio.play('assets/music/alarm_sound.mp3');
+                _showMyDialogstopsound();
+              },
+            ),
+            onTap: () {
+              _showMyDialogSeconds();
+              _showMyDialogMinutes();
             },
           ),
-          onTap: () {
-            _showMyDialogSeconds();
-            _showMyDialogMinutes();
-          },
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height / 12,
         ),
         ConstrainedBox(
           constraints: BoxConstraints.tightFor(
-              width: MediaQuery.of(context).size.width / 9,
-              height: MediaQuery.of(context).size.height / 12),
+            width: _size.width * 0.11,
+            height: _size.height * 0.085,
+          ),
           child: OutlinedButton(
             style: OutlinedButton.styleFrom(
                 elevation: 7,
@@ -191,28 +195,29 @@ class _ClockState extends State<Clock> {
             ),
           ),
         ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height / 15,
-        ),
-        ConstrainedBox(
-          constraints: BoxConstraints.tightFor(
-              width: MediaQuery.of(context).size.width / 9,
-              height: MediaQuery.of(context).size.height / 12),
-          child: OutlinedButton(
-            style: OutlinedButton.styleFrom(
-              elevation: 7,
-              primary: Colors.yellow,
-              backgroundColor: AppColors.background,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-              side: const BorderSide(color: Colors.yellow),
+        Padding(
+          padding: EdgeInsets.only(top: _size.height * 0.05),
+          child: ConstrainedBox(
+            constraints: BoxConstraints.tightFor(
+              width: _size.width * 0.11,
+              height: _size.height * 0.085,
             ),
-            onPressed: () => setState(() => _myClock.restartButton()),
-            child: const Center(
-              child: Icon(
-                Icons.refresh_rounded,
-                color: Colors.yellow,
+            child: OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                elevation: 7,
+                primary: Colors.yellow,
+                backgroundColor: AppColors.background,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                side: const BorderSide(color: Colors.yellow),
+              ),
+              onPressed: () => setState(() => _myClock.restartButton()),
+              child: const Center(
+                child: Icon(
+                  Icons.refresh_rounded,
+                  color: Colors.yellow,
+                ),
               ),
             ),
           ),

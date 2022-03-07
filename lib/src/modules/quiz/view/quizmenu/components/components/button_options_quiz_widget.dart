@@ -41,6 +41,6 @@ class _ButtonOptionQuizState extends State<ButtonOptionQuiz> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.makeButton(changeRoute);
+    return widget.makeButton(context, changeRoute: changeRoute);
   }
 }

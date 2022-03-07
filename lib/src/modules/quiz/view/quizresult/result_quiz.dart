@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
@@ -55,6 +54,8 @@ class _ResultQuizState extends State<ResultQuiz> {
 
   @override
   Widget build(BuildContext context) {
+    final Size _size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -62,55 +63,61 @@ class _ResultQuizState extends State<ResultQuiz> {
       ),
       backgroundColor: AppColors.background,
       body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
+        height: _size.height,
+        width: _size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
               _iconPath,
-              height: 100.h,
-              width: 100.w,
+              height: 100,
+              width: 100,
             ),
-            SizedBox(height: MediaQuery.of(context).size.height / 15),
-            Text(
-              _textMessage,
-              style: TextStyle(fontSize: 20.sp),
+            Padding(
+              padding: EdgeInsets.only(top: _size.height * 0.05),
+              child: Text(
+                _textMessage,
+                style: const TextStyle(fontSize: 20),
+              ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height / 15),
-            SizedBox(
-              width: MediaQuery.of(context).size.width / 1.4,
-              child: Center(
-                child: Text(
-                  _textShowResult,
-                  style: TextStyle(fontSize: 20.sp),
+            Padding(
+              padding: EdgeInsets.only(top: _size.height * 0.05),
+              child: SizedBox(
+                width: _size.width * 0.7,
+                child: Center(
+                  child: Text(
+                    _textShowResult,
+                    style: const TextStyle(fontSize: 20),
+                  ),
                 ),
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height / 10),
-            SizedBox(
-              height: 150,
-              width: 150,
-              child: Stack(
-                children: [
-                  SizedBox(
-                    height: 150,
-                    width: 150,
-                    child: CircularProgressIndicator(
-                        strokeWidth: 7,
-                        value: _scorePercentage,
-                        backgroundColor: const Color(0xff313959),
-                        valueColor:
-                            const AlwaysStoppedAnimation<Color>(Colors.green)),
-                  ),
-                  Center(
-                    child: Text(
-                      _scorePercentageText + '%',
-                      style: TextStyle(fontSize: 30.sp),
+            Padding(
+              padding: EdgeInsets.only(top: _size.height * 0.1),
+              child: SizedBox(
+                height: 150,
+                width: 150,
+                child: Stack(
+                  children: [
+                    SizedBox(
+                      height: 150,
+                      width: 150,
+                      child: CircularProgressIndicator(
+                          strokeWidth: 7,
+                          value: _scorePercentage,
+                          backgroundColor: const Color(0xff313959),
+                          valueColor: const AlwaysStoppedAnimation<Color>(
+                              Colors.green)),
                     ),
-                  ),
-                ],
+                    Center(
+                      child: Text(
+                        _scorePercentageText + '%',
+                        style: const TextStyle(fontSize: 30),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

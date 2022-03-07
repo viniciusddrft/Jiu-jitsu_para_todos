@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../../shared/admob/widget/admob_native_ad.dart';
+import '../../../../shared/launch_link/launch_link.dart';
 
 class Cbjjrules extends StatefulWidget {
   const Cbjjrules({Key? key}) : super(key: key);
@@ -12,38 +12,11 @@ class Cbjjrules extends StatefulWidget {
   _CbjjrulesState createState() => _CbjjrulesState();
 }
 
-class _CbjjrulesState extends State<Cbjjrules> {
-  bool _loadingAnchoredBanner = false;
-  final ValueNotifier<AdWidget?> _adWidget = ValueNotifier<AdWidget?>(null);
-
-  @override
-  void didChangeDependencies() {
-    if (!_loadingAnchoredBanner) {
-      Admob.createAnchoredBanner(context).then((BannerAd? banner) {
-        if (banner != null) {
-          _adWidget.value = AdWidget(key: UniqueKey(), ad: banner..load());
-          Admob.heightAnchoredBanner = banner.size.height;
-          Admob.widthAnchoredBanner = banner.size.width;
-        }
-      }).whenComplete(() => _loadingAnchoredBanner = true);
-    }
-    super.didChangeDependencies();
-  }
-
-  @override
-  void dispose() {
-    _adWidget.dispose();
-    super.dispose();
-  }
-
-  Future<void> _launchLink(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url, forceWebView: false, forceSafariVC: false);
-    } else {}
-  }
-
+class _CbjjrulesState extends State<Cbjjrules> with OpenLink {
   @override
   Widget build(BuildContext context) {
+    final Size _size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -54,63 +27,53 @@ class _CbjjrulesState extends State<Cbjjrules> {
         ),
       ),
       backgroundColor: AppColors.background,
-      bottomNavigationBar: ValueListenableBuilder(
-        valueListenable: _adWidget,
-        builder: (BuildContext context, AdWidget? value, Widget? child) =>
-            _loadingAnchoredBanner == true
-                ? SizedBox(
-                    height: Admob.heightAnchoredBanner.toDouble(),
-                    width: Admob.widthAnchoredBanner.toDouble(),
-                    child: value,
-                  )
-                : Container(
-                    height: MediaQuery.of(context).size.height * 0.15,
-                    color: Colors.transparent,
-                  ),
-      ),
       body: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 1.2,
-                child: Column(
-                  children: [
-                    SizedBox(height: MediaQuery.of(context).size.height / 20),
-                    Text(
+        width: _size.width,
+        height: _size.height,
+        child: Column(
+          children: [
+            SizedBox(
+              width: _size.width * 0.9,
+              child: Column(
+                children: [
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: _size.height * 0.03),
+                    child: Text(
                       AppLocalizations.of(context)!.text_cbjj,
-                      style: TextStyle(fontSize: 16.sp),
+                      style: const TextStyle(fontSize: 16),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 20),
-                    SizedBox(
-                      height: 50.h,
-                      width: 200.w,
-                      child: OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                            elevation: 7,
-                            primary: Colors.white,
-                            backgroundColor: AppColors.background,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            side: const BorderSide(color: Colors.white)),
-                        onPressed: () =>
-                            _launchLink('https://cbjj.com.br/books-videos'),
-                        child: Center(
-                          child: Text(
-                            AppLocalizations.of(context)!.text_button_cbjj,
-                            style: TextStyle(fontSize: 16.sp),
-                          ),
+                  ),
+                  OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                        fixedSize: const Size(200, 50),
+                        elevation: 7,
+                        primary: Colors.white,
+                        backgroundColor: AppColors.background,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
                         ),
+                        side: const BorderSide(color: Colors.white)),
+                    onPressed: () =>
+                        openLink('https://cbjj.com.br/books-videos'),
+                    child: Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.text_button_cbjj,
+                        style: const TextStyle(fontSize: 16),
                       ),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+      bottomNavigationBar: SizedBox(
+        height: 75,
+        child: AdmobNativeAd(
+          factoryId: 'listTile',
+          adUnitId: AdmobController.nativeAdUnitIDListTile,
         ),
       ),
     );

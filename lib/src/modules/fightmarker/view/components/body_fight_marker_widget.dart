@@ -11,21 +11,23 @@ class BodyFightMarker extends StatefulWidget {
 class _BodyFightMarkerState extends State<BodyFightMarker> {
   @override
   Widget build(BuildContext context) {
+    final Size _size = MediaQuery.of(context).size;
+
     return SingleChildScrollView(
       child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height / 1.3,
+        width: _size.width,
+        height: _size.height * 0.78,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Scoreboard(),
             SizedBox(
-              width: MediaQuery.of(context).size.width / 20,
+              width: _size.width * 0.05,
             ),
             const Clock(),
             SizedBox(
-              width: MediaQuery.of(context).size.width / 20,
+              width: _size.width * 0.05,
             ),
             const Scoreboard(),
           ],

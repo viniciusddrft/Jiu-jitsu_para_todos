@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 abstract class ButtonForMenu extends StatefulWidget {
   final String imageButton;
@@ -12,21 +11,22 @@ abstract class ButtonForMenu extends StatefulWidget {
 
   // changeRoute need context to be created and so it created in build method and parameter passed
 
-  Widget _makeThumbnail(VoidCallback changeRoute) => GestureDetector(
+  Widget _makeThumbnail(Size size, VoidCallback changeRoute) => GestureDetector(
         onTap: changeRoute,
         child: Container(
           alignment: const FractionalOffset(0.0, 0.5),
           margin: EdgeInsets.only(
-            left: 24.0.w,
+            left: size.width * 0.055,
           ),
-          child: Image.asset(imageButton, width: 100.w, height: 100.h),
+          child: Image.asset(imageButton,
+              width: size.height * 0.12, height: size.height * 0.12),
         ),
       );
 
-  Widget _makeCard(VoidCallback changeRoute) => Container(
-        height: 117.h,
-        width: 257.w,
-        margin: EdgeInsets.only(left: 72.0.w, right: 24.0.w),
+  Widget _makeCard(Size size, VoidCallback changeRoute) => Container(
+        height: size.height * 0.15,
+        width: size.width * 0.65,
+        margin: EdgeInsets.only(left: size.width * 0.173),
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.circular(8.0),
@@ -56,18 +56,28 @@ abstract class ButtonForMenu extends StatefulWidget {
             child: Center(
               child: Text(
                 textButton,
-                style: TextStyle(fontSize: 18.sp),
+                style: const TextStyle(fontSize: 18),
               ),
             ),
           ),
         ),
       );
 
-  Widget makeButton(VoidCallback changeRoute) => Container(
-        margin: EdgeInsets.only(
-            top: 30.0.h, bottom: 8.0.h, left: 10.w, right: 10.w),
-        child: Stack(
-          children: [_makeCard(changeRoute), _makeThumbnail(changeRoute)],
-        ),
-      );
+  Widget makeButton(BuildContext context, {required VoidCallback changeRoute}) {
+    final Size _size = MediaQuery.of(context).size;
+
+    return Container(
+      margin: EdgeInsets.only(
+          top: _size.height * 0.04,
+          bottom: _size.height * 0.01,
+          left: _size.width * 0.01,
+          right: _size.width * 0.01),
+      child: Stack(
+        children: [
+          _makeCard(_size, changeRoute),
+          _makeThumbnail(_size, changeRoute)
+        ],
+      ),
+    );
+  }
 }

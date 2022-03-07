@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/controller/wallpapers_controller.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BodyWallpalers extends StatefulWidget {
   const BodyWallpalers({Key? key}) : super(key: key);
@@ -10,17 +9,21 @@ class BodyWallpalers extends StatefulWidget {
 
 class _BodyWallpalersState extends State<BodyWallpalers> {
   final ControllerWallpapers _controllerWallpapers = ControllerWallpapers();
+
   @override
   Widget build(BuildContext context) {
+    final Size _size = MediaQuery.of(context).size;
+
     return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
+      height: _size.height,
+      width: _size.width,
       child: GridView.builder(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        padding: EdgeInsets.symmetric(
+            horizontal: _size.width * 0.05, vertical: _size.height * 0.03),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
-          crossAxisSpacing: 10.sp,
-          mainAxisSpacing: 10.sp,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
         ),
         itemBuilder: (context, index) => RawMaterialButton(
           onPressed: () => Navigator.pushNamed(context, '/DetailsImage',

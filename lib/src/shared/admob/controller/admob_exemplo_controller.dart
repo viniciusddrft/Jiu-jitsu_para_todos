@@ -12,6 +12,9 @@ class Admob {
 
   static late int widthAnchoredBanner;
 
+  static String get _bannerAdUnitId => 'id test';
+
+  static String get _interstitialAdUnitID => 'id test';
 //------------------------------------------------------------------------------
   static Future<BannerAd?> createAnchoredBanner(BuildContext context) async {
     final AnchoredAdaptiveBannerAdSize? _size =
@@ -28,7 +31,7 @@ class Admob {
     final BannerAd banner = BannerAd(
       size: _size,
       request: const AdRequest(),
-      adUnitId: BannerAd.testAdUnitId,
+      adUnitId: _bannerAdUnitId,
       listener: BannerAdListener(
         onAdLoaded: (Ad ad) {
           debugPrint('$BannerAd loaded.');
@@ -54,7 +57,7 @@ class Admob {
 //Used to load ads into didChangeDependencies to optimize
   static void createInterstitialAd() {
     InterstitialAd.load(
-      adUnitId: InterstitialAd.testAdUnitId,
+      adUnitId: _interstitialAdUnitID,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (InterstitialAd ad) {
@@ -113,7 +116,7 @@ class Admob {
   //Used when the ad has not yet been uploaded to didChangeDependencies
   static void _createAndShowInterstitialAd() {
     InterstitialAd.load(
-      adUnitId: InterstitialAd.testAdUnitId,
+      adUnitId: _interstitialAdUnitID,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (InterstitialAd ad) {

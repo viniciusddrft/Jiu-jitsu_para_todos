@@ -27,6 +27,6 @@ class _ButtonOptionsHomeState extends State<ButtonOptionsHome> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.makeButton(changeRoute);
+    return widget.makeButton(context, changeRoute: changeRoute);
   }
 }

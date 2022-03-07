@@ -20,6 +20,6 @@ class _ButtonOptionsRulesState extends State<ButtonOptionsRules> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.makeButton(changeRoute);
+    return widget.makeButton(context, changeRoute: changeRoute);
   }
 }
