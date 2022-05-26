@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/settings/view/components/body_settings_widget.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/appbar_gradient/appbar_gradient.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
+
+import '../../../shared/appbar_gradient/appbar_gradient.dart';
+import '../../../shared/themes/app_colors.dart';
+import 'components/body_settings_widget.dart';
 
 class SettingsView extends StatefulWidget {
-  const SettingsView({Key? key}) : super(key: key);
+  const SettingsView({super.key});
   @override
-  _SettingsViewState createState() => _SettingsViewState();
+  State<SettingsView> createState() => _SettingsViewState();
 }
 
 class _SettingsViewState extends State<SettingsView> {
@@ -24,7 +25,7 @@ class _SettingsViewState extends State<SettingsView> {
         height: 60,
         child: Center(
           child: Text(
-            AppLocalizations.of(context)!.text_version + ' 2.2.0',
+            '${AppLocalizations.of(context)!.text_version} 2.2.0',
             style: TextStyle(fontSize: 14, color: Colors.grey[700]),
           ),
         ),

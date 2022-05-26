@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/controller/clock_controller.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/plugins/plugin_sound_implements_just_audio.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../../shared/plugins/plugin_sound_implements_just_audio.dart';
+import '../../../../../shared/themes/app_colors.dart';
+import '../../../controller/clock_controller.dart';
+
 class Clock extends StatefulWidget {
-  const Clock({Key? key}) : super(key: key);
+  const Clock({super.key});
   @override
-  _ClockState createState() => _ClockState();
+  State<Clock> createState() => _ClockState();
 }
 
 class _ClockState extends State<Clock> {
@@ -137,20 +138,20 @@ class _ClockState extends State<Clock> {
 //------------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
-    final Size _size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
-          padding: EdgeInsets.only(bottom: _size.height * 0.1),
+          padding: EdgeInsets.only(bottom: size.height * 0.1),
           child: GestureDetector(
             child: CircularCountDownTimer(
               duration: _myClock.time,
               controller: _myClock.controller,
               autoStart: false,
-              width: _size.width * 0.3333,
-              height: _size.height * 0.3333,
+              width: size.width * 0.3333,
+              height: size.height * 0.3333,
               textFormat: CountdownTextFormat.MM_SS,
               ringColor: Colors.white,
               fillColor: Colors.green,
@@ -175,8 +176,8 @@ class _ClockState extends State<Clock> {
         ),
         ConstrainedBox(
           constraints: BoxConstraints.tightFor(
-            width: _size.width * 0.11,
-            height: _size.height * 0.085,
+            width: size.width * 0.11,
+            height: size.height * 0.085,
           ),
           child: OutlinedButton(
             style: OutlinedButton.styleFrom(
@@ -196,11 +197,11 @@ class _ClockState extends State<Clock> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: _size.height * 0.05),
+          padding: EdgeInsets.only(top: size.height * 0.05),
           child: ConstrainedBox(
             constraints: BoxConstraints.tightFor(
-              width: _size.width * 0.11,
-              height: _size.height * 0.085,
+              width: size.width * 0.11,
+              height: size.height * 0.085,
             ),
             child: OutlinedButton(
               style: OutlinedButton.styleFrom(

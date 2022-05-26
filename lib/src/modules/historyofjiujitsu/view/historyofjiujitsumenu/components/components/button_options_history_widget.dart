@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/button_for_menu/button_for_menu.dart';
+
+import '../../../../../../shared/button_for_menu/button_for_menu.dart';
 
 class ButtonOptionsHistory extends ButtonForMenu {
   final String routeButton;
   const ButtonOptionsHistory(
-      {required imageButton,
-      required textButton,
+      {required super.imageButton,
+      required super.textButton,
       required this.routeButton,
-      Key? key})
-      : super(imageButton: imageButton, textButton: textButton, key: key);
+      super.key});
   @override
-  _ButtonOptionsHistoryState createState() => _ButtonOptionsHistoryState();
+  State<ButtonOptionsHistory> createState() => _ButtonOptionsHistoryState();
 }
 
 class _ButtonOptionsHistoryState extends State<ButtonOptionsHistory> {

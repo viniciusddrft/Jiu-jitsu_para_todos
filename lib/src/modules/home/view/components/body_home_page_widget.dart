@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/home/view/components/components/button_options_home_widget.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_path.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../shared/themes/app_icons_path.dart';
+import 'components/button_options_home_widget.dart';
+
 class BodyHomePage extends StatefulWidget {
-  const BodyHomePage({Key? key}) : super(key: key);
+  const BodyHomePage({super.key});
 
   @override
   State<BodyHomePage> createState() => _BodyHomePageState();
@@ -20,11 +22,11 @@ class _BodyHomePageState extends State<BodyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final Size _size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
 
     return SizedBox(
-      height: _size.height,
-      width: _size.height,
+      height: size.height,
+      width: size.height,
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -52,7 +54,7 @@ class _BodyHomePageState extends State<BodyHomePage> {
               isFightMakerView: true,
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: _size.height * 0.1),
+              padding: EdgeInsets.only(bottom: size.height * 0.1),
               child: ButtonOptionsHome(
                 imageButton: AppIconsPath.wallpapers,
                 textButton:

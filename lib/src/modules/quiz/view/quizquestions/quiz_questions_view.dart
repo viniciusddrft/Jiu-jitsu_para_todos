@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/controller/quiz_controller.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizquestions/components/button_quiz_questions_widget.dart';
-//import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizquestions/components/return_midia_quiz_widget.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/plugins/plugin_sound_implements_just_audio.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../shared/admob/controller/admob_controller.dart';
+import '../../../../shared/plugins/plugin_sound_implements_just_audio.dart';
+import '../../../../shared/themes/app_colors.dart';
+import '../../controller/quiz_controller.dart';
+import 'components/button_quiz_questions_widget.dart';
 
 class QuizQuestions extends StatefulWidget {
   final String difficulty;
   final String difficultyName;
   QuizQuestions(
-      {Key? key, required this.difficulty, required this.difficultyName})
-      : assert(['easy', 'medium', 'hard'].contains(difficulty)),
-        super(key: key);
+      {super.key, required this.difficulty, required this.difficultyName})
+      : assert(['easy', 'medium', 'hard'].contains(difficulty));
 
   @override
-  _QuizQuestionsState createState() => _QuizQuestionsState();
+  State<QuizQuestions> createState() => _QuizQuestionsState();
 }
 
 class _QuizQuestionsState extends State<QuizQuestions> {
@@ -203,7 +201,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
 //------------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
-    final Size _size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
@@ -212,14 +210,14 @@ class _QuizQuestionsState extends State<QuizQuestions> {
       ),
       backgroundColor: AppColors.background,
       body: SizedBox(
-        width: _size.width,
-        height: _size.height,
+        width: size.width,
+        height: size.height,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: EdgeInsets.only(
-                  left: _size.width * 0.07, bottom: _size.height * 0.01),
+                  left: size.width * 0.07, bottom: size.height * 0.01),
               child: Text(
                 'Quiz $_difficultyName',
                 style: TextStyle(
@@ -229,20 +227,17 @@ class _QuizQuestionsState extends State<QuizQuestions> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: _size.width * 0.07),
+              padding: EdgeInsets.only(left: size.width * 0.07),
               child: Text(
-                AppLocalizations.of(context)!.text_question +
-                    ' ' +
-                    counterQuestions.toString() +
-                    '/$totalNumberOfQuestions',
+                '${AppLocalizations.of(context)!.text_question} $counterQuestions/$totalNumberOfQuestions',
                 style: const TextStyle(
                     fontFamily: 'Ubuntu', fontSize: 22, color: Colors.white),
               ),
             ),
             Container(
               margin: EdgeInsets.only(
-                  left: _size.width * 0.07, right: _size.width * 0.07),
-              width: _size.width,
+                  left: size.width * 0.07, right: size.width * 0.07),
+              width: size.width,
               height: 1,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
@@ -253,9 +248,9 @@ class _QuizQuestionsState extends State<QuizQuestions> {
             ),
             Padding(
               padding: EdgeInsets.only(
-                  top: _size.height * 0.03,
-                  left: _size.width * 0.07,
-                  right: _size.width * 0.07),
+                  top: size.height * 0.03,
+                  left: size.width * 0.07,
+                  right: size.width * 0.07),
               child: Text(
                 _controllerQuiz.textQuestionReturn(_myQuestions),
                 style: const TextStyle(
@@ -269,8 +264,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Container(
-                    margin:
-                        EdgeInsets.symmetric(horizontal: _size.width * 0.07),
+                    margin: EdgeInsets.symmetric(horizontal: size.width * 0.07),
                     color: Colors.transparent,
                     child: Column(
                       children: [

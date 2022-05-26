@@ -7,9 +7,9 @@ main() {
 
     this test checks whether the driver is able to return all image paths
   */
-  final ControllerWallpapers _controllerWallpapers = ControllerWallpapers();
+  final ControllerWallpapers controllerWallpapers = ControllerWallpapers();
 
-  const List<String> _allPathsImages = [
+  const List<String> allPathsImages = [
     'assets/images/wallpapers/1.jpg',
     'assets/images/wallpapers/2.jpg',
     'assets/images/wallpapers/3.jpg',
@@ -31,11 +31,11 @@ main() {
     'assets/images/wallpapers/19.png',
   ];
   test('deve retornar o caminho das images', () {
-    List<String> _arrayTest = [];
-    for (int _i = 0; _i != _controllerWallpapers.images.length; _i++) {
-      //print(_controllerWallpapers.images[_i].imagePath);
-      _arrayTest.add(_controllerWallpapers.images[_i].imagePath);
+    List<String> arrayTest = [];
+    for (int i = 0; i != controllerWallpapers.images.length; i++) {
+      //print(controllerWallpapers.images[_i].imagePath);
+      arrayTest.add(controllerWallpapers.images[i].imagePath);
     }
-    expect(_allPathsImages, _arrayTest);
+    expect(allPathsImages, arrayTest);
   });
 }

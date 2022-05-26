@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:jiu_jitsu_para_todos/core/locale/locale_app.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/launch_link/launch_link.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_languages_path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../../core/locale/locale_app.dart';
+import '../../../../shared/launch_link/launch_link.dart';
+import '../../../../shared/themes/app_colors.dart';
+import '../../../../shared/themes/app_icons_languages_path.dart';
+
 class BodySettings extends StatefulWidget {
-  const BodySettings({Key? key}) : super(key: key);
+  const BodySettings({super.key});
   @override
-  _BodySettingsState createState() => _BodySettingsState();
+  State<BodySettings> createState() => _BodySettingsState();
 }
 
 class _BodySettingsState extends State<BodySettings> with OpenLink {
@@ -50,7 +51,7 @@ class _BodySettingsState extends State<BodySettings> with OpenLink {
 
 //------------------------------------------------------------------------------
   Future<void> _changeLanguageMenu() async {
-    final Size _size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
 
     return showDialog<void>(
       context: context,
@@ -63,15 +64,15 @@ class _BodySettingsState extends State<BodySettings> with OpenLink {
           title:
               Text(AppLocalizations.of(context)!.button_language_settings_page),
           content: SizedBox(
-            width: _size.width * 0.7,
-            height: _size.height * 0.4,
+            width: size.width * 0.7,
+            height: size.height * 0.4,
             child: ListView.builder(
               itemCount: allLocales.length,
               itemBuilder: (context, index) => Padding(
                 padding: EdgeInsets.only(
-                    top: _size.height * 0.02,
-                    left: _size.width * 0.02,
-                    right: _size.width * 0.02),
+                    top: size.height * 0.02,
+                    left: size.width * 0.02,
+                    right: size.width * 0.02),
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
                     backgroundColor: AppColors.background,
@@ -124,11 +125,11 @@ class _BodySettingsState extends State<BodySettings> with OpenLink {
   //--------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
-    final Size _size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
 
     return SizedBox(
-      height: _size.height,
-      width: _size.width,
+      height: size.height,
+      width: size.width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -141,7 +142,7 @@ class _BodySettingsState extends State<BodySettings> with OpenLink {
               ),
               color: AppColors.cardColor,
               child: SizedBox(
-                width: _size.width * 0.85,
+                width: size.width * 0.85,
                 child: Column(
                   children: [
                     const Spacer(),
@@ -205,7 +206,7 @@ class _BodySettingsState extends State<BodySettings> with OpenLink {
               ),
               color: AppColors.cardColor,
               child: SizedBox(
-                width: _size.width * 0.85,
+                width: size.width * 0.85,
                 child: Column(
                   children: [
                     const Spacer(),
@@ -285,7 +286,7 @@ class _BodySettingsState extends State<BodySettings> with OpenLink {
               ),
               color: AppColors.cardColor,
               child: SizedBox(
-                width: _size.width * 0.85,
+                width: size.width * 0.85,
                 child: Column(
                   children: [
                     const Spacer(),

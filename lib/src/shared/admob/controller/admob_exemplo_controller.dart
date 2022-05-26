@@ -17,19 +17,19 @@ class Admob {
   static String get _interstitialAdUnitID => 'id test';
 //------------------------------------------------------------------------------
   static Future<BannerAd?> createAnchoredBanner(BuildContext context) async {
-    final AnchoredAdaptiveBannerAdSize? _size =
+    final AnchoredAdaptiveBannerAdSize? size =
         await AdSize.getAnchoredAdaptiveBannerAdSize(
       Orientation.portrait,
       MediaQuery.of(context).size.width.truncate(),
     );
 
-    if (_size == null) {
+    if (size == null) {
       debugPrint('Unable to get height of anchored banner.');
       return null;
     }
 
     final BannerAd banner = BannerAd(
-      size: _size,
+      size: size,
       request: const AdRequest(),
       adUnitId: _bannerAdUnitId,
       listener: BannerAdListener(

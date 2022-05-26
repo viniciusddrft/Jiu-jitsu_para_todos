@@ -10,11 +10,10 @@ class DetailsImage extends StatefulWidget {
   final String imagePath;
   final int index;
 
-  const DetailsImage({Key? key, required this.imagePath, required this.index})
-      : super(key: key);
+  const DetailsImage({super.key, required this.imagePath, required this.index});
 
   @override
-  _DetailsImageState createState() => _DetailsImageState();
+  State<DetailsImage> createState() => _DetailsImageState();
 }
 
 class _DetailsImageState extends State<DetailsImage> {
@@ -85,7 +84,7 @@ class _DetailsImageState extends State<DetailsImage> {
 
   @override
   Widget build(BuildContext context) {
-    final Size _size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -108,7 +107,7 @@ class _DetailsImageState extends State<DetailsImage> {
             ),
           ),
           SizedBox(
-            height: _size.height * 0.3,
+            height: size.height * 0.3,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,

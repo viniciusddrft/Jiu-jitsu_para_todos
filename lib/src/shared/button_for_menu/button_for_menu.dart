@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
+
+import '../themes/app_colors.dart';
 
 abstract class ButtonForMenu extends StatefulWidget {
   final String imageButton;
   final String textButton;
 
   const ButtonForMenu(
-      {required this.imageButton, required this.textButton, Key? key})
-      : super(key: key);
+      {required this.imageButton, required this.textButton, super.key});
 
   // changeRoute need context to be created and so it created in build method and parameter passed
 
@@ -64,18 +64,18 @@ abstract class ButtonForMenu extends StatefulWidget {
       );
 
   Widget makeButton(BuildContext context, {required VoidCallback changeRoute}) {
-    final Size _size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
 
     return Container(
       margin: EdgeInsets.only(
-          top: _size.height * 0.04,
-          bottom: _size.height * 0.01,
-          left: _size.width * 0.01,
-          right: _size.width * 0.01),
+          top: size.height * 0.04,
+          bottom: size.height * 0.01,
+          left: size.width * 0.01,
+          right: size.width * 0.01),
       child: Stack(
         children: [
-          _makeCard(_size, changeRoute),
-          _makeThumbnail(_size, changeRoute)
+          _makeCard(size, changeRoute),
+          _makeThumbnail(size, changeRoute)
         ],
       ),
     );

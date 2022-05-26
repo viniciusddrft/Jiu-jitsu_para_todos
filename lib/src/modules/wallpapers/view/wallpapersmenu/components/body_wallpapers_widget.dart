@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/controller/wallpapers_controller.dart';
+
+import '../../../controller/wallpapers_controller.dart';
 
 class BodyWallpalers extends StatefulWidget {
-  const BodyWallpalers({Key? key}) : super(key: key);
+  const BodyWallpalers({super.key});
   @override
-  _BodyWallpalersState createState() => _BodyWallpalersState();
+  State<BodyWallpalers> createState() => _BodyWallpalersState();
 }
 
 class _BodyWallpalersState extends State<BodyWallpalers> {
@@ -12,14 +13,14 @@ class _BodyWallpalersState extends State<BodyWallpalers> {
 
   @override
   Widget build(BuildContext context) {
-    final Size _size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
 
     return SizedBox(
-      height: _size.height,
-      width: _size.width,
+      height: size.height,
+      width: size.width,
       child: GridView.builder(
         padding: EdgeInsets.symmetric(
-            horizontal: _size.width * 0.05, vertical: _size.height * 0.03),
+            horizontal: size.width * 0.05, vertical: size.height * 0.03),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           crossAxisSpacing: 10,

@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/admob/widget/admob_native_ad.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../shared/admob/controller/admob_controller.dart';
+import '../../../../shared/admob/widget/admob_native_ad.dart';
+import '../../../../shared/themes/app_colors.dart';
+
 class OriginOfJiujitsu extends StatefulWidget {
-  const OriginOfJiujitsu({Key? key}) : super(key: key);
+  const OriginOfJiujitsu({super.key});
   @override
-  _OriginOfJiujitsuState createState() => _OriginOfJiujitsuState();
+  State<OriginOfJiujitsu> createState() => _OriginOfJiujitsuState();
 }
 
 class _OriginOfJiujitsuState extends State<OriginOfJiujitsu> {
   @override
   Widget build(BuildContext context) {
-    final Size _size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
@@ -26,17 +27,17 @@ class _OriginOfJiujitsuState extends State<OriginOfJiujitsu> {
       ),
       backgroundColor: AppColors.background,
       body: SizedBox(
-        width: _size.width,
-        height: _size.height,
+        width: size.width,
+        height: size.height,
         child: SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(
-                width: _size.width * 0.9,
+                width: size.width * 0.9,
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: _size.height * 0.03),
+                      padding: EdgeInsets.only(top: size.height * 0.03),
                       child: Text(
                         AppLocalizations.of(context)!
                             .text_origin_of_jiujitsu_paragraph1,
@@ -59,7 +60,7 @@ class _OriginOfJiujitsuState extends State<OriginOfJiujitsu> {
                       style: const TextStyle(fontSize: 16),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(bottom: _size.height * 0.05),
+                      padding: EdgeInsets.only(bottom: size.height * 0.05),
                       child: Text(
                         AppLocalizations.of(context)!
                             .text_origin_of_jiujitsu_paragraph5,

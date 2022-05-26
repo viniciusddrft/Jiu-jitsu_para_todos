@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../shared/admob/controller/admob_controller.dart';
 import '../../../../shared/admob/widget/admob_native_ad.dart';
 import '../../../../shared/launch_link/launch_link.dart';
+import '../../../../shared/themes/app_colors.dart';
 
 class Cbjjrules extends StatefulWidget {
-  const Cbjjrules({Key? key}) : super(key: key);
+  const Cbjjrules({super.key});
   @override
-  _CbjjrulesState createState() => _CbjjrulesState();
+  State<Cbjjrules> createState() => _CbjjrulesState();
 }
 
 class _CbjjrulesState extends State<Cbjjrules> with OpenLink {
   @override
   Widget build(BuildContext context) {
-    final Size _size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
@@ -28,17 +28,16 @@ class _CbjjrulesState extends State<Cbjjrules> with OpenLink {
       ),
       backgroundColor: AppColors.background,
       body: SizedBox(
-        width: _size.width,
-        height: _size.height,
+        width: size.width,
+        height: size.height,
         child: Column(
           children: [
             SizedBox(
-              width: _size.width * 0.9,
+              width: size.width * 0.9,
               child: Column(
                 children: [
                   Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: _size.height * 0.03),
+                    padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
                     child: Text(
                       AppLocalizations.of(context)!.text_cbjj,
                       style: const TextStyle(fontSize: 16),

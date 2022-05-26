@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/model/questions_model.dart';
+
+import '../model/questions_model.dart';
 
 class ControllerQuiz {
   int numberOfQuestions = 0;
@@ -10,10 +11,10 @@ class ControllerQuiz {
     switch (difficulty) {
       case 'easy':
         {
-          final List<QuestionsModel> _questionsEasy =
+          final List<QuestionsModel> questionsEasy =
               QuestionsModel.questionsEasy(context);
 
-          return _questionsEasy
+          return questionsEasy
             ..shuffle()
             ..toList().forEach(
                 (QuestionsModel question) => question.options.shuffle());
@@ -21,10 +22,10 @@ class ControllerQuiz {
 
       case 'medium':
         {
-          final List<QuestionsModel> _questionsMedium =
+          final List<QuestionsModel> questionsMedium =
               QuestionsModel.questionsMedium(context);
 
-          return _questionsMedium
+          return questionsMedium
             ..shuffle()
             ..toList().forEach(
                 (QuestionsModel question) => question.options.shuffle());
@@ -32,10 +33,10 @@ class ControllerQuiz {
 
       case 'hard':
         {
-          final List<QuestionsModel> _questionsHard =
+          final List<QuestionsModel> questionsHard =
               QuestionsModel.questionsHard(context);
 
-          return _questionsHard
+          return questionsHard
             ..shuffle()
             ..toList().forEach(
                 (QuestionsModel question) => question.options.shuffle());
@@ -44,10 +45,10 @@ class ControllerQuiz {
       default:
         {
           //
-          final List<QuestionsModel> _questionsEasy =
+          final List<QuestionsModel> questionsEasy =
               QuestionsModel.questionsEasy(context);
 
-          return _questionsEasy
+          return questionsEasy
             ..shuffle()
             ..toList().forEach(
                 (QuestionsModel question) => question.options.shuffle());

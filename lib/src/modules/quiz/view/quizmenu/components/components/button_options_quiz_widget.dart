@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/button_for_menu/button_for_menu.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../../../../shared/button_for_menu/button_for_menu.dart';
 
 class ButtonOptionQuiz extends ButtonForMenu {
   final String difficulty;
   final String difficultyName;
   ButtonOptionQuiz(BuildContext context,
-      {Key? key,
-      required imageButton,
-      required textButton,
+      {super.key,
+      required super.imageButton,
+      required super.textButton,
       required this.difficulty,
       required this.difficultyName})
       : assert([
@@ -26,10 +27,9 @@ class ButtonOptionQuiz extends ButtonForMenu {
               AppLocalizations.of(context)!.text_difficultyname_white_belt,
               AppLocalizations.of(context)!.text_difficultyname_blue_belt,
               AppLocalizations.of(context)!.text_difficultyname_black_belt
-            ].contains(difficultyName)),
-        super(key: key, imageButton: imageButton, textButton: textButton);
+            ].contains(difficultyName));
   @override
-  _ButtonOptionQuizState createState() => _ButtonOptionQuizState();
+  State<ButtonOptionQuiz> createState() => _ButtonOptionQuizState();
 }
 
 class _ButtonOptionQuizState extends State<ButtonOptionQuiz> {

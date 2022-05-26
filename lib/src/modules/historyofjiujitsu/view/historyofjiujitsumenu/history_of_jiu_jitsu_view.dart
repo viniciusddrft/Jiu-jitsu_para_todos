@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/historyofjiujitsu/view/historyofjiujitsumenu/components/body_history_of_jiu_jitsu_widget.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/appbar_gradient/appbar_gradient.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
+
+import '../../../../shared/appbar_gradient/appbar_gradient.dart';
+import '../../../../shared/themes/app_colors.dart';
+import 'components/body_history_of_jiu_jitsu_widget.dart';
 
 class HistoryOfJiuJitsuView extends StatelessWidget {
-  const HistoryOfJiuJitsuView({Key? key}) : super(key: key);
+  const HistoryOfJiuJitsuView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/rules/view/rulesmenu/components/body_rules_widget.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/appbar_gradient/appbar_gradient.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
+
+import '../../../../shared/appbar_gradient/appbar_gradient.dart';
+import '../../../../shared/themes/app_colors.dart';
+import 'components/body_rules_widget.dart';
 
 class RulesView extends StatelessWidget {
-  const RulesView({Key? key}) : super(key: key);
+  const RulesView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

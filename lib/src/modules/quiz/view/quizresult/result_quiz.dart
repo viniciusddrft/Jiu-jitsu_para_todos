@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
+
+import '../../../../shared/themes/app_colors.dart';
 
 class ResultQuiz extends StatefulWidget {
   final int score, totalQuestions;
@@ -10,10 +11,9 @@ class ResultQuiz extends StatefulWidget {
       {required this.score,
       required this.difficultyName,
       required this.totalQuestions,
-      Key? key})
-      : super(key: key);
+      super.key});
   @override
-  _ResultQuizState createState() => _ResultQuizState();
+  State<ResultQuiz> createState() => _ResultQuizState();
 }
 
 class _ResultQuizState extends State<ResultQuiz> {
@@ -54,7 +54,7 @@ class _ResultQuizState extends State<ResultQuiz> {
 
   @override
   Widget build(BuildContext context) {
-    final Size _size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
@@ -63,8 +63,8 @@ class _ResultQuizState extends State<ResultQuiz> {
       ),
       backgroundColor: AppColors.background,
       body: SizedBox(
-        height: _size.height,
-        width: _size.width,
+        height: size.height,
+        width: size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -75,16 +75,16 @@ class _ResultQuizState extends State<ResultQuiz> {
               width: 100,
             ),
             Padding(
-              padding: EdgeInsets.only(top: _size.height * 0.05),
+              padding: EdgeInsets.only(top: size.height * 0.05),
               child: Text(
                 _textMessage,
                 style: const TextStyle(fontSize: 20),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: _size.height * 0.05),
+              padding: EdgeInsets.only(top: size.height * 0.05),
               child: SizedBox(
-                width: _size.width * 0.7,
+                width: size.width * 0.7,
                 child: Center(
                   child: Text(
                     _textShowResult,
@@ -94,7 +94,7 @@ class _ResultQuizState extends State<ResultQuiz> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: _size.height * 0.1),
+              padding: EdgeInsets.only(top: size.height * 0.1),
               child: SizedBox(
                 height: 150,
                 width: 150,
@@ -112,7 +112,7 @@ class _ResultQuizState extends State<ResultQuiz> {
                     ),
                     Center(
                       child: Text(
-                        _scorePercentageText + '%',
+                        '$_scorePercentageText%',
                         style: const TextStyle(fontSize: 30),
                       ),
                     ),

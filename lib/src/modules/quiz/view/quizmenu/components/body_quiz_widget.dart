@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/view/quizmenu/components/components/button_options_quiz_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_path.dart';
+
+import '../../../../../shared/themes/app_icons_path.dart';
+import 'components/button_options_quiz_widget.dart';
 
 class BodyQuiz extends StatefulWidget {
-  const BodyQuiz({Key? key}) : super(key: key);
+  const BodyQuiz({super.key});
   @override
-  _BodyQuizState createState() => _BodyQuizState();
+  State<BodyQuiz> createState() => _BodyQuizState();
 }
 
 class _BodyQuizState extends State<BodyQuiz> {
   @override
   Widget build(BuildContext context) {
-    final Size _size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
 
     return SizedBox(
-      height: _size.height,
-      width: _size.height,
+      height: size.height,
+      width: size.height,
       child: SingleChildScrollView(
         child: Column(
           children: [

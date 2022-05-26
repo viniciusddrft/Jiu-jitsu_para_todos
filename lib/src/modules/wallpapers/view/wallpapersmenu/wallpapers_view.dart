@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/view/wallpapersmenu/components/body_wallpapers_widget.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/appbar_gradient/appbar_gradient.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
+
+import '../../../../shared/appbar_gradient/appbar_gradient.dart';
+import '../../../../shared/themes/app_colors.dart';
+import 'components/body_wallpapers_widget.dart';
 
 class WallpapersView extends StatelessWidget {
-  const WallpapersView({Key? key}) : super(key: key);
+  const WallpapersView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
