@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../shared/admob/controller/admob_controller.dart';
-import '../../../../shared/plugins/plugin_sound_implements_just_audio.dart';
+import '../../../../shared/plugins/sound/plugin_sound_implements_just_audio.dart';
 import '../../../../shared/themes/app_colors.dart';
 import '../../controller/quiz_controller.dart';
+
 import 'components/button_quiz_questions_widget.dart';
 
 class QuizQuestions extends StatefulWidget {
@@ -29,7 +31,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
   //build video
   //final bool _buildVideo = true;
   //song buttons
-  final _playerAudio = PluginJustAudio();
+  final PluginJustAudio _playerAudio = PluginJustAudio();
   // colors buttons
   Color colorButtonA = Colors.white;
   Color colorButtonB = Colors.white;
@@ -53,6 +55,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
   void didChangeDependencies() {
     _myQuestions =
         _controllerQuiz.choice(context, difficulty: widget.difficulty);
+
     AdmobController.createInterstitialAd();
     super.didChangeDependencies();
   }

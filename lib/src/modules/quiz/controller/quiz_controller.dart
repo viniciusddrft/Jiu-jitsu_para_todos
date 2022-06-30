@@ -1,57 +1,61 @@
 import 'package:flutter/widgets.dart';
 
-import '../model/questions_model.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/repositories/interface/repository_api_interface.dart';
+
+import '../../../shared/models/quiz/questions_model.dart';
+import '../../../shared/repositories/repository_api.dart';
 
 class ControllerQuiz {
+  final RepositoryApi _repositoryApi = RepositoryApi();
   int numberOfQuestions = 0;
   int score = 0;
 
-  List<QuestionsModel> choice(BuildContext context,
+  List<QuestionModel> choice(BuildContext context,
       {required String difficulty}) {
     switch (difficulty) {
       case 'easy':
         {
-          final List<QuestionsModel> questionsEasy =
-              QuestionsModel.questionsEasy(context);
+          final List<QuestionModel> questionsEasy =
+              QuestionModel.questionsEasy(context);
 
           return questionsEasy
             ..shuffle()
             ..toList().forEach(
-                (QuestionsModel question) => question.options.shuffle());
+                (QuestionModel question) => question.options.shuffle());
         }
 
       case 'medium':
         {
-          final List<QuestionsModel> questionsMedium =
-              QuestionsModel.questionsMedium(context);
+          final List<QuestionModel> questionsMedium =
+              QuestionModel.questionsMedium(context);
 
           return questionsMedium
             ..shuffle()
             ..toList().forEach(
-                (QuestionsModel question) => question.options.shuffle());
+                (QuestionModel question) => question.options.shuffle());
         }
 
       case 'hard':
         {
-          final List<QuestionsModel> questionsHard =
-              QuestionsModel.questionsHard(context);
+          final List<QuestionModel> questionsHard =
+              QuestionModel.questionsHard(context);
 
           return questionsHard
             ..shuffle()
             ..toList().forEach(
-                (QuestionsModel question) => question.options.shuffle());
+                (QuestionModel question) => question.options.shuffle());
         }
 
       default:
         {
           //
-          final List<QuestionsModel> questionsEasy =
-              QuestionsModel.questionsEasy(context);
+          final List<QuestionModel> questionsEasy =
+              QuestionModel.questionsEasy(context);
 
           return questionsEasy
             ..shuffle()
             ..toList().forEach(
-                (QuestionsModel question) => question.options.shuffle());
+                (QuestionModel question) => question.options.shuffle());
         }
     }
   }

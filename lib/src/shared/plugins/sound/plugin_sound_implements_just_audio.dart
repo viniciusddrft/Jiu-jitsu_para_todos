@@ -1,4 +1,4 @@
-import 'package:jiu_jitsu_para_todos/src/shared/plugins/interface_plugin_sound.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/plugins/sound/interface/interface_plugin_sound.dart';
 import 'package:just_audio/just_audio.dart';
 
 class PluginJustAudio implements InterfacePluginSound {

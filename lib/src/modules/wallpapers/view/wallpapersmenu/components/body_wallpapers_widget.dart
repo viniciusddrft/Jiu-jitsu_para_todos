@@ -29,8 +29,7 @@ class _BodyWallpalersState extends State<BodyWallpalers> {
         itemBuilder: (context, index) => RawMaterialButton(
           onPressed: () => Navigator.pushNamed(context, '/DetailsImage',
               arguments: <String, dynamic>{
-                'imagePath':
-                    _controllerWallpapers.images.toList()[index].imagePath,
+                'imagePath': _controllerWallpapers.images.toList()[index].url,
                 'index': index
               }),
           child: Hero(
@@ -40,7 +39,7 @@ class _BodyWallpalersState extends State<BodyWallpalers> {
                 borderRadius: BorderRadius.circular(15),
                 image: DecorationImage(
                   image: AssetImage(
-                      _controllerWallpapers.images.toList()[index].imagePath),
+                      _controllerWallpapers.images.toList()[index].url),
                   fit: BoxFit.cover,
                 ),
               ),

@@ -34,7 +34,7 @@ main() {
     List<String> arrayTest = [];
     for (int i = 0; i != controllerWallpapers.images.length; i++) {
       //print(controllerWallpapers.images[_i].imagePath);
-      arrayTest.add(controllerWallpapers.images[i].imagePath);
+      arrayTest.add(controllerWallpapers.images[i].url);
     }
     expect(allPathsImages, arrayTest);
   });

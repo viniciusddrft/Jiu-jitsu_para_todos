@@ -1,5 +1,5 @@
-import '../model/wallpapers_model.dart';
+import '../../../shared/models/wallpaper/wallpapers_model.dart';
 
 class ControllerWallpapers {
-  final List<ImageDetails> images = allImages;
+  final List<WallpaperModel> images = allImages;
 }

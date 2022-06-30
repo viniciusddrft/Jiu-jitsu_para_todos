@@ -36,6 +36,7 @@ dependencies:
   just_audio: ^0.9.21
 # video_player: ^2.2.10
   wakelock: ^0.6.1+2
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:

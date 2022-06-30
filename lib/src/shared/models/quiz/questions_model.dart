@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class QuestionsModel {
+class QuestionModel {
   final String question;
   final List<String> options;
   final String rightAnswer;
   final String? pathImage;
   final String? pathVideo;
-  const QuestionsModel({
+  const QuestionModel({
     required this.question,
     required this.options,
     required this.rightAnswer,
@@ -15,10 +16,25 @@ class QuestionsModel {
     this.pathVideo,
   });
 
-  static List<QuestionsModel> questionsEasy(BuildContext context) {
+  QuestionModel.fromJson(Map<String, dynamic> json)
+      : question = json['question'],
+        options = List.from(json['options']),
+        rightAnswer = json['rightAnswer'],
+        pathImage = json['pathImage'],
+        pathVideo = json['pathVideo'];
+
+  Map<String, dynamic> toJson() => {
+        'question': question,
+        'options': options,
+        'rightAnswer': rightAnswer,
+        'pathImage': pathImage,
+        'pathVideo': pathVideo,
+      };
+
+  static List<QuestionModel> questionsEasy(BuildContext context) {
     return _dataQuestionsEasy(context)
         .map(
-          (question) => QuestionsModel(
+          (question) => QuestionModel(
               question: question['question'],
               options: question['options'],
               rightAnswer: question['rightAnswer'],
@@ -28,10 +44,10 @@ class QuestionsModel {
         .toList();
   }
 
-  static List<QuestionsModel> questionsMedium(BuildContext context) {
+  static List<QuestionModel> questionsMedium(BuildContext context) {
     return _dataQuestionsMedium(context)
         .map(
-          (question) => QuestionsModel(
+          (question) => QuestionModel(
               question: question['question'],
               options: question['options'],
               rightAnswer: question['rightAnswer'],
@@ -41,10 +57,10 @@ class QuestionsModel {
         .toList();
   }
 
-  static List<QuestionsModel> questionsHard(BuildContext context) {
+  static List<QuestionModel> questionsHard(BuildContext context) {
     return _dataQuestionsHard(context)
         .map(
-          (question) => QuestionsModel(
+          (question) => QuestionModel(
               question: question['question'],
               options: question['options'],
               rightAnswer: question['rightAnswer'],
