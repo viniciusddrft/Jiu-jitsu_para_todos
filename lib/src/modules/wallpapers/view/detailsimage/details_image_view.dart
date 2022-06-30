@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DetailsImage extends StatefulWidget {
   final String imagePath;
@@ -62,9 +63,10 @@ class _DetailsImageState extends State<DetailsImage> {
   }
 
   void _saveImage() async {
-    ByteData bytes = await rootBundle.load(widget.imagePath);
+    final ByteData bytes = await rootBundle.load(widget.imagePath);
 
     var result = await ImageGallerySaver.saveImage(bytes.buffer.asUint8List());
+
     if ((result['isSuccess'])) {
       _showMyDialogSaveImage();
     } else {
@@ -99,7 +101,7 @@ class _DetailsImageState extends State<DetailsImage> {
                       bottomLeft: Radius.circular(30),
                       bottomRight: Radius.circular(30)),
                   image: DecorationImage(
-                    image: AssetImage(widget.imagePath),
+                    image: NetworkImage(widget.imagePath),
                     fit: BoxFit.cover,
                   ),
                 ),

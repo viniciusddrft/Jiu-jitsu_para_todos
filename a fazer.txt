@@ -1,0 +1,4 @@
+salvar a imagem na galeria;
+mudar o marcador de luta para ter rotação falsa;
+mudar o selecionador de tempo no marcador de luta;
+mudar a reatidade do quiz para não ficar dando load sempre;

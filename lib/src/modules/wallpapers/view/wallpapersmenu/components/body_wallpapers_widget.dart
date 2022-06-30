@@ -15,39 +15,52 @@ class _BodyWallpalersState extends State<BodyWallpalers> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return SizedBox(
-      height: size.height,
-      width: size.width,
-      child: GridView.builder(
-        padding: EdgeInsets.symmetric(
-            horizontal: size.width * 0.05, vertical: size.height * 0.03),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-        ),
-        itemBuilder: (context, index) => RawMaterialButton(
-          onPressed: () => Navigator.pushNamed(context, '/DetailsImage',
-              arguments: <String, dynamic>{
-                'imagePath': _controllerWallpapers.images.toList()[index].url,
-                'index': index
-              }),
-          child: Hero(
-            tag: 'logo$index',
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                image: DecorationImage(
-                  image: AssetImage(
-                      _controllerWallpapers.images.toList()[index].url),
-                  fit: BoxFit.cover,
+    return FutureBuilder(
+      future: _controllerWallpapers.loadWallpapers(),
+      builder: (BuildContext context, AsyncSnapshot<void> snapshot) => (snapshot
+                  .connectionState ==
+              ConnectionState.done)
+          ? SizedBox(
+              height: size.height,
+              width: size.width,
+              child: GridView.builder(
+                padding: EdgeInsets.symmetric(
+                    horizontal: size.width * 0.05,
+                    vertical: size.height * 0.03),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
                 ),
+                itemBuilder: (context, index) => RawMaterialButton(
+                  onPressed: () => Navigator.pushNamed(context, '/DetailsImage',
+                      arguments: <String, dynamic>{
+                        'imagePath': _controllerWallpapers.wallpapers
+                            .toList()[index]
+                            .url,
+                        'index': index
+                      }),
+                  child: Hero(
+                    tag: 'logo$index',
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        image: DecorationImage(
+                          image: NetworkImage(_controllerWallpapers.wallpapers
+                              .toList()[index]
+                              .url),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                itemCount: _controllerWallpapers.wallpapers.length,
               ),
+            )
+          : const Center(
+              child: CircularProgressIndicator(),
             ),
-          ),
-        ),
-        itemCount: _controllerWallpapers.images.length,
-      ),
     );
   }
 }

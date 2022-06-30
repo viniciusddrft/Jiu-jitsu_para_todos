@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../shared/admob/controller/admob_controller.dart';
-import '../../../../shared/plugins/sound/plugin_sound_implements_just_audio.dart';
+import '../../../../shared/services/sound/plugin_sound_implements_just_audio.dart';
 import '../../../../shared/themes/app_colors.dart';
 import '../../controller/quiz_controller.dart';
 
@@ -24,14 +24,12 @@ class _QuizQuestionsState extends State<QuizQuestions> {
   //quiz controller
   final ControllerQuiz _controllerQuiz = ControllerQuiz();
   //quiz
-  late List<dynamic> _myQuestions;
   String? _difficultyName;
   //disablebutton for all buttons
   bool isButtonDisabled = false;
   //build video
-  //final bool _buildVideo = true;
   //song buttons
-  final PluginJustAudio _playerAudio = PluginJustAudio();
+  final ServiceJustAudio _playerAudio = ServiceJustAudio();
   // colors buttons
   Color colorButtonA = Colors.white;
   Color colorButtonB = Colors.white;
@@ -43,7 +41,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
   Color? colorIconButtonA, colorIconButtonB, colorIconButtonC, colorIconButtonD;
 
   int get counterQuestions => _controllerQuiz.numberOfQuestions + 1;
-  int get totalNumberOfQuestions => _myQuestions.length;
+  int get totalNumberOfQuestions => _controllerQuiz.myQuestions.length;
 
   @override
   void initState() {
@@ -53,10 +51,8 @@ class _QuizQuestionsState extends State<QuizQuestions> {
 
   @override
   void didChangeDependencies() {
-    _myQuestions =
-        _controllerQuiz.choice(context, difficulty: widget.difficulty);
-
     AdmobController.createInterstitialAd();
+
     super.didChangeDependencies();
   }
 
@@ -83,7 +79,7 @@ class _QuizQuestionsState extends State<QuizQuestions> {
 
 //------------------------------------------------------------------------------
   void buttonQuestionsOnPressed(String answer, String orderOfQuestions) {
-    if (_controllerQuiz.checkAnswer(answer, _myQuestions)) {
+    if (_controllerQuiz.checkAnswer(answer)) {
       _playSoundRightAnswer();
       isButtonDisabled = true;
       if (orderOfQuestions == 'A') {
@@ -121,8 +117,8 @@ class _QuizQuestionsState extends State<QuizQuestions> {
       Future.delayed(
           const Duration(milliseconds: 500),
           () => setState(() {
-                if (counterQuestions == _myQuestions.length ||
-                    counterQuestions > _myQuestions.length) {
+                if (counterQuestions == _controllerQuiz.myQuestions.length ||
+                    counterQuestions > _controllerQuiz.myQuestions.length) {
                   _controllerQuiz.score++;
                   AdmobController.showInterstitialAd();
                   _switchToResult();
@@ -188,8 +184,8 @@ class _QuizQuestionsState extends State<QuizQuestions> {
             iconButtonC = null;
             iconButtonD = null;
             isButtonDisabled = false;
-            if (counterQuestions == _myQuestions.length ||
-                counterQuestions > _myQuestions.length) {
+            if (counterQuestions == _controllerQuiz.myQuestions.length ||
+                counterQuestions > _controllerQuiz.myQuestions.length) {
               AdmobController.showInterstitialAd();
               _switchToResult();
             } else {
@@ -212,113 +208,126 @@ class _QuizQuestionsState extends State<QuizQuestions> {
         elevation: 0,
       ),
       backgroundColor: AppColors.background,
-      body: SizedBox(
-        width: size.width,
-        height: size.height,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                  left: size.width * 0.07, bottom: size.height * 0.01),
-              child: Text(
-                'Quiz $_difficultyName',
-                style: TextStyle(
-                    fontFamily: 'YatraOne',
-                    fontSize: 20,
-                    color: Colors.grey[700]),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: size.width * 0.07),
-              child: Text(
-                '${AppLocalizations.of(context)!.text_question} $counterQuestions/$totalNumberOfQuestions',
-                style: const TextStyle(
-                    fontFamily: 'Ubuntu', fontSize: 22, color: Colors.white),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                  left: size.width * 0.07, right: size.width * 0.07),
-              width: size.width,
-              height: 1,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [Colors.white, AppColors.background],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                  top: size.height * 0.03,
-                  left: size.width * 0.07,
-                  right: size.width * 0.07),
-              child: Text(
-                _controllerQuiz.textQuestionReturn(_myQuestions),
-                style: const TextStyle(
-                    fontFamily: 'Ubuntu', fontSize: 18, color: Colors.white),
-              ),
-            ),
-            //returnImageOrVideoOfQuiz(
-            //    _controllerQuiz, _myQuestions, _buildVideo),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: size.width * 0.07),
-                    color: Colors.transparent,
+      body: FutureBuilder(
+        future: _controllerQuiz.choice(difficulty: widget.difficulty),
+        builder: (BuildContext context, AsyncSnapshot<void> snapshot) =>
+            (snapshot.connectionState == ConnectionState.done)
+                ? SizedBox(
+                    width: size.width,
+                    height: size.height,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        ButtonQuizQuestions(
-                          onPressed: buttonQuestionsOnPressed,
-                          isButtonDisabled: isButtonDisabled,
-                          answer:
-                              _controllerQuiz.returnTextAnswerA(_myQuestions),
-                          orderOfQuestions: 'A',
-                          colorButton: colorButtonA,
-                          colorIcon: colorIconButtonA,
-                          icon: iconButtonA,
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: size.width * 0.07,
+                              bottom: size.height * 0.01),
+                          child: Text(
+                            'Quiz $_difficultyName',
+                            style: TextStyle(
+                                fontFamily: 'YatraOne',
+                                fontSize: 20,
+                                color: Colors.grey[700]),
+                          ),
                         ),
-                        ButtonQuizQuestions(
-                          onPressed: buttonQuestionsOnPressed,
-                          isButtonDisabled: isButtonDisabled,
-                          answer:
-                              _controllerQuiz.returnTextAnswerB(_myQuestions),
-                          orderOfQuestions: 'B',
-                          colorButton: colorButtonB,
-                          colorIcon: colorIconButtonB,
-                          icon: iconButtonB,
+                        Padding(
+                          padding: EdgeInsets.only(left: size.width * 0.07),
+                          child: Text(
+                            '${AppLocalizations.of(context)!.text_question} $counterQuestions/$totalNumberOfQuestions',
+                            style: const TextStyle(
+                                fontFamily: 'Ubuntu',
+                                fontSize: 22,
+                                color: Colors.white),
+                          ),
                         ),
-                        ButtonQuizQuestions(
-                          onPressed: buttonQuestionsOnPressed,
-                          isButtonDisabled: isButtonDisabled,
-                          answer:
-                              _controllerQuiz.returnTextAnswerC(_myQuestions),
-                          orderOfQuestions: 'C',
-                          colorButton: colorButtonC,
-                          colorIcon: colorIconButtonC,
-                          icon: iconButtonC,
+                        Container(
+                          margin: EdgeInsets.only(
+                              left: size.width * 0.07,
+                              right: size.width * 0.07),
+                          width: size.width,
+                          height: 1,
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                                colors: [Colors.white, AppColors.background],
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight),
+                          ),
                         ),
-                        ButtonQuizQuestions(
-                          onPressed: buttonQuestionsOnPressed,
-                          isButtonDisabled: isButtonDisabled,
-                          answer:
-                              _controllerQuiz.returnTextAnswerD(_myQuestions),
-                          orderOfQuestions: 'D',
-                          colorButton: colorButtonD,
-                          colorIcon: colorIconButtonD,
-                          icon: iconButtonD,
+                        Padding(
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.03,
+                              left: size.width * 0.07,
+                              right: size.width * 0.07),
+                          child: Text(
+                            _controllerQuiz.textQuestionReturn(),
+                            style: const TextStyle(
+                                fontFamily: 'Ubuntu',
+                                fontSize: 18,
+                                color: Colors.white),
+                          ),
                         ),
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.07),
+                                color: Colors.transparent,
+                                child: Column(
+                                  children: [
+                                    ButtonQuizQuestions(
+                                      onPressed: buttonQuestionsOnPressed,
+                                      isButtonDisabled: isButtonDisabled,
+                                      answer:
+                                          _controllerQuiz.returnTextAnswerA(),
+                                      orderOfQuestions: 'A',
+                                      colorButton: colorButtonA,
+                                      colorIcon: colorIconButtonA,
+                                      icon: iconButtonA,
+                                    ),
+                                    ButtonQuizQuestions(
+                                      onPressed: buttonQuestionsOnPressed,
+                                      isButtonDisabled: isButtonDisabled,
+                                      answer:
+                                          _controllerQuiz.returnTextAnswerB(),
+                                      orderOfQuestions: 'B',
+                                      colorButton: colorButtonB,
+                                      colorIcon: colorIconButtonB,
+                                      icon: iconButtonB,
+                                    ),
+                                    ButtonQuizQuestions(
+                                      onPressed: buttonQuestionsOnPressed,
+                                      isButtonDisabled: isButtonDisabled,
+                                      answer:
+                                          _controllerQuiz.returnTextAnswerC(),
+                                      orderOfQuestions: 'C',
+                                      colorButton: colorButtonC,
+                                      colorIcon: colorIconButtonC,
+                                      icon: iconButtonC,
+                                    ),
+                                    ButtonQuizQuestions(
+                                      onPressed: buttonQuestionsOnPressed,
+                                      isButtonDisabled: isButtonDisabled,
+                                      answer:
+                                          _controllerQuiz.returnTextAnswerD(),
+                                      orderOfQuestions: 'D',
+                                      colorButton: colorButtonD,
+                                      colorIcon: colorIconButtonD,
+                                      icon: iconButtonD,
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   )
-                ],
-              ),
-            )
-          ],
-        ),
+                : const Center(
+                    child: CircularProgressIndicator(),
+                  ),
       ),
     );
   }

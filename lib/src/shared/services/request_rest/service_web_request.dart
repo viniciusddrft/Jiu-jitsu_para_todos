@@ -15,7 +15,7 @@ class ServiceWebHttp implements ServiceWebRequestInterface {
 
     return ServiceWebResponse(
         statusCode: response.statusCode,
-        body: response.body,
+        bodyBytes: response.bodyBytes,
         headers: response.headers);
   }
 
@@ -27,7 +27,7 @@ class ServiceWebHttp implements ServiceWebRequestInterface {
 
     return ServiceWebResponse(
         statusCode: response.statusCode,
-        body: response.body,
+        bodyBytes: response.bodyBytes,
         headers: response.headers);
   }
 
@@ -39,7 +39,7 @@ class ServiceWebHttp implements ServiceWebRequestInterface {
 
     return ServiceWebResponse(
         statusCode: response.statusCode,
-        body: response.body,
+        bodyBytes: response.bodyBytes,
         headers: response.headers);
   }
 }

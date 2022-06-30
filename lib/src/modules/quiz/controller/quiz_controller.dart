@@ -2,91 +2,93 @@ import 'package:flutter/widgets.dart';
 
 import 'package:jiu_jitsu_para_todos/src/shared/repositories/interface/repository_api_interface.dart';
 
+import '../../../../core/locale/locale_app.dart';
 import '../../../shared/models/quiz/questions_model.dart';
 import '../../../shared/repositories/repository_api.dart';
 
 class ControllerQuiz {
   final RepositoryApi _repositoryApi = RepositoryApi();
+
   int numberOfQuestions = 0;
   int score = 0;
 
-  List<QuestionModel> choice(BuildContext context,
-      {required String difficulty}) {
+  late List<QuestionModel> myQuestions;
+
+  Future<void> choice({required String difficulty}) async {
     switch (difficulty) {
       case 'easy':
         {
-          final List<QuestionModel> questionsEasy =
-              QuestionModel.questionsEasy(context);
+          if (LocaleApp.localeApp.value == const Locale('en', 'US')) {
+            myQuestions = await _repositoryApi
+                .getQuestions(ApiRequests.quizEnglishWhiteBelt);
+          } else if (LocaleApp.localeApp.value == const Locale('pt', 'BR')) {
+            myQuestions = await _repositoryApi
+                .getQuestions(ApiRequests.quizPortugueseWhiteBelt);
+          } else {
+            throw Exception('Error in Locale app');
+          }
 
-          return questionsEasy
-            ..shuffle()
-            ..toList().forEach(
-                (QuestionModel question) => question.options.shuffle());
+          break;
         }
 
       case 'medium':
         {
-          final List<QuestionModel> questionsMedium =
-              QuestionModel.questionsMedium(context);
+          if (LocaleApp.localeApp.value == const Locale('en', 'US')) {
+            myQuestions = await _repositoryApi
+                .getQuestions(ApiRequests.quizEnglishBlueBelt);
+          } else if (LocaleApp.localeApp.value == const Locale('pt', 'BR')) {
+            myQuestions = await _repositoryApi
+                .getQuestions(ApiRequests.quizPortugueseBlueBelt);
+          } else {
+            throw Exception('Error in Locale app');
+          }
 
-          return questionsMedium
-            ..shuffle()
-            ..toList().forEach(
-                (QuestionModel question) => question.options.shuffle());
+          break;
         }
 
       case 'hard':
         {
-          final List<QuestionModel> questionsHard =
-              QuestionModel.questionsHard(context);
-
-          return questionsHard
-            ..shuffle()
-            ..toList().forEach(
-                (QuestionModel question) => question.options.shuffle());
-        }
-
-      default:
-        {
-          //
-          final List<QuestionModel> questionsEasy =
-              QuestionModel.questionsEasy(context);
-
-          return questionsEasy
-            ..shuffle()
-            ..toList().forEach(
-                (QuestionModel question) => question.options.shuffle());
+          if (LocaleApp.localeApp.value == const Locale('en', 'US')) {
+            myQuestions = await _repositoryApi
+                .getQuestions(ApiRequests.quizPortugueseBlackBelt);
+          } else if (LocaleApp.localeApp.value == const Locale('pt', 'BR')) {
+            myQuestions = await _repositoryApi
+                .getQuestions(ApiRequests.quizPortugueseBlackBelt);
+          } else {
+            throw Exception('Error in Locale app');
+          }
+          break;
         }
     }
   }
 
-  String textQuestionReturn(myQuestions) =>
+  String textQuestionReturn() =>
       myQuestions.toList()[numberOfQuestions].question;
 
-  String returnTextAnswerA(myQuestions) =>
+  String returnTextAnswerA() =>
       myQuestions.toList()[numberOfQuestions].options[0];
 
-  String returnTextAnswerB(myQuestions) =>
+  String returnTextAnswerB() =>
       myQuestions.toList()[numberOfQuestions].options[1];
 
-  String returnTextAnswerC(myQuestions) =>
+  String returnTextAnswerC() =>
       myQuestions.toList()[numberOfQuestions].options[2];
 
-  String returnTextAnswerD(myQuestions) =>
+  String returnTextAnswerD() =>
       myQuestions.toList()[numberOfQuestions].options[3];
 
-  bool checkAnswer(String answer, myQuestions) =>
+  bool checkAnswer(String answer) =>
       answer == myQuestions.toList()[numberOfQuestions].rightAnswer;
 
-  String returnPathImage(myQuestions) =>
+  String? returnPathImage() =>
       myQuestions.toList()[numberOfQuestions].pathImage;
 
-  String returnPathVideo(myQuestions) =>
+  String? returnPathVideo() =>
       myQuestions.toList()[numberOfQuestions].pathVideo;
 
-  bool existImage(myQuestions) =>
+  bool existImage() =>
       myQuestions.toList()[numberOfQuestions].pathImage != null;
 
-  bool existVideo(myQuestions) =>
+  bool existVideo() =>
       myQuestions.toList()[numberOfQuestions].pathVideo != null;
 }

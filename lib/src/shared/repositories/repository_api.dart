@@ -3,9 +3,9 @@ import 'dart:isolate';
 
 import 'package:jiu_jitsu_para_todos/src/shared/models/quiz/questions_model.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/models/wallpaper/wallpapers_model.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/plugins/request_rest/interfaces/service_web_response_interface.dart';
 
-import '../plugins/request_rest/service_web_request.dart';
+import '../services/request_rest/interfaces/service_web_response_interface.dart';
+import '../services/request_rest/service_web_request.dart';
 
 import 'interface/repository_api_interface.dart';
 
@@ -31,9 +31,15 @@ class RepositoryApi implements RepositoryApiInterface {
     final ServiceWebResponseInterface response =
         await _serviceWebHttp.get((data['apiRequests'] as ApiRequests).url);
 
-    for (var element in (jsonDecode(response.body)['body'] as List)) {
+    for (Map<String, dynamic> element
+        in (jsonDecode(utf8.decode(response.bodyBytes))['body'] as List)) {
       questions.add(QuestionModel.fromJson(element));
     }
+    questions.shuffle();
+    for (QuestionModel question in questions) {
+      question.options.shuffle();
+    }
+
     Isolate.exit(data['sendPort'], questions);
   }
 
@@ -53,7 +59,8 @@ class RepositoryApi implements RepositoryApiInterface {
     final ServiceWebResponseInterface response =
         await _serviceWebHttp.get(ApiRequests.wallpapers.url);
 
-    for (var element in (jsonDecode(response.body)['body'] as List)) {
+    for (Map<String, dynamic> element
+        in (jsonDecode(utf8.decode(response.bodyBytes))['body'] as List)) {
       wallpapers.add(WallpaperModel.fromJson(element));
     }
     Isolate.exit(sendPort, wallpapers);

@@ -32,9 +32,9 @@ main() {
   ];
   test('deve retornar o caminho das images', () {
     List<String> arrayTest = [];
-    for (int i = 0; i != controllerWallpapers.images.length; i++) {
+    for (int i = 0; i != controllerWallpapers.wallpapers.length; i++) {
       //print(controllerWallpapers.images[_i].imagePath);
-      arrayTest.add(controllerWallpapers.images[i].url);
+      arrayTest.add(controllerWallpapers.wallpapers[i].url);
     }
     expect(allPathsImages, arrayTest);
   });

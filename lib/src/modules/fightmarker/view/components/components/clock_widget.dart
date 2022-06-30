@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../../shared/plugins/sound/plugin_sound_implements_just_audio.dart';
+import '../../../../../shared/services/sound/plugin_sound_implements_just_audio.dart';
 import '../../../../../shared/themes/app_colors.dart';
 import '../../../controller/clock_controller.dart';
 
@@ -16,7 +16,7 @@ class Clock extends StatefulWidget {
 class _ClockState extends State<Clock> {
   final MyClock _myClock = MyClock();
 
-  final PluginJustAudio _playerAudio = PluginJustAudio();
+  final ServiceJustAudio _playerAudio = ServiceJustAudio();
 
   //this setState fixes the size of texts on this screen due to rotation
   @override
