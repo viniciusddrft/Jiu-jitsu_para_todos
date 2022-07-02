@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../../shared/services/sound/plugin_sound_implements_just_audio.dart';
+import '../../../../../shared/services/sound/service_sound_implements_just_audio.dart';
 import '../../../../../shared/themes/app_colors.dart';
 import '../../../controller/clock_controller.dart';
 

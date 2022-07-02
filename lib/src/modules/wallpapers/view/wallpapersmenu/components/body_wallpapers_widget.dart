@@ -11,10 +11,16 @@ class BodyWallpalers extends StatefulWidget {
 class _BodyWallpalersState extends State<BodyWallpalers> {
   final ControllerWallpapers _controllerWallpapers = ControllerWallpapers();
 
+  late final Size size;
+
+  @override
+  void didChangeDependencies() {
+    size = MediaQuery.of(context).size;
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-
     return FutureBuilder(
       future: _controllerWallpapers.loadWallpapers(),
       builder: (BuildContext context, AsyncSnapshot<void> snapshot) => (snapshot
@@ -24,6 +30,7 @@ class _BodyWallpalersState extends State<BodyWallpalers> {
               height: size.height,
               width: size.width,
               child: GridView.builder(
+                itemCount: _controllerWallpapers.wallpapers.length,
                 padding: EdgeInsets.symmetric(
                     horizontal: size.width * 0.05,
                     vertical: size.height * 0.03),
@@ -33,29 +40,41 @@ class _BodyWallpalersState extends State<BodyWallpalers> {
                   mainAxisSpacing: 10,
                 ),
                 itemBuilder: (context, index) => RawMaterialButton(
-                  onPressed: () => Navigator.pushNamed(context, '/DetailsImage',
-                      arguments: <String, dynamic>{
-                        'imagePath': _controllerWallpapers.wallpapers
-                            .toList()[index]
-                            .url,
-                        'index': index
-                      }),
+                  onPressed: () => Navigator.pushNamed(
+                      context, '/DetailsImage', arguments: <String, dynamic>{
+                    'imageUrl':
+                        _controllerWallpapers.wallpapers.toList()[index].url,
+                    'index': index
+                  }),
                   child: Hero(
                     tag: 'logo$index',
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        image: DecorationImage(
-                          image: NetworkImage(_controllerWallpapers.wallpapers
-                              .toList()[index]
-                              .url),
-                          fit: BoxFit.cover,
-                        ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image.network(
+                        _controllerWallpapers.wallpapers.toList()[index].url,
+                        fit: BoxFit.cover,
+                        cacheWidth: 110,
+                        cacheHeight: 110,
+                        loadingBuilder: (BuildContext context, Widget child,
+                                ImageChunkEvent? loadingProgress) =>
+                            (loadingProgress == null)
+                                ? child
+                                : Center(
+                                    child: CircularProgressIndicator(
+                                      value:
+                                          loadingProgress.expectedTotalBytes !=
+                                                  null
+                                              ? loadingProgress
+                                                      .cumulativeBytesLoaded /
+                                                  loadingProgress
+                                                      .expectedTotalBytes!
+                                              : null,
+                                    ),
+                                  ),
                       ),
                     ),
                   ),
                 ),
-                itemCount: _controllerWallpapers.wallpapers.length,
               ),
             )
           : const Center(
