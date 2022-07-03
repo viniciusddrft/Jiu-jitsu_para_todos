@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Scoreboard extends StatefulWidget {
@@ -8,45 +9,57 @@ class Scoreboard extends StatefulWidget {
 }
 
 class _ScoreboardState extends State<Scoreboard> {
-  int _fighterPoints = 0;
-  int _punishmentsOfTheFighter = 0;
-  int _advantagesOfTheFighter = 0;
+  final ValueNotifier<int> _fighterPoints = ValueNotifier<int>(0);
+  final ValueNotifier<int> _punishmentsOfTheFighter = ValueNotifier<int>(0);
+  final ValueNotifier<int> _advantagesOfTheFighter = ValueNotifier<int>(0);
 
-  //this setState fixes the size of texts on this screen due to rotation
   @override
-  void didChangeDependencies() {
-    Future.delayed(Duration.zero, () => setState(() {}));
-    super.didChangeDependencies();
+  void dispose() {
+    _fighterPoints.dispose();
+    _punishmentsOfTheFighter.dispose();
+    _advantagesOfTheFighter.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text('$_fighterPoints',
-              style: const TextStyle(fontSize: 30, fontFamily: 'YatraOne')),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
-            child: Text(
-              '$_advantagesOfTheFighter',
-              style: const TextStyle(
-                  fontSize: 30, color: Colors.yellow, fontFamily: 'YatraOne'),
+          ValueListenableBuilder(
+            valueListenable: _fighterPoints,
+            builder: (BuildContext context, int value, Widget? child) => Text(
+              '${_fighterPoints.value}',
+              style: const TextStyle(fontSize: 30, fontFamily: 'YatraOne'),
             ),
           ),
-          Text('$_punishmentsOfTheFighter',
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: size.width * 0.033),
+            child: ValueListenableBuilder(
+              valueListenable: _advantagesOfTheFighter,
+              builder: (BuildContext context, int value, Widget? child) => Text(
+                '${_advantagesOfTheFighter.value}',
+                style: const TextStyle(
+                    fontSize: 30, color: Colors.yellow, fontFamily: 'YatraOne'),
+              ),
+            ),
+          ),
+          ValueListenableBuilder(
+            valueListenable: _punishmentsOfTheFighter,
+            builder: (BuildContext context, int value, Widget? child) => Text(
+              '${_punishmentsOfTheFighter.value}',
               style: const TextStyle(
-                  fontSize: 30, color: Colors.red, fontFamily: 'YatraOne')),
+                  fontSize: 30, color: Colors.red, fontFamily: 'YatraOne'),
+            ),
+          ),
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
-            iconSize: 30,
-            icon: const Icon(Icons.add),
-            onPressed: () => setState(() => _fighterPoints += 2),
-          ),
+              iconSize: 30,
+              icon: const Icon(Icons.add),
+              onPressed: () => _fighterPoints.value += 2),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
             child: const Text(
@@ -57,16 +70,15 @@ class _ScoreboardState extends State<Scoreboard> {
           IconButton(
             iconSize: 30,
             icon: const Icon(Icons.remove),
-            onPressed: () => setState(() {
-              if (_fighterPoints >= 2) _fighterPoints -= 2;
-            }),
+            onPressed: () =>
+                (_fighterPoints.value >= 2) ? _fighterPoints.value -= 2 : null,
           ),
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
             iconSize: 30,
             icon: const Icon(Icons.add),
-            onPressed: () => setState(() => _fighterPoints += 3),
+            onPressed: () => _fighterPoints.value += 3,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
@@ -78,16 +90,15 @@ class _ScoreboardState extends State<Scoreboard> {
           IconButton(
             iconSize: 30,
             icon: const Icon(Icons.remove),
-            onPressed: () => setState(() {
-              if (_fighterPoints >= 3) _fighterPoints -= 3;
-            }),
+            onPressed: () =>
+                (_fighterPoints.value >= 3) ? _fighterPoints.value -= 3 : null,
           ),
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
             iconSize: 30,
             icon: const Icon(Icons.add),
-            onPressed: () => setState(() => _fighterPoints += 4),
+            onPressed: () => _fighterPoints.value += 4,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
@@ -95,19 +106,18 @@ class _ScoreboardState extends State<Scoreboard> {
                 style: TextStyle(fontSize: 30, fontFamily: 'YatraOne')),
           ),
           IconButton(
-            iconSize: 30,
-            icon: const Icon(Icons.remove),
-            onPressed: () => setState(() {
-              if (_fighterPoints >= 4) _fighterPoints -= 4;
-            }),
-          ),
+              iconSize: 30,
+              icon: const Icon(Icons.remove),
+              onPressed: () => (_fighterPoints.value >= 4)
+                  ? _fighterPoints.value -= 4
+                  : null),
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
             iconSize: 30,
             color: Colors.yellow,
             icon: const Icon(Icons.add),
-            onPressed: () => setState(() => _advantagesOfTheFighter++),
+            onPressed: () => _advantagesOfTheFighter.value++,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
@@ -121,9 +131,9 @@ class _ScoreboardState extends State<Scoreboard> {
             iconSize: 30,
             color: Colors.yellow,
             icon: const Icon(Icons.remove),
-            onPressed: () => setState(() {
-              if (_advantagesOfTheFighter >= 1) _advantagesOfTheFighter--;
-            }),
+            onPressed: () => (_advantagesOfTheFighter.value >= 1)
+                ? _advantagesOfTheFighter.value--
+                : null,
           ),
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -131,7 +141,7 @@ class _ScoreboardState extends State<Scoreboard> {
             iconSize: 30,
             color: Colors.red,
             icon: const Icon(Icons.add),
-            onPressed: () => setState(() => _punishmentsOfTheFighter++),
+            onPressed: () => _punishmentsOfTheFighter.value++,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
@@ -145,11 +155,9 @@ class _ScoreboardState extends State<Scoreboard> {
             iconSize: 30,
             color: Colors.red,
             icon: const Icon(Icons.remove),
-            onPressed: () => setState(
-              () {
-                if (_punishmentsOfTheFighter >= 1) _punishmentsOfTheFighter--;
-              },
-            ),
+            onPressed: () => (_punishmentsOfTheFighter.value >= 1)
+                ? _punishmentsOfTheFighter.value--
+                : null,
           ),
         ]),
       ],

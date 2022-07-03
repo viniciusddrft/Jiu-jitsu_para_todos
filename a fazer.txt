@@ -1,3 +1,3 @@
-mudar o marcador de luta para ter rotação falsa;
 mudar o selecionador de tempo no marcador de luta;
 mudar icones proprios para svg;
+adicionar animação no quiz;
