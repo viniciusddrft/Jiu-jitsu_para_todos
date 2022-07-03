@@ -126,7 +126,10 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text('Cancel'),
+          child: const Text(
+            'Cancel',
+            style: TextStyle(fontSize: 16),
+          ),
         ),
         TextButton(
           onPressed: () {
@@ -134,7 +137,10 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
                 pageControllerSeconds.page!.toInt());
             Navigator.pop(context);
           },
-          child: const Text('Salvar'),
+          child: const Text(
+            'Salvar',
+            style: TextStyle(fontSize: 16),
+          ),
         ),
       ],
     );
