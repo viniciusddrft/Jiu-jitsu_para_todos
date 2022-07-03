@@ -1,3 +1,1 @@
-mudar o selecionador de tempo no marcador de luta;
-mudar icones proprios para svg;
 adicionar animação no quiz;

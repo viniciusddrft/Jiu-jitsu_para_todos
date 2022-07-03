@@ -7,6 +7,8 @@ import '../../../../../shared/services/sound/service_sound_implements_just_audio
 import '../../../../../shared/themes/app_colors.dart';
 import '../../../controller/clock_controller.dart';
 
+import 'components/set_timer_widget.dart';
+
 class Clock extends StatefulWidget {
   const Clock({super.key});
   @override
@@ -14,8 +16,7 @@ class Clock extends StatefulWidget {
 }
 
 class _ClockState extends State<Clock> {
-  final MyClock _myClock = MyClock();
-
+  final MyClock myClock = MyClock();
   final ServiceJustAudio _playerAudio = ServiceJustAudio();
 
   @override
@@ -54,8 +55,8 @@ class _ClockState extends State<Clock> {
       children: [
         GestureDetector(
           child: CircularCountDownTimer(
-            duration: _myClock.time,
-            controller: _myClock.controller,
+            duration: myClock.time,
+            controller: myClock.controller,
             autoStart: false,
             width: size.width * 0.33,
             height: size.height * 0.33,
@@ -74,51 +75,59 @@ class _ClockState extends State<Clock> {
               _showMyDialogstopsound();
             },
           ),
-          onTap: () {
-            showDialog<void>(
-              context: context,
-              builder: (BuildContext context) => const AlertDialog(
-                title: Text('Tempo'),
-              ),
-            );
-          },
+          onTap: () => showDialog<void>(
+            context: context,
+            builder: (BuildContext context) => SetTimerWidget(myClock: myClock),
+          ),
         ),
         Padding(
           padding: EdgeInsets.only(top: size.height * 0.05),
-          child: OutlinedButton(
-            style: OutlinedButton.styleFrom(
-                elevation: 7,
-                primary: _myClock.isPause ? Colors.green : Colors.red,
-                backgroundColor: AppColors.background,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
+          child: SizedBox(
+            width: size.width * 0.15,
+            child: ValueListenableBuilder(
+              valueListenable: myClock.isPause,
+              builder: (BuildContext context, bool value, Widget? child) =>
+                  OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                    elevation: 7,
+                    primary: myClock.isPause.value ? Colors.green : Colors.red,
+                    backgroundColor: AppColors.background,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    side: BorderSide(
+                        color:
+                            myClock.isPause.value ? Colors.green : Colors.red)),
+                onPressed: () => myClock.startAndPauseButton(),
+                child: Center(
+                  child: Icon(
+                      myClock.isPause.value ? Icons.play_arrow : Icons.pause,
+                      color: myClock.isPause.value ? Colors.green : Colors.red),
                 ),
-                side: BorderSide(
-                    color: _myClock.isPause ? Colors.green : Colors.red)),
-            onPressed: () => setState(() => _myClock.startAndPauseButton()),
-            child: Center(
-              child: Icon(_myClock.isPause ? Icons.play_arrow : Icons.pause,
-                  color: _myClock.isPause ? Colors.green : Colors.red),
+              ),
             ),
           ),
         ),
         Padding(
           padding: EdgeInsets.only(top: size.height * 0.01),
-          child: OutlinedButton(
-            style: OutlinedButton.styleFrom(
-              elevation: 7,
-              primary: Colors.yellow,
-              backgroundColor: AppColors.background,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
+          child: SizedBox(
+            width: size.width * 0.15,
+            child: OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                elevation: 7,
+                primary: Colors.yellow,
+                backgroundColor: AppColors.background,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                side: const BorderSide(color: Colors.yellow),
               ),
-              side: const BorderSide(color: Colors.yellow),
-            ),
-            onPressed: () => setState(() => _myClock.restartButton()),
-            child: const Center(
-              child: Icon(
-                Icons.refresh_rounded,
-                color: Colors.yellow,
+              onPressed: () => myClock.restartButton(),
+              child: const Center(
+                child: Icon(
+                  Icons.refresh_rounded,
+                  color: Colors.yellow,
+                ),
               ),
             ),
           ),
