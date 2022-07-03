@@ -22,31 +22,30 @@ class _ClockState extends State<Clock> {
   @override
   void dispose() {
     _playerAudio.dispose();
+    myClock.dispose();
     super.dispose();
   }
 
-  Future<void> _showMyDialogstopsound() {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: AppColors.background,
-          actions: <Widget>[
-            TextButton(
-              child: Text(AppLocalizations.of(context)!.text_button_stopsound),
-              onPressed: () {
-                _playerAudio.stop();
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+  Future<void> _showMyDialogstopsound() => showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            backgroundColor: AppColors.background,
+            actions: <Widget>[
+              TextButton(
+                child:
+                    Text(AppLocalizations.of(context)!.text_button_stopsound),
+                onPressed: () {
+                  _playerAudio.stop();
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
 
-//------------------------------------------------------------------------------
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
