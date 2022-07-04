@@ -19,11 +19,11 @@ class DetailsImage extends StatefulWidget {
 class _DetailsImageState extends State<DetailsImage> {
   @override
   void didChangeDependencies() {
+    precacheImage(Image.network(widget.imageUrl).image, context);
     AdmobController.createInterstitialAd();
     super.didChangeDependencies();
   }
 
-  //------------------------------------------------------------------------------
   Future<void> _showMyDialogSaveErro() async {
     return showDialog<void>(
       context: context,
@@ -42,7 +42,6 @@ class _DetailsImageState extends State<DetailsImage> {
     );
   }
 
-//------------------------------------------------------------------------------
   Future<void> _showMyDialogSaveImage() async {
     return showDialog<void>(
       context: context,
@@ -71,15 +70,12 @@ class _DetailsImageState extends State<DetailsImage> {
         },
       );
 
-//------------------------------------------------------------------------------
   void onPressed() async {
     if (await Permission.storage.request().isGranted) {
       AdmobController.showInterstitialAd();
       Future.delayed(const Duration(seconds: 1), () => _saveImage());
     }
   }
-
-//------------------------------------------------------------------------------
 
   @override
   Widget build(BuildContext context) {

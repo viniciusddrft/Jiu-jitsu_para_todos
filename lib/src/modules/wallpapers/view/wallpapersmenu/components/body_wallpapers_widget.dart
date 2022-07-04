@@ -53,8 +53,8 @@ class _BodyWallpalersState extends State<BodyWallpalers> {
                       child: Image.network(
                         _controllerWallpapers.wallpapers.toList()[index].url,
                         fit: BoxFit.cover,
-                        cacheWidth: 110,
-                        cacheHeight: 110,
+                        width: 100,
+                        height: 100,
                         loadingBuilder: (BuildContext context, Widget child,
                                 ImageChunkEvent? loadingProgress) =>
                             (loadingProgress == null)

@@ -19,6 +19,12 @@ class ButtonOptionsHome extends ButtonForMenu {
 }
 
 class _ButtonOptionsHomeState extends State<ButtonOptionsHome> {
+  @override
+  void didChangeDependencies() {
+    precacheImage(Image.asset(widget.imageButton).image, context);
+    super.didChangeDependencies();
+  }
+
   void changeRoute() => widget.isFightMakerView
       ? Navigator.pushNamed(context, widget.routeButton).then(
           (_) => Navigator.pushReplacementNamed(context, '/Home'),

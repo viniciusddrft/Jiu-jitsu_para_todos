@@ -1,3 +1,2 @@
-adicionar animação no quiz;
-adicionar precache nas imagens;
+adicionar animação no resultado do quiz;
 atualizar dependencias;

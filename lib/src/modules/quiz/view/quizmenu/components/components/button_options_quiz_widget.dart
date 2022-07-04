@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../../../shared/button_for_menu/button_for_menu.dart';
@@ -38,6 +39,12 @@ class _ButtonOptionQuizState extends State<ButtonOptionQuiz> {
             'difficulty': widget.difficulty,
             'difficultyName': widget.difficultyName
           });
+
+  @override
+  void didChangeDependencies() {
+    precacheImage(Image.asset(widget.imageButton).image, context);
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {

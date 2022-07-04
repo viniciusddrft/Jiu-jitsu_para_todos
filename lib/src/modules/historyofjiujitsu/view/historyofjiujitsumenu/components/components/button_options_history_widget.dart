@@ -17,6 +17,12 @@ class _ButtonOptionsHistoryState extends State<ButtonOptionsHistory> {
   void changeRoute() => Navigator.pushNamed(context, widget.routeButton);
 
   @override
+  void didChangeDependencies() {
+    precacheImage(Image.asset(widget.imageButton).image, context);
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return widget.makeButton(context, changeRoute: changeRoute);
   }

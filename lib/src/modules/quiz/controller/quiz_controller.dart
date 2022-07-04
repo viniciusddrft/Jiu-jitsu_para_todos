@@ -9,7 +9,7 @@ import '../../../shared/repositories/repository_api.dart';
 class ControllerQuiz extends ChangeNotifier {
   final RepositoryApi _repositoryApi = RepositoryApi();
 
-  int score = 0;
+  int _score = 0;
   int indexCurrentQuestion = 0;
 
   bool isButtonDisabled = false;
@@ -27,7 +27,11 @@ class ControllerQuiz extends ChangeNotifier {
 
   int get totalNumberOfQuestions => myQuestions.length;
 
+  int get score => _score;
+
   late final List<QuestionModel> myQuestions;
+
+  void addScore() => _score++;
 
   void nextQuestion() {
     indexCurrentQuestion++;
