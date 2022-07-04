@@ -11,44 +11,75 @@ class BodyWallpalers extends StatefulWidget {
 class _BodyWallpalersState extends State<BodyWallpalers> {
   final ControllerWallpapers _controllerWallpapers = ControllerWallpapers();
 
+  late final Size size;
+
+  @override
+  void didChangeDependencies() {
+    size = MediaQuery.of(context).size;
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-
-    return SizedBox(
-      height: size.height,
-      width: size.width,
-      child: GridView.builder(
-        padding: EdgeInsets.symmetric(
-            horizontal: size.width * 0.05, vertical: size.height * 0.03),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-        ),
-        itemBuilder: (context, index) => RawMaterialButton(
-          onPressed: () => Navigator.pushNamed(context, '/DetailsImage',
-              arguments: <String, dynamic>{
-                'imagePath':
-                    _controllerWallpapers.images.toList()[index].imagePath,
-                'index': index
-              }),
-          child: Hero(
-            tag: 'logo$index',
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                image: DecorationImage(
-                  image: AssetImage(
-                      _controllerWallpapers.images.toList()[index].imagePath),
-                  fit: BoxFit.cover,
+    return FutureBuilder(
+      future: _controllerWallpapers.loadWallpapers(),
+      builder: (BuildContext context, AsyncSnapshot<void> snapshot) => (snapshot
+                  .connectionState ==
+              ConnectionState.done)
+          ? SizedBox(
+              height: size.height,
+              width: size.width,
+              child: GridView.builder(
+                itemCount: _controllerWallpapers.wallpapers.length,
+                padding: EdgeInsets.symmetric(
+                    horizontal: size.width * 0.05,
+                    vertical: size.height * 0.03),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                itemBuilder: (context, index) => RawMaterialButton(
+                  onPressed: () => Navigator.pushNamed(
+                      context, '/DetailsImage', arguments: <String, dynamic>{
+                    'imageUrl':
+                        _controllerWallpapers.wallpapers.toList()[index].url,
+                    'index': index
+                  }),
+                  child: Hero(
+                    tag: 'logo$index',
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image.network(
+                        _controllerWallpapers.wallpapers.toList()[index].url,
+                        fit: BoxFit.cover,
+                        width: 100,
+                        height: 100,
+                        loadingBuilder: (BuildContext context, Widget child,
+                                ImageChunkEvent? loadingProgress) =>
+                            (loadingProgress == null)
+                                ? child
+                                : Center(
+                                    child: CircularProgressIndicator(
+                                      value:
+                                          loadingProgress.expectedTotalBytes !=
+                                                  null
+                                              ? loadingProgress
+                                                      .cumulativeBytesLoaded /
+                                                  loadingProgress
+                                                      .expectedTotalBytes!
+                                              : null,
+                                    ),
+                                  ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
+            )
+          : const Center(
+              child: CircularProgressIndicator(),
             ),
-          ),
-        ),
-        itemCount: _controllerWallpapers.images.length,
-      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -39,6 +40,13 @@ class _BodySettingsState extends State<BodySettings> with OpenLink {
       _iconPath.value = AppIconsLanguages.brasil;
     }
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    precacheImage(Image.asset(AppIconsLanguages.unitedStates).image, context);
+    precacheImage(Image.asset(AppIconsLanguages.brasil).image, context);
+    super.didChangeDependencies();
   }
 
   @override

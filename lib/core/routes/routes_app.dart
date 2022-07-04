@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:jiu_jitsu_para_todos/core/routes/animations/transition_elatic_out.dart';
 import 'package:jiu_jitsu_para_todos/core/routes/animations/transition_left_to_right.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/credits/view/credits_view.dart';
@@ -82,8 +83,7 @@ class Routes {
       case '/DetailsImage':
         return MaterialPageRoute(
           builder: (BuildContext context) => DetailsImage(
-            imagePath:
-                (settings.arguments as Map<String, dynamic>)['imagePath'],
+            imageUrl: (settings.arguments as Map<String, dynamic>)['imageUrl'],
             index: (settings.arguments as Map<String, dynamic>)['index'],
           ),
         );

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:wakelock/wakelock.dart';
 
 import '../../../shared/appbar_gradient/appbar_gradient.dart';
 import '../../../shared/themes/app_colors.dart';
+
 import 'components/body_fight_marker_widget.dart';
 
 class FightMakerView extends StatefulWidget {

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:gallery_saver/gallery_saver.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DetailsImage extends StatefulWidget {
-  final String imagePath;
+  final String imageUrl;
   final int index;
 
-  const DetailsImage({super.key, required this.imagePath, required this.index});
+  const DetailsImage({super.key, required this.imageUrl, required this.index});
 
   @override
   State<DetailsImage> createState() => _DetailsImageState();
@@ -19,11 +19,11 @@ class DetailsImage extends StatefulWidget {
 class _DetailsImageState extends State<DetailsImage> {
   @override
   void didChangeDependencies() {
+    precacheImage(Image.network(widget.imageUrl).image, context);
     AdmobController.createInterstitialAd();
     super.didChangeDependencies();
   }
 
-  //------------------------------------------------------------------------------
   Future<void> _showMyDialogSaveErro() async {
     return showDialog<void>(
       context: context,
@@ -42,7 +42,6 @@ class _DetailsImageState extends State<DetailsImage> {
     );
   }
 
-//------------------------------------------------------------------------------
   Future<void> _showMyDialogSaveImage() async {
     return showDialog<void>(
       context: context,
@@ -61,26 +60,22 @@ class _DetailsImageState extends State<DetailsImage> {
     );
   }
 
-  void _saveImage() async {
-    ByteData bytes = await rootBundle.load(widget.imagePath);
+  void _saveImage() => GallerySaver.saveImage(widget.imageUrl).then(
+        (bool? isSuccess) {
+          if (isSuccess != null && isSuccess) {
+            _showMyDialogSaveImage();
+          } else {
+            _showMyDialogSaveErro();
+          }
+        },
+      );
 
-    var result = await ImageGallerySaver.saveImage(bytes.buffer.asUint8List());
-    if ((result['isSuccess'])) {
-      _showMyDialogSaveImage();
-    } else {
-      _showMyDialogSaveErro();
-    }
-  }
-
-//------------------------------------------------------------------------------
   void onPressed() async {
     if (await Permission.storage.request().isGranted) {
       AdmobController.showInterstitialAd();
       Future.delayed(const Duration(seconds: 1), () => _saveImage());
     }
   }
-
-//------------------------------------------------------------------------------
 
   @override
   Widget build(BuildContext context) {
@@ -90,16 +85,18 @@ class _DetailsImageState extends State<DetailsImage> {
       backgroundColor: AppColors.background,
       body: Column(
         children: [
-          Expanded(
+          SizedBox(
+            height: size.height * 0.7,
             child: Hero(
               tag: 'logo${widget.index}',
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(30)),
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
+                  ),
                   image: DecorationImage(
-                    image: AssetImage(widget.imagePath),
+                    image: NetworkImage(widget.imageUrl),
                     fit: BoxFit.cover,
                   ),
                 ),
