@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
 import '../../../../controller/clock_controller.dart';
@@ -20,8 +21,8 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: AppColors.background,
-      title: const Text(
-        'Tempo',
+      title: Text(
+        AppLocalizations.of(context)!.text_label_time_popup,
       ),
       content: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -126,9 +127,9 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text(
-            'Cancel',
-            style: TextStyle(fontSize: 16),
+          child: Text(
+            AppLocalizations.of(context)!.text_label_cancel_popup,
+            style: const TextStyle(fontSize: 16),
           ),
         ),
         TextButton(
@@ -137,9 +138,9 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
                 pageControllerSeconds.page!.toInt());
             Navigator.pop(context);
           },
-          child: const Text(
-            'Salvar',
-            style: TextStyle(fontSize: 16),
+          child: Text(
+            AppLocalizations.of(context)!.text_label_continue,
+            style: const TextStyle(fontSize: 16),
           ),
         ),
       ],

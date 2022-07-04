@@ -19,7 +19,7 @@ class ResultQuiz extends StatefulWidget {
 
 class _ResultQuizState extends State<ResultQuiz>
     with SingleTickerProviderStateMixin {
-  late final Size size = MediaQuery.of(context).size;
+  late final Size size;
   late String _iconPath, _textShowResult, _textMessage;
   late String _scorePercentageText;
   late final double _scorePercentage;
@@ -35,6 +35,7 @@ class _ResultQuizState extends State<ResultQuiz>
 
   @override
   void didChangeDependencies() {
+    size = MediaQuery.of(context).size;
     _scorePercentage = widget.score / widget.totalQuestions;
     _scorePercentageText = (_scorePercentage * 100).toStringAsPrecision(2);
     if (_scorePercentage == 1.0) {

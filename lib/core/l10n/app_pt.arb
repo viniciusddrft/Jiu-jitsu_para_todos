@@ -40,9 +40,9 @@
     "button_black_belt_level":"Nível Faixa Preta",
 
     "title_appbar_fightmarker_page":"Marcador de luta",
-    "text_label_minutes_popup":"Minutos",
-    "text_label_seconds_popup":"Segundos",
-    "text_button_popup_continue":"Continuar",
+    "text_label_time_popup":"Tempo",
+    "text_label_cancel_popup":"Cancelar",
+    "text_label_continue":"Continuar",
     "text_button_stopsound":"Parar som",
     "text_abbreviated_advantage":"V",
     "text_abbreviated_punishment":"P",

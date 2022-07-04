@@ -40,9 +40,9 @@
     "button_black_belt_level":"Black Belt Level",
 
     "title_appbar_fightmarker_page":"Fight marker",
-    "text_label_minutes_popup":"Minutes",
-    "text_label_seconds_popup":"Seconds",
-    "text_button_popup_continue":"Continue",
+    "text_label_time_popup":"Time",
+    "text_label_cancel_popup":"Cancel",
+    "text_label_continue":"Continue",
     "text_button_stopsound":"Stop sound",
     "text_abbreviated_advantage":"A",
     "text_abbreviated_punishment":"P",
