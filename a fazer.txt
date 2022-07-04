@@ -1,2 +1,1 @@
-adicionar animação no resultado do quiz;
 atualizar dependencias;

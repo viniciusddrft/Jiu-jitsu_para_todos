@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../shared/themes/app_colors.dart';
@@ -16,9 +17,21 @@ class ResultQuiz extends StatefulWidget {
   State<ResultQuiz> createState() => _ResultQuizState();
 }
 
-class _ResultQuizState extends State<ResultQuiz> {
-  late String _iconPath, _textShowResult, _textMessage, _scorePercentageText;
-  late double _scorePercentage;
+class _ResultQuizState extends State<ResultQuiz>
+    with SingleTickerProviderStateMixin {
+  late final Size size = MediaQuery.of(context).size;
+  late String _iconPath, _textShowResult, _textMessage;
+  late String _scorePercentageText;
+  late final double _scorePercentage;
+  late final AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+    );
+  }
 
   @override
   void didChangeDependencies() {
@@ -35,6 +48,7 @@ class _ResultQuizState extends State<ResultQuiz> {
       _iconPath = 'assets/quiz/iconsresultquiz/sad.png';
       _textMessage = AppLocalizations.of(context)!.text_message_quiz_sad;
     }
+    precacheImage(Image.asset(_iconPath).image, context);
 
     if (widget.difficultyName ==
         AppLocalizations.of(context)!.text_difficultyname_white_belt) {
@@ -49,13 +63,16 @@ class _ResultQuizState extends State<ResultQuiz> {
       _textShowResult =
           AppLocalizations.of(context)!.text_result_quiz_black_belt;
     }
+    _animationController.animateTo(
+      _scorePercentage,
+      duration: const Duration(seconds: 2),
+      curve: Curves.elasticInOut,
+    );
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -103,12 +120,17 @@ class _ResultQuizState extends State<ResultQuiz> {
                     SizedBox(
                       height: 150,
                       width: 150,
-                      child: CircularProgressIndicator(
+                      child: AnimatedBuilder(
+                        animation: _animationController,
+                        builder: (BuildContext context, Widget? child) =>
+                            CircularProgressIndicator(
                           strokeWidth: 7,
-                          value: _scorePercentage,
+                          value: _animationController.value,
                           backgroundColor: const Color(0xff313959),
-                          valueColor: const AlwaysStoppedAnimation<Color>(
-                              Colors.green)),
+                          valueColor:
+                              const AlwaysStoppedAnimation<Color>(Colors.green),
+                        ),
+                      ),
                     ),
                     Center(
                       child: Text(
