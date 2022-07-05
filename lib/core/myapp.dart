@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl_standalone.dart';
 import 'package:jiu_jitsu_para_todos/core/locale/locale_app.dart';
 import 'package:jiu_jitsu_para_todos/core/routes/routes_app.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -14,10 +15,10 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
-  void initState() {
+  void didChangeDependencies() {
     LocaleApp.getLocalePreference();
     findSystemLocale();
-    super.initState();
+    super.didChangeDependencies();
   }
 
   @override
