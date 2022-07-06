@@ -22,36 +22,28 @@ class JiujitsuinBrazil extends StatelessWidget {
         ),
       ),
       backgroundColor: AppColors.background,
-      body: SizedBox(
-        width: size.width,
-        height: size.height,
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
           child: Column(
             children: [
-              SizedBox(
-                width: size.width * 0.9,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: size.height * 0.03),
-                      child: Text(
-                        AppLocalizations.of(context)!
-                            .text_jiujitsu_in_brazil_paragraph1,
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                    ),
-                    Text(
-                      AppLocalizations.of(context)!
-                          .text_jiujitsu_in_brazil_paragraph2,
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                    Text(
-                      AppLocalizations.of(context)!
-                          .text_jiujitsu_in_brazil_paragraph3,
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                  ],
+              Padding(
+                padding: EdgeInsets.only(top: size.height * 0.03),
+                child: Text(
+                  AppLocalizations.of(context)!
+                      .text_jiujitsu_in_brazil_paragraph1,
+                  style: const TextStyle(fontSize: 16),
                 ),
+              ),
+              Text(
+                AppLocalizations.of(context)!
+                    .text_jiujitsu_in_brazil_paragraph2,
+                style: const TextStyle(fontSize: 16),
+              ),
+              Text(
+                AppLocalizations.of(context)!
+                    .text_jiujitsu_in_brazil_paragraph3,
+                style: const TextStyle(fontSize: 16),
               ),
             ],
           ),

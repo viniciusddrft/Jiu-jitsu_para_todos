@@ -17,8 +17,6 @@ class HomePageView extends StatefulWidget {
 }
 
 class _HomePageViewState extends State<HomePageView> {
-  late final Size size = MediaQuery.of(context).size;
-
   @override
   void initState() {
     Wakelock.disable();
@@ -33,6 +31,8 @@ class _HomePageViewState extends State<HomePageView> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: const AppBarGradient(),

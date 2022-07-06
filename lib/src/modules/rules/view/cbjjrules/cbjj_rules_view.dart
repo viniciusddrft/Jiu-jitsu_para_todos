@@ -24,41 +24,37 @@ class Cbjjrules extends StatelessWidget with OpenLink {
         ),
       ),
       backgroundColor: AppColors.background,
-      body: Column(
-        children: [
-          SizedBox(
-            width: size.width * 0.9,
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
-                  child: Text(
-                    AppLocalizations.of(context)!.text_cbjj,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                ),
-                OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                      fixedSize: const Size(200, 50),
-                      elevation: 7,
-                      primary: Colors.white,
-                      backgroundColor: AppColors.background,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      side: const BorderSide(color: Colors.white)),
-                  onPressed: () => openLink('https://cbjj.com.br/books-videos'),
-                  child: Center(
-                    child: Text(
-                      AppLocalizations.of(context)!.text_button_cbjj,
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                  ),
-                )
-              ],
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
+              child: Text(
+                AppLocalizations.of(context)!.text_cbjj,
+                style: const TextStyle(fontSize: 16),
+              ),
             ),
-          )
-        ],
+            OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                  fixedSize: const Size(200, 50),
+                  elevation: 7,
+                  primary: Colors.white,
+                  backgroundColor: AppColors.background,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  side: const BorderSide(color: Colors.white)),
+              onPressed: () => openLink('https://cbjj.com.br/books-videos'),
+              child: Center(
+                child: Text(
+                  AppLocalizations.of(context)!.text_button_cbjj,
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
       bottomNavigationBar: SizedBox(
         height: 75,

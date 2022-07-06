@@ -80,67 +80,70 @@ class _ResultQuizState extends State<ResultQuiz>
         elevation: 0,
       ),
       backgroundColor: AppColors.background,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.asset(
-            _iconPath,
-            height: 100,
-            width: 100,
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: size.height * 0.05),
-            child: Text(
-              _textMessage,
-              style: const TextStyle(fontSize: 20),
+      body: SizedBox(
+        width: size.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              _iconPath,
+              height: 100,
+              width: 100,
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: size.height * 0.05),
-            child: SizedBox(
-              width: size.width * 0.7,
-              child: Center(
-                child: Text(
-                  _textShowResult,
-                  style: const TextStyle(fontSize: 20),
+            Padding(
+              padding: EdgeInsets.only(top: size.height * 0.05),
+              child: Text(
+                _textMessage,
+                style: const TextStyle(fontSize: 20),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: size.height * 0.05),
+              child: SizedBox(
+                width: size.width * 0.7,
+                child: Center(
+                  child: Text(
+                    _textShowResult,
+                    style: const TextStyle(fontSize: 20),
+                  ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: size.height * 0.1),
-            child: SizedBox(
-              height: 150,
-              width: 150,
-              child: Stack(
-                children: [
-                  SizedBox(
-                    height: 150,
-                    width: 150,
-                    child: AnimatedBuilder(
-                      animation: _animationController,
-                      builder: (BuildContext context, Widget? child) =>
-                          CircularProgressIndicator(
-                        strokeWidth: 7,
-                        value: _animationController.value,
-                        backgroundColor: const Color(0xff313959),
-                        valueColor:
-                            const AlwaysStoppedAnimation<Color>(Colors.green),
+            Padding(
+              padding: EdgeInsets.only(top: size.height * 0.1),
+              child: SizedBox(
+                height: 150,
+                width: 150,
+                child: Stack(
+                  children: [
+                    SizedBox(
+                      height: 150,
+                      width: 150,
+                      child: AnimatedBuilder(
+                        animation: _animationController,
+                        builder: (BuildContext context, Widget? child) =>
+                            CircularProgressIndicator(
+                          strokeWidth: 7,
+                          value: _animationController.value,
+                          backgroundColor: const Color(0xff313959),
+                          valueColor:
+                              const AlwaysStoppedAnimation<Color>(Colors.green),
+                        ),
                       ),
                     ),
-                  ),
-                  Center(
-                    child: Text(
-                      '$_scorePercentageText%',
-                      style: const TextStyle(fontSize: 30),
+                    Center(
+                      child: Text(
+                        '$_scorePercentageText%',
+                        style: const TextStyle(fontSize: 30),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

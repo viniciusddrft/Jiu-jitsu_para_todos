@@ -24,113 +24,107 @@ class Basicrules extends StatelessWidget {
       ),
       backgroundColor: AppColors.background,
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              width: size.width * 0.9,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
-                    child: Text(
-                      AppLocalizations.of(context)!.text_overview_title,
-                      style: const TextStyle(fontSize: 18),
-                    ),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.text_overview,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
-                    child: Text(
-                      AppLocalizations.of(context)!.text_scores_title,
-                      style: const TextStyle(fontSize: 18),
-                    ),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.text_scores,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
-                    child: Text(
-                      AppLocalizations.of(context)!
-                          .text_moves_that_gives_2_scores_title,
-                      style: const TextStyle(fontSize: 18),
-                    ),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.text_throws,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
-                    child: Text(
-                      AppLocalizations.of(context)!.text_knee_in_belly,
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.text_sweep,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
-                    child: Text(
-                      AppLocalizations.of(context)!
-                          .text_moves_that_gives_3_scores_title,
-                      style: const TextStyle(fontSize: 18),
-                    ),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!
-                        .text_moves_that_gives_3_scores,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
-                    child: Text(
-                      AppLocalizations.of(context)!.text_guard_pass,
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!
-                        .text_moves_that_gives_4_scores_title,
-                    style: const TextStyle(fontSize: 18),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
-                    child: Text(
-                      AppLocalizations.of(context)!.text_mount,
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.text_backward_grip,
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
-                    child: Text(
-                      AppLocalizations.of(context)!
-                          .text_advantage_and_penalties_title,
-                      style: const TextStyle(fontSize: 18),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: size.height * 0.05),
-                    child: Text(
-                      AppLocalizations.of(context)!
-                          .text_advantage_and_penalties,
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                  ),
-                ],
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
+                child: Text(
+                  AppLocalizations.of(context)!.text_overview_title,
+                  style: const TextStyle(fontSize: 18),
+                ),
               ),
-            ),
-          ],
+              Text(
+                AppLocalizations.of(context)!.text_overview,
+                style: const TextStyle(fontSize: 16),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
+                child: Text(
+                  AppLocalizations.of(context)!.text_scores_title,
+                  style: const TextStyle(fontSize: 18),
+                ),
+              ),
+              Text(
+                AppLocalizations.of(context)!.text_scores,
+                style: const TextStyle(fontSize: 16),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
+                child: Text(
+                  AppLocalizations.of(context)!
+                      .text_moves_that_gives_2_scores_title,
+                  style: const TextStyle(fontSize: 18),
+                ),
+              ),
+              Text(
+                AppLocalizations.of(context)!.text_throws,
+                style: const TextStyle(fontSize: 16),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
+                child: Text(
+                  AppLocalizations.of(context)!.text_knee_in_belly,
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ),
+              Text(
+                AppLocalizations.of(context)!.text_sweep,
+                style: const TextStyle(fontSize: 16),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
+                child: Text(
+                  AppLocalizations.of(context)!
+                      .text_moves_that_gives_3_scores_title,
+                  style: const TextStyle(fontSize: 18),
+                ),
+              ),
+              Text(
+                AppLocalizations.of(context)!.text_moves_that_gives_3_scores,
+                style: const TextStyle(fontSize: 16),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
+                child: Text(
+                  AppLocalizations.of(context)!.text_guard_pass,
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ),
+              Text(
+                AppLocalizations.of(context)!
+                    .text_moves_that_gives_4_scores_title,
+                style: const TextStyle(fontSize: 18),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
+                child: Text(
+                  AppLocalizations.of(context)!.text_mount,
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ),
+              Text(
+                AppLocalizations.of(context)!.text_backward_grip,
+                style: const TextStyle(fontSize: 16),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
+                child: Text(
+                  AppLocalizations.of(context)!
+                      .text_advantage_and_penalties_title,
+                  style: const TextStyle(fontSize: 18),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: size.height * 0.05),
+                child: Text(
+                  AppLocalizations.of(context)!.text_advantage_and_penalties,
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: SizedBox(
