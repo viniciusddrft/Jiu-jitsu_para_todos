@@ -14,6 +14,7 @@ class SetTimerWidget extends StatefulWidget {
 }
 
 class _SetTimerWidgetState extends State<SetTimerWidget> {
+  late final Size size = MediaQuery.of(context).size;
   final PageController pageControllerMinutes = PageController();
   final PageController pageControllerSeconds = PageController();
 
@@ -35,23 +36,23 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            height: 136,
-            width: 50,
+            height: size.height * 0.335,
+            width: size.width * 0.07,
             child: Column(
               children: [
                 IconButton(
                   padding: EdgeInsets.zero,
-                  splashRadius: 15,
+                  splashRadius: size.width * 0.02,
                   onPressed: () => pageControllerMinutes.nextPage(
                       duration: const Duration(milliseconds: 500),
                       curve: Curves.elasticOut),
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.keyboard_arrow_up,
-                    size: 40,
+                    size: size.height * 0.1,
                   ),
                 ),
                 SizedBox(
-                  height: 40,
+                  height: size.height * 0.1,
                   child: PageView.builder(
                     controller: pageControllerMinutes,
                     itemCount: 60,
@@ -66,43 +67,43 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
                 ),
                 IconButton(
                   padding: EdgeInsets.zero,
-                  splashRadius: 15,
+                  splashRadius: size.width * 0.02,
                   onPressed: () => pageControllerMinutes.previousPage(
                       duration: const Duration(milliseconds: 500),
                       curve: Curves.elasticOut),
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.keyboard_arrow_down,
-                    size: 40,
+                    size: size.height * 0.1,
                   ),
                 ),
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25),
-            child: Text(
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
+            child: const Text(
               ':',
               style: TextStyle(fontSize: 30),
             ),
           ),
           SizedBox(
-            height: 136,
-            width: 50,
+            height: size.height * 0.335,
+            width: size.width * 0.07,
             child: Column(
               children: [
                 IconButton(
                   padding: EdgeInsets.zero,
-                  splashRadius: 15,
+                  splashRadius: size.width * 0.02,
                   onPressed: () => pageControllerSeconds.nextPage(
                       duration: const Duration(milliseconds: 500),
                       curve: Curves.elasticOut),
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.keyboard_arrow_up,
-                    size: 40,
+                    size: size.height * 0.1,
                   ),
                 ),
                 SizedBox(
-                  height: 40,
+                  height: size.height * 0.1,
                   child: PageView.builder(
                     controller: pageControllerSeconds,
                     itemCount: 60,
@@ -117,13 +118,13 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
                 ),
                 IconButton(
                   padding: EdgeInsets.zero,
-                  splashRadius: 15,
+                  splashRadius: size.width * 0.02,
                   onPressed: () => pageControllerSeconds.previousPage(
                       duration: const Duration(milliseconds: 500),
                       curve: Curves.elasticOut),
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.keyboard_arrow_down,
-                    size: 40,
+                    size: size.height * 0.1,
                   ),
                 ),
               ],

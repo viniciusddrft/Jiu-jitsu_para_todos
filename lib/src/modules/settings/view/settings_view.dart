@@ -16,7 +16,7 @@ class SettingsView extends StatefulWidget {
 }
 
 class _SettingsViewState extends State<SettingsView> with OpenLink {
-  late final Size size;
+  late final Size size = MediaQuery.of(context).size;
   final ValueNotifier<String?> _iconPath = ValueNotifier<String?>(null);
 
   @override
@@ -31,7 +31,6 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
 
   @override
   void didChangeDependencies() {
-    size = MediaQuery.of(context).size;
     precacheImage(Image.asset(AppIconsLanguages.unitedStates).image, context);
     precacheImage(Image.asset(AppIconsLanguages.brasil).image, context);
     super.didChangeDependencies();
@@ -61,8 +60,6 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
   void _changeCredits() => Navigator.pushNamed(context, '/Credits');
 
   Future<void> _changeLanguageMenu() async {
-    final Size size = MediaQuery.of(context).size;
-
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -150,176 +147,97 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
           ),
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          const Spacer(),
-          Flexible(
-            flex: 15,
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              color: AppColors.cardColor,
-              child: SizedBox(
-                width: size.width * 0.85,
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    Flexible(
-                      child: Text(
-                        AppLocalizations.of(context)!
-                            .button_language_settings_page,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    ),
-                    const Spacer(),
-                    Flexible(
-                      flex: 3,
-                      child: OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          fixedSize: const Size(200, 50),
-                          backgroundColor: AppColors.background,
-                          primary: Colors.white,
-                          elevation: 7,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          side: const BorderSide(color: Colors.white),
+      body: SizedBox(
+        width: size.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Spacer(),
+            Flexible(
+              flex: 15,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                color: AppColors.cardColor,
+                child: SizedBox(
+                  width: size.width * 0.85,
+                  child: Column(
+                    children: [
+                      const Spacer(),
+                      Flexible(
+                        child: Text(
+                          AppLocalizations.of(context)!
+                              .button_language_settings_page,
+                          style: const TextStyle(fontSize: 20),
                         ),
-                        onPressed: _changeLanguageMenu,
-                        child: Container(
-                          color: Colors.transparent,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                AppLocalizations.of(context)!
-                                    .button_language_settings_page,
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                              ValueListenableBuilder(
-                                valueListenable: _iconPath,
-                                builder: (BuildContext context, String? value,
-                                        Widget? child) =>
-                                    Image.asset(
-                                  value!,
-                                  width: 40,
+                      ),
+                      const Spacer(),
+                      Flexible(
+                        flex: 3,
+                        child: OutlinedButton(
+                          style: OutlinedButton.styleFrom(
+                            fixedSize: const Size(200, 50),
+                            backgroundColor: AppColors.background,
+                            primary: Colors.white,
+                            elevation: 7,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            side: const BorderSide(color: Colors.white),
+                          ),
+                          onPressed: _changeLanguageMenu,
+                          child: Container(
+                            color: Colors.transparent,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  AppLocalizations.of(context)!
+                                      .button_language_settings_page,
+                                  style: const TextStyle(fontSize: 16),
                                 ),
-                              )
-                            ],
+                                ValueListenableBuilder(
+                                  valueListenable: _iconPath,
+                                  builder: (BuildContext context, String? value,
+                                          Widget? child) =>
+                                      Image.asset(
+                                    value!,
+                                    width: 40,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    const Spacer(),
-                  ],
+                      const Spacer(),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          Flexible(
-            flex: 20,
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              color: AppColors.cardColor,
-              child: SizedBox(
-                width: size.width * 0.85,
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    Flexible(
-                      child: Text(
-                        AppLocalizations.of(context)!.text_contact,
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                    ),
-                    const Spacer(),
-                    Flexible(
-                      flex: 3,
-                      child: OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          fixedSize: const Size(200, 50),
-                          backgroundColor: AppColors.background,
-                          primary: Colors.white,
-                          elevation: 7,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          side: const BorderSide(color: Colors.white),
-                        ),
-                        onPressed: () => openLink(
-                            'mailto:Jiu-jitsu_para_todos@protonmail.com'),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: const [
-                            Text(
-                              'E-mail',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                            Icon(Icons.mail)
-                          ],
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    Flexible(
-                      flex: 3,
-                      child: OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          fixedSize: const Size(200, 50),
-                          backgroundColor: AppColors.background,
-                          primary: Colors.white,
-                          elevation: 7,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          side: const BorderSide(color: Colors.white),
-                        ),
-                        onPressed: () => openLink(
-                            'https://www.facebook.com/Jiujitsuparatodos2021/'),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: const [
-                            Text(
-                              'Facebook',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                            Icon(Icons.facebook)
-                          ],
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                  ],
+            Flexible(
+              flex: 20,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
                 ),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 20,
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              color: AppColors.cardColor,
-              child: SizedBox(
-                width: size.width * 0.85,
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    Flexible(
-                      child: Text(
-                        AppLocalizations.of(context)!.text_about_the_app,
-                        style: const TextStyle(fontSize: 20),
+                color: AppColors.cardColor,
+                child: SizedBox(
+                  width: size.width * 0.85,
+                  child: Column(
+                    children: [
+                      const Spacer(),
+                      Flexible(
+                        child: Text(
+                          AppLocalizations.of(context)!.text_contact,
+                          style: const TextStyle(fontSize: 20),
+                        ),
                       ),
-                    ),
-                    const Spacer(),
-                    Flexible(
-                      flex: 3,
-                      child: SizedBox(
+                      const Spacer(),
+                      Flexible(
+                        flex: 3,
                         child: OutlinedButton(
                           style: OutlinedButton.styleFrom(
                             fixedSize: const Size(200, 50),
@@ -332,24 +250,22 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                             side: const BorderSide(color: Colors.white),
                           ),
                           onPressed: () => openLink(
-                              'https://play.google.com/store/apps/details?id=com.jiu_jitsu_para_todos'),
+                              'mailto:Jiu-jitsu_para_todos@protonmail.com'),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
+                            children: const [
                               Text(
-                                AppLocalizations.of(context)!.text_rate_the_app,
-                                style: const TextStyle(fontSize: 16),
+                                'E-mail',
+                                style: TextStyle(fontSize: 16),
                               ),
-                              const Icon(Icons.rate_review_outlined)
+                              Icon(Icons.mail)
                             ],
                           ),
                         ),
                       ),
-                    ),
-                    const Spacer(),
-                    Flexible(
-                      flex: 3,
-                      child: SizedBox(
+                      const Spacer(),
+                      Flexible(
+                        flex: 3,
                         child: OutlinedButton(
                           style: OutlinedButton.styleFrom(
                             fixedSize: const Size(200, 50),
@@ -361,24 +277,109 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                             ),
                             side: const BorderSide(color: Colors.white),
                           ),
-                          onPressed: _changeCredits,
-                          child: Center(
-                            child: Text(
-                              AppLocalizations.of(context)!
-                                  .button_credits_settings_page,
-                              style: const TextStyle(fontSize: 16),
+                          onPressed: () => openLink(
+                              'https://www.facebook.com/Jiujitsuparatodos2021/'),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: const [
+                              Text(
+                                'Facebook',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              Icon(Icons.facebook)
+                            ],
+                          ),
+                        ),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Flexible(
+              flex: 20,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                color: AppColors.cardColor,
+                child: SizedBox(
+                  width: size.width * 0.85,
+                  child: Column(
+                    children: [
+                      const Spacer(),
+                      Flexible(
+                        child: Text(
+                          AppLocalizations.of(context)!.text_about_the_app,
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                      ),
+                      const Spacer(),
+                      Flexible(
+                        flex: 3,
+                        child: SizedBox(
+                          child: OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              fixedSize: const Size(200, 50),
+                              backgroundColor: AppColors.background,
+                              primary: Colors.white,
+                              elevation: 7,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              side: const BorderSide(color: Colors.white),
+                            ),
+                            onPressed: () => openLink(
+                                'https://play.google.com/store/apps/details?id=com.jiu_jitsu_para_todos'),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  AppLocalizations.of(context)!
+                                      .text_rate_the_app,
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                const Icon(Icons.rate_review_outlined)
+                              ],
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    const Spacer(),
-                  ],
+                      const Spacer(),
+                      Flexible(
+                        flex: 3,
+                        child: SizedBox(
+                          child: OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              fixedSize: const Size(200, 50),
+                              backgroundColor: AppColors.background,
+                              primary: Colors.white,
+                              elevation: 7,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              side: const BorderSide(color: Colors.white),
+                            ),
+                            onPressed: _changeCredits,
+                            child: Center(
+                              child: Text(
+                                AppLocalizations.of(context)!
+                                    .button_credits_settings_page,
+                                style: const TextStyle(fontSize: 16),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
