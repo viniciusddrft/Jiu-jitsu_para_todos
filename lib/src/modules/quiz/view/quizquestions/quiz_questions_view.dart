@@ -138,154 +138,145 @@ class _QuizQuestionsState extends State<QuizQuestions>
                 ? AnimatedBuilder(
                     animation: Listenable.merge(
                         [_controllerQuiz, _animationController]),
-                    builder: (BuildContext context, Widget? child) => SizedBox(
-                      width: size.width,
-                      height: size.height,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: size.width * 0.07,
-                                bottom: size.height * 0.01),
-                            child: Text(
-                              'Quiz ${widget.difficultyName}',
-                              style: TextStyle(
-                                  fontFamily: 'YatraOne',
-                                  fontSize: 20,
-                                  color: Colors.grey[700]),
-                            ),
+                    builder: (BuildContext context, Widget? child) => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: size.width * 0.07,
+                              bottom: size.height * 0.01),
+                          child: Text(
+                            'Quiz ${widget.difficultyName}',
+                            style: TextStyle(
+                                fontFamily: 'YatraOne',
+                                fontSize: 20,
+                                color: Colors.grey[700]),
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(left: size.width * 0.07),
-                            child: Text(
-                              '${AppLocalizations.of(context)!.text_question} ${_controllerQuiz.counterQuestions}/${_controllerQuiz.totalNumberOfQuestions}',
-                              style: const TextStyle(
-                                  fontFamily: 'Ubuntu',
-                                  fontSize: 22,
-                                  color: Colors.white),
-                            ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: size.width * 0.07),
+                          child: Text(
+                            '${AppLocalizations.of(context)!.text_question} ${_controllerQuiz.counterQuestions}/${_controllerQuiz.totalNumberOfQuestions}',
+                            style: const TextStyle(
+                                fontFamily: 'Ubuntu',
+                                fontSize: 22,
+                                color: Colors.white),
                           ),
-                          Container(
-                            margin: EdgeInsets.only(
-                                left: size.width * 0.07,
-                                right: size.width * 0.07),
-                            width: size.width,
-                            height: 1,
-                            decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                  colors: [Colors.white, AppColors.background],
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight),
-                            ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(
+                              left: size.width * 0.07,
+                              right: size.width * 0.07),
+                          width: size.width,
+                          height: 1,
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                                colors: [Colors.white, AppColors.background],
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight),
                           ),
-                          Expanded(
-                            child: SlideTransition(
-                              position: Tween<Offset>(
-                                begin: Offset.zero,
-                                end: Offset(_animationController.value, 0),
-                              ).animate(
-                                CurvedAnimation(
-                                  parent: _animationController,
-                                  curve: const Interval(0.0, 1.0,
-                                      curve: Curves.elasticIn),
-                                  reverseCurve: const Interval(0.0, 1.0,
-                                      curve: Curves.elasticOut),
-                                ),
+                        ),
+                        Expanded(
+                          child: SlideTransition(
+                            position: Tween<Offset>(
+                              begin: Offset.zero,
+                              end: Offset(_animationController.value, 0),
+                            ).animate(
+                              CurvedAnimation(
+                                parent: _animationController,
+                                curve: const Interval(0.0, 1.0,
+                                    curve: Curves.elasticIn),
+                                reverseCurve: const Interval(0.0, 1.0,
+                                    curve: Curves.elasticOut),
                               ),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        top: size.height * 0.03,
-                                        left: size.width * 0.07,
-                                        right: size.width * 0.07),
-                                    child: Text(
-                                      _controllerQuiz.textQuestionReturn(),
-                                      style: const TextStyle(
-                                          fontFamily: 'Ubuntu',
-                                          fontSize: 18,
-                                          color: Colors.white),
-                                    ),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: size.height * 0.03,
+                                      left: size.width * 0.07,
+                                      right: size.width * 0.07),
+                                  child: Text(
+                                    _controllerQuiz.textQuestionReturn(),
+                                    style: const TextStyle(
+                                        fontFamily: 'Ubuntu',
+                                        fontSize: 18,
+                                        color: Colors.white),
                                   ),
-                                  Column(
-                                    children: [
-                                      Container(
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: size.width * 0.07),
-                                        color: Colors.transparent,
-                                        child: Column(
-                                          children: [
-                                            ButtonQuizQuestions(
-                                              onPressed:
-                                                  buttonQuestionsOnPressed,
-                                              isButtonDisabled: _controllerQuiz
-                                                  .isButtonDisabled,
-                                              answer: _controllerQuiz
-                                                  .returnTextAnswerA(),
-                                              orderOfQuestions: 'A',
-                                              colorButton:
-                                                  _controllerQuiz.colorButtonA,
-                                              colorIcon: _controllerQuiz
-                                                  .colorIconButtonA,
-                                              icon: _controllerQuiz.iconButtonA,
-                                            ),
-                                            ButtonQuizQuestions(
-                                              onPressed:
-                                                  buttonQuestionsOnPressed,
-                                              isButtonDisabled: _controllerQuiz
-                                                  .isButtonDisabled,
-                                              answer: _controllerQuiz
-                                                  .returnTextAnswerB(),
-                                              orderOfQuestions: 'B',
-                                              colorButton:
-                                                  _controllerQuiz.colorButtonB,
-                                              colorIcon: _controllerQuiz
-                                                  .colorIconButtonB,
-                                              icon: _controllerQuiz.iconButtonB,
-                                            ),
-                                            ButtonQuizQuestions(
-                                              onPressed:
-                                                  buttonQuestionsOnPressed,
-                                              isButtonDisabled: _controllerQuiz
-                                                  .isButtonDisabled,
-                                              answer: _controllerQuiz
-                                                  .returnTextAnswerC(),
-                                              orderOfQuestions: 'C',
-                                              colorButton:
-                                                  _controllerQuiz.colorButtonC,
-                                              colorIcon: _controllerQuiz
-                                                  .colorIconButtonC,
-                                              icon: _controllerQuiz.iconButtonC,
-                                            ),
-                                            ButtonQuizQuestions(
-                                              onPressed:
-                                                  buttonQuestionsOnPressed,
-                                              isButtonDisabled: _controllerQuiz
-                                                  .isButtonDisabled,
-                                              answer: _controllerQuiz
-                                                  .returnTextAnswerD(),
-                                              orderOfQuestions: 'D',
-                                              colorButton:
-                                                  _controllerQuiz.colorButtonD,
-                                              colorIcon: _controllerQuiz
-                                                  .colorIconButtonD,
-                                              icon: _controllerQuiz.iconButtonD,
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
+                                ),
+                                Column(
+                                  children: [
+                                    Container(
+                                      margin: EdgeInsets.symmetric(
+                                          horizontal: size.width * 0.07),
+                                      color: Colors.transparent,
+                                      child: Column(
+                                        children: [
+                                          ButtonQuizQuestions(
+                                            onPressed: buttonQuestionsOnPressed,
+                                            isButtonDisabled: _controllerQuiz
+                                                .isButtonDisabled,
+                                            answer: _controllerQuiz
+                                                .returnTextAnswerA(),
+                                            orderOfQuestions: 'A',
+                                            colorButton:
+                                                _controllerQuiz.colorButtonA,
+                                            colorIcon: _controllerQuiz
+                                                .colorIconButtonA,
+                                            icon: _controllerQuiz.iconButtonA,
+                                          ),
+                                          ButtonQuizQuestions(
+                                            onPressed: buttonQuestionsOnPressed,
+                                            isButtonDisabled: _controllerQuiz
+                                                .isButtonDisabled,
+                                            answer: _controllerQuiz
+                                                .returnTextAnswerB(),
+                                            orderOfQuestions: 'B',
+                                            colorButton:
+                                                _controllerQuiz.colorButtonB,
+                                            colorIcon: _controllerQuiz
+                                                .colorIconButtonB,
+                                            icon: _controllerQuiz.iconButtonB,
+                                          ),
+                                          ButtonQuizQuestions(
+                                            onPressed: buttonQuestionsOnPressed,
+                                            isButtonDisabled: _controllerQuiz
+                                                .isButtonDisabled,
+                                            answer: _controllerQuiz
+                                                .returnTextAnswerC(),
+                                            orderOfQuestions: 'C',
+                                            colorButton:
+                                                _controllerQuiz.colorButtonC,
+                                            colorIcon: _controllerQuiz
+                                                .colorIconButtonC,
+                                            icon: _controllerQuiz.iconButtonC,
+                                          ),
+                                          ButtonQuizQuestions(
+                                            onPressed: buttonQuestionsOnPressed,
+                                            isButtonDisabled: _controllerQuiz
+                                                .isButtonDisabled,
+                                            answer: _controllerQuiz
+                                                .returnTextAnswerD(),
+                                            orderOfQuestions: 'D',
+                                            colorButton:
+                                                _controllerQuiz.colorButtonD,
+                                            colorIcon: _controllerQuiz
+                                                .colorIconButtonD,
+                                            icon: _controllerQuiz.iconButtonD,
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   )
                 : const Center(

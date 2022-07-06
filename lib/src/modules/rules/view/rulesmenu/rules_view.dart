@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../shared/appbar_gradient/appbar_gradient.dart';
 import '../../../../shared/themes/app_colors.dart';
-import 'components/body_rules_widget.dart';
+import '../../../../shared/themes/app_icons_path.dart';
+
+import 'components/button_options_rules_widget.dart';
 
 class RulesView extends StatelessWidget {
   const RulesView({super.key});
@@ -16,7 +19,20 @@ class RulesView extends StatelessWidget {
             style: const TextStyle(fontFamily: 'YatraOne')),
       ),
       backgroundColor: AppColors.background,
-      body: const BodyRules(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ButtonOptionsRules(
+                imageButton: AppIconsPath.regrasBasicas,
+                textButton: AppLocalizations.of(context)!.button_basic_rules,
+                routeButton: '/BasicRules'), // <- '/basicrules'
+            ButtonOptionsRules(
+                imageButton: AppIconsPath.cbjjRules,
+                textButton: AppLocalizations.of(context)!.button_cbjj_Rules,
+                routeButton: '/CbjjRules'), //' <- /cbjjrules'),
+          ],
+        ),
+      ),
     );
   }
 }

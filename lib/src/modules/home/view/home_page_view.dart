@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:wakelock/wakelock.dart';
 
 import '../../../shared/appbar_gradient/appbar_gradient.dart';
 import '../../../shared/themes/app_colors.dart';
-import 'components/body_home_page_widget.dart';
+import '../../../shared/themes/app_icons_path.dart';
+
+import 'components/button_options_home_widget.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({super.key});
@@ -15,6 +17,8 @@ class HomePageView extends StatefulWidget {
 }
 
 class _HomePageViewState extends State<HomePageView> {
+  late final Size size = MediaQuery.of(context).size;
+
   @override
   void initState() {
     Wakelock.disable();
@@ -40,7 +44,46 @@ class _HomePageViewState extends State<HomePageView> {
         ],
       ),
       backgroundColor: AppColors.background,
-      body: const BodyHomePage(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(bottom: size.height * 0.1),
+          child: Column(
+            children: [
+              ButtonOptionsHome(
+                imageButton: AppIconsPath.iconHistoryOfJiujitsu,
+                textButton: AppLocalizations.of(context)!
+                    .button_history_of_jiujitsu_home_page,
+                routeButton: '/HistoryOfJiujitsu', // <- '/historyofjiujitsu',
+              ),
+              ButtonOptionsHome(
+                imageButton: AppIconsPath.rules,
+                textButton:
+                    AppLocalizations.of(context)!.button_rules_home_page,
+                routeButton: '/Rules', // <- '/rules',
+              ),
+              ButtonOptionsHome(
+                  imageButton: AppIconsPath.quiz,
+                  textButton:
+                      AppLocalizations.of(context)!.button_quiz_home_page,
+                  routeButton: '/Quiz' // <- '/quiz',
+                  ),
+              ButtonOptionsHome(
+                imageButton: AppIconsPath.fightMarker,
+                textButton:
+                    AppLocalizations.of(context)!.button_fight_marker_home_page,
+                routeButton: '/Fightmarker', // <- '/fightmarker',
+                isFightMakerView: true,
+              ),
+              ButtonOptionsHome(
+                imageButton: AppIconsPath.wallpapers,
+                textButton:
+                    AppLocalizations.of(context)!.button_wallpapers_home_page,
+                routeButton: '/Wallpapers', // <- '/wallpapers',
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

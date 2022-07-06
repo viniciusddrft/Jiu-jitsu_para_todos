@@ -15,10 +15,10 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
-  void didChangeDependencies() {
+  void initState() {
     LocaleApp.getLocalePreference();
     findSystemLocale();
-    super.didChangeDependencies();
+    super.initState();
   }
 
   @override

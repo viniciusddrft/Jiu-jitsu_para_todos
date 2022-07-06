@@ -16,6 +16,7 @@ class Clock extends StatefulWidget {
 }
 
 class _ClockState extends State<Clock> {
+  late final Size size = MediaQuery.of(context).size;
   final MyClock myClock = MyClock();
   final ServiceJustAudio _playerAudio = ServiceJustAudio();
 
@@ -97,7 +98,7 @@ class _ClockState extends State<Clock> {
                     side: BorderSide(
                         color:
                             myClock.isPause.value ? Colors.green : Colors.red)),
-                onPressed: () => myClock.startAndPauseButton(),
+                onPressed: myClock.startAndPauseButton,
                 child: Center(
                   child: Icon(
                       myClock.isPause.value ? Icons.play_arrow : Icons.pause,
@@ -121,7 +122,7 @@ class _ClockState extends State<Clock> {
                 ),
                 side: const BorderSide(color: Colors.yellow),
               ),
-              onPressed: () => myClock.restartButton(),
+              onPressed: myClock.restartButton,
               child: const Center(
                 child: Icon(
                   Icons.refresh_rounded,

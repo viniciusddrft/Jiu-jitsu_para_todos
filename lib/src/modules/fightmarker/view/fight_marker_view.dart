@@ -7,7 +7,8 @@ import 'package:wakelock/wakelock.dart';
 import '../../../shared/appbar_gradient/appbar_gradient.dart';
 import '../../../shared/themes/app_colors.dart';
 
-import 'components/body_fight_marker_widget.dart';
+import 'components/components/clock_widget.dart';
+import 'components/components/scoreboard_widget.dart';
 
 class FightMakerView extends StatefulWidget {
   const FightMakerView({super.key});
@@ -36,7 +37,23 @@ class _FightMakerViewState extends State<FightMakerView> {
             style: const TextStyle(fontFamily: 'YatraOne')),
       ),
       backgroundColor: AppColors.background,
-      body: const BodyFightMarker(),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Flexible(
+            flex: 2,
+            child: Scoreboard(),
+          ),
+          Flexible(
+            child: Clock(),
+          ),
+          Flexible(
+            flex: 2,
+            child: Scoreboard(),
+          ),
+        ],
+      ),
     );
   }
 }

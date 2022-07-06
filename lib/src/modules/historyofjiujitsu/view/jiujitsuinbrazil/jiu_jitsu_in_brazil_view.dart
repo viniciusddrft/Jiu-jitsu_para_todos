@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../shared/admob/controller/admob_controller.dart';
 import '../../../../shared/admob/widget/admob_native_ad.dart';
 import '../../../../shared/themes/app_colors.dart';
 
-class JiujitsuinBrazil extends StatefulWidget {
+class JiujitsuinBrazil extends StatelessWidget {
   const JiujitsuinBrazil({super.key});
-  @override
-  State<JiujitsuinBrazil> createState() => _JiujitsuinBrazilState();
-}
 
-class _JiujitsuinBrazilState extends State<JiujitsuinBrazil> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: AppBar(
         elevation: 0,

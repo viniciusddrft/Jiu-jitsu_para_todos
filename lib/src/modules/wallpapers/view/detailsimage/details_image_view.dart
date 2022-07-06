@@ -17,48 +17,47 @@ class DetailsImage extends StatefulWidget {
 }
 
 class _DetailsImageState extends State<DetailsImage> {
+  late final Size size;
+
   @override
   void didChangeDependencies() {
+    size = MediaQuery.of(context).size;
     precacheImage(Image.network(widget.imageUrl).image, context);
     AdmobController.createInterstitialAd();
     super.didChangeDependencies();
   }
 
-  Future<void> _showMyDialogSaveErro() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: AppColors.background,
-          actions: [
-            TextButton(
-              child: Text(AppLocalizations.of(context)!.text_popup_error),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-          ],
-        );
-      },
-    );
-  }
+  Future<void> _showMyDialogSaveErro() async => showDialog<void>(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            backgroundColor: AppColors.background,
+            actions: [
+              TextButton(
+                child: Text(AppLocalizations.of(context)!.text_popup_error),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ],
+          );
+        },
+      );
 
-  Future<void> _showMyDialogSaveImage() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: AppColors.background,
-          actions: [
-            TextButton(
-              child: Text(AppLocalizations.of(context)!.text_popup_success),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-          ],
-        );
-      },
-    );
-  }
+  Future<void> _showMyDialogSaveImage() async => showDialog<void>(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            backgroundColor: AppColors.background,
+            actions: [
+              TextButton(
+                child: Text(AppLocalizations.of(context)!.text_popup_success),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ],
+          );
+        },
+      );
 
   void _saveImage() => GallerySaver.saveImage(widget.imageUrl).then(
         (bool? isSuccess) {
@@ -79,8 +78,6 @@ class _DetailsImageState extends State<DetailsImage> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Column(

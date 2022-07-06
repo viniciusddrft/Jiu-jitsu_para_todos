@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:jiu_jitsu_para_todos/core/myapp.dart';
-
+import 'core/myapp.dart';
 import 'src/shared/admob/controller/admob_controller.dart';
 
 void main() {

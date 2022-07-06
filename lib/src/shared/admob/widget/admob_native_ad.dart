@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdmobNativeAd extends StatefulWidget {
@@ -19,7 +20,7 @@ class AdmobNativeAd extends StatefulWidget {
 
 class _AdmobNativeAdState extends State<AdmobNativeAd> {
   late final NativeAd _nativeAd;
-  bool _isAdLoaded = false;
+  final ValueNotifier<bool> _isAdLoaded = ValueNotifier<bool>(false);
 
   @override
   void initState() {
@@ -28,7 +29,7 @@ class _AdmobNativeAdState extends State<AdmobNativeAd> {
       factoryId: widget.factoryId,
       request: widget.adRequest ?? const AdRequest(),
       listener: NativeAdListener(
-        onAdLoaded: (_) => setState(() => _isAdLoaded = true),
+        onAdLoaded: (_) => _isAdLoaded.value = true,
         onAdFailedToLoad: (ad, error) {
           ad.dispose();
           debugPrint(
@@ -45,17 +46,22 @@ class _AdmobNativeAdState extends State<AdmobNativeAd> {
   @override
   void dispose() {
     _nativeAd.dispose();
+    _isAdLoaded.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return _isAdLoaded
-        ? AdWidget(
-            ad: _nativeAd,
-          )
-        : const Center(
-            child: CircularProgressIndicator(),
-          );
+    return ValueListenableBuilder(
+      valueListenable: _isAdLoaded,
+      builder: (BuildContext context, bool value, Widget? child) =>
+          _isAdLoaded.value
+              ? AdWidget(
+                  ad: _nativeAd,
+                )
+              : const Center(
+                  child: CircularProgressIndicator(),
+                ),
+    );
   }
 }

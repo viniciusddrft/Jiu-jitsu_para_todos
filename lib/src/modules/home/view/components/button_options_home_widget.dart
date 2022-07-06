@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../shared/button_for_menu/button_for_menu.dart';
+import '../../../../shared/button_for_menu/button_for_menu.dart';
 
 class ButtonOptionsHome extends ButtonForMenu {
   final String routeButton;

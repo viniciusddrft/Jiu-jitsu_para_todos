@@ -9,6 +9,7 @@ class Scoreboard extends StatefulWidget {
 }
 
 class _ScoreboardState extends State<Scoreboard> {
+  late final Size size = MediaQuery.of(context).size;
   final ValueNotifier<int> _fighterPoints = ValueNotifier<int>(0);
   final ValueNotifier<int> _punishmentsOfTheFighter = ValueNotifier<int>(0);
   final ValueNotifier<int> _advantagesOfTheFighter = ValueNotifier<int>(0);
@@ -23,7 +24,6 @@ class _ScoreboardState extends State<Scoreboard> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

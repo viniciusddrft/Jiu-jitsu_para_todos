@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../../../shared/button_for_menu/button_for_menu.dart';
+import '../../../../../shared/button_for_menu/button_for_menu.dart';
 
 class ButtonOptionQuiz extends ButtonForMenu {
   final String difficulty;

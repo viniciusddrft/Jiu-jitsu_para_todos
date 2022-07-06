@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../shared/button_for_menu/button_for_menu.dart';
+import '../../../../../shared/button_for_menu/button_for_menu.dart';
 
-class ButtonOptionsHistory extends ButtonForMenu {
+class ButtonOptionsRules extends ButtonForMenu {
   final String routeButton;
-  const ButtonOptionsHistory(
-      {required super.imageButton,
+
+  const ButtonOptionsRules(
+      {super.key,
+      required super.imageButton,
       required super.textButton,
-      required this.routeButton,
-      super.key});
+      required this.routeButton});
+
   @override
-  State<ButtonOptionsHistory> createState() => _ButtonOptionsHistoryState();
+  State<ButtonOptionsRules> createState() => _ButtonOptionsRulesState();
 }
 
-class _ButtonOptionsHistoryState extends State<ButtonOptionsHistory> {
+class _ButtonOptionsRulesState extends State<ButtonOptionsRules> {
   void changeRoute() => Navigator.pushNamed(context, widget.routeButton);
 
   @override
