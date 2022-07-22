@@ -62,7 +62,7 @@ class _QuizQuestionsState extends State<QuizQuestions>
 
   void _switchToResult() =>
       Navigator.pushReplacementNamed(context, '/ResultQuiz',
-          arguments: <String, dynamic>{
+          arguments: <String, Object>{
             'difficultyName': widget.difficultyName,
             'score': _controllerQuiz.score,
             'totalQuestions': _controllerQuiz.totalNumberOfQuestions

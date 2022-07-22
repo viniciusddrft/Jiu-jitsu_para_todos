@@ -25,13 +25,13 @@ class RepositoryApi implements RepositoryApiInterface {
   }
 
   Future<List<QuestionModel>> _createIsolateGetQuestions(
-      Map<String, dynamic> data) async {
+      Map<String, Object> data) async {
     final List<QuestionModel> questions = [];
 
     final ServiceWebResponseInterface response =
         await _serviceWebHttp.get((data['apiRequests'] as ApiRequests).url);
 
-    for (Map<String, dynamic> element
+    for (Map<String, Object> element
         in (jsonDecode(utf8.decode(response.bodyBytes))['body'] as List)) {
       questions.add(QuestionModel.fromJson(element));
     }
@@ -40,7 +40,7 @@ class RepositoryApi implements RepositoryApiInterface {
       question.options.shuffle();
     }
 
-    Isolate.exit(data['sendPort'], questions);
+    Isolate.exit(data['sendPort'] as SendPort, questions);
   }
 
   @override
@@ -59,7 +59,7 @@ class RepositoryApi implements RepositoryApiInterface {
     final ServiceWebResponseInterface response =
         await _serviceWebHttp.get(ApiRequests.wallpapers.url);
 
-    for (Map<String, dynamic> element
+    for (Map<String, Object> element
         in (jsonDecode(utf8.decode(response.bodyBytes))['body'] as List)) {
       wallpapers.add(WallpaperModel.fromJson(element));
     }

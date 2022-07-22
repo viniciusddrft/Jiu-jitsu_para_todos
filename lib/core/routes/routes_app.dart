@@ -83,8 +83,8 @@ class Routes {
       case '/DetailsImage':
         return MaterialPageRoute(
           builder: (BuildContext context) => DetailsImage(
-            imageUrl: (settings.arguments as Map<String, dynamic>)['imageUrl'],
-            index: (settings.arguments as Map<String, dynamic>)['index'],
+            imageUrl: (settings.arguments as Map<String, String>)['imageUrl']!,
+            index: (settings.arguments as Map<String, int>)['index']!,
           ),
         );
       case '/QuizQuestions':
@@ -102,10 +102,10 @@ class Routes {
           duration: const Duration(milliseconds: 500),
           route: ResultQuiz(
             difficultyName:
-                (settings.arguments as Map<String, dynamic>)['difficultyName'],
-            score: (settings.arguments as Map<String, dynamic>)['score'],
+                (settings.arguments as Map<String, String>)['difficultyName']!,
+            score: (settings.arguments as Map<String, int>)['score']!,
             totalQuestions:
-                (settings.arguments as Map<String, dynamic>)['totalQuestions'],
+                (settings.arguments as Map<String, int>)['totalQuestions']!,
           ),
         );
     }

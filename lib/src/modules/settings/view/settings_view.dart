@@ -42,7 +42,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
     super.dispose();
   }
 
-  List<Map<String, dynamic>> _allLocales() => [
+  List<Map<String, Object>> _allLocales() => [
         {
           'locale': const Locale('pt', 'BR'),
           'icon': AppIconsLanguages.brasil,
@@ -55,7 +55,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
         },
       ];
 
-  List<Map<String, dynamic>> get allLocales => _allLocales();
+  List<Map<String, Object>> get allLocales => _allLocales();
 
   void _changeCredits() => Navigator.pushNamed(context, '/Credits');
 
@@ -91,8 +91,9 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                     side: const BorderSide(color: Colors.white),
                   ),
                   onPressed: () {
-                    _iconPath.value = allLocales[index]['icon'];
-                    LocaleApp.localeApp.value = allLocales[index]['locale'];
+                    _iconPath.value = allLocales[index]['icon'] as String;
+                    LocaleApp.localeApp.value =
+                        allLocales[index]['locale'] as Locale;
                     SharedPreferences.getInstance().then(
                       (value) => value.setString(
                         'locale',
@@ -106,9 +107,9 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(allLocales[index]['text']),
+                        Text(allLocales[index]['text'] as String),
                         Image.asset(
-                          allLocales[index]['icon'],
+                          allLocales[index]['icon'] as String,
                           width: 50,
                         ),
                       ],

@@ -50,13 +50,12 @@ class _WallpapersViewState extends State<WallpapersView> {
                     ),
                     itemBuilder: (context, index) => RawMaterialButton(
                       onPressed: () => Navigator.pushNamed(
-                          context, '/DetailsImage',
-                          arguments: <String, dynamic>{
-                            'imageUrl': _controllerWallpapers.wallpapers
-                                .toList()[index]
-                                .url,
-                            'index': index
-                          }),
+                          context, '/DetailsImage', arguments: <String, Object>{
+                        'imageUrl': _controllerWallpapers.wallpapers
+                            .toList()[index]
+                            .url,
+                        'index': index
+                      }),
                       child: Hero(
                         tag: 'logo$index',
                         child: ClipRRect(

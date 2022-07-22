@@ -12,14 +12,14 @@ class QuestionModel {
     this.pathVideo,
   });
 
-  QuestionModel.fromJson(Map<String, dynamic> json)
-      : question = json['question'],
-        options = List.from(json['options']),
-        rightAnswer = json['rightAnswer'],
-        pathImage = json['pathImage'],
-        pathVideo = json['pathVideo'];
+  QuestionModel.fromJson(Map<String, Object> json)
+      : question = json['question'] as String,
+        options = List.from(json['options'] as List<String>),
+        rightAnswer = json['rightAnswer'] as String,
+        pathImage = json['pathImage'] as String,
+        pathVideo = json['pathVideo'] as String;
 
-  Map<String, dynamic> toJson() => {
+  Map<String, Object?> toJson() => {
         'question': question,
         'options': options,
         'rightAnswer': rightAnswer,
