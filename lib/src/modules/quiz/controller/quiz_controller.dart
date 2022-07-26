@@ -38,6 +38,10 @@ class ControllerQuiz extends ChangeNotifier {
     notifyListeners();
   }
 
+  Never _errorInLocale() {
+    throw Exception('Error in Locale app');
+  }
+
   Future<void> choice({required String difficulty}) async {
     switch (difficulty) {
       case 'easy':
@@ -49,7 +53,7 @@ class ControllerQuiz extends ChangeNotifier {
             myQuestions = await _repositoryApi
                 .getQuestions(ApiRequests.quizPortugueseWhiteBelt);
           } else {
-            throw Exception('Error in Locale app');
+            _errorInLocale();
           }
 
           break;
@@ -64,7 +68,7 @@ class ControllerQuiz extends ChangeNotifier {
             myQuestions = await _repositoryApi
                 .getQuestions(ApiRequests.quizPortugueseBlueBelt);
           } else {
-            throw Exception('Error in Locale app');
+            _errorInLocale();
           }
 
           break;
@@ -79,7 +83,7 @@ class ControllerQuiz extends ChangeNotifier {
             myQuestions = await _repositoryApi
                 .getQuestions(ApiRequests.quizPortugueseBlackBelt);
           } else {
-            throw Exception('Error in Locale app');
+            _errorInLocale();
           }
           break;
         }
