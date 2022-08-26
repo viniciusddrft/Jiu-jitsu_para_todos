@@ -83,8 +83,8 @@ class Routes {
       case '/DetailsImage':
         return MaterialPageRoute(
           builder: (BuildContext context) => DetailsImage(
-            imageUrl: (settings.arguments as Map<String, String>)['imageUrl']!,
-            index: (settings.arguments as Map<String, int>)['index']!,
+            imageUrl: (settings.arguments as Map)['imageUrl']!,
+            index: (settings.arguments as Map)['index']!,
           ),
         );
       case '/QuizQuestions':

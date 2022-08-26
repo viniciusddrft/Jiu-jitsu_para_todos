@@ -5,6 +5,5 @@ class WallpaperModel {
     required this.url,
   });
 
-  WallpaperModel.fromJson(Map<String, Object> json)
-      : url = json['url'] as String;
+  WallpaperModel.fromJson(Map<String, String> json) : url = json['url']!;
 }

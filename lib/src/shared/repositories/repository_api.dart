@@ -4,13 +4,15 @@ import 'dart:isolate';
 import 'package:jiu_jitsu_para_todos/src/shared/models/quiz/questions_model.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/models/wallpaper/wallpapers_model.dart';
 
+import '../services/request_rest/interfaces/service_web_request_interface.dart';
 import '../services/request_rest/interfaces/service_web_response_interface.dart';
 import '../services/request_rest/service_web_request.dart';
 
 import 'interface/repository_api_interface.dart';
 
 class RepositoryApi implements RepositoryApiInterface {
-  final ServiceWebHttp _serviceWebHttp = ServiceWebHttp();
+  final ServiceWebRequestInterface _serviceWebRequestInterface =
+      ServiceWebHttp();
 
   @override
   Future<List<QuestionModel>> getQuestions(ApiRequests apiRequests) async {
@@ -29,11 +31,12 @@ class RepositoryApi implements RepositoryApiInterface {
     final List<QuestionModel> questions = [];
 
     final ServiceWebResponseInterface response =
-        await _serviceWebHttp.get((data['apiRequests'] as ApiRequests).url);
+        await _serviceWebRequestInterface
+            .get((data['apiRequests'] as ApiRequests).url);
 
-    for (Map<String, Object> element
+    for (var element
         in (jsonDecode(utf8.decode(response.bodyBytes))['body'] as List)) {
-      questions.add(QuestionModel.fromJson(element));
+      questions.add(QuestionModel.fromJson(Map<String, Object?>.from(element)));
     }
     questions.shuffle();
     for (QuestionModel question in questions) {
@@ -57,11 +60,12 @@ class RepositoryApi implements RepositoryApiInterface {
     final List<WallpaperModel> wallpapers = [];
 
     final ServiceWebResponseInterface response =
-        await _serviceWebHttp.get(ApiRequests.wallpapers.url);
+        await _serviceWebRequestInterface.get(ApiRequests.wallpapers.url);
 
-    for (Map<String, Object> element
+    for (var element
         in (jsonDecode(utf8.decode(response.bodyBytes))['body'] as List)) {
-      wallpapers.add(WallpaperModel.fromJson(element));
+      wallpapers
+          .add(WallpaperModel.fromJson(Map<String, String>.from(element)));
     }
     Isolate.exit(sendPort, wallpapers);
   }
