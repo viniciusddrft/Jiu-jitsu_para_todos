@@ -111,7 +111,7 @@ class _DetailsImageState extends State<DetailsImage> {
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
                           fixedSize: const Size(200, 50),
-                          primary: Colors.white,
+                          foregroundColor: Colors.white,
                           elevation: 7,
                           backgroundColor: AppColors.background,
                           shape: RoundedRectangleBorder(

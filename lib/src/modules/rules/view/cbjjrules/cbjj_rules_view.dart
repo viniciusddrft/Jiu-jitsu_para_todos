@@ -39,7 +39,7 @@ class Cbjjrules extends StatelessWidget with OpenLink {
               style: OutlinedButton.styleFrom(
                   fixedSize: const Size(200, 50),
                   elevation: 7,
-                  primary: Colors.white,
+                  foregroundColor: Colors.white,
                   backgroundColor: AppColors.background,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),

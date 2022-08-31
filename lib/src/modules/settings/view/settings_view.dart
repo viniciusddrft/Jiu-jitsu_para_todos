@@ -83,7 +83,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
                     backgroundColor: AppColors.background,
-                    primary: Colors.white,
+                    foregroundColor: Colors.white,
                     elevation: 7,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -180,7 +180,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                           style: OutlinedButton.styleFrom(
                             fixedSize: const Size(200, 50),
                             backgroundColor: AppColors.background,
-                            primary: Colors.white,
+                            foregroundColor: Colors.white,
                             elevation: 7,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
@@ -243,7 +243,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                           style: OutlinedButton.styleFrom(
                             fixedSize: const Size(200, 50),
                             backgroundColor: AppColors.background,
-                            primary: Colors.white,
+                            foregroundColor: Colors.white,
                             elevation: 7,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
@@ -271,7 +271,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                           style: OutlinedButton.styleFrom(
                             fixedSize: const Size(200, 50),
                             backgroundColor: AppColors.background,
-                            primary: Colors.white,
+                            foregroundColor: Colors.white,
                             elevation: 7,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
@@ -324,7 +324,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                             style: OutlinedButton.styleFrom(
                               fixedSize: const Size(200, 50),
                               backgroundColor: AppColors.background,
-                              primary: Colors.white,
+                              foregroundColor: Colors.white,
                               elevation: 7,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0),
@@ -355,7 +355,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                             style: OutlinedButton.styleFrom(
                               fixedSize: const Size(200, 50),
                               backgroundColor: AppColors.background,
-                              primary: Colors.white,
+                              foregroundColor: Colors.white,
                               elevation: 7,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0),

@@ -31,7 +31,7 @@ class ButtonQuizQuestions extends StatelessWidget {
             isButtonDisabled ? null : () => onPressed(answer, orderOfQuestions),
         style: OutlinedButton.styleFrom(
           elevation: 7,
-          primary: colorButton,
+          foregroundColor: colorButton,
           backgroundColor: AppColors.background,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),

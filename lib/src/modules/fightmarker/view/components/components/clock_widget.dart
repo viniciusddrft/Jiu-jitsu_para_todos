@@ -89,8 +89,9 @@ class _ClockState extends State<Clock> {
               builder: (BuildContext context, bool value, Widget? child) =>
                   OutlinedButton(
                 style: OutlinedButton.styleFrom(
+                    foregroundColor:
+                        myClock.isPause.value ? Colors.green : Colors.red,
                     elevation: 7,
-                    primary: myClock.isPause.value ? Colors.green : Colors.red,
                     backgroundColor: AppColors.background,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5.0),
@@ -115,7 +116,7 @@ class _ClockState extends State<Clock> {
             child: OutlinedButton(
               style: OutlinedButton.styleFrom(
                 elevation: 7,
-                primary: Colors.yellow,
+                foregroundColor: Colors.yellow,
                 backgroundColor: AppColors.background,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5.0),
