@@ -17,11 +17,10 @@ class DetailsImage extends StatefulWidget {
 }
 
 class _DetailsImageState extends State<DetailsImage> {
-  late final Size size;
+  late final Size size = MediaQuery.of(context).size;
 
   @override
   void didChangeDependencies() {
-    size = MediaQuery.of(context).size;
     precacheImage(Image.network(widget.imageUrl).image, context);
     AdmobController.createInterstitialAd();
     super.didChangeDependencies();

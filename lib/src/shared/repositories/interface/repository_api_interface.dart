@@ -23,6 +23,8 @@ enum ApiRequests {
 }
 
 abstract class RepositoryApiInterface {
+  const RepositoryApiInterface();
+
   Future<List<QuestionModel>> getQuestions(ApiRequests apiRequests);
 
   Future<List<WallpaperModel>> getWallpapers();

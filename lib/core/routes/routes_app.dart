@@ -101,11 +101,11 @@ class Routes {
         return TransitionElasticOut(
           duration: const Duration(milliseconds: 500),
           route: ResultQuiz(
-            difficultyName:
-                (settings.arguments as Map<String, String>)['difficultyName']!,
-            score: (settings.arguments as Map<String, int>)['score']!,
-            totalQuestions:
-                (settings.arguments as Map<String, int>)['totalQuestions']!,
+            difficultyName: (settings.arguments
+                as Map<String, Object>)['difficultyName']! as String,
+            score: (settings.arguments as Map<String, Object>)['score']! as int,
+            totalQuestions: (settings.arguments
+                as Map<String, Object>)['totalQuestions']! as int,
           ),
         );
     }

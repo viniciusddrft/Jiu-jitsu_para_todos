@@ -31,8 +31,6 @@ class _HomePageViewState extends State<HomePageView> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: const AppBarGradient(),
@@ -46,7 +44,7 @@ class _HomePageViewState extends State<HomePageView> {
       backgroundColor: AppColors.background,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(bottom: size.height * 0.1),
+          padding: const EdgeInsets.only(bottom: 50),
           child: Column(
             children: [
               ButtonOptionsHome(

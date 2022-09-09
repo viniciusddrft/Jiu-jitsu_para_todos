@@ -5,5 +5,6 @@ abstract class ServiceWebResponseInterface {
   final int statusCode;
   final Map<String, String> headers;
 
-  ServiceWebResponseInterface(this.bodyBytes, this.statusCode, this.headers);
+  const ServiceWebResponseInterface(
+      this.bodyBytes, this.statusCode, this.headers);
 }

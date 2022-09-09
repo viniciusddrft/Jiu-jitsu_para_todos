@@ -143,7 +143,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
         height: 60,
         child: Center(
           child: Text(
-            '${AppLocalizations.of(context)!.text_version} 2.5.1',
+            '${AppLocalizations.of(context)!.text_version} 2.5.2',
             style: TextStyle(fontSize: 14, color: Colors.grey[700]),
           ),
         ),

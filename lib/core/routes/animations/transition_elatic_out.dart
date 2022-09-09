@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class TransitionElasticOut extends PageRouteBuilder {
   final Widget route;
   final Duration duration;
+
   TransitionElasticOut({required this.route, required this.duration})
       : super(
           transitionDuration: duration,

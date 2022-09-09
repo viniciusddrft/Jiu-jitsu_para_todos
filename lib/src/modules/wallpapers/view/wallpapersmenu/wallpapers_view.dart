@@ -16,13 +16,7 @@ class WallpapersView extends StatefulWidget {
 class _WallpapersViewState extends State<WallpapersView> {
   final ControllerWallpapers _controllerWallpapers = ControllerWallpapers();
 
-  late final Size size;
-
-  @override
-  void didChangeDependencies() {
-    size = MediaQuery.of(context).size;
-    super.didChangeDependencies();
-  }
+  late final Size size = MediaQuery.of(context).size;
 
   @override
   Widget build(BuildContext context) {

@@ -48,11 +48,12 @@ abstract class ButtonForMenu extends StatefulWidget {
           onPressed: changeRoute,
           child: Ink(
             decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                    colors: [AppColors.background, Colors.indigo],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight),
-                borderRadius: BorderRadius.circular(8.0)),
+              gradient: const LinearGradient(
+                  colors: [AppColors.background, Colors.indigo],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
             child: Center(
               child: Text(
                 textButton,

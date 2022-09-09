@@ -12,7 +12,7 @@ import 'interface/repository_api_interface.dart';
 
 class RepositoryApi implements RepositoryApiInterface {
   final ServiceWebRequestInterface _serviceWebRequestInterface =
-      ServiceWebHttp();
+      const ServiceWebHttp();
 
   @override
   Future<List<QuestionModel>> getQuestions(ApiRequests apiRequests) async {

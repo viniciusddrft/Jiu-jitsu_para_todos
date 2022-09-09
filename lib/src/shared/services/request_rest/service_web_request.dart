@@ -7,6 +7,8 @@ import 'interfaces/service_web_response_interface.dart';
 import 'service_web_response.dart';
 
 class ServiceWebHttp implements ServiceWebRequestInterface {
+  const ServiceWebHttp();
+
   @override
   Future<ServiceWebResponseInterface> get(String url,
       {Map<String, String>? headers}) async {

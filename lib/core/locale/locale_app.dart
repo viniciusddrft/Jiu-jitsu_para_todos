@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocaleApp {
-  static ValueNotifier<Locale> localeApp = ValueNotifier<Locale>(
+  static final ValueNotifier<Locale> localeApp = ValueNotifier<Locale>(
     AppLocalizations.supportedLocales.contains(Locale(
             Intl.systemLocale.split('_')[0], Intl.systemLocale.split('_')[1]))
         ? Locale(

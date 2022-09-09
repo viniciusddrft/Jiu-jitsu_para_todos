@@ -16,7 +16,6 @@ class Clock extends StatefulWidget {
 }
 
 class _ClockState extends State<Clock> {
-  late final Size size = MediaQuery.of(context).size;
   final MyClock myClock = MyClock();
   final ServiceJustAudio _playerAudio = ServiceJustAudio();
 
@@ -50,6 +49,7 @@ class _ClockState extends State<Clock> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

@@ -26,7 +26,7 @@ class _QuizQuestionsState extends State<QuizQuestions>
 
   final ServiceJustAudio _playerAudio = ServiceJustAudio();
 
-  late final Size size;
+  late final Size size = MediaQuery.of(context).size;
 
   late final AnimationController _animationController;
 
@@ -41,7 +41,6 @@ class _QuizQuestionsState extends State<QuizQuestions>
 
   @override
   void didChangeDependencies() {
-    size = MediaQuery.of(context).size;
     AdmobController.createInterstitialAd();
     super.didChangeDependencies();
   }
