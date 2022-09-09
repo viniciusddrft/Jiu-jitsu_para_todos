@@ -44,13 +44,16 @@ class ListTileNativeAdFactory(val context: Context) : GoogleMobileAdsPlugin.Nati
             val bodyView = findViewById<TextView>(R.id.tv_list_tile_native_ad_body)
             with(bodyView) {
                 text = nativeAd.body
-                visibility = if (nativeAd.body.isNotEmpty()) View.VISIBLE else View.INVISIBLE
+                if(text !=null){
+                    visibility = View.VISIBLE 
+                }
+                else{
+                    visibility = View.INVISIBLE 
+                }
             }
             this.bodyView = bodyView
-
             setNativeAd(nativeAd)
         }
-
         return nativeAdView
     }
 }
