@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl_standalone.dart';
 import 'package:jiu_jitsu_para_todos/core/locale/locale_app.dart';
 import 'package:jiu_jitsu_para_todos/core/routes/routes_app.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
 class MyApp extends StatefulWidget {
@@ -24,6 +25,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void dispose() {
     LocaleAppNotifier.of(context).dispose();
+    AdmobController.of(context).dispose();
     super.dispose();
   }
 

@@ -92,7 +92,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                     _iconPath.value = allLocales[index]['icon'] as String;
                     LocaleAppNotifier.of(context).value =
                         allLocales[index]['locale'] as Locale;
-                    _localStorage.saveValue(
+                    _localStorage.saveValue<String>(
                         'locale', allLocales[index]['locale'].toString());
                     Navigator.pop(context);
                   },

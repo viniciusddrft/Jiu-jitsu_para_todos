@@ -1,6 +1,7 @@
 # jiu_jitsu_para_todos
 
 ## [Link para download na Google play](https://play.google.com/store/apps/details?id=com.jiu_jitsu_para_todos)
+
 Um aplicativo de jiu-jitsu feito em flutter.
 
 Caso queira conhecer mais sobre o flutter:
@@ -10,6 +11,7 @@ Caso queira conhecer mais sobre o flutter:
 - [online documentation](https://flutter.dev/docs)
 
 ## O objetivo desse repositório é mostrar e documentar minha primeira experiencia ao criar um app
+
 <br>
 Aceito qualquer critica construtiva ou contribuição primeiramente gostaria de dizer que alguns arquivos não foram colocados no repositório por ter informações sensíveis, porem todo o código que foi restrito era em relação aos anúncios na admob ou configurações da loja Google play, mas ainda tem tudo que eu fiz para construir o aplicativo aqui.
 <br><br>
@@ -18,10 +20,10 @@ Abaixo tenho a tela da home
 
 <img src="assets/readme/1.png" width="411.4" height="820.6">
 
-
 # Arquitetura MVC
 
 OBS:mvc significa Model, View e Controller é uma arquitetura de codigo que separa o codigo em 3 camadas
+
 - A camada de interação do usuário(view).
 - A camada de manipulação dos dados(model).
 - A camada de controle(controller).
@@ -40,6 +42,7 @@ Para rodar os teste basta usar -> flutter test
 <img src="assets/readme/test.png">
 
 <br><br><br>
+
 # Sons
 
 Todos sons do app foram criados por mim no site -> [Song Maker](https://musiclab.chromeexperiments.com/Song-Maker)
@@ -58,6 +61,7 @@ depois disso eu já tenho o som em MP3 e só preciso reduzir mais ainda seu tama
 <br><br>
 E com isso o som ficou 79,95% mais leve e assim o som já estava pronto para ser usado, esse processo foi o mesmo para todos os sons do app.
 <br><br>
+
 # imagens
 
 todos os icones do aplicativo são do site -> [Flaticon](https://www.flaticon.com/br/)
@@ -70,12 +74,14 @@ eu também otimizei cada imagem reduzindo o tamanho delas no site -> [Imagemalle
 <br><br>
 Nesse print foi reduzido 75,03% da imagem sem perder qualidade e isso já ajuda muito na otimização, esse processo foi feito para todas imagens.
 <br><br>
+
 # Limpando midias
 
-No final para usar cada imagens ou som eu retirei todos metadados dos arquivos para otimizar nem que seja só um pouco a mais. 
+No final para usar cada imagens ou som eu retirei todos metadados dos arquivos para otimizar nem que seja só um pouco a mais.
 <br><br>
 <img src="assets/claenfiles.png">
 <br><br>
+
 # fim
 
 Essa foi minha jornada criando meu primeiro app, foi muito desafiador no começo eu ainda estava na incerteza se iria conseguir mas deu tudo certo e me trouxe muito aprendizado em varias coisas.
