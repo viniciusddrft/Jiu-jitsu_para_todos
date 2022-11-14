@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../shared/admob/controller/admob_controller.dart';
 import '../../../../shared/themes/app_colors.dart';
 
 class ResultQuiz extends StatefulWidget {
@@ -62,11 +63,14 @@ class _ResultQuizState extends State<ResultQuiz>
       _textShowResult =
           AppLocalizations.of(context)!.text_result_quiz_black_belt;
     }
-    _animationController.animateTo(
-      _scorePercentage,
-      duration: const Duration(seconds: 2),
-      curve: Curves.elasticInOut,
-    );
+    _animationController
+        .animateTo(
+          _scorePercentage,
+          duration: const Duration(seconds: 2),
+          curve: Curves.elasticInOut,
+        )
+        .then((_) => AdmobController.showInterstitialAd());
+
     super.didChangeDependencies();
   }
 

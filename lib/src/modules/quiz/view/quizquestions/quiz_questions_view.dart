@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../../core/locale/locale_app.dart';
 import '../../../../shared/admob/controller/admob_controller.dart';
 import '../../../../shared/services/sound/service_sound_implements_just_audio.dart';
 import '../../../../shared/themes/app_colors.dart';
@@ -115,7 +116,6 @@ class _QuizQuestionsState extends State<QuizQuestions>
             _animationController.reverse();
           });
         } else {
-          AdmobController.showInterstitialAd();
           _switchToResult();
         }
       },
@@ -131,7 +131,9 @@ class _QuizQuestionsState extends State<QuizQuestions>
       ),
       backgroundColor: AppColors.background,
       body: FutureBuilder(
-        future: _controllerQuiz.choice(difficulty: widget.difficulty),
+        future: _controllerQuiz.choice(
+            difficulty: widget.difficulty,
+            locale: LocaleAppNotifier.of(context).value),
         builder: (BuildContext context, AsyncSnapshot<void> snapshot) =>
             (snapshot.connectionState == ConnectionState.done)
                 ? AnimatedBuilder(

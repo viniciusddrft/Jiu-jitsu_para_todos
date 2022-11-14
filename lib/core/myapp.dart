@@ -16,21 +16,21 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    LocaleApp.getLocalePreference();
+    LocaleAppNotifier.of(context).getLocalePreference();
     findSystemLocale();
     super.initState();
   }
 
   @override
   void dispose() {
-    LocaleApp.localeApp.dispose();
+    LocaleAppNotifier.of(context).dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: LocaleApp.localeApp,
+      valueListenable: LocaleAppNotifier.of(context),
       builder: (BuildContext context, Locale value, Widget? child) =>
           MaterialApp(
         title: 'Jiu-jitsu para todos',

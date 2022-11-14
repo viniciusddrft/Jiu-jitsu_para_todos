@@ -1,5 +1,6 @@
-import 'package:flutter/foundation.dart';
+import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/controller/quiz_controller.dart';
 
@@ -14,10 +15,17 @@ void main() {
   test('must return all questions randomly', () async {
     int numberOfDifferentQuestions = 0;
     bool isQuestionsDifferents = false;
+
     final ControllerQuiz controllerquiz1 = ControllerQuiz();
-    await controllerquiz1.choice(difficulty: 'hard');
+    await controllerquiz1.choice(
+        difficulty: 'hard',
+        locale:
+            const Locale.fromSubtags(languageCode: 'en', countryCode: 'US'));
     final ControllerQuiz controllerquiz2 = ControllerQuiz();
-    await controllerquiz2.choice(difficulty: 'hard');
+    await controllerquiz2.choice(
+        difficulty: 'hard',
+        locale:
+            const Locale.fromSubtags(languageCode: 'en', countryCode: 'US'));
 
     List<String> arrayTeste1 = [];
     for (int i = 0; i != controllerquiz1.myQuestions.length; i++) {

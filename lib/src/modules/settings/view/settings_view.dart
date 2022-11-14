@@ -21,9 +21,10 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
 
   @override
   void initState() {
-    if (LocaleApp.localeApp.value == const Locale('en', 'US')) {
+    if (LocaleAppNotifier.of(context).value == const Locale('en', 'US')) {
       _iconPath.value = AppIconsLanguages.unitedStates;
-    } else if (LocaleApp.localeApp.value == const Locale('pt', 'BR')) {
+    } else if (LocaleAppNotifier.of(context).value ==
+        const Locale('pt', 'BR')) {
       _iconPath.value = AppIconsLanguages.brasil;
     }
     super.initState();
@@ -92,7 +93,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                   ),
                   onPressed: () {
                     _iconPath.value = allLocales[index]['icon'] as String;
-                    LocaleApp.localeApp.value =
+                    LocaleAppNotifier.of(context).value =
                         allLocales[index]['locale'] as Locale;
                     SharedPreferences.getInstance().then(
                       (value) => value.setString(
@@ -155,7 +156,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
           children: [
             const Spacer(),
             Flexible(
-              flex: 15,
+              flex: 8,
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
@@ -219,87 +220,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
               ),
             ),
             Flexible(
-              flex: 20,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                color: AppColors.cardColor,
-                child: SizedBox(
-                  width: size.width * 0.85,
-                  child: Column(
-                    children: [
-                      const Spacer(),
-                      Flexible(
-                        child: Text(
-                          AppLocalizations.of(context)!.text_contact,
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                      ),
-                      const Spacer(),
-                      Flexible(
-                        flex: 3,
-                        child: OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            fixedSize: const Size(200, 50),
-                            backgroundColor: AppColors.background,
-                            foregroundColor: Colors.white,
-                            elevation: 7,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            side: const BorderSide(color: Colors.white),
-                          ),
-                          onPressed: () => openLink(
-                              'mailto:Jiu-jitsu_para_todos@protonmail.com'),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
-                              Text(
-                                'E-mail',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                              Icon(Icons.mail)
-                            ],
-                          ),
-                        ),
-                      ),
-                      const Spacer(),
-                      Flexible(
-                        flex: 3,
-                        child: OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            fixedSize: const Size(200, 50),
-                            backgroundColor: AppColors.background,
-                            foregroundColor: Colors.white,
-                            elevation: 7,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            side: const BorderSide(color: Colors.white),
-                          ),
-                          onPressed: () => openLink(
-                              'https://www.facebook.com/Jiujitsuparatodos2021/'),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
-                              Text(
-                                'Facebook',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                              Icon(Icons.facebook)
-                            ],
-                          ),
-                        ),
-                      ),
-                      const Spacer(),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Flexible(
-              flex: 20,
+              flex: 10,
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
@@ -379,6 +300,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                 ),
               ),
             ),
+            const Spacer(flex: 10),
           ],
         ),
       ),

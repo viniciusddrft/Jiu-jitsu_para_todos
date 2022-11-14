@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:jiu_jitsu_para_todos/src/shared/repositories/interface/repository_api_interface.dart';
 
-import '../../../../core/locale/locale_app.dart';
 import '../../../shared/models/quiz/questions_model.dart';
 import '../../../shared/repositories/repository_api.dart';
 
@@ -42,14 +41,15 @@ class ControllerQuiz extends ChangeNotifier {
     throw Exception('Error in Locale app');
   }
 
-  Future<void> choice({required String difficulty}) async {
+  Future<void> choice(
+      {required String difficulty, required Locale locale}) async {
     switch (difficulty) {
       case 'easy':
         {
-          if (LocaleApp.localeApp.value == const Locale('en', 'US')) {
+          if (locale == const Locale('en', 'US')) {
             myQuestions = await _repositoryApi
                 .getQuestions(ApiRequests.quizEnglishWhiteBelt);
-          } else if (LocaleApp.localeApp.value == const Locale('pt', 'BR')) {
+          } else if (locale == const Locale('pt', 'BR')) {
             myQuestions = await _repositoryApi
                 .getQuestions(ApiRequests.quizPortugueseWhiteBelt);
           } else {
@@ -61,10 +61,10 @@ class ControllerQuiz extends ChangeNotifier {
 
       case 'medium':
         {
-          if (LocaleApp.localeApp.value == const Locale('en', 'US')) {
+          if (locale == const Locale('en', 'US')) {
             myQuestions = await _repositoryApi
                 .getQuestions(ApiRequests.quizEnglishBlueBelt);
-          } else if (LocaleApp.localeApp.value == const Locale('pt', 'BR')) {
+          } else if (locale == const Locale('pt', 'BR')) {
             myQuestions = await _repositoryApi
                 .getQuestions(ApiRequests.quizPortugueseBlueBelt);
           } else {
@@ -76,10 +76,10 @@ class ControllerQuiz extends ChangeNotifier {
 
       case 'hard':
         {
-          if (LocaleApp.localeApp.value == const Locale('en', 'US')) {
+          if (locale == const Locale('en', 'US')) {
             myQuestions = await _repositoryApi
                 .getQuestions(ApiRequests.quizPortugueseBlackBelt);
-          } else if (LocaleApp.localeApp.value == const Locale('pt', 'BR')) {
+          } else if (locale == const Locale('pt', 'BR')) {
             myQuestions = await _repositoryApi
                 .getQuestions(ApiRequests.quizPortugueseBlackBelt);
           } else {
