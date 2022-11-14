@@ -69,7 +69,7 @@ class _ResultQuizState extends State<ResultQuiz>
           duration: const Duration(seconds: 2),
           curve: Curves.elasticInOut,
         )
-        .then((_) => AdmobController.showInterstitialAd());
+        .then((_) => AdmobController.of(context).showInterstitialAd());
 
     super.didChangeDependencies();
   }

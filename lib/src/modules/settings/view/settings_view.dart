@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/locale/locale_app.dart';
 import '../../../shared/appbar_gradient/appbar_gradient.dart';
 import '../../../shared/launch_link/launch_link.dart';
+import '../../../shared/services/local_storage/interface/local_storage_interface.dart';
+import '../../../shared/services/local_storage/local_storage_shared_preferrence.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_icons_languages_path.dart';
 
@@ -18,20 +19,16 @@ class SettingsView extends StatefulWidget {
 class _SettingsViewState extends State<SettingsView> with OpenLink {
   late final Size size = MediaQuery.of(context).size;
   final ValueNotifier<String?> _iconPath = ValueNotifier<String?>(null);
+  final ILocalStorage _localStorage = LocalStorageSharedPreferrence();
 
   @override
-  void initState() {
+  void didChangeDependencies() {
     if (LocaleAppNotifier.of(context).value == const Locale('en', 'US')) {
       _iconPath.value = AppIconsLanguages.unitedStates;
     } else if (LocaleAppNotifier.of(context).value ==
         const Locale('pt', 'BR')) {
       _iconPath.value = AppIconsLanguages.brasil;
     }
-    super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
     precacheImage(Image.asset(AppIconsLanguages.unitedStates).image, context);
     precacheImage(Image.asset(AppIconsLanguages.brasil).image, context);
     super.didChangeDependencies();
@@ -95,12 +92,8 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                     _iconPath.value = allLocales[index]['icon'] as String;
                     LocaleAppNotifier.of(context).value =
                         allLocales[index]['locale'] as Locale;
-                    SharedPreferences.getInstance().then(
-                      (value) => value.setString(
-                        'locale',
-                        allLocales[index]['locale'].toString(),
-                      ),
-                    );
+                    _localStorage.saveValue(
+                        'locale', allLocales[index]['locale'].toString());
                     Navigator.pop(context);
                   },
                   child: Container(

@@ -17,7 +17,10 @@ void main() {
       notifier: LocaleAppNotifier(
         localStorage: localStorage,
       ),
-      child: const MyApp(),
+      child: AdmobApp(
+        notifier: AdmobController(),
+        child: const MyApp(),
+      ),
     ),
   );
 }

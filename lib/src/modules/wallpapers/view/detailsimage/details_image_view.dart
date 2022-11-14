@@ -22,7 +22,7 @@ class _DetailsImageState extends State<DetailsImage> {
   @override
   void didChangeDependencies() {
     precacheImage(Image.network(widget.imageUrl).image, context);
-    AdmobController.createInterstitialAd();
+    AdmobController.of(context).createInterstitialAd();
     super.didChangeDependencies();
   }
 
@@ -70,7 +70,7 @@ class _DetailsImageState extends State<DetailsImage> {
 
   void onPressed() async {
     if (await Permission.storage.request().isGranted) {
-      AdmobController.showInterstitialAd();
+      AdmobController.of(context).showInterstitialAd();
       Future.delayed(const Duration(seconds: 1), () => _saveImage());
     }
   }

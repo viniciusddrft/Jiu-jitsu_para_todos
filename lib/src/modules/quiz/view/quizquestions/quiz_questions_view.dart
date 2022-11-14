@@ -42,7 +42,7 @@ class _QuizQuestionsState extends State<QuizQuestions>
 
   @override
   void didChangeDependencies() {
-    AdmobController.createInterstitialAd();
+    AdmobController.of(context).createInterstitialAd();
     super.didChangeDependencies();
   }
 
