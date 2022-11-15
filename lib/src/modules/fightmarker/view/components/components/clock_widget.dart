@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../shared/services/sound/service_sound_implements_just_audio.dart';
 import '../../../../../shared/themes/app_colors.dart';
@@ -66,7 +67,7 @@ class _ClockState extends State<Clock> {
             backgroundColor: null,
             strokeWidth: 5.0,
             strokeCap: StrokeCap.butt,
-            textStyle: const TextStyle(fontSize: 30.0, fontFamily: 'YatraOne'),
+            textStyle: GoogleFonts.yatraOne(fontSize: 30),
             isReverse: true,
             isReverseAnimation: false,
             isTimerTextShown: true,

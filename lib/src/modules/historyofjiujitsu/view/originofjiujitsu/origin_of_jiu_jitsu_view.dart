@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../shared/admob/controller/admob_controller.dart';
 import '../../../../shared/admob/widget/admob_native_ad.dart';
@@ -19,7 +20,7 @@ class OriginOfJiujitsu extends StatelessWidget {
         backgroundColor: Colors.transparent,
         title: Text(
           AppLocalizations.of(context)!.title_appbar_origin_of_jiujitsu_page,
-          style: TextStyle(fontFamily: 'YatraOne', color: Colors.grey[700]),
+          style: GoogleFonts.yatraOne(color: Colors.grey[700]),
         ),
       ),
       backgroundColor: AppColors.background,
@@ -35,30 +36,30 @@ class OriginOfJiujitsu extends StatelessWidget {
                     child: Text(
                       AppLocalizations.of(context)!
                           .text_origin_of_jiujitsu_paragraph1,
-                      style: const TextStyle(fontSize: 16),
+                      style: GoogleFonts.ubuntu(fontSize: 16),
                     ),
                   ),
                   Text(
                     AppLocalizations.of(context)!
                         .text_origin_of_jiujitsu_paragraph2,
-                    style: const TextStyle(fontSize: 16),
+                    style: GoogleFonts.ubuntu(fontSize: 16),
                   ),
                   Text(
                     AppLocalizations.of(context)!
                         .text_origin_of_jiujitsu_paragraph3,
-                    style: const TextStyle(fontSize: 16),
+                    style: GoogleFonts.ubuntu(fontSize: 16),
                   ),
                   Text(
                     AppLocalizations.of(context)!
                         .text_origin_of_jiujitsu_paragraph4,
-                    style: const TextStyle(fontSize: 16),
+                    style: GoogleFonts.ubuntu(fontSize: 16),
                   ),
                   Padding(
                     padding: EdgeInsets.only(bottom: size.height * 0.05),
                     child: Text(
                       AppLocalizations.of(context)!
                           .text_origin_of_jiujitsu_paragraph5,
-                      style: const TextStyle(fontSize: 16),
+                      style: GoogleFonts.ubuntu(fontSize: 16),
                     ),
                   ),
                 ],

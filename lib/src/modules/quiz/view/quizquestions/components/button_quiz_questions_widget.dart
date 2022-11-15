@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../shared/themes/app_colors.dart';
 
@@ -44,8 +45,10 @@ class ButtonQuizQuestions extends StatelessWidget {
           children: [
             Text(
               answer,
-              style: TextStyle(
-                  fontFamily: 'Ubuntu', color: colorButton, fontSize: 16),
+              style: GoogleFonts.ubuntu(
+                fontSize: 16,
+                color: colorButton,
+              ),
             ),
             Container(
               height: size.height * 0.03,

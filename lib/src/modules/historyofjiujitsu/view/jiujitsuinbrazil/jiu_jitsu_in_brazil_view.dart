@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../shared/admob/controller/admob_controller.dart';
 import '../../../../shared/admob/widget/admob_native_ad.dart';
@@ -18,7 +19,7 @@ class JiujitsuinBrazil extends StatelessWidget {
         backgroundColor: Colors.transparent,
         title: Text(
           AppLocalizations.of(context)!.title_appbar_jiujitsu_in_brazil_page,
-          style: TextStyle(fontFamily: 'YatraOne', color: Colors.grey[700]),
+          style: GoogleFonts.yatraOne(color: Colors.grey[700]),
         ),
       ),
       backgroundColor: AppColors.background,
@@ -32,18 +33,18 @@ class JiujitsuinBrazil extends StatelessWidget {
                 child: Text(
                   AppLocalizations.of(context)!
                       .text_jiujitsu_in_brazil_paragraph1,
-                  style: const TextStyle(fontSize: 16),
+                  style: GoogleFonts.ubuntu(fontSize: 16),
                 ),
               ),
               Text(
                 AppLocalizations.of(context)!
                     .text_jiujitsu_in_brazil_paragraph2,
-                style: const TextStyle(fontSize: 16),
+                style: GoogleFonts.ubuntu(fontSize: 16),
               ),
               Text(
                 AppLocalizations.of(context)!
                     .text_jiujitsu_in_brazil_paragraph3,
-                style: const TextStyle(fontSize: 16),
+                style: GoogleFonts.ubuntu(fontSize: 16),
               ),
             ],
           ),

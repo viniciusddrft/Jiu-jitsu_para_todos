@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../shared/appbar_gradient/appbar_gradient.dart';
 import '../../../../shared/themes/app_colors.dart';
@@ -17,7 +18,7 @@ class HistoryOfJiuJitsuView extends StatelessWidget {
         flexibleSpace: const AppBarGradient(),
         title: Text(
             AppLocalizations.of(context)!.title_appbar_history_of_jiujitsu_page,
-            style: const TextStyle(fontFamily: 'YatraOne')),
+            style: GoogleFonts.yatraOne()),
       ),
       backgroundColor: AppColors.background,
       body: SingleChildScrollView(

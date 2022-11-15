@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../shared/admob/controller/admob_controller.dart';
 import '../../../../shared/themes/app_colors.dart';
@@ -97,7 +98,7 @@ class _ResultQuizState extends State<ResultQuiz>
               padding: EdgeInsets.only(top: size.height * 0.05),
               child: Text(
                 _textMessage,
-                style: const TextStyle(fontSize: 20),
+                style: GoogleFonts.ubuntu(fontSize: 20),
               ),
             ),
             Padding(
@@ -107,7 +108,7 @@ class _ResultQuizState extends State<ResultQuiz>
                 child: Center(
                   child: Text(
                     _textShowResult,
-                    style: const TextStyle(fontSize: 20),
+                    style: GoogleFonts.ubuntu(fontSize: 20),
                   ),
                 ),
               ),
@@ -137,7 +138,7 @@ class _ResultQuizState extends State<ResultQuiz>
                     Center(
                       child: Text(
                         '$_scorePercentageText%',
-                        style: const TextStyle(fontSize: 30),
+                        style: GoogleFonts.ubuntu(fontSize: 30),
                       ),
                     ),
                   ],

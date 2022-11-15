@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../core/locale/locale_app.dart';
 import '../../../../shared/admob/controller/admob_controller.dart';
@@ -146,23 +147,16 @@ class _QuizQuestionsState extends State<QuizQuestions>
                           padding: EdgeInsets.only(
                               left: size.width * 0.07,
                               bottom: size.height * 0.01),
-                          child: Text(
-                            'Quiz ${widget.difficultyName}',
-                            style: TextStyle(
-                                fontFamily: 'YatraOne',
-                                fontSize: 20,
-                                color: Colors.grey[700]),
-                          ),
+                          child: Text('Quiz ${widget.difficultyName}',
+                              style: GoogleFonts.yatraOne(
+                                  fontSize: 20, color: Colors.grey[700])),
                         ),
                         Padding(
                           padding: EdgeInsets.only(left: size.width * 0.07),
                           child: Text(
-                            '${AppLocalizations.of(context)!.text_question} ${_controllerQuiz.counterQuestions}/${_controllerQuiz.totalNumberOfQuestions}',
-                            style: const TextStyle(
-                                fontFamily: 'Ubuntu',
-                                fontSize: 22,
-                                color: Colors.white),
-                          ),
+                              '${AppLocalizations.of(context)!.text_question} ${_controllerQuiz.counterQuestions}/${_controllerQuiz.totalNumberOfQuestions}',
+                              style: GoogleFonts.ubuntu(
+                                  fontSize: 22, color: Colors.white)),
                         ),
                         Container(
                           margin: EdgeInsets.only(
@@ -201,12 +195,9 @@ class _QuizQuestionsState extends State<QuizQuestions>
                                       left: size.width * 0.07,
                                       right: size.width * 0.07),
                                   child: Text(
-                                    _controllerQuiz.textQuestionReturn(),
-                                    style: const TextStyle(
-                                        fontFamily: 'Ubuntu',
-                                        fontSize: 18,
-                                        color: Colors.white),
-                                  ),
+                                      _controllerQuiz.textQuestionReturn(),
+                                      style: GoogleFonts.ubuntu(
+                                          fontSize: 18, color: Colors.white)),
                                 ),
                                 Column(
                                   children: [

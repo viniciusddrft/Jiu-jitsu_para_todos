@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 
 import '../../../../controller/clock_controller.dart';
@@ -60,7 +61,7 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
                     itemBuilder: (BuildContext context, int index) => Center(
                       child: Text(
                         '$index',
-                        style: const TextStyle(fontSize: 30),
+                        style: GoogleFonts.ubuntu(fontSize: 30),
                       ),
                     ),
                   ),
@@ -81,9 +82,9 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
-            child: const Text(
+            child: Text(
               ':',
-              style: TextStyle(fontSize: 30),
+              style: GoogleFonts.ubuntu(fontSize: 30),
             ),
           ),
           SizedBox(
@@ -111,7 +112,7 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
                     itemBuilder: (BuildContext context, int index) => Center(
                       child: Text(
                         '$index',
-                        style: const TextStyle(fontSize: 30),
+                        style: GoogleFonts.ubuntu(fontSize: 30),
                       ),
                     ),
                   ),
@@ -137,7 +138,7 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
           onPressed: () => Navigator.pop(context),
           child: Text(
             AppLocalizations.of(context)!.text_label_cancel_popup,
-            style: const TextStyle(fontSize: 16),
+            style: GoogleFonts.ubuntu(fontSize: 16),
           ),
         ),
         TextButton(
@@ -148,7 +149,7 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
           },
           child: Text(
             AppLocalizations.of(context)!.text_label_continue,
-            style: const TextStyle(fontSize: 16),
+            style: GoogleFonts.ubuntu(fontSize: 16),
           ),
         ),
       ],

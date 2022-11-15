@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../themes/app_colors.dart';
 
@@ -57,7 +58,7 @@ abstract class ButtonForMenu extends StatefulWidget {
             child: Center(
               child: Text(
                 textButton,
-                style: const TextStyle(fontSize: 18),
+                style: GoogleFonts.ubuntu(fontSize: 18),
               ),
             ),
           ),

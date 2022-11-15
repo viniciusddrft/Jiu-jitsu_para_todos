@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../core/locale/locale_app.dart';
 import '../../../shared/appbar_gradient/appbar_gradient.dart';
@@ -130,15 +131,15 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
       appBar: AppBar(
         flexibleSpace: const AppBarGradient(),
         title: Text(AppLocalizations.of(context)!.title_appbar_settings_page,
-            style: const TextStyle(fontFamily: 'YatraOne')),
+            style: GoogleFonts.yatraOne()),
       ),
       backgroundColor: AppColors.background,
       bottomNavigationBar: SizedBox(
         height: 60,
         child: Center(
           child: Text(
-            '${AppLocalizations.of(context)!.text_version} 2.5.2',
-            style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+            '${AppLocalizations.of(context)!.text_version} 2.5.3',
+            style: GoogleFonts.yatraOne(color: Colors.grey[700]),
           ),
         ),
       ),
@@ -164,7 +165,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                         child: Text(
                           AppLocalizations.of(context)!
                               .button_language_settings_page,
-                          style: const TextStyle(fontSize: 20),
+                          style: GoogleFonts.ubuntu(fontSize: 20),
                         ),
                       ),
                       const Spacer(),
@@ -190,7 +191,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                                 Text(
                                   AppLocalizations.of(context)!
                                       .button_language_settings_page,
-                                  style: const TextStyle(fontSize: 16),
+                                  style: GoogleFonts.yatraOne(fontSize: 16),
                                 ),
                                 ValueListenableBuilder(
                                   valueListenable: _iconPath,
@@ -227,7 +228,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                       Flexible(
                         child: Text(
                           AppLocalizations.of(context)!.text_about_the_app,
-                          style: const TextStyle(fontSize: 20),
+                          style: GoogleFonts.yatraOne(fontSize: 20),
                         ),
                       ),
                       const Spacer(),
@@ -253,7 +254,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                                 Text(
                                   AppLocalizations.of(context)!
                                       .text_rate_the_app,
-                                  style: const TextStyle(fontSize: 16),
+                                  style: GoogleFonts.yatraOne(fontSize: 16),
                                 ),
                                 const Icon(Icons.rate_review_outlined)
                               ],
@@ -281,7 +282,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                               child: Text(
                                 AppLocalizations.of(context)!
                                     .button_credits_settings_page,
-                                style: const TextStyle(fontSize: 16),
+                                style: GoogleFonts.yatraOne(fontSize: 16),
                               ),
                             ),
                           ),

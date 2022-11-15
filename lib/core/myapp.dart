@@ -40,7 +40,6 @@ class _MyAppState extends State<MyApp> {
         supportedLocales: AppLocalizations.supportedLocales,
         locale: value,
         theme: ThemeData(
-          fontFamily: 'Ubuntu',
           primaryColor: AppColors.primary,
           brightness: Brightness.dark,
         ),

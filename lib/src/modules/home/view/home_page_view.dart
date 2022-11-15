@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:wakelock/wakelock.dart';
 
 import '../../../shared/appbar_gradient/appbar_gradient.dart';
@@ -35,7 +36,7 @@ class _HomePageViewState extends State<HomePageView> {
       appBar: AppBar(
         flexibleSpace: const AppBarGradient(),
         title: Text(AppLocalizations.of(context)!.title_appbar_home_page,
-            style: const TextStyle(fontFamily: 'YatraOne')),
+            style: GoogleFonts.yatraOne()),
         actions: [
           IconButton(
               icon: const Icon(Icons.settings), onPressed: _changesettings),

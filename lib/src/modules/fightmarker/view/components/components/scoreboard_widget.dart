@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Scoreboard extends StatefulWidget {
   const Scoreboard({super.key});
@@ -32,7 +33,7 @@ class _ScoreboardState extends State<Scoreboard> {
             valueListenable: _fighterPoints,
             builder: (BuildContext context, int value, Widget? child) => Text(
               '${_fighterPoints.value}',
-              style: const TextStyle(fontSize: 30, fontFamily: 'YatraOne'),
+              style: GoogleFonts.yatraOne(fontSize: 30),
             ),
           ),
           Padding(
@@ -41,8 +42,7 @@ class _ScoreboardState extends State<Scoreboard> {
               valueListenable: _advantagesOfTheFighter,
               builder: (BuildContext context, int value, Widget? child) => Text(
                 '${_advantagesOfTheFighter.value}',
-                style: const TextStyle(
-                    fontSize: 30, color: Colors.yellow, fontFamily: 'YatraOne'),
+                style: GoogleFonts.yatraOne(fontSize: 30, color: Colors.yellow),
               ),
             ),
           ),
@@ -50,8 +50,7 @@ class _ScoreboardState extends State<Scoreboard> {
             valueListenable: _punishmentsOfTheFighter,
             builder: (BuildContext context, int value, Widget? child) => Text(
               '${_punishmentsOfTheFighter.value}',
-              style: const TextStyle(
-                  fontSize: 30, color: Colors.red, fontFamily: 'YatraOne'),
+              style: GoogleFonts.yatraOne(fontSize: 30, color: Colors.red),
             ),
           ),
         ]),
@@ -62,9 +61,9 @@ class _ScoreboardState extends State<Scoreboard> {
               onPressed: () => _fighterPoints.value += 2),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
-            child: const Text(
+            child: Text(
               '2',
-              style: TextStyle(fontSize: 30, fontFamily: 'YatraOne'),
+              style: GoogleFonts.yatraOne(fontSize: 30),
             ),
           ),
           IconButton(
@@ -82,9 +81,9 @@ class _ScoreboardState extends State<Scoreboard> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
-            child: const Text(
+            child: Text(
               '3',
-              style: TextStyle(fontSize: 30, fontFamily: 'YatraOne'),
+              style: GoogleFonts.yatraOne(fontSize: 30),
             ),
           ),
           IconButton(
@@ -102,8 +101,7 @@ class _ScoreboardState extends State<Scoreboard> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
-            child: const Text('4',
-                style: TextStyle(fontSize: 30, fontFamily: 'YatraOne')),
+            child: Text('4', style: GoogleFonts.yatraOne(fontSize: 30)),
           ),
           IconButton(
               iconSize: 30,
@@ -123,8 +121,7 @@ class _ScoreboardState extends State<Scoreboard> {
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
             child: Text(
               AppLocalizations.of(context)!.text_abbreviated_advantage,
-              style: const TextStyle(
-                  fontSize: 30, color: Colors.yellow, fontFamily: 'YatraOne'),
+              style: GoogleFonts.yatraOne(fontSize: 30),
             ),
           ),
           IconButton(
@@ -147,8 +144,7 @@ class _ScoreboardState extends State<Scoreboard> {
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
             child: Text(
               AppLocalizations.of(context)!.text_abbreviated_punishment,
-              style: const TextStyle(
-                  fontSize: 30, color: Colors.red, fontFamily: 'YatraOne'),
+              style: GoogleFonts.yatraOne(fontSize: 30, color: Colors.red),
             ),
           ),
           IconButton(

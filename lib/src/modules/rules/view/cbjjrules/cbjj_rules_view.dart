@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../shared/admob/controller/admob_controller.dart';
 import '../../../../shared/admob/widget/admob_native_ad.dart';
@@ -20,7 +21,7 @@ class Cbjjrules extends StatelessWidget with OpenLink {
         backgroundColor: Colors.transparent,
         title: Text(
           AppLocalizations.of(context)!.title_appbar_cbjj_rules_page,
-          style: TextStyle(fontFamily: 'YatraOne', color: Colors.grey[700]),
+          style: GoogleFonts.yatraOne(color: Colors.grey[700]),
         ),
       ),
       backgroundColor: AppColors.background,
@@ -32,7 +33,7 @@ class Cbjjrules extends StatelessWidget with OpenLink {
               padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
               child: Text(
                 AppLocalizations.of(context)!.text_cbjj,
-                style: const TextStyle(fontSize: 16),
+                style: GoogleFonts.ubuntu(fontSize: 16),
               ),
             ),
             OutlinedButton(
@@ -49,7 +50,7 @@ class Cbjjrules extends StatelessWidget with OpenLink {
               child: Center(
                 child: Text(
                   AppLocalizations.of(context)!.text_button_cbjj,
-                  style: const TextStyle(fontSize: 16),
+                  style: GoogleFonts.ubuntu(fontSize: 16),
                 ),
               ),
             )

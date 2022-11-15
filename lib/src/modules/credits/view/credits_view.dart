@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../shared/appbar_gradient/appbar_gradient.dart';
 import '../../../shared/launch_link/launch_link.dart';
@@ -28,7 +29,7 @@ class _CreditsViewState extends State<CreditsView> with OpenLink {
         flexibleSpace: const AppBarGradient(),
         title: Text(
           AppLocalizations.of(context)!.title_appbar_credits_page,
-          style: const TextStyle(fontFamily: 'YatraOne'),
+          style: GoogleFonts.yatraOne(),
         ),
       ),
       backgroundColor: AppColors.background,
@@ -42,7 +43,7 @@ class _CreditsViewState extends State<CreditsView> with OpenLink {
               child: Text(
                 AppLocalizations.of(context)!
                     .text_all_application_icons_are_from_flaticon,
-                style: const TextStyle(fontSize: 14),
+                style: GoogleFonts.ubuntu(fontSize: 14),
               ),
             ),
             const Spacer(),
@@ -63,18 +64,19 @@ class _CreditsViewState extends State<CreditsView> with OpenLink {
               child: Text(
                 AppLocalizations.of(context)!
                     .text_the_application_was_developed_in_flutter,
-                style: const TextStyle(fontSize: 14),
+                style: GoogleFonts.ubuntu(fontSize: 14),
               ),
             ),
             const Spacer(),
             Flexible(
               flex: 2,
               child: TextButton.icon(
-                  onPressed: () => openLink('https://flutter.dev/'),
-                  icon: const FlutterLogo(
-                    size: 100,
-                  ),
-                  label: const Text('')),
+                onPressed: () => openLink('https://flutter.dev/'),
+                icon: const FlutterLogo(
+                  size: 100,
+                ),
+                label: const Text(''),
+              ),
             ),
             const Spacer(),
             Flexible(
@@ -84,9 +86,7 @@ class _CreditsViewState extends State<CreditsView> with OpenLink {
                 child: Text(
                   AppLocalizations.of(context)!
                       .text_if_you_want_to_know_both_the_flutter_and_the_flaticon_just_click_on_the_icons,
-                  style: const TextStyle(
-                    fontSize: 14,
-                  ),
+                  style: GoogleFonts.ubuntu(fontSize: 14),
                 ),
               ),
             ),

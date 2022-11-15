@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gallery_saver/gallery_saver.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -121,7 +122,7 @@ class _DetailsImageState extends State<DetailsImage> {
                       child: Center(
                         child: Text(
                           AppLocalizations.of(context)!.button_save_image,
-                          style: const TextStyle(fontSize: 16),
+                          style: GoogleFonts.yatraOne(fontSize: 16),
                         ),
                       ),
                     )
