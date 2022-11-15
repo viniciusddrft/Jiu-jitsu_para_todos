@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:gallery_saver/gallery_saver.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/controller/wallpapers_controller.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/admob/controller/admob_controller.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -23,56 +23,118 @@ class _DetailsImageState extends State<DetailsImage> {
   @override
   void didChangeDependencies() {
     precacheImage(Image.network(widget.imageUrl).image, context);
-    AdmobController.of(context).createInterstitialAd();
     super.didChangeDependencies();
   }
 
-  Future<void> _showMyDialogSaveErro() async => showDialog<void>(
-        context: context,
-        barrierDismissible: true,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: AppColors.background,
-            actions: [
-              TextButton(
-                child: Text(AppLocalizations.of(context)!.text_popup_error),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-            ],
-          );
-        },
-      );
-
-  Future<void> _showMyDialogSaveImage() async => showDialog<void>(
-        context: context,
-        barrierDismissible: true,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: AppColors.background,
-            actions: [
-              TextButton(
-                child: Text(AppLocalizations.of(context)!.text_popup_success),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-            ],
-          );
-        },
-      );
-
-  void _saveImage() => GallerySaver.saveImage(widget.imageUrl).then(
-        (bool? isSuccess) {
-          if (isSuccess != null && isSuccess) {
-            _showMyDialogSaveImage();
-          } else {
-            _showMyDialogSaveErro();
-          }
-        },
-      );
-
   void onPressed() async {
     if (await Permission.storage.request().isGranted) {
-      AdmobController.of(context).showInterstitialAd();
-      Future.delayed(const Duration(seconds: 1), () => _saveImage());
+      showDialog<void>(
+        context: context,
+        builder: (BuildContext context) => FractionallySizedBox(
+          heightFactor: 0.5,
+          child: AlertDialog(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            backgroundColor: AppColors.background,
+            title: Text(
+              AppLocalizations.of(context)!.title_popup_wallpaper,
+              style: GoogleFonts.ubuntu(),
+            ),
+            content: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      fixedSize: const Size(200, 50),
+                      foregroundColor: Colors.white,
+                      elevation: 7,
+                      backgroundColor: AppColors.background,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      side: const BorderSide(color: Colors.white)),
+                  onPressed: () =>
+                      ControllerWallpapers.setWallpaper(widget.imageUrl, 1)
+                          .then((bool isSetWallpaperSuccess) {
+                    if (isSetWallpaperSuccess) {
+                      AdmobController.of(context).showInterstitialAd();
+                    }
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  }),
+                  child: Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.text_popup_set_home,
+                      style: GoogleFonts.yatraOne(fontSize: 16),
+                    ),
+                  ),
+                ),
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      fixedSize: const Size(200, 50),
+                      foregroundColor: Colors.white,
+                      elevation: 7,
+                      backgroundColor: AppColors.background,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      side: const BorderSide(color: Colors.white)),
+                  onPressed: () =>
+                      ControllerWallpapers.setWallpaper(widget.imageUrl, 2)
+                          .then((bool isSetWallpaperSuccess) {
+                    if (isSetWallpaperSuccess) {
+                      AdmobController.of(context).showInterstitialAd();
+                    }
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  }),
+                  child: Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.text_popup_set_block,
+                      style: GoogleFonts.yatraOne(fontSize: 16),
+                    ),
+                  ),
+                ),
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      fixedSize: const Size(200, 50),
+                      foregroundColor: Colors.white,
+                      elevation: 7,
+                      backgroundColor: AppColors.background,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      side: const BorderSide(color: Colors.white)),
+                  onPressed: () =>
+                      ControllerWallpapers.setWallpaper(widget.imageUrl, 3)
+                          .then((bool isSetWallpaperSuccess) {
+                    if (isSetWallpaperSuccess) {
+                      AdmobController.of(context).showInterstitialAd();
+                    }
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  }),
+                  child: Center(
+                    child: Text(
+                      AppLocalizations.of(context)!.text_popup_set_both,
+                      style: GoogleFonts.yatraOne(fontSize: 16),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text(
+                  AppLocalizations.of(context)!.text_cancel,
+                  style: GoogleFonts.ubuntu(),
+                ),
+              )
+            ],
+          ),
+        ),
+      );
     }
   }
 
@@ -121,7 +183,8 @@ class _DetailsImageState extends State<DetailsImage> {
                       onPressed: onPressed,
                       child: Center(
                         child: Text(
-                          AppLocalizations.of(context)!.button_save_image,
+                          AppLocalizations.of(context)!
+                              .text_popup_save_wallpaper,
                           style: GoogleFonts.yatraOne(fontSize: 16),
                         ),
                       ),

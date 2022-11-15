@@ -29,7 +29,7 @@ dependencies:
   shared_preferences: ^2.0.15
   circular_countdown_timer: ^0.2.3
   url_launcher: ^6.1.6
-  gallery_saver: ^2.3.2
+  async_wallpaper: ^2.0.1
   permission_handler: ^10.2.0
   google_mobile_ads: ^2.2.0
   just_audio: ^0.9.30

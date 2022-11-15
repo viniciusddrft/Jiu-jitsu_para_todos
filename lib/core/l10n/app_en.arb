@@ -48,9 +48,11 @@
     "text_abbreviated_punishment":"P",
 
     "title_appbar_wallpapers":"Wallpapers",
-
-    "button_save_image":"Save image",
-    "text_popup_success":"Image saved successfully !!!",
+    "title_popup_wallpaper":"Use how?",
+    "text_popup_save_wallpaper":"Use wallpaper",
+    "text_popup_set_home":"Home Screen",
+    "text_popup_set_block":"Lockscreen",
+    "text_popup_set_both":"Both Screens",
     "text_popup_error":"Something went wrong :/",
 
     "title_appbar_origin_of_jiujitsu_page":"Origin of Jiu-jitsu",

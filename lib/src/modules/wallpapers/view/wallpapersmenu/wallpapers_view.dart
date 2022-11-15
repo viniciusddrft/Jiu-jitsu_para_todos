@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../shared/admob/controller/admob_controller.dart';
 import '../../../../shared/appbar_gradient/appbar_gradient.dart';
 import '../../../../shared/themes/app_colors.dart';
 import '../../controller/wallpapers_controller.dart';
@@ -18,6 +19,12 @@ class _WallpapersViewState extends State<WallpapersView> {
   final ControllerWallpapers _controllerWallpapers = ControllerWallpapers();
 
   late final Size size = MediaQuery.of(context).size;
+
+  @override
+  void didChangeDependencies() {
+    AdmobController.of(context).createInterstitialAd();
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
