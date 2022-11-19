@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/controller/quiz_controller.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/models/quiz/questions_model.dart';
 
 void main() {
   /*
@@ -17,23 +18,23 @@ void main() {
     bool isQuestionsDifferents = false;
 
     final ControllerQuiz controllerquiz1 = ControllerQuiz();
-    await controllerquiz1.choice(
+    final List<QuestionModel> myQuestions1 = await controllerquiz1.choice(
         difficulty: 'hard',
         locale:
             const Locale.fromSubtags(languageCode: 'en', countryCode: 'US'));
     final ControllerQuiz controllerquiz2 = ControllerQuiz();
-    await controllerquiz2.choice(
+    final List<QuestionModel> myQuestions2 = await controllerquiz2.choice(
         difficulty: 'hard',
         locale:
             const Locale.fromSubtags(languageCode: 'en', countryCode: 'US'));
 
     List<String> arrayTeste1 = [];
-    for (int i = 0; i != controllerquiz1.myQuestions.length; i++) {
-      arrayTeste1.add(controllerquiz1.myQuestions.toList()[i].question);
+    for (int i = 0; i != myQuestions1.length; i++) {
+      arrayTeste1.add(myQuestions1.toList()[i].question);
     }
     List<String> arrayTeste2 = [];
-    for (int i = 0; i != controllerquiz2.myQuestions.length; i++) {
-      arrayTeste2.add(controllerquiz2.myQuestions.toList()[i].question);
+    for (int i = 0; i != myQuestions2.length; i++) {
+      arrayTeste2.add(myQuestions2.toList()[i].question);
     }
 
     if (arrayTeste1.length == arrayTeste2.length) {

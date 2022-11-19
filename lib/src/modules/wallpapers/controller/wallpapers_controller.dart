@@ -7,10 +7,8 @@ import '../../../shared/repositories/repository_api.dart';
 class ControllerWallpapers {
   final RepositoryApi _repositoryApi = RepositoryApi();
 
-  Future<void> loadWallpapers() async =>
-      wallpapers = await _repositoryApi.getWallpapers();
-
-  late List<WallpaperModel> wallpapers;
+  Future<List<WallpaperModel>> loadWallpapers() async =>
+      await _repositoryApi.getWallpapers();
 
   static Future<bool> setWallpaper(String url, int wallpaperLocation) async {
     if (await Permission.storage.request().isGranted) {

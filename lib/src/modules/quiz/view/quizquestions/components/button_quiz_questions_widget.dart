@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/models/quiz/questions_model.dart';
 
 import '../../../../../shared/themes/app_colors.dart';
 
 class ButtonQuizQuestions extends StatelessWidget {
-  final void Function(String answer, String orderOfQuestions) onPressed;
+  final void Function(String answer, String orderOfQuestions,
+      List<QuestionModel> myQuestions) onPressed;
   final bool isButtonDisabled;
   final String answer;
   final String orderOfQuestions;
   final Color colorButton;
   final Color? colorIcon;
   final IconData? icon;
+  final List<QuestionModel> myQuestions;
   ButtonQuizQuestions(
       {super.key,
       required this.onPressed,
@@ -18,6 +21,7 @@ class ButtonQuizQuestions extends StatelessWidget {
       required this.answer,
       required this.orderOfQuestions,
       required this.colorButton,
+      required this.myQuestions,
       this.colorIcon,
       this.icon})
       : assert(['A', 'B', 'C', 'D'].contains(orderOfQuestions));
@@ -28,8 +32,9 @@ class ButtonQuizQuestions extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(bottom: size.height * 0.05),
       child: OutlinedButton(
-        onPressed:
-            isButtonDisabled ? null : () => onPressed(answer, orderOfQuestions),
+        onPressed: isButtonDisabled
+            ? null
+            : () => onPressed(answer, orderOfQuestions, myQuestions),
         style: OutlinedButton.styleFrom(
           elevation: 7,
           foregroundColor: colorButton,

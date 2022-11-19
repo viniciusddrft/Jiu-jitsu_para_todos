@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../core/locale/locale_app.dart';
 import '../../../../shared/admob/controller/admob_controller.dart';
+import '../../../../shared/models/quiz/questions_model.dart';
 import '../../../../shared/services/sound/service_sound_implements_just_audio.dart';
 import '../../../../shared/themes/app_colors.dart';
 import '../../controller/quiz_controller.dart';
@@ -25,7 +26,7 @@ class QuizQuestions extends StatefulWidget {
 class _QuizQuestionsState extends State<QuizQuestions>
     with SingleTickerProviderStateMixin {
   final ControllerQuiz _controllerQuiz = ControllerQuiz();
-
+  late final Future<List<QuestionModel>> _loadQuestions;
   final ServiceJustAudio _playerAudio = ServiceJustAudio();
 
   late final Size size = MediaQuery.of(context).size;
@@ -43,6 +44,9 @@ class _QuizQuestionsState extends State<QuizQuestions>
 
   @override
   void didChangeDependencies() {
+    _loadQuestions = _controllerQuiz.choice(
+        difficulty: widget.difficulty,
+        locale: LocaleAppNotifier.of(context).value);
     AdmobController.of(context).createInterstitialAd();
     super.didChangeDependencies();
   }
@@ -61,16 +65,17 @@ class _QuizQuestionsState extends State<QuizQuestions>
   void _playSoundWrongAnswer() =>
       _playerAudio.play('assets/music/wrong_answer.mp3');
 
-  void _switchToResult() =>
+  void _switchToResult(List<QuestionModel> myQuestions) =>
       Navigator.pushReplacementNamed(context, '/ResultQuiz',
           arguments: <String, Object>{
             'difficultyName': widget.difficultyName,
             'score': _controllerQuiz.score,
-            'totalQuestions': _controllerQuiz.totalNumberOfQuestions
+            'totalQuestions': myQuestions.length
           });
 
-  void buttonQuestionsOnPressed(String answer, String orderOfQuestions) {
-    if (_controllerQuiz.checkAnswer(answer)) {
+  void buttonQuestionsOnPressed(
+      String answer, String orderOfQuestions, List<QuestionModel> myQuestions) {
+    if (_controllerQuiz.checkAnswer(answer, myQuestions)) {
       _playSoundRightAnswer();
       _controllerQuiz.addScore();
       if (orderOfQuestions == 'A') {
@@ -109,15 +114,14 @@ class _QuizQuestionsState extends State<QuizQuestions>
     Future.delayed(
       const Duration(milliseconds: 500),
       () {
-        if (!(_controllerQuiz.counterQuestions >=
-            _controllerQuiz.myQuestions.length)) {
+        if (!(_controllerQuiz.counterQuestions >= myQuestions.length)) {
           _animationController.forward().then((_) {
             _controllerQuiz.cleanButtons();
             _controllerQuiz.nextQuestion();
             _animationController.reverse();
           });
         } else {
-          _switchToResult();
+          _switchToResult(myQuestions);
         }
       },
     );
@@ -132,10 +136,9 @@ class _QuizQuestionsState extends State<QuizQuestions>
       ),
       backgroundColor: AppColors.background,
       body: FutureBuilder(
-        future: _controllerQuiz.choice(
-            difficulty: widget.difficulty,
-            locale: LocaleAppNotifier.of(context).value),
-        builder: (BuildContext context, AsyncSnapshot<void> snapshot) =>
+        future: _loadQuestions,
+        builder: (BuildContext context,
+                AsyncSnapshot<List<QuestionModel>> snapshot) =>
             (snapshot.connectionState == ConnectionState.done)
                 ? AnimatedBuilder(
                     animation: Listenable.merge(
@@ -154,7 +157,7 @@ class _QuizQuestionsState extends State<QuizQuestions>
                         Padding(
                           padding: EdgeInsets.only(left: size.width * 0.07),
                           child: Text(
-                              '${AppLocalizations.of(context)!.text_question} ${_controllerQuiz.counterQuestions}/${_controllerQuiz.totalNumberOfQuestions}',
+                              '${AppLocalizations.of(context)!.text_question} ${_controllerQuiz.counterQuestions}/${snapshot.data!.length}',
                               style: GoogleFonts.ubuntu(
                                   fontSize: 22, color: Colors.white)),
                         ),
@@ -195,7 +198,8 @@ class _QuizQuestionsState extends State<QuizQuestions>
                                       left: size.width * 0.07,
                                       right: size.width * 0.07),
                                   child: Text(
-                                      _controllerQuiz.textQuestionReturn(),
+                                      _controllerQuiz
+                                          .textQuestionReturn(snapshot.data!),
                                       style: GoogleFonts.ubuntu(
                                           fontSize: 18, color: Colors.white)),
                                 ),
@@ -212,52 +216,60 @@ class _QuizQuestionsState extends State<QuizQuestions>
                                             isButtonDisabled: _controllerQuiz
                                                 .isButtonDisabled,
                                             answer: _controllerQuiz
-                                                .returnTextAnswerA(),
+                                                .returnTextAnswerA(
+                                                    snapshot.data!),
                                             orderOfQuestions: 'A',
                                             colorButton:
                                                 _controllerQuiz.colorButtonA,
                                             colorIcon: _controllerQuiz
                                                 .colorIconButtonA,
                                             icon: _controllerQuiz.iconButtonA,
+                                            myQuestions: snapshot.data!,
                                           ),
                                           ButtonQuizQuestions(
                                             onPressed: buttonQuestionsOnPressed,
                                             isButtonDisabled: _controllerQuiz
                                                 .isButtonDisabled,
                                             answer: _controllerQuiz
-                                                .returnTextAnswerB(),
+                                                .returnTextAnswerB(
+                                                    snapshot.data!),
                                             orderOfQuestions: 'B',
                                             colorButton:
                                                 _controllerQuiz.colorButtonB,
                                             colorIcon: _controllerQuiz
                                                 .colorIconButtonB,
                                             icon: _controllerQuiz.iconButtonB,
+                                            myQuestions: snapshot.data!,
                                           ),
                                           ButtonQuizQuestions(
                                             onPressed: buttonQuestionsOnPressed,
                                             isButtonDisabled: _controllerQuiz
                                                 .isButtonDisabled,
                                             answer: _controllerQuiz
-                                                .returnTextAnswerC(),
+                                                .returnTextAnswerC(
+                                                    snapshot.data!),
                                             orderOfQuestions: 'C',
                                             colorButton:
                                                 _controllerQuiz.colorButtonC,
                                             colorIcon: _controllerQuiz
                                                 .colorIconButtonC,
                                             icon: _controllerQuiz.iconButtonC,
+                                            myQuestions: snapshot.data!,
                                           ),
                                           ButtonQuizQuestions(
                                             onPressed: buttonQuestionsOnPressed,
                                             isButtonDisabled: _controllerQuiz
                                                 .isButtonDisabled,
                                             answer: _controllerQuiz
-                                                .returnTextAnswerD(),
+                                                .returnTextAnswerD(
+                                                    snapshot.data!),
                                             orderOfQuestions: 'D',
                                             colorButton:
                                                 _controllerQuiz.colorButtonD,
                                             colorIcon: _controllerQuiz
                                                 .colorIconButtonD,
                                             icon: _controllerQuiz.iconButtonD,
+                                            myQuestions: snapshot.data!,
                                           ),
                                         ],
                                       ),

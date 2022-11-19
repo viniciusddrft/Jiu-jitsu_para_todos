@@ -24,11 +24,7 @@ class ControllerQuiz extends ChangeNotifier {
 
   int get counterQuestions => indexCurrentQuestion + 1;
 
-  int get totalNumberOfQuestions => myQuestions.length;
-
   int get score => _score;
-
-  late final List<QuestionModel> myQuestions;
 
   void addScore() => _score++;
 
@@ -37,56 +33,38 @@ class ControllerQuiz extends ChangeNotifier {
     notifyListeners();
   }
 
-  Never _errorInLocale() {
-    throw Exception('Error in Locale app');
-  }
-
-  Future<void> choice(
+  Future<List<QuestionModel>> choice(
       {required String difficulty, required Locale locale}) async {
-    switch (difficulty) {
-      case 'easy':
-        {
-          if (locale == const Locale('en', 'US')) {
-            myQuestions = await _repositoryApi
-                .getQuestions(ApiRequests.quizEnglishWhiteBelt);
-          } else if (locale == const Locale('pt', 'BR')) {
-            myQuestions = await _repositoryApi
-                .getQuestions(ApiRequests.quizPortugueseWhiteBelt);
-          } else {
-            _errorInLocale();
-          }
-
-          break;
-        }
-
-      case 'medium':
-        {
-          if (locale == const Locale('en', 'US')) {
-            myQuestions = await _repositoryApi
-                .getQuestions(ApiRequests.quizEnglishBlueBelt);
-          } else if (locale == const Locale('pt', 'BR')) {
-            myQuestions = await _repositoryApi
-                .getQuestions(ApiRequests.quizPortugueseBlueBelt);
-          } else {
-            _errorInLocale();
-          }
-
-          break;
-        }
-
-      case 'hard':
-        {
-          if (locale == const Locale('en', 'US')) {
-            myQuestions = await _repositoryApi
-                .getQuestions(ApiRequests.quizPortugueseBlackBelt);
-          } else if (locale == const Locale('pt', 'BR')) {
-            myQuestions = await _repositoryApi
-                .getQuestions(ApiRequests.quizPortugueseBlackBelt);
-          } else {
-            _errorInLocale();
-          }
-          break;
-        }
+    if (difficulty == 'easy') {
+      if (locale == const Locale('en', 'US')) {
+        return await _repositoryApi
+            .getQuestions(ApiRequests.quizEnglishWhiteBelt);
+      } else if (locale == const Locale('pt', 'BR')) {
+        return await _repositoryApi
+            .getQuestions(ApiRequests.quizPortugueseWhiteBelt);
+      } else {
+        throw Exception('Error in Locale app');
+      }
+    } else if (difficulty == 'medium') {
+      if (locale == const Locale('en', 'US')) {
+        return await _repositoryApi
+            .getQuestions(ApiRequests.quizEnglishBlueBelt);
+      } else if (locale == const Locale('pt', 'BR')) {
+        return await _repositoryApi
+            .getQuestions(ApiRequests.quizPortugueseBlueBelt);
+      } else {
+        throw Exception('Error in Locale app');
+      }
+    } else {
+      if (locale == const Locale('en', 'US')) {
+        return await _repositoryApi
+            .getQuestions(ApiRequests.quizPortugueseBlackBelt);
+      } else if (locale == const Locale('pt', 'BR')) {
+        return await _repositoryApi
+            .getQuestions(ApiRequests.quizPortugueseBlackBelt);
+      } else {
+        throw Exception('Error in Locale app');
+      }
     }
   }
 
@@ -150,36 +128,36 @@ class ControllerQuiz extends ChangeNotifier {
     iconButtonD = null;
   }
 
-  String textQuestionReturn() =>
+  String textQuestionReturn(List<QuestionModel> myQuestions) =>
       myQuestions.toList()[indexCurrentQuestion].question;
 
-  String returnTextAnswerA() =>
+  String returnTextAnswerA(List<QuestionModel> myQuestions) =>
       myQuestions.toList()[indexCurrentQuestion].options[0];
 
-  String returnTextAnswerB() =>
+  String returnTextAnswerB(List<QuestionModel> myQuestions) =>
       myQuestions.toList()[indexCurrentQuestion].options[1];
 
-  String returnTextAnswerC() =>
+  String returnTextAnswerC(List<QuestionModel> myQuestions) =>
       myQuestions.toList()[indexCurrentQuestion].options[2];
 
-  String returnTextAnswerD() =>
+  String returnTextAnswerD(List<QuestionModel> myQuestions) =>
       myQuestions.toList()[indexCurrentQuestion].options[3];
 
-  bool checkAnswer(String answer) {
+  bool checkAnswer(String answer, List<QuestionModel> myQuestions) {
     isButtonDisabled = true;
     notifyListeners();
     return answer == myQuestions.toList()[indexCurrentQuestion].rightAnswer;
   }
 
-  String? returnPathImage() =>
+  String? returnPathImage(List<QuestionModel> myQuestions) =>
       myQuestions.toList()[indexCurrentQuestion].pathImage;
 
-  String? returnPathVideo() =>
+  String? returnPathVideo(List<QuestionModel> myQuestions) =>
       myQuestions.toList()[indexCurrentQuestion].pathVideo;
 
-  bool existImage() =>
+  bool existImage(List<QuestionModel> myQuestions) =>
       myQuestions.toList()[indexCurrentQuestion].pathImage != null;
 
-  bool existVideo() =>
+  bool existVideo(List<QuestionModel> myQuestions) =>
       myQuestions.toList()[indexCurrentQuestion].pathVideo != null;
 }

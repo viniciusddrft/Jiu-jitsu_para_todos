@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../shared/admob/controller/admob_controller.dart';
 import '../../../../shared/appbar_gradient/appbar_gradient.dart';
+import '../../../../shared/models/wallpaper/wallpapers_model.dart';
 import '../../../../shared/themes/app_colors.dart';
 import '../../controller/wallpapers_controller.dart';
 
@@ -17,8 +18,14 @@ class WallpapersView extends StatefulWidget {
 
 class _WallpapersViewState extends State<WallpapersView> {
   final ControllerWallpapers _controllerWallpapers = ControllerWallpapers();
-
+  late final Future<List<WallpaperModel>> _loadWallpapers;
   late final Size size = MediaQuery.of(context).size;
+
+  @override
+  void initState() {
+    _loadWallpapers = _controllerWallpapers.loadWallpapers();
+    super.initState();
+  }
 
   @override
   void didChangeDependencies() {
@@ -36,11 +43,12 @@ class _WallpapersViewState extends State<WallpapersView> {
       ),
       backgroundColor: AppColors.background,
       body: FutureBuilder(
-        future: _controllerWallpapers.loadWallpapers(),
-        builder: (BuildContext context, AsyncSnapshot<void> snapshot) =>
+        future: _loadWallpapers,
+        builder: (BuildContext context,
+                AsyncSnapshot<List<WallpaperModel>> snapshot) =>
             (snapshot.connectionState == ConnectionState.done)
                 ? GridView.builder(
-                    itemCount: _controllerWallpapers.wallpapers.length,
+                    itemCount: snapshot.data!.length,
                     padding: EdgeInsets.symmetric(
                         horizontal: size.width * 0.05,
                         vertical: size.height * 0.03),
@@ -53,9 +61,7 @@ class _WallpapersViewState extends State<WallpapersView> {
                     itemBuilder: (context, index) => RawMaterialButton(
                       onPressed: () => Navigator.pushNamed(
                           context, '/DetailsImage', arguments: <String, Object>{
-                        'imageUrl': _controllerWallpapers.wallpapers
-                            .toList()[index]
-                            .url,
+                        'imageUrl': snapshot.data!.toList()[index].url,
                         'index': index
                       }),
                       child: Hero(
@@ -63,9 +69,7 @@ class _WallpapersViewState extends State<WallpapersView> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(15),
                           child: Image.network(
-                            _controllerWallpapers.wallpapers
-                                .toList()[index]
-                                .url,
+                            snapshot.data!.toList()[index].url,
                             fit: BoxFit.cover,
                             width: 100,
                             height: 100,
