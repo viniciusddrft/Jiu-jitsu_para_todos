@@ -134,15 +134,6 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
             style: GoogleFonts.yatraOne()),
       ),
       backgroundColor: AppColors.background,
-      bottomNavigationBar: SizedBox(
-        height: 60,
-        child: Center(
-          child: Text(
-            '${AppLocalizations.of(context)!.text_version} 2.5.3',
-            style: GoogleFonts.yatraOne(color: Colors.grey[700]),
-          ),
-        ),
-      ),
       body: SizedBox(
         width: size.width,
         child: Column(
@@ -296,6 +287,15 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
             ),
             const Spacer(flex: 10),
           ],
+        ),
+      ),
+      bottomNavigationBar: SizedBox(
+        height: 60,
+        child: Center(
+          child: Text(
+            '${AppLocalizations.of(context)!.text_version} 2.6.0',
+            style: GoogleFonts.yatraOne(color: Colors.grey[700]),
+          ),
         ),
       ),
     );
