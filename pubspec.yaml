@@ -37,6 +37,7 @@ dependencies:
   wakelock: ^0.6.2
   http: ^0.13.5
   google_fonts: ^3.0.1
+  in_app_review: ^2.0.4
 
 dev_dependencies:
   flutter_test:

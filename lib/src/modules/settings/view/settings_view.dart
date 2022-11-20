@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:in_app_review/in_app_review.dart';
 
 import '../../../../core/locale/locale_app.dart';
 import '../../../shared/appbar_gradient/appbar_gradient.dart';
-import '../../../shared/launch_link/launch_link.dart';
 import '../../../shared/services/local_storage/interface/local_storage_interface.dart';
 import '../../../shared/services/local_storage/local_storage_shared_preferrence.dart';
 import '../../../shared/themes/app_colors.dart';
@@ -17,10 +17,11 @@ class SettingsView extends StatefulWidget {
   State<SettingsView> createState() => _SettingsViewState();
 }
 
-class _SettingsViewState extends State<SettingsView> with OpenLink {
+class _SettingsViewState extends State<SettingsView> {
   late final Size size = MediaQuery.of(context).size;
   final ValueNotifier<String?> _iconPath = ValueNotifier<String?>(null);
   final ILocalStorage _localStorage = LocalStorageSharedPreferrence();
+  final InAppReview _inAppReview = InAppReview.instance;
 
   @override
   void didChangeDependencies() {
@@ -235,8 +236,8 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                               ),
                               side: const BorderSide(color: Colors.white),
                             ),
-                            onPressed: () => openLink(
-                                'https://play.google.com/store/apps/details?id=com.jiu_jitsu_para_todos'),
+                            onPressed: () async =>
+                                await _inAppReview.requestReview(),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
