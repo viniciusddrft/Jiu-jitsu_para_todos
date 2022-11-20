@@ -16,8 +16,6 @@ class ButtonOptionsRules extends ButtonForMenu {
 }
 
 class _ButtonOptionsRulesState extends State<ButtonOptionsRules> {
-  void changeRoute() => Navigator.pushNamed(context, widget.routeButton);
-
   @override
   void didChangeDependencies() {
     precacheImage(Image.asset(widget.imageButton).image, context);
@@ -26,6 +24,9 @@ class _ButtonOptionsRulesState extends State<ButtonOptionsRules> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.makeButton(context, changeRoute: changeRoute);
+    return widget.makeButton(
+      context,
+      changeRoute: () => Navigator.pushNamed(context, widget.routeButton),
+    );
   }
 }

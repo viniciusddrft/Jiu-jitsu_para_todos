@@ -10,12 +10,10 @@ class ControllerWallpapers {
   Future<List<WallpaperModel>> loadWallpapers() async =>
       await _repositoryApi.getWallpapers();
 
-  static Future<bool> setWallpaper(String url, int wallpaperLocation) async {
+  static Future<bool?> setWallpaper(String url, int wallpaperLocation) async {
     if (await Permission.storage.request().isGranted) {
-      if (await AsyncWallpaper.setWallpaper(
-          url: url, wallpaperLocation: wallpaperLocation)) {
-        return true;
-      }
+      return await AsyncWallpaper.setWallpaper(
+          url: url, wallpaperLocation: wallpaperLocation);
     }
     return false;
   }

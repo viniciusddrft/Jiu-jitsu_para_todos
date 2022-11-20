@@ -56,8 +56,6 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
 
   List<Map<String, Object>> get allLocales => _allLocales();
 
-  void _changeCredits() => Navigator.pushNamed(context, '/Credits');
-
   Future<void> _changeLanguageMenu() async {
     return showDialog<void>(
       context: context,
@@ -268,7 +266,8 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                               ),
                               side: const BorderSide(color: Colors.white),
                             ),
-                            onPressed: _changeCredits,
+                            onPressed: () =>
+                                Navigator.pushNamed(context, '/Credits'),
                             child: Center(
                               child: Text(
                                 AppLocalizations.of(context)!

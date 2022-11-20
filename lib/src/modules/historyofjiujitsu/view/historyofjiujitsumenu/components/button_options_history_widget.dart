@@ -14,8 +14,6 @@ class ButtonOptionsHistory extends ButtonForMenu {
 }
 
 class _ButtonOptionsHistoryState extends State<ButtonOptionsHistory> {
-  void changeRoute() => Navigator.pushNamed(context, widget.routeButton);
-
   @override
   void didChangeDependencies() {
     precacheImage(Image.asset(widget.imageButton).image, context);
@@ -24,6 +22,9 @@ class _ButtonOptionsHistoryState extends State<ButtonOptionsHistory> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.makeButton(context, changeRoute: changeRoute);
+    return widget.makeButton(
+      context,
+      changeRoute: () => Navigator.pushNamed(context, widget.routeButton),
+    );
   }
 }

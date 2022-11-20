@@ -34,12 +34,6 @@ class ButtonOptionQuiz extends ButtonForMenu {
 }
 
 class _ButtonOptionQuizState extends State<ButtonOptionQuiz> {
-  void changeRoute() => Navigator.pushNamed(context, '/QuizQuestions',
-          arguments: <String, String>{
-            'difficulty': widget.difficulty,
-            'difficultyName': widget.difficultyName
-          });
-
   @override
   void didChangeDependencies() {
     precacheImage(Image.asset(widget.imageButton).image, context);
@@ -48,6 +42,13 @@ class _ButtonOptionQuizState extends State<ButtonOptionQuiz> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.makeButton(context, changeRoute: changeRoute);
+    return widget.makeButton(
+      context,
+      changeRoute: () => Navigator.pushNamed(context, '/QuizQuestions',
+          arguments: <String, String>{
+            'difficulty': widget.difficulty,
+            'difficultyName': widget.difficultyName
+          }),
+    );
   }
 }

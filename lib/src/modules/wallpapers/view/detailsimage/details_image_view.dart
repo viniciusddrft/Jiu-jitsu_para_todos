@@ -55,8 +55,9 @@ class _DetailsImageState extends State<DetailsImage> {
                       side: const BorderSide(color: Colors.white)),
                   onPressed: () =>
                       ControllerWallpapers.setWallpaper(widget.imageUrl, 1)
-                          .then((bool isSetWallpaperSuccess) {
-                    if (isSetWallpaperSuccess) {
+                          .then((bool? isSetWallpaperSuccess) {
+                    if (isSetWallpaperSuccess != null &&
+                        isSetWallpaperSuccess) {
                       AdmobController.of(context).showInterstitialAd();
                     }
                     Navigator.pop(context);
@@ -81,8 +82,9 @@ class _DetailsImageState extends State<DetailsImage> {
                       side: const BorderSide(color: Colors.white)),
                   onPressed: () =>
                       ControllerWallpapers.setWallpaper(widget.imageUrl, 2)
-                          .then((bool isSetWallpaperSuccess) {
-                    if (isSetWallpaperSuccess) {
+                          .then((bool? isSetWallpaperSuccess) {
+                    if (isSetWallpaperSuccess != null &&
+                        isSetWallpaperSuccess) {
                       AdmobController.of(context).showInterstitialAd();
                     }
                     Navigator.pop(context);
@@ -107,8 +109,9 @@ class _DetailsImageState extends State<DetailsImage> {
                       side: const BorderSide(color: Colors.white)),
                   onPressed: () =>
                       ControllerWallpapers.setWallpaper(widget.imageUrl, 3)
-                          .then((bool isSetWallpaperSuccess) {
-                    if (isSetWallpaperSuccess) {
+                          .then((bool? isSetWallpaperSuccess) {
+                    if (isSetWallpaperSuccess != null &&
+                        isSetWallpaperSuccess) {
                       AdmobController.of(context).showInterstitialAd();
                     }
                     Navigator.pop(context);

@@ -25,14 +25,15 @@ class _ButtonOptionsHomeState extends State<ButtonOptionsHome> {
     super.didChangeDependencies();
   }
 
-  void changeRoute() => widget.isFightMakerView
-      ? Navigator.pushNamed(context, widget.routeButton).then(
-          (_) => Navigator.pushReplacementNamed(context, '/Home'),
-        )
-      : Navigator.pushNamed(context, widget.routeButton);
-
   @override
   Widget build(BuildContext context) {
-    return widget.makeButton(context, changeRoute: changeRoute);
+    return widget.makeButton(
+      context,
+      changeRoute: () => widget.isFightMakerView
+          ? Navigator.pushNamed(context, widget.routeButton).then(
+              (_) => Navigator.pushReplacementNamed(context, '/Home'),
+            )
+          : Navigator.pushNamed(context, widget.routeButton),
+    );
   }
 }

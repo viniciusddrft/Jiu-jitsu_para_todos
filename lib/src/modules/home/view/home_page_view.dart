@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wakelock/wakelock.dart';
-
 import '../../../shared/appbar_gradient/appbar_gradient.dart';
+import '../../../shared/mixins/device_orientation.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_icons_path.dart';
 
@@ -17,18 +14,14 @@ class HomePageView extends StatefulWidget {
   State<HomePageView> createState() => _HomePageViewState();
 }
 
-class _HomePageViewState extends State<HomePageView> {
+class _HomePageViewState extends State<HomePageView> with DeviceOrientationApp {
+  late final Future<void> _loadConfigs;
+
   @override
   void initState() {
-    Wakelock.disable();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    _loadConfigs = configPortrait();
     super.initState();
   }
-
-  void _changesettings() => Navigator.pushNamed(context, '/Settings');
 
   @override
   Widget build(BuildContext context) {
@@ -39,49 +32,60 @@ class _HomePageViewState extends State<HomePageView> {
             style: GoogleFonts.yatraOne()),
         actions: [
           IconButton(
-              icon: const Icon(Icons.settings), onPressed: _changesettings),
+            icon: const Icon(Icons.settings),
+            onPressed: () => Navigator.pushNamed(context, '/Settings'),
+          ),
         ],
       ),
       backgroundColor: AppColors.background,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 50),
-          child: Column(
-            children: [
-              ButtonOptionsHome(
-                imageButton: AppIconsPath.iconHistoryOfJiujitsu,
-                textButton: AppLocalizations.of(context)!
-                    .button_history_of_jiujitsu_home_page,
-                routeButton: '/HistoryOfJiujitsu', // <- '/historyofjiujitsu',
-              ),
-              ButtonOptionsHome(
-                imageButton: AppIconsPath.rules,
-                textButton:
-                    AppLocalizations.of(context)!.button_rules_home_page,
-                routeButton: '/Rules', // <- '/rules',
-              ),
-              ButtonOptionsHome(
-                  imageButton: AppIconsPath.quiz,
-                  textButton:
-                      AppLocalizations.of(context)!.button_quiz_home_page,
-                  routeButton: '/Quiz' // <- '/quiz',
+      body: FutureBuilder(
+        future: _loadConfigs,
+        builder: (BuildContext context, AsyncSnapshot<void> snapshot) =>
+            snapshot.connectionState == ConnectionState.done
+                ? SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 50),
+                      child: Column(
+                        children: [
+                          ButtonOptionsHome(
+                            imageButton: AppIconsPath.iconHistoryOfJiujitsu,
+                            textButton: AppLocalizations.of(context)!
+                                .button_history_of_jiujitsu_home_page,
+                            routeButton:
+                                '/HistoryOfJiujitsu', // <- '/historyofjiujitsu',
+                          ),
+                          ButtonOptionsHome(
+                            imageButton: AppIconsPath.rules,
+                            textButton: AppLocalizations.of(context)!
+                                .button_rules_home_page,
+                            routeButton: '/Rules', // <- '/rules',
+                          ),
+                          ButtonOptionsHome(
+                              imageButton: AppIconsPath.quiz,
+                              textButton: AppLocalizations.of(context)!
+                                  .button_quiz_home_page,
+                              routeButton: '/Quiz' // <- '/quiz',
+                              ),
+                          ButtonOptionsHome(
+                            imageButton: AppIconsPath.fightMarker,
+                            textButton: AppLocalizations.of(context)!
+                                .button_fight_marker_home_page,
+                            routeButton: '/Fightmarker', // <- '/fightmarker',
+                            isFightMakerView: true,
+                          ),
+                          ButtonOptionsHome(
+                            imageButton: AppIconsPath.wallpapers,
+                            textButton: AppLocalizations.of(context)!
+                                .button_wallpapers_home_page,
+                            routeButton: '/Wallpapers', // <- '/wallpapers',
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                : const Center(
+                    child: CircularProgressIndicator(),
                   ),
-              ButtonOptionsHome(
-                imageButton: AppIconsPath.fightMarker,
-                textButton:
-                    AppLocalizations.of(context)!.button_fight_marker_home_page,
-                routeButton: '/Fightmarker', // <- '/fightmarker',
-                isFightMakerView: true,
-              ),
-              ButtonOptionsHome(
-                imageButton: AppIconsPath.wallpapers,
-                textButton:
-                    AppLocalizations.of(context)!.button_wallpapers_home_page,
-                routeButton: '/Wallpapers', // <- '/wallpapers',
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }
