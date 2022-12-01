@@ -55,6 +55,8 @@ class _SettingsViewState extends State<SettingsView> {
         },
       ];
 
+  Future<void> _requestReview() => _inAppReview.requestReview();
+
   List<Map<String, Object>> get allLocales => _allLocales();
 
   Future<void> _changeLanguageMenu() async {
@@ -140,7 +142,7 @@ class _SettingsViewState extends State<SettingsView> {
           children: [
             const Spacer(),
             Flexible(
-              flex: 8,
+              flex: 10,
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
@@ -155,7 +157,7 @@ class _SettingsViewState extends State<SettingsView> {
                         child: Text(
                           AppLocalizations.of(context)!
                               .button_language_settings_page,
-                          style: GoogleFonts.ubuntu(fontSize: 20),
+                          style: GoogleFonts.yatraOne(fontSize: 20),
                         ),
                       ),
                       const Spacer(),
@@ -204,7 +206,7 @@ class _SettingsViewState extends State<SettingsView> {
               ),
             ),
             Flexible(
-              flex: 10,
+              flex: 15,
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
@@ -236,8 +238,7 @@ class _SettingsViewState extends State<SettingsView> {
                               ),
                               side: const BorderSide(color: Colors.white),
                             ),
-                            onPressed: () async =>
-                                await _inAppReview.requestReview(),
+                            onPressed: _requestReview,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -293,7 +294,7 @@ class _SettingsViewState extends State<SettingsView> {
         height: 60,
         child: Center(
           child: Text(
-            '${AppLocalizations.of(context)!.text_version} 2.6.0',
+            '${AppLocalizations.of(context)!.text_version} 2.6.1',
             style: GoogleFonts.yatraOne(color: Colors.grey[700]),
           ),
         ),
