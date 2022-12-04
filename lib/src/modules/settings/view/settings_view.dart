@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:in_app_review/in_app_review.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/launch_link/launch_link.dart';
 
 import '../../../../core/locale/locale_app.dart';
 import '../../../shared/appbar_gradient/appbar_gradient.dart';
@@ -17,11 +17,10 @@ class SettingsView extends StatefulWidget {
   State<SettingsView> createState() => _SettingsViewState();
 }
 
-class _SettingsViewState extends State<SettingsView> {
+class _SettingsViewState extends State<SettingsView> with OpenLink {
   late final Size size = MediaQuery.of(context).size;
   final ValueNotifier<String?> _iconPath = ValueNotifier<String?>(null);
   final ILocalStorage _localStorage = LocalStorageSharedPreferrence();
-  final InAppReview _inAppReview = InAppReview.instance;
 
   @override
   void didChangeDependencies() {
@@ -54,8 +53,6 @@ class _SettingsViewState extends State<SettingsView> {
           'text': AppLocalizations.of(context)!.text_english_united_states
         },
       ];
-
-  Future<void> _requestReview() => _inAppReview.requestReview();
 
   List<Map<String, Object>> get allLocales => _allLocales();
 
@@ -238,7 +235,8 @@ class _SettingsViewState extends State<SettingsView> {
                               ),
                               side: const BorderSide(color: Colors.white),
                             ),
-                            onPressed: _requestReview,
+                            onPressed: () => openLink(
+                                'https://play.google.com/store/apps/details?id=com.jiu_jitsu_para_todos'),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
