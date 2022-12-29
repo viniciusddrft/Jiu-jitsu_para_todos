@@ -25,7 +25,7 @@ abstract class ButtonForMenu extends StatefulWidget {
       );
 
   Widget _makeCard(Size size, VoidCallback changeRoute) => Container(
-        height: size.height * 0.15,
+        height: size.height * 0.13,
         width: size.width * 0.65,
         margin: EdgeInsets.only(left: size.width * 0.173),
         decoration: BoxDecoration(
@@ -33,9 +33,7 @@ abstract class ButtonForMenu extends StatefulWidget {
           borderRadius: BorderRadius.circular(8.0),
           boxShadow: const <BoxShadow>[
             BoxShadow(
-                color: Colors.black,
-                blurRadius: 10.0,
-                offset: Offset(0.0, 10.0))
+                color: Colors.black, blurRadius: 10.0, offset: Offset(0.0, 1.0))
           ],
         ),
         child: ElevatedButton(
