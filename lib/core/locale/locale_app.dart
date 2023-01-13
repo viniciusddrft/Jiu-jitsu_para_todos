@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/services/local_storage/local_storage_shared_preferrence.dart';
 
 import '../../src/shared/services/local_storage/interface/local_storage_interface.dart';
 
 class LocaleAppNotifier extends ValueNotifier<Locale> {
-  final ILocalStorage localStorage;
+  final ILocalStorage _localStorage = LocalStorageSharedPreferrence();
 
-  LocaleAppNotifier({required this.localStorage})
-      : super(const Locale('en', 'Us'));
+  LocaleAppNotifier() : super(const Locale('en', 'Us'));
 
   static LocaleAppNotifier of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<LocaleApp>()!.notifier!;
 
   void getLocalePreference() =>
-      localStorage.getValue<String>('locale').then((String? preference) {
+      _localStorage.getValue<String>('locale').then((String? preference) {
         if (preference != null) {
           value = Locale(preference.split('_')[0], preference.split('_')[1]);
         } else {
@@ -31,7 +31,7 @@ class LocaleAppNotifier extends ValueNotifier<Locale> {
 
   void changeLocale(Locale newLocale) {
     value = newLocale;
-    localStorage.saveValue<String>('locale', value.toString());
+    _localStorage.saveValue<String>('locale', value.toString());
   }
 }
 
