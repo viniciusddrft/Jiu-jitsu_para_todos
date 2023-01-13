@@ -26,13 +26,13 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
-  shared_preferences: ^2.0.15
+  shared_preferences: ^2.0.16
   circular_countdown_timer: ^0.2.3
   url_launcher: ^6.1.7
   async_wallpaper: ^2.0.1
   permission_handler: ^10.2.0
   google_mobile_ads: ^2.3.0
-  just_audio: ^0.9.30
+  just_audio: ^0.9.31
 # video_player: ^2.2.10
   wakelock: ^0.6.2
   http: ^0.13.5
