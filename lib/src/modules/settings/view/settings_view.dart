@@ -35,12 +35,6 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
     super.didChangeDependencies();
   }
 
-  @override
-  void dispose() {
-    _iconPath.dispose();
-    super.dispose();
-  }
-
   List<Map<String, Object>> _allLocales() => [
         {
           'locale': const Locale('pt', 'BR'),
@@ -298,5 +292,11 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _iconPath.dispose();
+    super.dispose();
   }
 }

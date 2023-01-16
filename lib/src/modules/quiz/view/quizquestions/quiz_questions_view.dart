@@ -51,14 +51,6 @@ class _QuizQuestionsState extends State<QuizQuestions>
     super.didChangeDependencies();
   }
 
-  @override
-  void dispose() {
-    _controllerQuiz.dispose();
-    _animationController.dispose();
-    _playerAudio.dispose();
-    super.dispose();
-  }
-
   void _playSoundRightAnswer() =>
       _playerAudio.play('assets/music/right_answer.mp3');
 
@@ -288,5 +280,13 @@ class _QuizQuestionsState extends State<QuizQuestions>
                   ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controllerQuiz.dispose();
+    _animationController.dispose();
+    _playerAudio.dispose();
+    super.dispose();
   }
 }

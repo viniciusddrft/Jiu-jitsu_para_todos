@@ -44,13 +44,6 @@ class _AdmobNativeAdState extends State<AdmobNativeAd> {
   }
 
   @override
-  void dispose() {
-    _nativeAd.dispose();
-    _isAdLoaded.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: _isAdLoaded,
@@ -66,5 +59,12 @@ class _AdmobNativeAdState extends State<AdmobNativeAd> {
                   ],
                 ),
     );
+  }
+
+  @override
+  void dispose() {
+    _nativeAd.dispose();
+    _isAdLoaded.dispose();
+    super.dispose();
   }
 }

@@ -20,13 +20,6 @@ class _ClockState extends State<Clock> {
   final MyClock myClock = MyClock();
   final ServiceJustAudio _playerAudio = ServiceJustAudio();
 
-  @override
-  void dispose() {
-    _playerAudio.dispose();
-    myClock.dispose();
-    super.dispose();
-  }
-
   Future<void> _showMyDialogstopsound() => showDialog<void>(
         context: context,
         barrierDismissible: false,
@@ -136,5 +129,12 @@ class _ClockState extends State<Clock> {
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    _playerAudio.dispose();
+    myClock.dispose();
+    super.dispose();
   }
 }

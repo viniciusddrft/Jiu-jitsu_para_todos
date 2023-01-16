@@ -16,14 +16,6 @@ class _ScoreboardState extends State<Scoreboard> {
   final ValueNotifier<int> _advantagesOfTheFighter = ValueNotifier<int>(0);
 
   @override
-  void dispose() {
-    _fighterPoints.dispose();
-    _punishmentsOfTheFighter.dispose();
-    _advantagesOfTheFighter.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -158,5 +150,13 @@ class _ScoreboardState extends State<Scoreboard> {
         ]),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    _fighterPoints.dispose();
+    _punishmentsOfTheFighter.dispose();
+    _advantagesOfTheFighter.dispose();
+    super.dispose();
   }
 }

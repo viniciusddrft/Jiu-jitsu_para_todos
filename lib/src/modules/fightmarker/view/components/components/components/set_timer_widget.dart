@@ -20,13 +20,6 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
   final PageController pageControllerSeconds = PageController();
 
   @override
-  void dispose() {
-    pageControllerMinutes.dispose();
-    pageControllerSeconds.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: AppColors.background,
@@ -154,5 +147,12 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    pageControllerMinutes.dispose();
+    pageControllerSeconds.dispose();
+    super.dispose();
   }
 }

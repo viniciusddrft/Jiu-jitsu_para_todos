@@ -23,13 +23,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
-  void dispose() {
-    LocaleAppNotifier.of(context).dispose();
-    AdmobController.of(context).dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: LocaleAppNotifier.of(context),
@@ -48,5 +41,12 @@ class _MyAppState extends State<MyApp> {
         onGenerateRoute: Routes.routes,
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    LocaleAppNotifier.of(context).dispose();
+    AdmobController.of(context).dispose();
+    super.dispose();
   }
 }
