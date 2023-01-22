@@ -35,6 +35,7 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primaryColor: AppColors.primary,
           brightness: Brightness.dark,
+          useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
         initialRoute: '/Home',
