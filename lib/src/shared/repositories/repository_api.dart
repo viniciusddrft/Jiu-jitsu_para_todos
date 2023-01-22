@@ -11,7 +11,8 @@ import '../services/request_rest/service_web_request.dart';
 import 'interface/repository_api_interface.dart';
 
 class RepositoryApi implements RepositoryApiInterface {
-  final ServiceWebRequestInterface _serviceWebRequestInterface =
+  @override
+  final ServiceWebRequestInterface serviceWebRequestInterface =
       const ServiceWebHttp();
 
   @override
@@ -31,7 +32,7 @@ class RepositoryApi implements RepositoryApiInterface {
     final List<QuestionModel> questions = [];
 
     final ServiceWebResponseInterface response =
-        await _serviceWebRequestInterface
+        await serviceWebRequestInterface
             .get((data['apiRequests'] as ApiRequests).url);
 
     for (var element
@@ -60,7 +61,7 @@ class RepositoryApi implements RepositoryApiInterface {
     final List<WallpaperModel> wallpapers = [];
 
     final ServiceWebResponseInterface response =
-        await _serviceWebRequestInterface.get(ApiRequests.wallpapers.url);
+        await serviceWebRequestInterface.get(ApiRequests.wallpapers.url);
 
     for (var element
         in (jsonDecode(utf8.decode(response.bodyBytes))['body'] as List)) {
