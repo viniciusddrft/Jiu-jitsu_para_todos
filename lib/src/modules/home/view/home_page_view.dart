@@ -15,14 +15,6 @@ class HomePageView extends StatefulWidget {
 }
 
 class _HomePageViewState extends State<HomePageView> with DeviceOrientationApp {
-  late final Future<void> _loadConfigs;
-
-  @override
-  void initState() {
-    _loadConfigs = configPortrait();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +31,7 @@ class _HomePageViewState extends State<HomePageView> with DeviceOrientationApp {
       ),
       backgroundColor: AppColors.background,
       body: FutureBuilder(
-        future: _loadConfigs,
+        future: configPortrait(),
         builder: (BuildContext context, AsyncSnapshot<void> snapshot) =>
             snapshot.connectionState == ConnectionState.done
                 ? SingleChildScrollView(

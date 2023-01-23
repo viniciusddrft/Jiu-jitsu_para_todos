@@ -56,7 +56,7 @@ abstract class ButtonForMenu extends StatefulWidget {
             child: Center(
               child: Text(
                 textButton,
-                style: GoogleFonts.ubuntu(fontSize: 18),
+                style: GoogleFonts.ubuntu(fontSize: 18, color: Colors.white),
               ),
             ),
           ),

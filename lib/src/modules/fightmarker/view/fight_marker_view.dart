@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../shared/appbar_gradient/appbar_gradient.dart';
 import '../../../shared/mixins/device_orientation.dart';
 import '../../../shared/themes/app_colors.dart';
 
@@ -17,25 +16,19 @@ class FightMakerView extends StatefulWidget {
 
 class _FightMakerViewState extends State<FightMakerView>
     with DeviceOrientationApp {
-  late final Future<void> _loadConfigs;
-
-  @override
-  void initState() {
-    _loadConfigs = configLandscape();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: const AppBarGradient(),
-        title: Text(AppLocalizations.of(context)!.title_appbar_fightmarker_page,
-            style: GoogleFonts.yatraOne()),
+        backgroundColor: Colors.transparent,
+        title: Text(
+          AppLocalizations.of(context)!.title_appbar_fightmarker_page,
+          style: GoogleFonts.yatraOne(),
+        ),
       ),
       backgroundColor: AppColors.background,
       body: FutureBuilder(
-        future: _loadConfigs,
+        future: configLandscape(),
         builder: (BuildContext context, AsyncSnapshot<void> snapshot) =>
             snapshot.connectionState == ConnectionState.done
                 ? Row(
