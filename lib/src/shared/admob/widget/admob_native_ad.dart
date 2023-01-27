@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdmobNativeAd extends StatefulWidget {
-  final String factoryId;
-  final String adUnitId;
+  final String factoryId, adUnitId;
   final AdRequest? adRequest;
   final NativeAdOptions? nativeAdOptions;
   const AdmobNativeAd(
