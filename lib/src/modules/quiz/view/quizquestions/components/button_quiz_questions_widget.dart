@@ -8,8 +8,7 @@ class ButtonQuizQuestions extends StatelessWidget {
   final void Function(String answer, String orderOfQuestions,
       List<QuestionModel> myQuestions) onPressed;
   final bool isButtonDisabled;
-  final String answer;
-  final String orderOfQuestions;
+  final String answer, orderOfQuestions;
   final Color colorButton;
   final Color? colorIcon;
   final IconData? icon;

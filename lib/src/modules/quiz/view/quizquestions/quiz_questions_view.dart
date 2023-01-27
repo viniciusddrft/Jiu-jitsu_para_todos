@@ -13,8 +13,7 @@ import '../../controller/quiz_controller.dart';
 import 'components/button_quiz_questions_widget.dart';
 
 class QuizQuestions extends StatefulWidget {
-  final String difficulty;
-  final String difficultyName;
+  final String difficulty, difficultyName;
   QuizQuestions(
       {super.key, required this.difficulty, required this.difficultyName})
       : assert(['easy', 'medium', 'hard'].contains(difficulty));

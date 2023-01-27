@@ -4,8 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../themes/app_colors.dart';
 
 abstract class ButtonForMenu extends StatefulWidget {
-  final String imageButton;
-  final String textButton;
+  final String imageButton, textButton;
 
   const ButtonForMenu(
       {required this.imageButton, required this.textButton, super.key});
