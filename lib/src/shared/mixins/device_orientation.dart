@@ -3,16 +3,16 @@ import 'package:wakelock/wakelock.dart';
 
 mixin DeviceOrientationApp {
   Future<void> configPortrait() async {
-    Wakelock.disable();
-    SystemChrome.setPreferredOrientations([
+    await Wakelock.disable();
+    await SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
   }
 
   Future<void> configLandscape() async {
-    Wakelock.enable();
-    SystemChrome.setPreferredOrientations([
+    await Wakelock.enable();
+    await SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);

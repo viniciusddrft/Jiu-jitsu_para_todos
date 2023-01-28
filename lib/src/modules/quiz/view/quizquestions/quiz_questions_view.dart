@@ -7,10 +7,12 @@ import '../../../../../core/locale/locale_app.dart';
 import '../../../../shared/admob/controller/admob_controller.dart';
 import '../../../../shared/models/quiz/questions_model.dart';
 import '../../../../shared/services/sound/service_sound_implements_just_audio.dart';
+
 import '../../../../shared/themes/app_colors.dart';
 import '../../controller/quiz_controller.dart';
 
 import 'components/button_quiz_questions_widget.dart';
+import 'components/quiz_loading_widget.dart';
 
 class QuizQuestions extends StatefulWidget {
   final String difficulty, difficultyName;
@@ -274,9 +276,7 @@ class _QuizQuestionsState extends State<QuizQuestions>
                       ],
                     ),
                   )
-                : const Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                : const QuizLoadingWidget(),
       ),
     );
   }

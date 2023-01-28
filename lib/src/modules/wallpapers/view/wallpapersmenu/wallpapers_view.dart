@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/view/wallpapersmenu/components/wallpapers_loading_widget.dart';
 
 import '../../../../shared/admob/controller/admob_controller.dart';
 import '../../../../shared/appbar_gradient/appbar_gradient.dart';
@@ -94,9 +95,7 @@ class _WallpapersViewState extends State<WallpapersView> {
                       ),
                     ),
                   )
-                : const Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                : const WallpapersLoadingWidget(),
       ),
     );
   }
