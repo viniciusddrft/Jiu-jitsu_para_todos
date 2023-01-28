@@ -36,7 +36,7 @@ dependencies:
 # video_player: ^2.2.10
   wakelock: ^0.6.2
   http: ^0.13.5
-  google_fonts: ^4.0.0
+  google_fonts: ^4.0.1
 
 dev_dependencies:
   flutter_test:

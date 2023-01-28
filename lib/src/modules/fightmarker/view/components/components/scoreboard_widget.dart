@@ -113,7 +113,7 @@ class _ScoreboardState extends State<Scoreboard> {
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
             child: Text(
               AppLocalizations.of(context)!.text_abbreviated_advantage,
-              style: GoogleFonts.yatraOne(fontSize: 30),
+              style: GoogleFonts.yatraOne(fontSize: 30, color: Colors.yellow),
             ),
           ),
           IconButton(
