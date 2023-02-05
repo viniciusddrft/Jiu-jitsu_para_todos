@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:jiu_jitsu_para_todos/src/shared/repositories/interface/repository_api_interface.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/repositoryes/interface/repository_api_interface.dart';
 
 import '../../../shared/models/quiz/questions_model.dart';
-import '../../../shared/repositories/repository_api.dart';
+import '../../../shared/repositoryes/repository_api.dart';
 
 class ControllerQuiz extends ChangeNotifier {
   final RepositoryApi _repositoryApi = RepositoryApi();

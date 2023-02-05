@@ -2,7 +2,7 @@ import 'package:async_wallpaper/async_wallpaper.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../shared/models/wallpaper/wallpapers_model.dart';
-import '../../../shared/repositories/repository_api.dart';
+import '../../../shared/repositoryes/repository_api.dart';
 
 class ControllerWallpapers {
   final RepositoryApi _repositoryApi = RepositoryApi();
