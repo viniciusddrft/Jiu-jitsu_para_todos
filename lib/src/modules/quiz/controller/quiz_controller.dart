@@ -37,31 +37,25 @@ class ControllerQuiz extends ChangeNotifier {
       {required String difficulty, required Locale locale}) async {
     if (difficulty == 'easy') {
       if (locale == const Locale('en', 'US')) {
-        return await _repositoryApi
-            .getQuestions(ApiRequests.quizEnglishWhiteBelt);
+        return _repositoryApi.getQuestions(ApiRequests.quizEnglishWhiteBelt);
       } else if (locale == const Locale('pt', 'BR')) {
-        return await _repositoryApi
-            .getQuestions(ApiRequests.quizPortugueseWhiteBelt);
+        return _repositoryApi.getQuestions(ApiRequests.quizPortugueseWhiteBelt);
       } else {
         throw Exception('Error in Locale app');
       }
     } else if (difficulty == 'medium') {
       if (locale == const Locale('en', 'US')) {
-        return await _repositoryApi
-            .getQuestions(ApiRequests.quizEnglishBlueBelt);
+        return _repositoryApi.getQuestions(ApiRequests.quizEnglishBlueBelt);
       } else if (locale == const Locale('pt', 'BR')) {
-        return await _repositoryApi
-            .getQuestions(ApiRequests.quizPortugueseBlueBelt);
+        return _repositoryApi.getQuestions(ApiRequests.quizPortugueseBlueBelt);
       } else {
         throw Exception('Error in Locale app');
       }
     } else {
       if (locale == const Locale('en', 'US')) {
-        return await _repositoryApi
-            .getQuestions(ApiRequests.quizPortugueseBlackBelt);
+        return _repositoryApi.getQuestions(ApiRequests.quizPortugueseBlackBelt);
       } else if (locale == const Locale('pt', 'BR')) {
-        return await _repositoryApi
-            .getQuestions(ApiRequests.quizPortugueseBlackBelt);
+        return _repositoryApi.getQuestions(ApiRequests.quizPortugueseBlackBelt);
       } else {
         throw Exception('Error in Locale app');
       }

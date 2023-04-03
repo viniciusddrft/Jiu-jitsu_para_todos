@@ -22,6 +22,11 @@ linter:
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
   rules:
+    always_declare_return_types: true
+    unnecessary_await_in_return: true
+    prefer_single_quotes: true
+    prefer_final_locals: true
+    avoid_unused_constructor_parameters: true
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
 

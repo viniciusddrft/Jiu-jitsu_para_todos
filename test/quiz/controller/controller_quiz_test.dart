@@ -28,11 +28,11 @@ void main() {
         locale:
             const Locale.fromSubtags(languageCode: 'en', countryCode: 'US'));
 
-    List<String> arrayTeste1 = [];
+    final List<String> arrayTeste1 = [];
     for (int i = 0; i != myQuestions1.length; i++) {
       arrayTeste1.add(myQuestions1.toList()[i].question);
     }
-    List<String> arrayTeste2 = [];
+    final List<String> arrayTeste2 = [];
     for (int i = 0; i != myQuestions2.length; i++) {
       arrayTeste2.add(myQuestions2.toList()[i].question);
     }

@@ -8,11 +8,11 @@ class ControllerWallpapers {
   final RepositoryApi _repositoryApi = RepositoryApi();
 
   Future<List<WallpaperModel>> loadWallpapers() async =>
-      await _repositoryApi.getWallpapers();
+      _repositoryApi.getWallpapers();
 
   static Future<bool?> setWallpaper(String url, int wallpaperLocation) async {
     if (await Permission.storage.request().isGranted) {
-      return await AsyncWallpaper.setWallpaper(
+      return AsyncWallpaper.setWallpaper(
           url: url, wallpaperLocation: wallpaperLocation);
     }
     return false;
