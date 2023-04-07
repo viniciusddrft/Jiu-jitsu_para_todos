@@ -53,7 +53,7 @@ class ControllerQuiz extends ChangeNotifier {
       }
     } else {
       if (locale == const Locale('en', 'US')) {
-        return _repositoryApi.getQuestions(ApiRequests.quizPortugueseBlackBelt);
+        return _repositoryApi.getQuestions(ApiRequests.quizEnglishBlack);
       } else if (locale == const Locale('pt', 'BR')) {
         return _repositoryApi.getQuestions(ApiRequests.quizPortugueseBlackBelt);
       } else {

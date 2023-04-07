@@ -14,16 +14,10 @@ class CreditsView extends StatefulWidget {
 }
 
 class _CreditsViewState extends State<CreditsView> with OpenLink {
-  late final Size size;
-
-  @override
-  void didChangeDependencies() {
-    size = MediaQuery.of(context).size;
-    super.didChangeDependencies();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: const AppBarGradient(),
@@ -44,12 +38,14 @@ class _CreditsViewState extends State<CreditsView> with OpenLink {
                 AppLocalizations.of(context)!
                     .text_all_application_icons_are_from_flaticon,
                 style: GoogleFonts.ubuntu(fontSize: 14),
+                key: const Key('text flaticon'),
               ),
             ),
             const Spacer(),
             Flexible(
               flex: 2,
               child: TextButton.icon(
+                key: const Key('icon flaticon'),
                 onPressed: () => openLink('https://www.flaticon.com/'),
                 icon: Image.asset(
                   'assets/images/iconscredits/flaticon.png',
@@ -65,12 +61,14 @@ class _CreditsViewState extends State<CreditsView> with OpenLink {
                 AppLocalizations.of(context)!
                     .text_the_application_was_developed_in_flutter,
                 style: GoogleFonts.ubuntu(fontSize: 14),
+                key: const Key('text flutter'),
               ),
             ),
             const Spacer(),
             Flexible(
               flex: 2,
               child: TextButton.icon(
+                key: const Key('icon flutter'),
                 onPressed: () => openLink('https://flutter.dev/'),
                 icon: const FlutterLogo(
                   size: 100,
@@ -87,6 +85,7 @@ class _CreditsViewState extends State<CreditsView> with OpenLink {
                   AppLocalizations.of(context)!
                       .text_if_you_want_to_know_both_the_flutter_and_the_flaticon_just_click_on_the_icons,
                   style: GoogleFonts.ubuntu(fontSize: 14),
+                  key: const Key('text click'),
                 ),
               ),
             ),

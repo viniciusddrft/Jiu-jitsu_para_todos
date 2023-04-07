@@ -9,12 +9,4 @@ class QuestionModel {
         rightAnswer = json['rightAnswer'] as String,
         pathImage = json['pathImage'] as String?,
         pathVideo = json['pathVideo'] as String?;
-
-  Map<String, Object?> toJson() => {
-        'question': question,
-        'options': options,
-        'rightAnswer': rightAnswer,
-        'pathImage': pathImage,
-        'pathVideo': pathVideo,
-      };
 }
