@@ -1,7 +1,7 @@
 class QuestionModel {
   final String question, rightAnswer;
-  final List<String> options;
   final String? pathImage, pathVideo;
+  final List<String> options;
 
   QuestionModel.fromJson(Map<String, Object?> json)
       : question = json['question'] as String,
