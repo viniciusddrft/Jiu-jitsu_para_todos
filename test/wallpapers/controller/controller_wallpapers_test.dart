@@ -9,7 +9,7 @@ void main() {
   */
 
   test('should return the url of the api images', () async {
-    final ControllerWallpapers controllerWallpapers = ControllerWallpapers();
+    final controllerWallpapers = ControllerWallpapers();
 
     expect((await controllerWallpapers.loadWallpapers()).isNotEmpty, true);
   });

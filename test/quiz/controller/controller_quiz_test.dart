@@ -16,12 +16,12 @@ void main() {
       int numberOfDifferentQuestions = 0;
       bool isQuestionsDifferents = false;
 
-      final ControllerQuiz controllerquiz1 = ControllerQuiz();
+      final controllerquiz1 = ControllerQuiz();
       final List<QuestionModel> myQuestions1 = await controllerquiz1.choice(
           difficulty: 'hard',
           locale:
               const Locale.fromSubtags(languageCode: 'en', countryCode: 'US'));
-      final ControllerQuiz controllerquiz2 = ControllerQuiz();
+      final controllerquiz2 = ControllerQuiz();
       final List<QuestionModel> myQuestions2 = await controllerquiz2.choice(
           difficulty: 'hard',
           locale:
@@ -52,7 +52,7 @@ void main() {
     });
 
     test('quizController funções', () async {
-      final ControllerQuiz controllerquiz = ControllerQuiz();
+      final controllerquiz = ControllerQuiz();
 
       final List<QuestionModel> myQuestions = await controllerquiz.choice(
           difficulty: 'hard',
@@ -83,7 +83,7 @@ void main() {
     });
 
     test('quizController paint buttons', () async {
-      final ControllerQuiz controllerquiz = ControllerQuiz();
+      final controllerquiz = ControllerQuiz();
 
       controllerquiz.paintButtonA(isRight: true);
       expect(controllerquiz.colorButtonA, Colors.green);
