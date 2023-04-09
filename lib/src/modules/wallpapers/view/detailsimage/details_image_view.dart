@@ -18,8 +18,6 @@ class DetailsImage extends StatefulWidget {
 }
 
 class _DetailsImageState extends State<DetailsImage> {
-  late final Size size = MediaQuery.of(context).size;
-
   @override
   void didChangeDependencies() {
     precacheImage(Image.network(widget.imageUrl).image, context);
@@ -143,6 +141,8 @@ class _DetailsImageState extends State<DetailsImage> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Column(

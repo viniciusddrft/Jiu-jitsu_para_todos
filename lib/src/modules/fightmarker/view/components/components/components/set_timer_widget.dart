@@ -7,7 +7,7 @@ import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import '../../../../controller/clock_controller.dart';
 
 class SetTimerWidget extends StatefulWidget {
-  final MyClock myClock;
+  final MyClockController myClock;
   const SetTimerWidget({super.key, required this.myClock});
 
   @override
@@ -15,12 +15,12 @@ class SetTimerWidget extends StatefulWidget {
 }
 
 class _SetTimerWidgetState extends State<SetTimerWidget> {
-  late final Size size = MediaQuery.of(context).size;
-  final PageController pageControllerMinutes = PageController();
-  final PageController pageControllerSeconds = PageController();
+  final pageControllerMinutes = PageController();
+  final pageControllerSeconds = PageController();
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return AlertDialog(
       backgroundColor: AppColors.background,
       title: Text(

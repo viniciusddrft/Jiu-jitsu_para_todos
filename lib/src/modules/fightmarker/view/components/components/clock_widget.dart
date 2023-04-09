@@ -17,8 +17,8 @@ class Clock extends StatefulWidget {
 }
 
 class _ClockState extends State<Clock> {
-  final MyClock myClock = MyClock();
-  final ServiceJustAudio _playerAudio = ServiceJustAudio();
+  final myClock = MyClockController();
+  final _playerAudio = ServiceJustAudio();
 
   Future<void> _showMyDialogstopsound() => showDialog<void>(
         context: context,

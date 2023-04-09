@@ -26,11 +26,9 @@ class QuizQuestions extends StatefulWidget {
 
 class _QuizQuestionsState extends State<QuizQuestions>
     with SingleTickerProviderStateMixin {
-  final ControllerQuiz _controllerQuiz = ControllerQuiz();
+  final _controllerQuiz = ControllerQuiz();
   late final Future<List<QuestionModel>> _loadQuestions;
-  final ServiceJustAudio _playerAudio = ServiceJustAudio();
-
-  late final Size size = MediaQuery.of(context).size;
+  final _playerAudio = ServiceJustAudio();
 
   late final AnimationController _animationController;
 
@@ -122,6 +120,7 @@ class _QuizQuestionsState extends State<QuizQuestions>
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,

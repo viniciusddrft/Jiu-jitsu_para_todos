@@ -18,9 +18,8 @@ class WallpapersView extends StatefulWidget {
 }
 
 class _WallpapersViewState extends State<WallpapersView> {
-  final ControllerWallpapers _controllerWallpapers = ControllerWallpapers();
+  final _controllerWallpapers = ControllerWallpapers();
   late final Future<List<WallpaperModel>> _loadWallpapers;
-  late final Size size = MediaQuery.of(context).size;
 
   @override
   void initState() {
@@ -36,6 +35,7 @@ class _WallpapersViewState extends State<WallpapersView> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: const AppBarGradient(),

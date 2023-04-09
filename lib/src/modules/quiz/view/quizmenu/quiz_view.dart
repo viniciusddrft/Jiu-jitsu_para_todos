@@ -16,8 +16,6 @@ class QuizView extends StatefulWidget {
 }
 
 class _QuizViewState extends State<QuizView> {
-  late final Size size = MediaQuery.of(context).size;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

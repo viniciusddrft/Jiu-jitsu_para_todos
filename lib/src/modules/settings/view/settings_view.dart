@@ -18,8 +18,7 @@ class SettingsView extends StatefulWidget {
 }
 
 class _SettingsViewState extends State<SettingsView> with OpenLink {
-  late final Size size = MediaQuery.of(context).size;
-  final ValueNotifier<String?> _iconPath = ValueNotifier<String?>(null);
+  final _iconPath = ValueNotifier<String?>(null);
   final ILocalStorage _localStorage = LocalStorageSharedPreferrence();
 
   @override
@@ -51,6 +50,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
   List<Map<String, Object>> get allLocales => _allLocales();
 
   Future<void> _changeLanguageMenu() async {
+    final Size size = MediaQuery.of(context).size;
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -119,6 +119,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: const AppBarGradient(),

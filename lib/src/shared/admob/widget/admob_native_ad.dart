@@ -19,7 +19,7 @@ class AdmobNativeAd extends StatefulWidget {
 
 class _AdmobNativeAdState extends State<AdmobNativeAd> {
   late final NativeAd _nativeAd;
-  final ValueNotifier<bool> _isAdLoaded = ValueNotifier<bool>(false);
+  final _isAdLoaded = ValueNotifier<bool>(false);
 
   @override
   void initState() {

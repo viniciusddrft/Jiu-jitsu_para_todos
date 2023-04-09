@@ -2,10 +2,10 @@ import 'package:flutter/widgets.dart';
 
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
-class MyClock {
+class MyClockController {
   int time = 0;
-  final ValueNotifier<bool> isPause = ValueNotifier<bool>(true);
-  final CountDownController controller = CountDownController();
+  final isPause = ValueNotifier<bool>(true);
+  final controller = CountDownController();
 
   void setTime(int minutes, int seconds) {
     time = ((minutes * 60) + seconds);
@@ -35,7 +35,5 @@ class MyClock {
     }
   }
 
-  void dispose() {
-    isPause.dispose();
-  }
+  void dispose() => isPause.dispose();
 }

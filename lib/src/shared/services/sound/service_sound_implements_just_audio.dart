@@ -5,8 +5,6 @@ import 'interface/service_sound_interface.dart';
 class ServiceJustAudio implements ServiceSoundInterface {
   final AudioPlayer _audioPlayer = AudioPlayer();
 
-  ServiceJustAudio();
-
   @override
   void dispose() => _audioPlayer.dispose();
 

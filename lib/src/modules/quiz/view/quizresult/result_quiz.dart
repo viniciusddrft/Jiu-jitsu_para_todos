@@ -21,7 +21,6 @@ class ResultQuiz extends StatefulWidget {
 
 class _ResultQuizState extends State<ResultQuiz>
     with SingleTickerProviderStateMixin {
-  late final Size size = MediaQuery.of(context).size;
   late String _iconPath, _textShowResult, _textMessage, _scorePercentageText;
   late final double _scorePercentage;
   late final AnimationController _animationController;
@@ -77,6 +76,7 @@ class _ResultQuizState extends State<ResultQuiz>
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
