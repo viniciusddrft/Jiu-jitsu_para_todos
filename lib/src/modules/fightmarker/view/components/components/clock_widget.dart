@@ -23,21 +23,18 @@ class _ClockState extends State<Clock> {
   Future<void> _showMyDialogstopsound() => showDialog<void>(
         context: context,
         barrierDismissible: false,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: AppColors.background,
-            actions: <Widget>[
-              TextButton(
-                child:
-                    Text(AppLocalizations.of(context)!.text_button_stopsound),
-                onPressed: () {
-                  _playerAudio.stop();
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
+        builder: (BuildContext context) => AlertDialog(
+          backgroundColor: AppColors.background,
+          actions: <Widget>[
+            TextButton(
+              child: Text(AppLocalizations.of(context)!.text_button_stopsound),
+              onPressed: () {
+                _playerAudio.stop();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        ),
       );
 
   @override

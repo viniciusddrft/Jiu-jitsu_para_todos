@@ -17,6 +17,12 @@ class FightMakerView extends StatefulWidget {
 class _FightMakerViewState extends State<FightMakerView>
     with DeviceOrientationApp {
   @override
+  void initState() {
+    configLandscape();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -27,30 +33,22 @@ class _FightMakerViewState extends State<FightMakerView>
         ),
       ),
       backgroundColor: AppColors.background,
-      body: FutureBuilder(
-        future: configLandscape(),
-        builder: (BuildContext context, AsyncSnapshot<void> snapshot) =>
-            snapshot.connectionState == ConnectionState.done
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Flexible(
-                        flex: 2,
-                        child: Scoreboard(),
-                      ),
-                      Flexible(
-                        child: Clock(),
-                      ),
-                      Flexible(
-                        flex: 2,
-                        child: Scoreboard(),
-                      ),
-                    ],
-                  )
-                : const Center(
-                    child: CircularProgressIndicator(),
-                  ),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Flexible(
+            flex: 2,
+            child: Scoreboard(),
+          ),
+          Flexible(
+            child: Clock(),
+          ),
+          Flexible(
+            flex: 2,
+            child: Scoreboard(),
+          ),
+        ],
       ),
     );
   }

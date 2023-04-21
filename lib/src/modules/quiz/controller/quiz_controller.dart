@@ -6,7 +6,7 @@ import '../../../shared/models/quiz/questions_model.dart';
 import '../../../shared/repositoryes/repository_api.dart';
 
 class ControllerQuiz extends ChangeNotifier {
-  final RepositoryApi _repositoryApi = RepositoryApi();
+  final RepositoryApiInterface _repositoryApi = RepositoryApi();
 
   int _score = 0;
   int indexCurrentQuestion = 0;

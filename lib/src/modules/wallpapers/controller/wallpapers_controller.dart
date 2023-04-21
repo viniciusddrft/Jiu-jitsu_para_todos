@@ -2,10 +2,11 @@ import 'package:async_wallpaper/async_wallpaper.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../shared/models/wallpaper/wallpapers_model.dart';
+import '../../../shared/repositoryes/interface/repository_api_interface.dart';
 import '../../../shared/repositoryes/repository_api.dart';
 
 class ControllerWallpapers {
-  final RepositoryApi _repositoryApi = RepositoryApi();
+  final RepositoryApiInterface _repositoryApi = RepositoryApi();
 
   Future<List<WallpaperModel>> loadWallpapers() async =>
       _repositoryApi.getWallpapers();

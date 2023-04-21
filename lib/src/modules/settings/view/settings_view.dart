@@ -287,7 +287,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
         height: 60,
         child: Center(
           child: Text(
-            '${AppLocalizations.of(context)!.text_version} 2.7.0',
+            '${AppLocalizations.of(context)!.text_version} 2.7.1',
             style: GoogleFonts.yatraOne(color: Colors.grey[700]),
           ),
         ),
