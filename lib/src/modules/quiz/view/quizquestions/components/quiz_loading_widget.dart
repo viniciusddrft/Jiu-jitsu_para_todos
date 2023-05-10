@@ -53,9 +53,9 @@ class QuizLoadingWidget extends StatelessWidget {
                       children: [
                         Container(
                           margin: EdgeInsets.only(bottom: size.height * 0.05),
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
+                            children: [
                               ShimmerWidget.retangular(width: 280, height: 35),
                               ShimmerWidget.circular(width: 40, height: 35)
                             ],
@@ -63,9 +63,9 @@ class QuizLoadingWidget extends StatelessWidget {
                         ),
                         Container(
                           margin: EdgeInsets.only(bottom: size.height * 0.05),
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
+                            children: [
                               ShimmerWidget.retangular(width: 280, height: 47),
                               ShimmerWidget.circular(width: 40, height: 40)
                             ],
@@ -73,9 +73,9 @@ class QuizLoadingWidget extends StatelessWidget {
                         ),
                         Container(
                           margin: EdgeInsets.only(bottom: size.height * 0.05),
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
+                            children: [
                               ShimmerWidget.retangular(width: 280, height: 47),
                               ShimmerWidget.circular(width: 40, height: 40)
                             ],
@@ -83,9 +83,9 @@ class QuizLoadingWidget extends StatelessWidget {
                         ),
                         Container(
                           margin: EdgeInsets.only(bottom: size.height * 0.05),
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
+                            children: [
                               ShimmerWidget.retangular(width: 280, height: 47),
                               ShimmerWidget.circular(width: 40, height: 40)
                             ],

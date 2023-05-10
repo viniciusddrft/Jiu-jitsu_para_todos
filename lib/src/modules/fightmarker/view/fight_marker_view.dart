@@ -33,10 +33,10 @@ class _FightMakerViewState extends State<FightMakerView>
         ),
       ),
       backgroundColor: AppColors.background,
-      body: Row(
+      body: const Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Flexible(
             flex: 2,
             child: Scoreboard(),
