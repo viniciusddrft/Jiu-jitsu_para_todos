@@ -26,7 +26,7 @@ class ButtonQuizQuestions extends StatelessWidget {
       : assert(['A', 'B', 'C', 'D'].contains(orderOfQuestions));
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.sizeOf(context);
 
     return Container(
       margin: EdgeInsets.only(bottom: size.height * 0.05),

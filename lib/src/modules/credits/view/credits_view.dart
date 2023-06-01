@@ -16,7 +16,7 @@ class CreditsView extends StatefulWidget {
 class _CreditsViewState extends State<CreditsView> with OpenLink {
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.sizeOf(context);
 
     return Scaffold(
       appBar: AppBar(

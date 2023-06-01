@@ -50,7 +50,8 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
   List<Map<String, Object>> get allLocales => _allLocales();
 
   Future<void> _changeLanguageMenu() async {
-    final Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.sizeOf(context);
+
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -119,7 +120,8 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.sizeOf(context);
+
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: const AppBarGradient(),

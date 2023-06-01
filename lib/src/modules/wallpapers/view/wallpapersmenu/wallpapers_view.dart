@@ -35,7 +35,8 @@ class _WallpapersViewState extends State<WallpapersView> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.sizeOf(context);
+
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: const AppBarGradient(),

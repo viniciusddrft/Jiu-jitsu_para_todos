@@ -76,7 +76,8 @@ class _ResultQuizState extends State<ResultQuiz>
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.sizeOf(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,

@@ -63,7 +63,7 @@ abstract class ButtonForMenu extends StatefulWidget {
       );
 
   Widget makeButton(BuildContext context, {required VoidCallback changeRoute}) {
-    final Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.sizeOf(context);
 
     return Container(
       margin: EdgeInsets.only(

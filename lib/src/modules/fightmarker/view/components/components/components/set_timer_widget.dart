@@ -20,7 +20,8 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.sizeOf(context);
+
     return AlertDialog(
       backgroundColor: AppColors.background,
       title: Text(

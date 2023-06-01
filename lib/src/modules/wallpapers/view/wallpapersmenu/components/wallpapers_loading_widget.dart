@@ -6,7 +6,7 @@ class WallpapersLoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.sizeOf(context);
 
     return GridView.builder(
       itemCount: 18,

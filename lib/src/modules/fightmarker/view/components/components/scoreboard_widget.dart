@@ -16,7 +16,8 @@ class _ScoreboardState extends State<Scoreboard> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.sizeOf(context);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
