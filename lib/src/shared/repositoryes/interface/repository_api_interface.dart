@@ -4,26 +4,25 @@ import '../../models/wallpaper/wallpapers_model.dart';
 import '../../services/request_rest/interfaces/service_web_request_interface.dart';
 
 enum ApiRequests {
-  wallpapers('https://jiu-jitsu-para-todos.herokuapp.com/wallpapers'),
-
+  wallpapers('https://web-production-5160.up.railway.app/wallpapers'),
   quizEnglishWhiteBelt(
-      'https://jiu-jitsu-para-todos.herokuapp.com/quiz/english/whitebelt'),
+      'https://web-production-5160.up.railway.app/quiz/english/whitebelt'),
   quizEnglishBlueBelt(
-      'https://jiu-jitsu-para-todos.herokuapp.com/quiz/english/bluebelt'),
+      'https://web-production-5160.up.railway.app/quiz/english/bluebelt'),
   quizEnglishBlack(
-      'https://jiu-jitsu-para-todos.herokuapp.com/quiz/english/blackbelt'),
+      'https://web-production-5160.up.railway.app/quiz/english/blackbelt'),
   quizPortugueseWhiteBelt(
-      'https://jiu-jitsu-para-todos.herokuapp.com/quiz/portuguese/whitebelt'),
+      'https://web-production-5160.up.railway.app/quiz/portuguese/whitebelt'),
   quizPortugueseBlueBelt(
-      'https://jiu-jitsu-para-todos.herokuapp.com/quiz/portuguese/bluebelt'),
+      'https://web-production-5160.up.railway.app/quiz/portuguese/bluebelt'),
   quizPortugueseBlackBelt(
-      'https://jiu-jitsu-para-todos.herokuapp.com/quiz/portuguese/blackbelt');
+      'https://web-production-5160.up.railway.app/quiz/portuguese/blackbelt');
 
   const ApiRequests(this.url);
   final String url;
 }
 
-abstract class RepositoryApiInterface {
+abstract interface class RepositoryApiInterface {
   abstract final ServiceWebRequestInterface serviceWebRequestInterface;
 
   const RepositoryApiInterface();

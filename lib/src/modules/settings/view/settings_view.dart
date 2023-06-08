@@ -98,7 +98,7 @@ class _SettingsViewState extends State<SettingsView> with OpenLink {
                         Text(allLocales[index]['text'] as String),
                         Image.asset(
                           allLocales[index]['icon'] as String,
-                          width: 50,
+                          width: 40,
                         ),
                       ],
                     ),
