@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 2.7.3+44
 
 environment:
-  sdk: ">=3.0.3 <4.0.0"
+  sdk: ">=3.0.5 <4.0.0"
 
 dependencies:
   flutter:
@@ -26,22 +26,22 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.18.0
-  shared_preferences: ^2.1.2
+  shared_preferences: ^2.2.0
   circular_countdown_timer: ^0.2.3
   url_launcher: ^6.1.11
   async_wallpaper: ^2.0.3
-  permission_handler: ^10.2.0
+  permission_handler: ^10.4.1
   google_mobile_ads: ^3.0.0
   just_audio: ^0.9.34
 # video_player: ^2.2.10
   wakelock: ^0.6.2
-  http: ^1.0.0
-  google_fonts: ^5.0.0
+  http: ^1.1.0
+  google_fonts: ^5.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.1
+  flutter_lints: ^2.0.2
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.3.1
 
