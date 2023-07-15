@@ -7,13 +7,9 @@ import '../../../shared/appbar_gradient/appbar_gradient.dart';
 import '../../../shared/launch_link/launch_link.dart';
 import '../../../shared/themes/app_colors.dart';
 
-class CreditsView extends StatefulWidget {
+class CreditsView extends StatelessWidget with OpenLink {
   const CreditsView({super.key});
-  @override
-  State<CreditsView> createState() => _CreditsViewState();
-}
 
-class _CreditsViewState extends State<CreditsView> with OpenLink {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);

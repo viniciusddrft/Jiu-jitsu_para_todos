@@ -28,9 +28,9 @@ dependencies:
   intl: ^0.18.0
   shared_preferences: ^2.2.0
   circular_countdown_timer: ^0.2.3
-  url_launcher: ^6.1.11
+  url_launcher: ^6.1.12
   async_wallpaper: ^2.0.3
-  permission_handler: ^10.4.1
+  permission_handler: ^10.4.3
   google_mobile_ads: ^3.0.0
   just_audio: ^0.9.34
 # video_player: ^2.2.10
