@@ -82,6 +82,10 @@ No final para usar cada imagens ou som eu retirei todos metadados dos arquivos p
 <img src="assets/claenfiles.png">
 <br><br>
 
+# fase atual
+
+apesar de tudo isso ter dado certo tive alguns problemas com o projeto a principal é a arquitetura, no começo eu não sabia bem e a mania de vir da web e só saber mvc me fez contruir algo que hoje eu olho e penso que poderia ser melhor, a minha ideia principal é primeiro refazer usando a arquitetura minicore que essa sim é feita pensando especialmente no flutter e também mudar a api para o firebase, no começo eu neguei muito usar firebase por que queria construir tudo do 0 a minha api com python ficou boa porem a hospedagem foi complicada eu tava pagando 25 reais por mes pra manter isso e o projeto infelizmente não rende isso ao mes pra se manter, fora a questão financeira um dia a api ficou off e tomei 3 estrelas na google play como reclamação pelo quiz não funcionar depois de muito insistir acabei pensando melhor e vou pro firebase anda bem corrido pra manter o projeto e já não vejo mais sentido en desenvolver tudo do 0 até mesmo a api, isso fara ser mais facil de dar manutenção e me dara mais tempo então até o final do ano o app vai receber essas melhorias.
+
 # fim
 
 Essa foi minha jornada criando meu primeiro app, foi muito desafiador no começo eu ainda estava na incerteza se iria conseguir mas deu tudo certo e me trouxe muito aprendizado em varias coisas.
