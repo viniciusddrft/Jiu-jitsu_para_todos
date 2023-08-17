@@ -1,8 +1,7 @@
 name: jiu_jitsu_para_todos
 description: A new Flutter project.
-
 # The following line prevents the package from being accidentally published to
-# pub.dev using `pub publish`. This is preferred for private packages.
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
@@ -12,35 +11,55 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # build by specifying --build-name and --build-number, respectively.
 # In Android, build-name is used as versionName while build-number used as versionCode.
 # Read more about Android versioning at https://developer.android.com/studio/publish/versioning
-# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 2.7.3+44
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 3.0.0+45
 
 environment:
-  sdk: ">=3.0.6 <4.0.0"
+  sdk: '>=3.1.0 <4.0.0'
 
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
 dependencies:
   flutter:
     sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
   flutter_localizations:
     sdk: flutter
   intl: ^0.18.0
+  firebase_core: ^2.15.0
+  cloud_firestore: ^4.8.4
+  cupertino_icons: ^1.0.2
+  flutter_modular: ^6.0.3
   shared_preferences: ^2.2.0
-  circular_countdown_timer: ^0.2.3
-  url_launcher: ^6.1.12
-  async_wallpaper: ^2.0.3
-  permission_handler: ^10.4.3
-  google_mobile_ads: ^3.0.0
   just_audio: ^0.9.34
-# video_player: ^2.2.10
-  wakelock: ^0.6.2
-  http: ^1.1.0
   google_fonts: ^5.1.0
+  url_launcher: ^6.1.12
+  wakelock: ^0.6.2
+  circular_countdown_timer: ^0.2.3
+  google_mobile_ads: ^3.0.0
+  permission_handler: ^10.4.3
+  async_wallpaper: ^2.0.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
   flutter_lints: ^2.0.2
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.3.1
@@ -49,14 +68,23 @@ flutter_native_splash:
   color: "#202848"
   image: assets/splash/splash.png
 
+  android_12:
+    image: assets/splash/splash.png
+    icon_background_color: "#202848"
+    image_dark: assets/splash/splash.png
+    icon_background_color_dark: "#202848"
+
 flutter_icons:
   image_path: 'assets/images/application_icon/res/mipmap-xxxhdpi/iconindigo.png'
   ios: true
   android: true
+
+
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
-# The following section is specific to Flutter.
+# The following section is specific to Flutter packages.
 flutter:
   generate: true
   # The following line ensures that the Material Icons font is
@@ -65,18 +93,20 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
+  # assets:
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
   assets:
-      - assets/music/
-      - assets/splash/
-      - assets/images/iconsbutton/
-      - assets/quiz/iconsresultquiz/
-      - assets/images/wallpapers/
-      - assets/images/iconscredits/
-      - assets/images/languages/
-
+    - assets/music/
+    - assets/splash/
+    - assets/images/iconsbutton/
+    - assets/quiz/iconsresultquiz/
+    - assets/images/wallpapers/
+    - assets/images/iconscredits/
+    - assets/images/languages/
 
   # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware.
+  # https://flutter.dev/assets-and-images/#resolution-aware
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
