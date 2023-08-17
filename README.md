@@ -30,7 +30,7 @@ OBS: arquitetura criada pela flutterando
 Todo o app segue a arquitetura minicore separando cada feature em 3 camadas a ui que é a tela em si a interector que nessa camada vai ficar toda parte de estados entidades e interfaces que a camada data ira implementar a camada de data por sua vez é a camada que fornece os dados sejam eles vindo de uma api ou um local storage essa camada usa o padrão adapter para tornar mais fácil a manutenção e mudança de comunicação com a api, essa arquitetura separa muito bem a ui que é basicamente onde fica o código flutter ou seja todo parte visual, da parte de regra de negocios que fica nos interector e essa camada tambéms está praticamente desacoplada da camada que recebe os dados, apesar de ser simples é fascinante.
 <br><br><br>
 imagem da minha estrutura MVC:<br>
-<img src="assets/readme/mvc.png">
+<img src="assets/readme/minicore.png">
 
 # Testes
 
