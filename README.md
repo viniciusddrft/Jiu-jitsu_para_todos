@@ -13,31 +13,28 @@ Caso queira conhecer mais sobre o flutter:
 ## O objetivo desse repositório é mostrar e documentar minha primeira experiencia ao criar um app
 
 <br>
-Aceito qualquer critica construtiva ou contribuição primeiramente gostaria de dizer que alguns arquivos não foram colocados no repositório por ter informações sensíveis, porem todo o código que foi restrito era em relação aos anúncios na admob ou configurações da loja Google play, mas ainda tem tudo que eu fiz para construir o aplicativo aqui.
+Bom eu refatorei esse meu primeiro app, ele estava em uma arquitetura mvc meio que adaptado do que eu conhecia na epoca quando comecei isso não sabia como fazer da melhor forma e hoje fico muito feliz de voltar nesse projeto refatorando ele inteiro e deixando em uma arquitetura muito boa e que essa sim é pensada e construida para o flutter.
 <br><br>
 
 Abaixo tenho a tela da home
 
 <img src="assets/readme/1.png" width="411.4" height="820.6">
 
-# Arquitetura MVC
+# Arquitetura Minicore
 
-OBS:mvc significa Model, View e Controller é uma arquitetura de codigo que separa o codigo em 3 camadas
+OBS: arquitetura criada pela flutterando
 
-- A camada de interação do usuário(view).
-- A camada de manipulação dos dados(model).
-- A camada de controle(controller).
+## [Minicore](https://github.com/Flutterando/minicore)
+
 <br><br><br>
-Todo o app foi feito usando a arquitetura mvc os models foram usados para armazenar todas questões do quiz e também os wallpapers usados no futuro pretendo fazer um servidor para lidar com isso e dar mais qualidade ao app mas de começo eu quis dar o pontapé inicial com armazenamento local por que eram poucos dados e também mais fácil para começar. Os controller fazem todo controle de dados entre os models e a views, no quiz especificamente ele embaralha toda ordem das questões e das opções de cada questão, tenho também um controller para lidar com os anúncios e id de cada anuncio. Os views são toda parte visual do meu aplicativo, mas no meio das minhas views também existe um pouco das regras de negocio isso foi uma consequência por ter escolhido usar o Setstate como reatividade, não acredito que isso seja algo ruim mas quero sim aprender futuramente a gerenciar o estado de outras formas, e mudar isso no app.
+Todo o app segue a arquitetura minicore separando cada feature em 3 camadas a ui que é a tela em si a interector que nessa camada vai ficar toda parte de estados entidades e interfaces que a camada data ira implementar a camada de data por sua vez é a camada que fornece os dados sejam eles vindo de uma api ou um local storage essa camada usa o padrão adapter para tornar mais fácil a manutenção e mudança de comunicação com a api, essa arquitetura separa muito bem a ui que é basicamente onde fica o código flutter ou seja todo parte visual, da parte de regra de negocios que fica nos interector e essa camada tambéms está praticamente desacoplada da camada que recebe os dados, apesar de ser simples é fascinante.
 <br><br><br>
 imagem da minha estrutura MVC:<br>
 <img src="assets/readme/mvc.png">
 
-# Testes unitários
+# Testes
 
-Foi uma novidade para mim fazer testes unitários e por mais que no começo eu me enrolava muito eu também gostei muito de fazer isso, tenho testes unitários para o quiz que verifica se ele trouxe as questões corretas e de forma aleatória e um outro teste para ver se o controller dos wallpapers retornava o path corretamente.
-
-Para rodar os teste basta usar -> flutter test
+Estou refazendo todos os testes, migrei ele muito rápido e só faltou isso.
 
 <img src="assets/readme/test.png">
 
@@ -84,8 +81,4 @@ No final para usar cada imagens ou som eu retirei todos metadados dos arquivos p
 
 # fase atual
 
-apesar de tudo isso ter dado certo tive alguns problemas com o projeto a principal é a arquitetura, no começo eu não sabia bem e a mania de vir da web e só saber mvc me fez contruir algo que hoje eu olho e penso que poderia ser melhor, a minha ideia principal é primeiro refazer usando a arquitetura minicore que essa sim é feita pensando especialmente no flutter e também mudar a api para o firebase, no começo eu neguei muito usar firebase por que queria construir tudo do 0 a minha api com python ficou boa porem a hospedagem foi complicada eu tava pagando 25 reais por mes pra manter isso e o projeto infelizmente não rende isso ao mes pra se manter, fora a questão financeira um dia a api ficou off e tomei 3 estrelas na google play como reclamação pelo quiz não funcionar depois de muito insistir acabei pensando melhor e vou pro firebase anda bem corrido pra manter o projeto e já não vejo mais sentido en desenvolver tudo do 0 até mesmo a api, isso fara ser mais facil de dar manutenção e me dara mais tempo então até o final do ano o app vai receber essas melhorias.
-
-# fim
-
-Essa foi minha jornada criando meu primeiro app, foi muito desafiador no começo eu ainda estava na incerteza se iria conseguir mas deu tudo certo e me trouxe muito aprendizado em varias coisas.
+reecrevendo os testes, app finalmente migrado para firebase e agora de arquitetura nova
