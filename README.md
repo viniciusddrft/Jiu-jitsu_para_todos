@@ -16,10 +16,6 @@ Caso queira conhecer mais sobre o flutter:
 Bom eu refatorei esse meu primeiro app, ele estava em uma arquitetura mvc meio que adaptado do que eu conhecia na epoca quando comecei isso não sabia como fazer da melhor forma e hoje fico muito feliz de voltar nesse projeto refatorando ele inteiro e deixando em uma arquitetura muito boa e que essa sim é pensada e construida para o flutter.
 <br><br>
 
-Abaixo tenho a tela da home
-
-<img src="assets/readme/1.png" width="411.4" height="820.6">
-
 # Arquitetura Minicore
 
 OBS: arquitetura criada pela flutterando
