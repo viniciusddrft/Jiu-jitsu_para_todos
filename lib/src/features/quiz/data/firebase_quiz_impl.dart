@@ -30,7 +30,7 @@ class FirebaseQuizImpl implements IFirebaseQuiz {
 
       return QuizSuccess(questions);
     } catch (e) {
-      return QuizFailed();
+      return const QuizFailed();
     }
   }
 }

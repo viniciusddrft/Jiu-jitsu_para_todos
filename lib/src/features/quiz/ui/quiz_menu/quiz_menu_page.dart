@@ -10,13 +10,8 @@ import '../../../../shared/components/button_menu.dart';
 import '../../../../shared/themes/app_colors.dart';
 import '../../../../shared/themes/app_icons_path.dart';
 
-class QuizMenuPage extends StatefulWidget {
+class QuizMenuPage extends StatelessWidget {
   const QuizMenuPage({super.key});
-  @override
-  State<QuizMenuPage> createState() => _QuizMenuPageState();
-}
-
-class _QuizMenuPageState extends State<QuizMenuPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,19 +28,19 @@ class _QuizMenuPageState extends State<QuizMenuPage> {
               imageButton: AppIconsPath.faixaBranca,
               text: AppLocalizations.of(context)!.button_white_belt_level,
               onPressed: () => Modular.to
-                  .pushNamed('/quizquestions', arguments: Difficult.easy),
+                  .pushNamed('/quiz/questions', arguments: Difficult.easy),
             ),
             ButtonMenu(
               imageButton: AppIconsPath.faixaAzul,
               text: AppLocalizations.of(context)!.button_blue_belt_level,
               onPressed: () => Modular.to
-                  .pushNamed('/quizquestions', arguments: Difficult.medium),
+                  .pushNamed('/quiz/questions', arguments: Difficult.medium),
             ),
             ButtonMenu(
               imageButton: AppIconsPath.faixaPreta,
               text: AppLocalizations.of(context)!.button_black_belt_level,
               onPressed: () => Modular.to
-                  .pushNamed('/quizquestions', arguments: Difficult.hard),
+                  .pushNamed('/quiz/questions', arguments: Difficult.hard),
             ),
           ],
         ),

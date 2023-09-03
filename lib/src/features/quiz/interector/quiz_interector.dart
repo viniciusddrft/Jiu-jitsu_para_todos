@@ -7,7 +7,7 @@ import 'answer_entity.dart';
 import 'interfaces/ifirebase_quiz.dart';
 
 class QuizInteractor extends ValueNotifier<QuizState> {
-  QuizInteractor({required this.firebaseQuiz}) : super(QuizLoading());
+  QuizInteractor({required this.firebaseQuiz}) : super(const QuizLoading());
 
   final IFirebaseQuiz firebaseQuiz;
   final _localeAppNotifier = Modular.get<LocaleInterector>();
@@ -18,7 +18,7 @@ class QuizInteractor extends ValueNotifier<QuizState> {
   int totalQuestions = 0;
 
   void loadQuestions(Difficult selectDifficult) async {
-    value = QuizLoading();
+    value = const QuizLoading();
     difficult = selectDifficult;
     final newState = await firebaseQuiz.loadQuestions(
         selectDifficult, '_${_localeAppNotifier.value.languageCode}');

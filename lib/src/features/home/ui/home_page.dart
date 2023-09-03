@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
               ButtonMenu(
                 imageButton: AppIconsPath.quiz,
                 text: AppLocalizations.of(context)!.button_quiz_home_page,
-                onPressed: () => Modular.to.pushNamed('/quizmenu'),
+                onPressed: () => Modular.to.pushNamed('/quiz/menu'),
               ),
               ButtonMenu(
                 imageButton: AppIconsPath.fightMarker,

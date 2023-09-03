@@ -31,7 +31,7 @@ class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
   void onPressedButton(AnswerEntity answerEntity) {
     _quizInteractor.onPressed(answerEntity);
     if (_pageController.page! + 1 == _quizInteractor.totalQuestions) {
-      Modular.to.pushReplacementNamed('/quizresult', arguments: {
+      Modular.to.pushReplacementNamed('/quiz/result', arguments: {
         'score': _quizInteractor.score,
         'totalQuestions': _quizInteractor.totalQuestions,
         'difficult': _quizInteractor.difficult
@@ -57,14 +57,16 @@ class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
         valueListenable: _quizInteractor,
         builder: (context, value, child) => switch (_quizInteractor.value) {
           QuizFailed() => const Center(
-              key: Key('CarFailedState'),
+              key: Key('quizStateFailed'),
               child: Text('asdas'),
             ),
           QuizLoading() => const Center(
+              key: Key('quizStateLoading'),
               child: CircularProgressIndicator(),
             ),
           QuizSuccess(questions: final List<QuestionEntity> questions) =>
             PageView(
+              key: const Key('quizStateSuccess'),
               controller: _pageController,
               physics: const NeverScrollableScrollPhysics(),
               children: [
