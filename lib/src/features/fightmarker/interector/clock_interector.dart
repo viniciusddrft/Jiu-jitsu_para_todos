@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/sound/interface/sound_interface.dart';

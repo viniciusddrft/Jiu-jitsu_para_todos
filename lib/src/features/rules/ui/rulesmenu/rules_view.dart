@@ -24,12 +24,12 @@ class RulesPage extends StatelessWidget {
             ButtonMenu(
               imageButton: AppIconsPath.regrasBasicas,
               text: AppLocalizations.of(context)!.button_basic_rules,
-              onPressed: () => Modular.to.pushNamed('/basicrules'),
+              onPressed: () => Modular.to.pushNamed('/rules/basicrules'),
             ),
             ButtonMenu(
                 imageButton: AppIconsPath.cbjjRules,
                 text: AppLocalizations.of(context)!.button_cbjj_Rules,
-                onPressed: () => Modular.to.pushNamed('/cbjjrules')),
+                onPressed: () => Modular.to.pushNamed('/rules/cbjjrules')),
           ],
         ),
       ),

@@ -27,12 +27,14 @@ class HistoryOfJiuJitsuPage extends StatelessWidget {
             ButtonMenu(
               imageButton: AppIconsPath.india,
               text: AppLocalizations.of(context)!.button_origin_of_jiujitsu,
-              onPressed: () => Modular.to.pushNamed('/jiujitsuinbrazil'),
+              onPressed: () =>
+                  Modular.to.pushNamed('/historyojiujitsu/jiujitsuinbrazil'),
             ),
             ButtonMenu(
               imageButton: AppIconsPath.brasil,
               text: AppLocalizations.of(context)!.button_jiujitsu_in_brazil,
-              onPressed: () => Modular.to.pushNamed('/originofjiujitsu'),
+              onPressed: () =>
+                  Modular.to.pushNamed('/historyojiujitsu/originofjiujitsu'),
             ),
           ],
         ),

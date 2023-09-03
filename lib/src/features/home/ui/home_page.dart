@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
-            onPressed: () => Modular.to.pushNamed('/settings'),
+            onPressed: () => Modular.to.pushNamed('/settings/settings'),
           ),
         ],
       ),
@@ -35,12 +35,13 @@ class HomePage extends StatelessWidget {
                 imageButton: AppIconsPath.iconHistoryOfJiujitsu,
                 text: AppLocalizations.of(context)!
                     .button_history_of_jiujitsu_home_page,
-                onPressed: () => Modular.to.pushNamed('/historyojiujitsu'),
+                onPressed: () =>
+                    Modular.to.pushNamed('/historyojiujitsu/historyojiujitsu'),
               ),
               ButtonMenu(
                 imageButton: AppIconsPath.rules,
                 text: AppLocalizations.of(context)!.button_rules_home_page,
-                onPressed: () => Modular.to.pushNamed('/rules'),
+                onPressed: () => Modular.to.pushNamed('/rules/rules'),
               ),
               ButtonMenu(
                 imageButton: AppIconsPath.quiz,
@@ -51,12 +52,12 @@ class HomePage extends StatelessWidget {
                 imageButton: AppIconsPath.fightMarker,
                 text:
                     AppLocalizations.of(context)!.button_fight_marker_home_page,
-                onPressed: () => Modular.to.pushNamed('/fightmaker'),
+                onPressed: () => Modular.to.pushNamed('/fightmaker/fightmaker'),
               ),
               ButtonMenu(
                 imageButton: AppIconsPath.wallpapers,
                 text: AppLocalizations.of(context)!.button_wallpapers_home_page,
-                onPressed: () => Modular.to.pushNamed('/wallpapers'),
+                onPressed: () => Modular.to.pushNamed('/wallpaper/wallpapers'),
               ),
             ],
           ),

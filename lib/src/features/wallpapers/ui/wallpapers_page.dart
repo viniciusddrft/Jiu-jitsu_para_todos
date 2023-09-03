@@ -80,11 +80,12 @@ class _WallpapersViewState extends State<WallpapersPage> {
                 mainAxisSpacing: 10,
               ),
               itemBuilder: (context, index) => RawMaterialButton(
-                onPressed: () =>
-                    Navigator.pushNamed(context, '/detailsimage', arguments: {
-                  'index': index,
-                  'imageUrl': wallpapers[index].url,
-                }),
+                onPressed: () => Navigator.pushNamed(
+                    context, '/wallpaper/detailsimage',
+                    arguments: {
+                      'index': index,
+                      'imageUrl': wallpapers[index].url,
+                    }),
                 child: Hero(
                   transitionOnUserGestures: true,
                   tag: 'logo$index',

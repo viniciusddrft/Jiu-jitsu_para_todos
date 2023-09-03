@@ -246,7 +246,8 @@ class _SettingsPageState extends State<SettingsPage> with OpenLink {
                               ),
                               side: const BorderSide(color: Colors.white),
                             ),
-                            onPressed: () => Modular.to.pushNamed('/credits'),
+                            onPressed: () =>
+                                Modular.to.pushNamed('/credits/credits'),
                             child: Center(
                               child: Text(
                                 AppLocalizations.of(context)!

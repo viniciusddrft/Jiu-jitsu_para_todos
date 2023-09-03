@@ -24,7 +24,7 @@ class FirebaseWallpapersImpl implements IFirebaseWallpapers {
 
       return WallpaperSuccess(wallpapers);
     } catch (e) {
-      return WallpaperFailed();
+      return const WallpaperFailed();
     }
   }
 }

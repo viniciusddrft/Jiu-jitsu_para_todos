@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:jiu_jitsu_para_todos/core/app_module.dart';
+import 'package:jiu_jitsu_para_todos/core/app_core_module.dart';
 import 'package:jiu_jitsu_para_todos/src/features/home/ui/home_page.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/components/button_menu.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
@@ -11,7 +11,7 @@ void main() {
   testWidgets('Teste homePage', (WidgetTester tester) async {
     await tester.pumpWidget(
       ModularApp(
-        module: AppModule(),
+        module: AppCoreModule(),
         child: MaterialApp(
           title: 'Jiu-jitsu para todos',
           localizationsDelegates: AppLocalizations.localizationsDelegates,

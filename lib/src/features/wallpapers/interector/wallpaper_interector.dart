@@ -5,12 +5,12 @@ import 'interfaces/ifirebase_wallpapers.dart';
 
 class WallpaperInteractor extends ValueNotifier<WallpaperState> {
   WallpaperInteractor({required this.firebaseWallpapers})
-      : super(WallpaperLoading());
+      : super(const WallpaperLoading());
 
   final IFirebaseWallpapers firebaseWallpapers;
 
   void loadWallpapers() async {
-    value = WallpaperLoading();
+    value = const WallpaperLoading();
     final newState = await firebaseWallpapers.loadWallpapers();
     value = newState;
   }
