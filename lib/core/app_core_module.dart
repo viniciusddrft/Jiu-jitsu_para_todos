@@ -18,7 +18,6 @@ class AppCoreModule extends Module {
     i.addSingleton<ILocalStorage>(LocalStorageSharedPreferrence.new);
     i.addSingleton(AdmobInterector.new);
     i.addSingleton(LocaleInterector.new);
-    super.binds(i);
   }
 
   @override
