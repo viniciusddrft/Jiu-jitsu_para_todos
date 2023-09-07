@@ -55,81 +55,77 @@ class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
       backgroundColor: AppColors.background,
       body: ValueListenableBuilder(
         valueListenable: _quizInteractor,
-        builder: (context, value, child) {
-          print('tela $value');
-          return switch (_quizInteractor.value) {
-            QuizFailed() => const Center(
-                key: Key('quizStateFailed'),
-                child: Text('asdas'),
-              ),
-            QuizLoading() => const Center(
-                key: Key('quizStateLoading'),
-                child: CircularProgressIndicator(),
-              ),
-            QuizSuccess(questions: final List<QuestionEntity> questions) =>
-              PageView(
-                key: const Key('quizStateSuccess'),
-                controller: _pageController,
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  for (QuestionEntity question in questions)
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+        builder: (context, value, child) => switch (_quizInteractor.value) {
+          QuizFailed() => const Center(
+              key: Key('quizStateFailed'),
+              child: Text('asdas'),
+            ),
+          QuizLoading() => const Center(
+              key: Key('quizStateLoading'),
+              child: CircularProgressIndicator(),
+            ),
+          QuizSuccess(questions: final List<QuestionEntity> questions) =>
+            PageView(
+              key: const Key('quizStateSuccess'),
+              controller: _pageController,
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                for (QuestionEntity question in questions)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: size.width * 0.07,
+                            bottom: size.height * 0.01),
+                        child: Text(
+                            'Quiz ${widget.difficulty == Difficult.easy ? AppLocalizations.of(context)!.text_difficultyname_white_belt : widget.difficulty == Difficult.medium ? AppLocalizations.of(context)!.text_difficultyname_blue_belt : AppLocalizations.of(context)!.text_difficultyname_black_belt}',
+                            style: GoogleFonts.yatraOne(
+                                fontSize: 20, color: Colors.grey[700])),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: size.width * 0.07),
+                        child: Text(
+                            '${AppLocalizations.of(context)!.text_question} ${_quizInteractor.numberQuestion}/${_quizInteractor.totalQuestions}',
+                            style: GoogleFonts.ubuntu(
+                                fontSize: 22, color: Colors.white)),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                            left: size.width * 0.07, right: size.width * 0.07),
+                        width: size.width,
+                        height: 1,
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                              colors: [Colors.white, AppColors.background],
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            top: size.height * 0.02,
+                            left: size.width * 0.07,
+                            right: size.width * 0.07),
+                        child: Text(question.question,
+                            style: GoogleFonts.ubuntu(
+                                fontSize: 18, color: Colors.white)),
+                      ),
+                      const Spacer(),
+                      for (AnswerEntity answerEntity in question.options)
                         Padding(
                           padding: EdgeInsets.only(
                               left: size.width * 0.07,
-                              bottom: size.height * 0.01),
-                          child: Text(
-                              'Quiz ${widget.difficulty == Difficult.easy ? AppLocalizations.of(context)!.text_difficultyname_white_belt : widget.difficulty == Difficult.medium ? AppLocalizations.of(context)!.text_difficultyname_blue_belt : AppLocalizations.of(context)!.text_difficultyname_black_belt}',
-                              style: GoogleFonts.yatraOne(
-                                  fontSize: 20, color: Colors.grey[700])),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: size.width * 0.07),
-                          child: Text(
-                              '${AppLocalizations.of(context)!.text_question} ${_quizInteractor.numberQuestion}/${_quizInteractor.totalQuestions}',
-                              style: GoogleFonts.ubuntu(
-                                  fontSize: 22, color: Colors.white)),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(
-                              left: size.width * 0.07,
                               right: size.width * 0.07),
-                          width: size.width,
-                          height: 1,
-                          decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                                colors: [Colors.white, AppColors.background],
-                                begin: Alignment.centerLeft,
-                                end: Alignment.centerRight),
+                          child: ButtonQuizQuestionsWidget(
+                            answerEntity: answerEntity,
+                            onPressedButton: onPressedButton,
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              top: size.height * 0.02,
-                              left: size.width * 0.07,
-                              right: size.width * 0.07),
-                          child: Text(question.question,
-                              style: GoogleFonts.ubuntu(
-                                  fontSize: 18, color: Colors.white)),
-                        ),
-                        const Spacer(),
-                        for (AnswerEntity answerEntity in question.options)
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: size.width * 0.07,
-                                right: size.width * 0.07),
-                            child: ButtonQuizQuestionsWidget(
-                              answerEntity: answerEntity,
-                              onPressedButton: onPressedButton,
-                            ),
-                          )
-                      ],
-                    )
-                ],
-              )
-          };
+                        )
+                    ],
+                  )
+              ],
+            )
         },
       ),
     );
