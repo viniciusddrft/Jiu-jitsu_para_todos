@@ -18,6 +18,7 @@ class QuizInteractor extends ValueNotifier<QuizState> {
   int totalQuestions = 0;
 
   void loadQuestions(Difficult selectDifficult) async {
+    print('real');
     value = const QuizLoading();
     difficult = selectDifficult;
     final newState = await firebaseQuiz.loadQuestions(
