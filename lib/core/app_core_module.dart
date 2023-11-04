@@ -1,15 +1,15 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:jiu_jitsu_para_todos/src/features/credits/credits_module.dart';
-import 'package:jiu_jitsu_para_todos/src/features/home/home_module.dart';
-import 'package:jiu_jitsu_para_todos/src/features/settings/settings_module.dart';
-import 'package:jiu_jitsu_para_todos/src/features/wallpapers/wallpaper_module.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/credits/credits_module.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/home/home_module.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/settings/settings_module.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/wallpaper_module.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/locale_app.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/local_storage/interface/local_storage_interface.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/local_storage/local_storage_shared_preferrence.dart';
-import '../src/features/fightmarker/fightmarker_module.dart';
-import '../src/features/historyofjiujitsu/historyodjiujitsu_module.dart';
-import '../src/features/quiz/quiz_module.dart';
-import '../src/features/rules/rules_module.dart';
+import '../src/modules/fightmarker/fightmarker_module.dart';
+import '../src/modules/historyofjiujitsu/historyodjiujitsu_module.dart';
+import '../src/modules/quiz/quiz_module.dart';
+import '../src/modules/rules/rules_module.dart';
 import '../src/shared/plugins/admob/admob_interector.dart';
 
 class AppCoreModule extends Module {
