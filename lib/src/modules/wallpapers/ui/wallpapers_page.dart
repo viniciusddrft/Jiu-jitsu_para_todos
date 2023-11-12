@@ -10,6 +10,7 @@ import 'package:jiu_jitsu_para_todos/src/shared/plugins/admob/admob_interector.d
 import '../../../shared/components/app_bar_gradient.dart';
 import '../../../shared/shimmer/shimmer_widget.dart';
 import '../../../shared/themes/app_colors.dart';
+import '../../../shared/themes/app_images.dart';
 
 class WallpapersPage extends StatefulWidget {
   const WallpapersPage({super.key});
@@ -66,7 +67,24 @@ class _WallpapersViewState extends State<WallpapersPage> {
                 ),
               ),
             ),
-          WallpaperFailed() => Container(),
+          WallpaperFailed() => Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    AppImages.withoutInternet,
+                    width: 200,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: Text(
+                      'Sem internet',
+                      style: TextStyle(fontSize: 24),
+                    ),
+                  )
+                ],
+              ),
+            ),
           WallpaperSuccess(
             wallpapers: final List<WallpaperEntity> wallpapers
           ) =>

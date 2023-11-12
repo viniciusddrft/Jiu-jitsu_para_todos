@@ -34,5 +34,6 @@ class QuizInteractor extends ValueNotifier<QuizState> {
     if (answerEntity.isCorrect) {
       score++;
     }
+    notifyListeners();
   }
 }

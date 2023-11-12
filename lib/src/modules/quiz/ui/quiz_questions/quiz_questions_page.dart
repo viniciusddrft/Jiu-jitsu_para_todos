@@ -6,6 +6,7 @@ import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/question_entity
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/quiz_interector.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/quiz_state.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_images.dart';
 import '../../../../shared/themes/app_colors.dart';
 import '../../interector/answer_entity.dart';
 import 'components/button_quiz_widget.dart';
@@ -56,9 +57,24 @@ class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
       body: ValueListenableBuilder(
         valueListenable: _quizInteractor,
         builder: (context, value, child) => switch (_quizInteractor.value) {
-          QuizFailed() => const Center(
-              key: Key('quizStateFailed'),
-              child: Text('asdas'),
+          QuizFailed() => Center(
+              key: const Key('quizStateFailed'),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    AppImages.withoutInternet,
+                    width: 200,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: Text(
+                      'Sem internet',
+                      style: TextStyle(fontSize: 24),
+                    ),
+                  )
+                ],
+              ),
             ),
           QuizLoading() => const Center(
               key: Key('quizStateLoading'),
