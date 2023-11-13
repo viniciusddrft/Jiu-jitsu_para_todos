@@ -1,5 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/interfaces/ifirebase_quiz.dart';
+import '../../shared/plugins/sound/interface/sound_interface.dart';
+import '../../shared/plugins/sound/sound_implements_just_audio.dart';
 import 'data/firebase_quiz_impl.dart';
 import 'interector/quiz_interector.dart';
 import 'ui/quiz_menu/quiz_menu_page.dart';
@@ -10,6 +12,7 @@ class QuizModule extends Module {
   @override
   void binds(i) {
     i.add(QuizInteractor.new);
+    i.add<SoundInterface>(JustAudio.new);
     i.add<IFirebaseQuiz>(FirebaseQuizImpl.new);
   }
 
