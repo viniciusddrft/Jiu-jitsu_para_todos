@@ -87,8 +87,8 @@
     "text_advantage_and_penalties":"The advantage can be decisive, you will win an advantage every time that you represent risk to the opponent, for example, imagine that you almost finalize the opponent or almost throw him, in this case you get an advantage, but remembering, if you succeed the throw you don’t will get an advantage but will get 2 throw scores, scores always will have a bigger weight in the fight decision than the advantages, the advantages serves to tiebreaker if the score’s tied. There are many penalties types, the very serious penalties leads to immediate disqualification, out of that case, if you receive a very serious penalties will be a heaviness in the final decision, if you receive 2 penalties your opponent win an advantage, if you receive 3 penalties your opponent win 2 scores and in the fourth penalty you will be disqualified, there are many situations that can give you a penalty, for example, the lack of competitiveness, but exist many others. If you want to know more about the penalties take a look in rules from CBJJ .",
 
     "title_appbar_cbjj_rules_page":"CBJJ rules",
-    "text_cbjj":"The CBJJ rules are the rules of the vast majority of the championships, if you want to go deeper and understand how all rules works just use the buttom below",
-    "text_button_cbjj":"Official site",
+    "title_cbjj_successDownload":"Save successfully!",
+    "title_cbjj_failedDownload":"Unable to save PDF :/",
 
     "text_difficultyname_white_belt":"White Belt",
     "text_difficultyname_blue_belt":"Blue Belt",

@@ -87,8 +87,8 @@
     "text_advantage_and_penalties":"A vantagem pode ser decisiva ela você ganha uma vantagem toda vez que representar risco ao oponente como exemplo imagine que você quase finaliza o oponente ou quase da uma queda nela nesse caso você ganha vantagem mas lembrando que caso você consiga dar a queda você não ganhara vantagem e sim os 2 pontos da queda, pontos sempre terão um peso maior na decisão da luta do que as vantagens, as vantagens servem de desempate caso a pontuação esteja igual.Existem vários tipos de punições as punições gravíssimas levam a desclassificação imediata, fora esse caso se você receber uma punição isso já tera um peso na decisão final, caso você receba 2 punições seu adversário recebe uma vantagem se você receber 3 punições seu adversário recebe 2 pontos e na quarta punição você sera desclassificado, existem varias situações que pode te levar a uma punição como por exemplo a falta de combatividade mas existem varias outras se quiser saber mais sobre as punições de uma olhada nas regras da CBJJ.",
     
     "title_appbar_cbjj_rules_page":"Regras da CBJJ",
-    "text_cbjj":"As regras da CBJJ são as regras da grande maioria dos campeonatos, se você quer se aprofundar e entender como todas regras funcionam é só usar o botão a baixo.",
-    "text_button_cbjj":"Site Oficial",
+    "title_cbjj_successDownload":"Salvo com sucesso!",
+    "title_cbjj_failedDownload":"Não foi possível salvar PDF :/",
 
     "text_difficultyname_white_belt":"Faixa Branca",
     "text_difficultyname_blue_belt":"Faixa Azul",

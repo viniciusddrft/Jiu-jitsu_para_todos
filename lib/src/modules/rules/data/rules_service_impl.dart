@@ -13,9 +13,9 @@ class RulesServiceImpl implements RulesServiceInterface {
       final bytes = await consolidateHttpClientResponseBytes(response);
       final file = File('/storage/emulated/0/Download/jiujitsu$name.pdf');
       await file.writeAsBytes(bytes);
-      return SuccessDownload();
+      return const SuccessDownload();
     } catch (e) {
-      return FailedDownload();
+      return FailedDownload(e.toString());
     }
   }
 }
