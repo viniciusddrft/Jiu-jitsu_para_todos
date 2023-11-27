@@ -30,11 +30,11 @@ class _CbjjrulesPageState extends State<CbjjrulesPage> {
       ..setBackgroundColor(const Color(0x00000000))
       ..setNavigationDelegate(
         NavigationDelegate(
-          onProgress: (int progress) {},
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {
-            if (request.url.contains('cbjj.com.br')) urlPdf.value = request.url;
-
+            if (request.url.contains('cbjj.com.br/rails')) {
+              urlPdf.value = request.url;
+            }
             return NavigationDecision.prevent;
           },
         ),
