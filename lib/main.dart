@@ -10,9 +10,7 @@ import 'src/shared/plugins/admob/admob_interector.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   AdmobInterector.initialize();
 
   runApp(ModularApp(
@@ -49,7 +47,6 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primaryColor: AppColors.primary,
           brightness: Brightness.dark,
-          useMaterial3: true,
         ),
         routerConfig: Modular.routerConfig,
       ),

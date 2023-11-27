@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/quiz_state.dart';
-
 import '../interector/interfaces/ifirebase_quiz.dart';
 import '../interector/question_entity.dart';
 import 'adapters/question_adapter.dart';
