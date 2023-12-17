@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:intl/intl_standalone.dart';
 import 'package:jiu_jitsu_para_todos/core/app_core_module.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
@@ -32,6 +33,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void didChangeDependencies() {
     localeApp.getLocalePreference();
+    findSystemLocale();
     super.didChangeDependencies();
   }
 
