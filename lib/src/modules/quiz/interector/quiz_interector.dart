@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/quiz_state.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/locale_app.dart';
-
 import '../../../shared/plugins/sound/interface/sound_interface.dart';
 import 'answer_entity.dart';
 import 'interfaces/ifirebase_quiz.dart';

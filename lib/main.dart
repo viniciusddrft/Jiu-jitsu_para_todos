@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: localeApp,
-      builder: (_, value, child) => MaterialApp.router(
+      builder: (_, value, __) => MaterialApp.router(
         title: 'Jiu-jitsu para todos',
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,

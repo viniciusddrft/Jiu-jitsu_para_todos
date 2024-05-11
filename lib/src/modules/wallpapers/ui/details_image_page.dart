@@ -4,7 +4,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:async_wallpaper/async_wallpaper.dart';
 import '../../../shared/plugins/admob/admob_interector.dart';
 
 class DetailsImagePage extends StatefulWidget {
@@ -51,28 +50,30 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       side: const BorderSide(color: Colors.white)),
-                  onPressed: () => AsyncWallpaper.setWallpaper(
-                          url: widget.imageUrl, wallpaperLocation: 1)
-                      .then((bool? isSetWallpaperSuccess) {
-                    if (isSetWallpaperSuccess != null &&
-                        isSetWallpaperSuccess) {
-                      Navigator.pop(context);
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          Future.delayed(const Duration(seconds: 2), () {
-                            Navigator.pop(context);
-                            admobInterector.showInterstitialAd();
-                          });
-                          return AlertDialog(
-                            title: Text(
-                                AppLocalizations.of(context)!.text_popup_saved),
-                            backgroundColor: AppColors.background,
-                          );
-                        },
-                      );
-                    }
-                  }),
+                  onPressed: () {
+                    //   AsyncWallpaper.setWallpaper(
+                    //         url: widget.imageUrl, wallpaperLocation: 1)
+                    //     .then((bool? isSetWallpaperSuccess) {
+                    //   if (isSetWallpaperSuccess != null &&
+                    //       isSetWallpaperSuccess) {
+                    //     Navigator.pop(context);
+                    //     showDialog(
+                    //       context: context,
+                    //       builder: (context) {
+                    //         Future.delayed(const Duration(seconds: 2), () {
+                    //           Navigator.pop(context);
+                    //           admobInterector.showInterstitialAd();
+                    //         });
+                    //         return AlertDialog(
+                    //           title: Text(
+                    //               AppLocalizations.of(context)!.text_popup_saved),
+                    //           backgroundColor: AppColors.background,
+                    //         );
+                    //       },
+                    //     );
+                    //   }
+                    // });
+                  },
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.text_popup_set_home,
@@ -90,28 +91,30 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       side: const BorderSide(color: Colors.white)),
-                  onPressed: () => AsyncWallpaper.setWallpaper(
-                          url: widget.imageUrl, wallpaperLocation: 2)
-                      .then((bool? isSetWallpaperSuccess) {
-                    if (isSetWallpaperSuccess != null &&
-                        isSetWallpaperSuccess) {
-                      Navigator.pop(context);
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          Future.delayed(const Duration(seconds: 2), () {
-                            Navigator.pop(context);
-                            admobInterector.showInterstitialAd();
-                          });
-                          return AlertDialog(
-                            title: Text(
-                                AppLocalizations.of(context)!.text_popup_saved),
-                            backgroundColor: AppColors.background,
-                          );
-                        },
-                      );
-                    }
-                  }),
+                  onPressed: () {
+                    //   AsyncWallpaper.setWallpaper(
+                    //         url: widget.imageUrl, wallpaperLocation: 2)
+                    //     .then((bool? isSetWallpaperSuccess) {
+                    //   if (isSetWallpaperSuccess != null &&
+                    //       isSetWallpaperSuccess) {
+                    //     Navigator.pop(context);
+                    //     showDialog(
+                    //       context: context,
+                    //       builder: (context) {
+                    //         Future.delayed(const Duration(seconds: 2), () {
+                    //           Navigator.pop(context);
+                    //           admobInterector.showInterstitialAd();
+                    //         });
+                    //         return AlertDialog(
+                    //           title: Text(
+                    //               AppLocalizations.of(context)!.text_popup_saved),
+                    //           backgroundColor: AppColors.background,
+                    //         );
+                    //       },
+                    //     );
+                    //   }
+                    // });
+                  },
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.text_popup_set_block,
@@ -129,28 +132,30 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       side: const BorderSide(color: Colors.white)),
-                  onPressed: () => AsyncWallpaper.setWallpaper(
-                          url: widget.imageUrl, wallpaperLocation: 3)
-                      .then((bool? isSetWallpaperSuccess) {
-                    if (isSetWallpaperSuccess != null &&
-                        isSetWallpaperSuccess) {
-                      Navigator.pop(context);
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          Future.delayed(const Duration(seconds: 2), () {
-                            Navigator.pop(context);
-                            admobInterector.showInterstitialAd();
-                          });
-                          return AlertDialog(
-                            title: Text(
-                                AppLocalizations.of(context)!.text_popup_saved),
-                            backgroundColor: AppColors.background,
-                          );
-                        },
-                      );
-                    }
-                  }),
+                  onPressed: () {
+                    //   AsyncWallpaper.setWallpaper(
+                    //         url: widget.imageUrl, wallpaperLocation: 3)
+                    //     .then((bool? isSetWallpaperSuccess) {
+                    //   if (isSetWallpaperSuccess != null &&
+                    //       isSetWallpaperSuccess) {
+                    //     Navigator.pop(context);
+                    //     showDialog(
+                    //       context: context,
+                    //       builder: (context) {
+                    //         Future.delayed(const Duration(seconds: 2), () {
+                    //           Navigator.pop(context);
+                    //           admobInterector.showInterstitialAd();
+                    //         });
+                    //         return AlertDialog(
+                    //           title: Text(
+                    //               AppLocalizations.of(context)!.text_popup_saved),
+                    //           backgroundColor: AppColors.background,
+                    //         );
+                    //       },
+                    //     );
+                    //   }
+                    // });
+                  },
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.text_popup_set_both,

@@ -19,7 +19,7 @@ class FirebaseQuizImpl implements IFirebaseQuiz {
 
       final QuerySnapshot querySnapshot = await questionsRef.get();
 
-      final List<QuestionEntity> questions = List<QuestionEntity>.from(
+      final questions = List<QuestionEntity>.from(
           querySnapshot.docs.map((doc) => doc.data()));
 
       questions.shuffle();
