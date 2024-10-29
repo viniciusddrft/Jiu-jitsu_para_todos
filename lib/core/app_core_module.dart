@@ -21,7 +21,7 @@ class AppCoreModule extends Module {
   }
 
   @override
-  void routes(r) {
+  void routes(RouteManager r) {
     r.module('/', module: HomeModule());
     r.module('/historyojiujitsu', module: HistoryOfJiujitsuModule());
     r.module('/rules', module: RulesModule());
