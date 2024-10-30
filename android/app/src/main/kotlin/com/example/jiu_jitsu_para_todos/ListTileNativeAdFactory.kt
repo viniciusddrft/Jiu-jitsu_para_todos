@@ -20,8 +20,10 @@ class ListTileNativeAdFactory(val context: Context) : GoogleMobileAdsPlugin.Nati
                 .inflate(R.layout.list_tile_native_ad, null) as NativeAdView
 
         with(nativeAdView) {
-            val attributionViewSmall = findViewById<TextView>(R.id.tv_list_tile_native_ad_attribution_small)
-            val attributionViewLarge = findViewById<TextView>(R.id.tv_list_tile_native_ad_attribution_large)
+            val attributionViewSmall =
+                    findViewById<TextView>(R.id.tv_list_tile_native_ad_attribution_small)
+            val attributionViewLarge =
+                    findViewById<TextView>(R.id.tv_list_tile_native_ad_attribution_large)
 
             val iconView = findViewById<ImageView>(R.id.iv_list_tile_native_ad_icon)
             val icon = nativeAd.icon
@@ -40,11 +42,16 @@ class ListTileNativeAdFactory(val context: Context) : GoogleMobileAdsPlugin.Nati
             this.headlineView = headlineView
 
             val bodyView = findViewById<TextView>(R.id.tv_list_tile_native_ad_body)
-            bodyView.text = nativeAd.body ?: "" // Define texto vazio se `body` for null
-            bodyView.visibility = if (!nativeAd.body.isNullOrEmpty()) View.VISIBLE else View.INVISIBLE
+            with(bodyView) {
+                text = nativeAd.body
+                if(text !=null){
+                    visibility = View.VISIBLE 
+                }
+                else{
+                    visibility = View.INVISIBLE 
+                }
+            }
             this.bodyView = bodyView
-
-            // Adiciona o NativeAd à view
             setNativeAd(nativeAd)
         }
         return nativeAdView
