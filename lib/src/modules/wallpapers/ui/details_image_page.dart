@@ -4,7 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:permission_handler/permission_handler.dart';
-import '../../../shared/plugins/admob/admob_interector.dart';
+import '../../../shared/plugins/admob/admob_interactor.dart';
 
 class DetailsImagePage extends StatefulWidget {
   final String imageUrl;
@@ -18,7 +18,7 @@ class DetailsImagePage extends StatefulWidget {
 }
 
 class _DetailsImagePageState extends State<DetailsImagePage> {
-  final admobInterector = Modular.get<AdmobInterector>();
+  final admobInteractor = Modular.get<AdmobInteractor>();
   @override
   void didChangeDependencies() {
     precacheImage(Image.network(widget.imageUrl).image, context);
@@ -62,7 +62,7 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
                     //       builder: (context) {
                     //         Future.delayed(const Duration(seconds: 2), () {
                     //           Navigator.pop(context);
-                    //           admobInterector.showInterstitialAd();
+                    //           admobInteractor.showInterstitialAd();
                     //         });
                     //         return AlertDialog(
                     //           title: Text(
@@ -103,7 +103,7 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
                     //       builder: (context) {
                     //         Future.delayed(const Duration(seconds: 2), () {
                     //           Navigator.pop(context);
-                    //           admobInterector.showInterstitialAd();
+                    //           admobInteractor.showInterstitialAd();
                     //         });
                     //         return AlertDialog(
                     //           title: Text(
@@ -144,7 +144,7 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
                     //       builder: (context) {
                     //         Future.delayed(const Duration(seconds: 2), () {
                     //           Navigator.pop(context);
-                    //           admobInterector.showInterstitialAd();
+                    //           admobInteractor.showInterstitialAd();
                     //         });
                     //         return AlertDialog(
                     //           title: Text(

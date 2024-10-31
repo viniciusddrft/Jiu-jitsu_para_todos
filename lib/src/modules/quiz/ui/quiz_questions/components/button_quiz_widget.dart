@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/answer_entity.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/answer_entity.dart';
 import '../../../../../shared/themes/app_colors.dart';
-import '../../../interector/quiz_interector.dart';
+import '../../../interactor/quiz_interactor.dart';
 
 class ButtonQuizQuestionsWidget extends StatefulWidget {
   final AnswerEntity answerEntity;

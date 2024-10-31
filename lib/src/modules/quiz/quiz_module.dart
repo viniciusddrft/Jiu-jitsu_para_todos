@@ -1,9 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/interfaces/ifirebase_quiz.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/interfaces/ifirebase_quiz.dart';
 import '../../shared/plugins/sound/interface/sound_interface.dart';
 import '../../shared/plugins/sound/sound_implements_just_audio.dart';
 import 'data/firebase_quiz_impl.dart';
-import 'interector/quiz_interector.dart';
+import 'interactor/quiz_interactor.dart';
 import 'ui/quiz_menu/quiz_menu_page.dart';
 import 'ui/quiz_questions/quiz_questions_page.dart';
 import 'ui/quiz_result/quiz_result_page.dart';

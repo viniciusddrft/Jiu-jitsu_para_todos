@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/rules/interector/interfaces/rules_service_interface.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/rules/interector/rules_state.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/rules/interactor/interfaces/rules_service_interface.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/rules/interactor/rules_state.dart';
 
 class RulesServiceImpl implements RulesServiceInterface {
   @override

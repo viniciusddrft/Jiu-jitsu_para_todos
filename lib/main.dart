@@ -7,12 +7,12 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'firebase_options.dart';
 import 'src/shared/l10n/locale_app.dart';
-import 'src/shared/plugins/admob/admob_interector.dart';
+import 'src/shared/plugins/admob/admob_interactor.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  AdmobInterector.initialize();
+  AdmobInteractor.initialize();
 
   runApp(ModularApp(
     module: AppCoreModule(),
@@ -28,7 +28,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final localeApp = Modular.get<LocaleInterector>();
+  final localeApp = Modular.get<LocaleInteractor>();
 
   @override
   void didChangeDependencies() {

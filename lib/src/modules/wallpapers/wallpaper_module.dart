@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'data/firebase_wallpapers_impl_.dart';
-import 'interector/interfaces/ifirebase_wallpapers.dart';
-import 'interector/wallpaper_interector.dart';
+import 'interactor/interfaces/ifirebase_wallpapers.dart';
+import 'interactor/wallpaper_interactor.dart';
 import 'ui/details_image_page.dart';
 import 'ui/wallpapers_page.dart';
 

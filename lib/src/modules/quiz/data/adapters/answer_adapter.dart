@@ -1,4 +1,4 @@
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/answer_entity.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/answer_entity.dart';
 
 class AnswerAdapter {
   static AnswerEntity fromJson(Map<String, dynamic> json) => AnswerEntity(

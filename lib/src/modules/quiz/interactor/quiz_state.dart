@@ -1,4 +1,4 @@
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/question_entity.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/question_entity.dart';
 
 sealed class QuizState {}
 

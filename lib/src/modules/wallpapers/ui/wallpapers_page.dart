@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interector/wallpaper_entity.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interector/wallpaper_interector.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interector/wallpaper_state.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/plugins/admob/admob_interector.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interactor/wallpaper_entity.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interactor/wallpaper_interactor.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interactor/wallpaper_state.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/plugins/admob/admob_interactor.dart';
 import '../../../shared/components/app_bar_gradient.dart';
 import '../../../shared/shimmer/shimmer_widget.dart';
 import '../../../shared/themes/app_colors.dart';
@@ -21,7 +20,7 @@ class WallpapersPage extends StatefulWidget {
 
 class _WallpapersViewState extends State<WallpapersPage> {
   final _wallpaperInteractor = Modular.get<WallpaperInteractor>();
-  final admobInterector = Modular.get<AdmobInterector>();
+  final admobInteractor = Modular.get<AdmobInteractor>();
 
   @override
   void initState() {
@@ -31,7 +30,7 @@ class _WallpapersViewState extends State<WallpapersPage> {
 
   @override
   void didChangeDependencies() {
-    admobInterector.createInterstitialAd();
+    admobInteractor.createInterstitialAd();
     super.didChangeDependencies();
   }
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/interector/clock_interector.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/interactor/clock_interactor.dart';
 import '../../../../shared/themes/app_colors.dart';
 import 'components/set_timer_widget.dart';
 
@@ -14,7 +14,7 @@ class Clock extends StatefulWidget {
 }
 
 class _ClockState extends State<Clock> {
-  final _clockInterector = Modular.get<ClockInterector>();
+  final _clockInteractor = Modular.get<ClockInteractor>();
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +25,8 @@ class _ClockState extends State<Clock> {
       children: [
         GestureDetector(
           child: CircularCountDownTimer(
-            duration: _clockInterector.time,
-            controller: _clockInterector.controller,
+            duration: _clockInteractor.time,
+            controller: _clockInteractor.controller,
             autoStart: false,
             width: size.width * 0.33,
             height: size.height * 0.33,
@@ -41,7 +41,7 @@ class _ClockState extends State<Clock> {
             isReverseAnimation: false,
             isTimerTextShown: true,
             onComplete: () {
-              _clockInterector.playSound();
+              _clockInteractor.playSound();
               showDialog<void>(
                 context: context,
                 barrierDismissible: false,
@@ -52,7 +52,7 @@ class _ClockState extends State<Clock> {
                       child: Text(
                           AppLocalizations.of(context)!.text_button_stopsound),
                       onPressed: () {
-                        _clockInterector.stopSound();
+                        _clockInteractor.stopSound();
                         Navigator.of(context).pop();
                       },
                     ),
@@ -64,7 +64,7 @@ class _ClockState extends State<Clock> {
           onTap: () => showDialog<void>(
             context: context,
             builder: (BuildContext context) => SetTimerWidget(
-              clockInterector: _clockInterector,
+              clockInteractor: _clockInteractor,
             ),
           ),
         ),
@@ -73,26 +73,26 @@ class _ClockState extends State<Clock> {
           child: SizedBox(
             width: size.width * 0.15,
             child: AnimatedBuilder(
-              animation: _clockInterector,
+              animation: _clockInteractor,
               builder: (BuildContext context, Widget? child) => OutlinedButton(
                 style: OutlinedButton.styleFrom(
                     foregroundColor:
-                        _clockInterector.isPause ? Colors.green : Colors.red,
+                        _clockInteractor.isPause ? Colors.green : Colors.red,
                     elevation: 7,
                     backgroundColor: AppColors.background,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                     side: BorderSide(
-                        color: _clockInterector.isPause
+                        color: _clockInteractor.isPause
                             ? Colors.green
                             : Colors.red)),
-                onPressed: _clockInterector.startAndPauseButton,
+                onPressed: _clockInteractor.startAndPauseButton,
                 child: Center(
                   child: Icon(
-                      _clockInterector.isPause ? Icons.play_arrow : Icons.pause,
+                      _clockInteractor.isPause ? Icons.play_arrow : Icons.pause,
                       color:
-                          _clockInterector.isPause ? Colors.green : Colors.red),
+                          _clockInteractor.isPause ? Colors.green : Colors.red),
                 ),
               ),
             ),
@@ -112,7 +112,7 @@ class _ClockState extends State<Clock> {
                 ),
                 side: const BorderSide(color: Colors.yellow),
               ),
-              onPressed: _clockInterector.restartButton,
+              onPressed: _clockInteractor.restartButton,
               child: const Center(
                 child: Icon(
                   Icons.refresh_rounded,
@@ -128,7 +128,7 @@ class _ClockState extends State<Clock> {
 
   @override
   void dispose() {
-    _clockInterector.dispose();
+    _clockInteractor.dispose();
     super.dispose();
   }
 }

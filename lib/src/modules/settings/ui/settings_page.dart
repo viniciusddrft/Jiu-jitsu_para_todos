@@ -6,7 +6,7 @@ import '../../../shared/components/app_bar_gradient.dart';
 import '../../../shared/mixins/launch_link.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_icons_languages_path.dart';
-import '../interector/settings_interector.dart';
+import '../interactor/settings_interactor.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -15,11 +15,11 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> with OpenLink {
-  final _settingsInterector = Modular.get<SettingsInterector>();
+  final _settingsInteractor = Modular.get<SettingsInteractor>();
 
   @override
   void didChangeDependencies() {
-    _settingsInterector.loadLanguage();
+    _settingsInteractor.loadLanguage();
     precacheImage(Image.asset(AppIconsLanguages.unitedStates).image, context);
     precacheImage(Image.asset(AppIconsLanguages.brasil).image, context);
     super.didChangeDependencies();
@@ -71,7 +71,7 @@ class _SettingsPageState extends State<SettingsPage> with OpenLink {
                   side: const BorderSide(color: Colors.white),
                 ),
                 onPressed: () {
-                  _settingsInterector.saveLanguage(allLocales[index]);
+                  _settingsInteractor.saveLanguage(allLocales[index]);
                   Navigator.pop(context);
                 },
                 child: Container(
@@ -163,7 +163,7 @@ class _SettingsPageState extends State<SettingsPage> with OpenLink {
                                   style: GoogleFonts.yatraOne(fontSize: 16),
                                 ),
                                 ValueListenableBuilder(
-                                  valueListenable: _settingsInterector.iconPath,
+                                  valueListenable: _settingsInteractor.iconPath,
                                   builder: (BuildContext context, String? value,
                                           Widget? child) =>
                                       Image.asset(
@@ -282,7 +282,7 @@ class _SettingsPageState extends State<SettingsPage> with OpenLink {
 
   @override
   void dispose() {
-    _settingsInterector.dispose();
+    _settingsInteractor.dispose();
     super.dispose();
   }
 }

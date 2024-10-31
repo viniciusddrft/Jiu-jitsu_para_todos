@@ -10,14 +10,14 @@ import '../src/modules/fightmarker/fightmarker_module.dart';
 import '../src/modules/historyofjiujitsu/historyodjiujitsu_module.dart';
 import '../src/modules/quiz/quiz_module.dart';
 import '../src/modules/rules/rules_module.dart';
-import '../src/shared/plugins/admob/admob_interector.dart';
+import '../src/shared/plugins/admob/admob_interactor.dart';
 
 class AppCoreModule extends Module {
   @override
   void binds(Injector i) {
     i.addSingleton<ILocalStorage>(LocalStorageSharedPreferrence.new);
-    i.addSingleton(AdmobInterector.new);
-    i.addSingleton(LocaleInterector.new);
+    i.addSingleton(AdmobInteractor.new);
+    i.addSingleton(LocaleInteractor.new);
   }
 
   @override

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interector/interfaces/ifirebase_wallpapers.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interector/wallpaper_entity.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interector/wallpaper_state.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interactor/interfaces/ifirebase_wallpapers.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interactor/wallpaper_entity.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interactor/wallpaper_state.dart';
 import 'adapters/wallpapers_adapter.dart';
 
 class FirebaseWallpapersImpl implements IFirebaseWallpapers {

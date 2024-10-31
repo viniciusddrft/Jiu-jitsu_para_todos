@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-class ScoreboardInterector extends ChangeNotifier {
+class ScoreboardInteractor extends ChangeNotifier {
   int fighterPoints = 0;
   int punishmentsOfTheFighter = 0;
   int advantagesOfTheFighter = 0;

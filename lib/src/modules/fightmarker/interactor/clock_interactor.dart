@@ -3,7 +3,7 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/sound/interface/sound_interface.dart';
 
-class ClockInterector extends ChangeNotifier {
+class ClockInteractor extends ChangeNotifier {
   int time = 0;
   bool isPause = true;
   final controller = CountDownController();

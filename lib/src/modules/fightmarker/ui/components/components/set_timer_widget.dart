@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
-import '../../../interector/clock_interector.dart';
+import '../../../interactor/clock_interactor.dart';
 
 class SetTimerWidget extends StatefulWidget {
-  const SetTimerWidget({super.key, required this.clockInterector});
+  const SetTimerWidget({super.key, required this.clockInteractor});
 
-  final ClockInterector clockInterector;
+  final ClockInteractor clockInteractor;
 
   @override
   State<SetTimerWidget> createState() => _SetTimerWidgetState();
@@ -136,7 +136,7 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
         ),
         TextButton(
           onPressed: () {
-            widget.clockInterector.setTime(_pageControllerMinutes.page!.toInt(),
+            widget.clockInteractor.setTime(_pageControllerMinutes.page!.toInt(),
                 _pageControllerSeconds.page!.toInt());
             Navigator.pop(context);
           },

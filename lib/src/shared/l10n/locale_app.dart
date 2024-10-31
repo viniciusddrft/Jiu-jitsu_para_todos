@@ -4,10 +4,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../plugins/local_storage/interface/local_storage_interface.dart';
 
-class LocaleInterector extends ValueNotifier<Locale> {
+class LocaleInteractor extends ValueNotifier<Locale> {
   final ILocalStorage _localStorage;
 
-  LocaleInterector(this._localStorage) : super(const Locale('en', 'Us'));
+  LocaleInteractor(this._localStorage) : super(const Locale('en', 'Us'));
 
   void getLocalePreference() =>
       _localStorage.getValue<String>('locale').then((String? preference) {

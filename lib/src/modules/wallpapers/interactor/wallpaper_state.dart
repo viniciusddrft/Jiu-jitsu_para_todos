@@ -1,4 +1,4 @@
-import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interector/wallpaper_entity.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interactor/wallpaper_entity.dart';
 
 sealed class WallpaperState {}
 

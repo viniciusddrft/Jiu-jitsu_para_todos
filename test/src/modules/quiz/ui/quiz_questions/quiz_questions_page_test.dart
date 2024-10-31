@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/data/firebase_quiz_impl.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/interfaces/ifirebase_quiz.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/quiz_interector.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/quiz_state.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/interfaces/ifirebase_quiz.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/quiz_interactor.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/quiz_state.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/ui/quiz_questions/quiz_questions_page.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/locale_app.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/local_storage/interface/local_storage_interface.dart';
@@ -25,7 +25,7 @@ class MockModule extends Module {
     i.add<QuizInteractor>(MockQuizInteractor.new);
     i.add<IFirebaseQuiz>(FirebaseQuizImpl.new);
     i.addSingleton<ILocalStorage>(LocalStorageSharedPreferrence.new);
-    i.addSingleton(LocaleInterector.new);
+    i.addSingleton(LocaleInteractor.new);
   }
 }
 

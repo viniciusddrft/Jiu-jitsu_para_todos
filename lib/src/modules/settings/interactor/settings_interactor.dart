@@ -3,8 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../../../shared/l10n/locale_app.dart';
 import '../../../shared/themes/app_icons_languages_path.dart';
 
-class SettingsInterector {
-  final _localeAppNotifier = Modular.get<LocaleInterector>();
+class SettingsInteractor {
+  final _localeAppNotifier = Modular.get<LocaleInteractor>();
   final iconPath = ValueNotifier<String?>(null);
 
   void loadLanguage() {

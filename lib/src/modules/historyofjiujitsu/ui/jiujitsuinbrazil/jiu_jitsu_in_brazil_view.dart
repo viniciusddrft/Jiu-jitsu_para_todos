@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../shared/components/admob_native_ad.dart';
-import '../../../../shared/plugins/admob/admob_interector.dart';
+import '../../../../shared/plugins/admob/admob_interactor.dart';
 import '../../../../shared/themes/app_colors.dart';
 
 class JiujitsuinBrazilPage extends StatelessWidget {
@@ -12,7 +12,7 @@ class JiujitsuinBrazilPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
-    final admobInterector = Modular.get<AdmobInterector>();
+    final admobInteractor = Modular.get<AdmobInteractor>();
 
     return Scaffold(
       appBar: AppBar(
@@ -55,7 +55,7 @@ class JiujitsuinBrazilPage extends StatelessWidget {
         height: 75,
         child: AdmobNativeAd(
           factoryId: 'listTile',
-          adUnitId: admobInterector.nativeAdUnitIDListTile,
+          adUnitId: admobInteractor.nativeAdUnitIDListTile,
         ),
       ),
     );

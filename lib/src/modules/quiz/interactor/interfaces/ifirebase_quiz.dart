@@ -1,4 +1,4 @@
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/quiz_state.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/quiz_state.dart';
 
 enum Difficult {
   easy('quiz_easy'),

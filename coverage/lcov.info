@@ -16,7 +16,7 @@ DA:31,0
 LF:14
 LH:0
 end_of_record
-SF:lib/src/features/quiz/interector/quiz_state.dart
+SF:lib/src/features/quiz/interactor/quiz_state.dart
 DA:6,4
 DA:12,2
 DA:16,3
@@ -33,7 +33,7 @@ DA:11,0
 LF:6
 LH:0
 end_of_record
-SF:lib/src/features/quiz/interector/answer_entity.dart
+SF:lib/src/features/quiz/interactor/answer_entity.dart
 DA:5,0
 LF:1
 LH:0
@@ -54,7 +54,7 @@ DA:20,0
 LF:12
 LH:0
 end_of_record
-SF:lib/src/features/quiz/interector/question_entity.dart
+SF:lib/src/features/quiz/interactor/question_entity.dart
 DA:8,0
 LF:1
 LH:0
@@ -146,7 +146,7 @@ DA:7,1
 LF:3
 LH:3
 end_of_record
-SF:lib/src/features/quiz/interector/quiz_interector.dart
+SF:lib/src/features/quiz/interactor/quiz_interactor.dart
 DA:10,2
 DA:20,0
 DA:21,0

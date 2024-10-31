@@ -1,16 +1,16 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../shared/plugins/sound/interface/sound_interface.dart';
 import '../../shared/plugins/sound/sound_implements_just_audio.dart';
-import 'interector/clock_interector.dart';
-import 'interector/scorreboard_interector.dart';
+import 'interactor/clock_interactor.dart';
+import 'interactor/scorreboard_interactor.dart';
 import 'ui/fightmarker_page.dart';
 
 class FightmakerModule extends Module {
   @override
   void binds(i) {
     i.add<SoundInterface>(JustAudio.new);
-    i.add(ScoreboardInterector.new);
-    i.add(ClockInterector.new);
+    i.add(ScoreboardInteractor.new);
+    i.add(ClockInteractor.new);
   }
 
   @override

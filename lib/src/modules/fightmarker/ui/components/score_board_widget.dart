@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/interector/scorreboard_interector.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/interactor/scorreboard_interactor.dart';
 
 class Scoreboard extends StatefulWidget {
   const Scoreboard({super.key});
@@ -11,7 +11,7 @@ class Scoreboard extends StatefulWidget {
 }
 
 class _ScoreboardState extends State<Scoreboard> {
-  final _scoreboardInterector = Modular.get<ScoreboardInterector>();
+  final _scoreboardInteractor = Modular.get<ScoreboardInteractor>();
 
   @override
   Widget build(BuildContext context) {
@@ -21,22 +21,22 @@ class _ScoreboardState extends State<Scoreboard> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         AnimatedBuilder(
-          animation: _scoreboardInterector,
+          animation: _scoreboardInteractor,
           builder: (context, child) =>
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text(
-              '${_scoreboardInterector.fighterPoints}',
+              '${_scoreboardInteractor.fighterPoints}',
               style: GoogleFonts.yatraOne(fontSize: 30),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: size.width * 0.033),
               child: Text(
-                '${_scoreboardInterector.advantagesOfTheFighter}',
+                '${_scoreboardInteractor.advantagesOfTheFighter}',
                 style: GoogleFonts.yatraOne(fontSize: 30, color: Colors.yellow),
               ),
             ),
             Text(
-              '${_scoreboardInterector.punishmentsOfTheFighter}',
+              '${_scoreboardInteractor.punishmentsOfTheFighter}',
               style: GoogleFonts.yatraOne(fontSize: 30, color: Colors.red),
             ),
           ]),
@@ -45,7 +45,7 @@ class _ScoreboardState extends State<Scoreboard> {
           IconButton(
               iconSize: 30,
               icon: const Icon(Icons.add),
-              onPressed: () => _scoreboardInterector.addPoints(2)),
+              onPressed: () => _scoreboardInteractor.addPoints(2)),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
             child: Text(
@@ -56,14 +56,14 @@ class _ScoreboardState extends State<Scoreboard> {
           IconButton(
             iconSize: 30,
             icon: const Icon(Icons.remove),
-            onPressed: () => _scoreboardInterector.removePoints(2),
+            onPressed: () => _scoreboardInteractor.removePoints(2),
           ),
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
             iconSize: 30,
             icon: const Icon(Icons.add),
-            onPressed: () => _scoreboardInterector.addPoints(3),
+            onPressed: () => _scoreboardInteractor.addPoints(3),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
@@ -75,14 +75,14 @@ class _ScoreboardState extends State<Scoreboard> {
           IconButton(
             iconSize: 30,
             icon: const Icon(Icons.remove),
-            onPressed: () => _scoreboardInterector.removePoints(3),
+            onPressed: () => _scoreboardInteractor.removePoints(3),
           ),
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
             iconSize: 30,
             icon: const Icon(Icons.add),
-            onPressed: () => _scoreboardInterector.addPoints(4),
+            onPressed: () => _scoreboardInteractor.addPoints(4),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
@@ -91,14 +91,14 @@ class _ScoreboardState extends State<Scoreboard> {
           IconButton(
               iconSize: 30,
               icon: const Icon(Icons.remove),
-              onPressed: () => _scoreboardInterector.removePoints(4)),
+              onPressed: () => _scoreboardInteractor.removePoints(4)),
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           IconButton(
             iconSize: 30,
             color: Colors.yellow,
             icon: const Icon(Icons.add),
-            onPressed: _scoreboardInterector.addAdvantages,
+            onPressed: _scoreboardInteractor.addAdvantages,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
@@ -111,7 +111,7 @@ class _ScoreboardState extends State<Scoreboard> {
             iconSize: 30,
             color: Colors.yellow,
             icon: const Icon(Icons.remove),
-            onPressed: _scoreboardInterector.removeAdvantages,
+            onPressed: _scoreboardInteractor.removeAdvantages,
           ),
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -119,7 +119,7 @@ class _ScoreboardState extends State<Scoreboard> {
             iconSize: 30,
             color: Colors.red,
             icon: const Icon(Icons.add),
-            onPressed: _scoreboardInterector.addPunishments,
+            onPressed: _scoreboardInteractor.addPunishments,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * 0.015),
@@ -132,7 +132,7 @@ class _ScoreboardState extends State<Scoreboard> {
             iconSize: 30,
             color: Colors.red,
             icon: const Icon(Icons.remove),
-            onPressed: _scoreboardInterector.removePunishments,
+            onPressed: _scoreboardInteractor.removePunishments,
           ),
         ]),
       ],
@@ -141,7 +141,7 @@ class _ScoreboardState extends State<Scoreboard> {
 
   @override
   void dispose() {
-    _scoreboardInterector.dispose();
+    _scoreboardInteractor.dispose();
     super.dispose();
   }
 }

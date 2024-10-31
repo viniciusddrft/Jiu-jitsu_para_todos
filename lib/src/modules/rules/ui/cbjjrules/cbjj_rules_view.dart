@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/rules/interector/rules_interector.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/rules/interector/rules_state.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/rules/interactor/rules_interactor.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/rules/interactor/rules_state.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/plugins/admob/admob_interactor.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../../../shared/components/admob_native_ad.dart';
-import '../../../../shared/plugins/admob/admob_interector.dart';
 import '../../../../shared/themes/app_colors.dart';
 
 class CbjjrulesPage extends StatefulWidget {
@@ -18,8 +18,8 @@ class CbjjrulesPage extends StatefulWidget {
 }
 
 class _CbjjrulesPageState extends State<CbjjrulesPage> {
-  final admobInterector = Modular.get<AdmobInterector>();
-  final rulesInterector = Modular.get<RulesInterector>();
+  final admobInteractor = Modular.get<AdmobInteractor>();
+  final rulesInteractor = Modular.get<RulesInteractor>();
   late final WebViewController controller;
   final urlPdf = ValueNotifier<String?>(null);
 
@@ -41,8 +41,8 @@ class _CbjjrulesPageState extends State<CbjjrulesPage> {
       )
       ..loadRequest(Uri.parse('https://cbjj.com.br/books-videos'));
 
-    rulesInterector.addListener(() {
-      if (rulesInterector.value is SuccessDownload) {
+    rulesInteractor.addListener(() {
+      if (rulesInteractor.value is SuccessDownload) {
         showDialog<void>(
           context: context,
           builder: (_) => AlertDialog(
@@ -50,7 +50,7 @@ class _CbjjrulesPageState extends State<CbjjrulesPage> {
                 Text(AppLocalizations.of(context)!.title_cbjj_successDownload),
           ),
         );
-      } else if (rulesInterector.value is FailedDownload) {
+      } else if (rulesInteractor.value is FailedDownload) {
         showDialog<void>(
           context: context,
           builder: (_) => AlertDialog(
@@ -72,7 +72,7 @@ class _CbjjrulesPageState extends State<CbjjrulesPage> {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: Listenable.merge([urlPdf, rulesInterector]),
+      animation: Listenable.merge([urlPdf, rulesInteractor]),
       builder: (context, child) => Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -87,7 +87,7 @@ class _CbjjrulesPageState extends State<CbjjrulesPage> {
             ? WebViewWidget(controller: controller)
             : Stack(children: [
                 SfPdfViewer.network(urlPdf.value!),
-                if (rulesInterector.value is LoadingDownload)
+                if (rulesInteractor.value is LoadingDownload)
                   const Center(
                     child: SizedBox(
                       width: 100,
@@ -100,9 +100,9 @@ class _CbjjrulesPageState extends State<CbjjrulesPage> {
                   )
               ]),
         floatingActionButton:
-            urlPdf.value != null && rulesInterector.value is! LoadingDownload
+            urlPdf.value != null && rulesInteractor.value is! LoadingDownload
                 ? FloatingActionButton(
-                    onPressed: () => rulesInterector.downloadPDf(urlPdf.value!),
+                    onPressed: () => rulesInteractor.downloadPDf(urlPdf.value!),
                     backgroundColor: AppColors.background,
                     child: const Icon(Icons.download),
                   )
@@ -111,7 +111,7 @@ class _CbjjrulesPageState extends State<CbjjrulesPage> {
           height: 75,
           child: AdmobNativeAd(
             factoryId: 'listTile',
-            adUnitId: admobInterector.nativeAdUnitIDListTile,
+            adUnitId: admobInteractor.nativeAdUnitIDListTile,
           ),
         ),
       ),

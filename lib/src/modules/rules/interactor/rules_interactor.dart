@@ -1,11 +1,11 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/rules/interector/interfaces/rules_service_interface.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/rules/interector/rules_state.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/rules/interactor/interfaces/rules_service_interface.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/rules/interactor/rules_state.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-class RulesInterector extends ValueNotifier<RulesState> {
-  RulesInterector(this.rulesService) : super(const InitialRules());
+class RulesInteractor extends ValueNotifier<RulesState> {
+  RulesInteractor(this.rulesService) : super(const InitialRules());
 
   final RulesServiceInterface rulesService;
 

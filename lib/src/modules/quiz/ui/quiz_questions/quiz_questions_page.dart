@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/interfaces/ifirebase_quiz.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/question_entity.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/quiz_interector.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/quiz_state.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/interfaces/ifirebase_quiz.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/question_entity.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/quiz_interactor.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/quiz_state.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_images.dart';
 import '../../../../shared/themes/app_colors.dart';
-import '../../interector/answer_entity.dart';
+import '../../interactor/answer_entity.dart';
 import 'components/button_quiz_widget.dart';
 
 class QuizQuestionsPage extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interector/quiz_state.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/quiz_state.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/locale_app.dart';
 import '../../../shared/plugins/sound/interface/sound_interface.dart';
 import 'answer_entity.dart';
@@ -10,7 +10,7 @@ class QuizInteractor extends ValueNotifier<QuizState> {
   QuizInteractor({required this.firebaseQuiz}) : super(const QuizLoading());
 
   final IFirebaseQuiz firebaseQuiz;
-  final _localeAppNotifier = Modular.get<LocaleInterector>();
+  final _localeAppNotifier = Modular.get<LocaleInteractor>();
   late final Difficult difficult;
   final _soundInterface = Modular.get<SoundInterface>();
 
