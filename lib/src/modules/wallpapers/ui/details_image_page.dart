@@ -28,17 +28,18 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
     super.didChangeDependencies();
   }
 
-  void setWallpaper({required int wallpaperLocation}) async {
+  void _setWallpaper({required int wallpaperLocation}) {
     admobInteractor.showInterstitialAd();
-    final isSetWallpaperSuccess = await AsyncWallpaper.setWallpaper(
-        url: widget.imageUrl, wallpaperLocation: wallpaperLocation);
-
-    if (isSetWallpaperSuccess) {
-      showDialogSuccess();
-    }
+    AsyncWallpaper.setWallpaper(
+            url: widget.imageUrl, wallpaperLocation: wallpaperLocation)
+        .then((isSetWallpaperSuccess) {
+      if (isSetWallpaperSuccess) {
+        _showDialogSuccess();
+      }
+    });
   }
 
-  void showDialogSuccess() => showDialog<void>(
+  void _showDialogSuccess() => showDialog<void>(
         context: context,
         builder: (context) {
           return AlertDialog(
@@ -73,7 +74,7 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       side: const BorderSide(color: Colors.white)),
-                  onPressed: () => setWallpaper(wallpaperLocation: 1),
+                  onPressed: () => _setWallpaper(wallpaperLocation: 1),
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.text_popup_set_home,
@@ -91,7 +92,7 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       side: const BorderSide(color: Colors.white)),
-                  onPressed: () => setWallpaper(wallpaperLocation: 2),
+                  onPressed: () => _setWallpaper(wallpaperLocation: 2),
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.text_popup_set_block,
@@ -109,7 +110,7 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       side: const BorderSide(color: Colors.white)),
-                  onPressed: () => setWallpaper(wallpaperLocation: 3),
+                  onPressed: () => _setWallpaper(wallpaperLocation: 3),
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.text_popup_set_both,
