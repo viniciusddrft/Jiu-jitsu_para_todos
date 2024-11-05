@@ -1,3 +1,4 @@
+import 'package:async_wallpaper/async_wallpaper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -27,6 +28,31 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
     super.didChangeDependencies();
   }
 
+  void setWallpaper({required int wallpaperLocation}) async {
+    final isSetWallpaperSuccess = await AsyncWallpaper.setWallpaper(
+        url: widget.imageUrl, wallpaperLocation: wallpaperLocation);
+
+    if (isSetWallpaperSuccess) {
+      showAd();
+    }
+  }
+
+  void showAd() {
+    Navigator.pop(context);
+    Navigator.pop(context);
+    showDialog(
+      context: context,
+      builder: (context) {
+        Future.delayed(
+            const Duration(seconds: 2), admobInteractor.showInterstitialAd);
+        return AlertDialog(
+          title: Text(AppLocalizations.of(context)!.text_popup_saved),
+          backgroundColor: AppColors.background,
+        );
+      },
+    );
+  }
+
   void showDialogSetWallpaper() => showDialog<void>(
         context: context,
         builder: (BuildContext context) => FractionallySizedBox(
@@ -52,30 +78,7 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       side: const BorderSide(color: Colors.white)),
-                  onPressed: () {
-                    //   AsyncWallpaper.setWallpaper(
-                    //         url: widget.imageUrl, wallpaperLocation: 1)
-                    //     .then((bool? isSetWallpaperSuccess) {
-                    //   if (isSetWallpaperSuccess != null &&
-                    //       isSetWallpaperSuccess) {
-                    //     Navigator.pop(context);
-                    //     showDialog(
-                    //       context: context,
-                    //       builder: (context) {
-                    //         Future.delayed(const Duration(seconds: 2), () {
-                    //           Navigator.pop(context);
-                    //           admobInteractor.showInterstitialAd();
-                    //         });
-                    //         return AlertDialog(
-                    //           title: Text(
-                    //               AppLocalizations.of(context)!.text_popup_saved),
-                    //           backgroundColor: AppColors.background,
-                    //         );
-                    //       },
-                    //     );
-                    //   }
-                    // });
-                  },
+                  onPressed: () => setWallpaper(wallpaperLocation: 1),
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.text_popup_set_home,
@@ -93,30 +96,7 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       side: const BorderSide(color: Colors.white)),
-                  onPressed: () {
-                    //   AsyncWallpaper.setWallpaper(
-                    //         url: widget.imageUrl, wallpaperLocation: 2)
-                    //     .then((bool? isSetWallpaperSuccess) {
-                    //   if (isSetWallpaperSuccess != null &&
-                    //       isSetWallpaperSuccess) {
-                    //     Navigator.pop(context);
-                    //     showDialog(
-                    //       context: context,
-                    //       builder: (context) {
-                    //         Future.delayed(const Duration(seconds: 2), () {
-                    //           Navigator.pop(context);
-                    //           admobInteractor.showInterstitialAd();
-                    //         });
-                    //         return AlertDialog(
-                    //           title: Text(
-                    //               AppLocalizations.of(context)!.text_popup_saved),
-                    //           backgroundColor: AppColors.background,
-                    //         );
-                    //       },
-                    //     );
-                    //   }
-                    // });
-                  },
+                  onPressed: () => setWallpaper(wallpaperLocation: 2),
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.text_popup_set_block,
@@ -134,30 +114,7 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       side: const BorderSide(color: Colors.white)),
-                  onPressed: () {
-                    //   AsyncWallpaper.setWallpaper(
-                    //         url: widget.imageUrl, wallpaperLocation: 3)
-                    //     .then((bool? isSetWallpaperSuccess) {
-                    //   if (isSetWallpaperSuccess != null &&
-                    //       isSetWallpaperSuccess) {
-                    //     Navigator.pop(context);
-                    //     showDialog(
-                    //       context: context,
-                    //       builder: (context) {
-                    //         Future.delayed(const Duration(seconds: 2), () {
-                    //           Navigator.pop(context);
-                    //           admobInteractor.showInterstitialAd();
-                    //         });
-                    //         return AlertDialog(
-                    //           title: Text(
-                    //               AppLocalizations.of(context)!.text_popup_saved),
-                    //           backgroundColor: AppColors.background,
-                    //         );
-                    //       },
-                    //     );
-                    //   }
-                    // });
-                  },
+                  onPressed: () => setWallpaper(wallpaperLocation: 3),
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.text_popup_set_both,

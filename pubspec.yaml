@@ -50,6 +50,7 @@ dependencies:
   permission_handler: ^11.3.1
   webview_flutter: ^4.8.0
   syncfusion_flutter_pdfviewer: ^27.1.56
+  async_wallpaper: ^2.1.0
 
 dev_dependencies:
   flutter_test:
