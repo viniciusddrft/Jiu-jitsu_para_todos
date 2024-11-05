@@ -29,29 +29,24 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
   }
 
   void setWallpaper({required int wallpaperLocation}) async {
+    admobInteractor.showInterstitialAd();
     final isSetWallpaperSuccess = await AsyncWallpaper.setWallpaper(
         url: widget.imageUrl, wallpaperLocation: wallpaperLocation);
 
     if (isSetWallpaperSuccess) {
-      showAd();
+      showDialogSuccess();
     }
   }
 
-  void showAd() {
-    Navigator.pop(context);
-    Navigator.pop(context);
-    showDialog(
-      context: context,
-      builder: (context) {
-        Future.delayed(
-            const Duration(seconds: 2), admobInteractor.showInterstitialAd);
-        return AlertDialog(
-          title: Text(AppLocalizations.of(context)!.text_popup_saved),
-          backgroundColor: AppColors.background,
-        );
-      },
-    );
-  }
+  void showDialogSuccess() => showDialog<void>(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(AppLocalizations.of(context)!.text_popup_saved),
+            backgroundColor: AppColors.background,
+          );
+        },
+      );
 
   void showDialogSetWallpaper() => showDialog<void>(
         context: context,
