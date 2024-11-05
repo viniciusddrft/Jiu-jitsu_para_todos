@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interactor/wallpaper_entity.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interactor/wallpaper_interactor.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interactor/wallpaper_state.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/components/admob_native_ad.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/admob/admob_interactor.dart';
 import '../../../shared/components/app_bar_gradient.dart';
 import '../../../shared/shimmer/shimmer_widget.dart';
@@ -133,6 +134,13 @@ class _WallpapersViewState extends State<WallpapersPage> {
               ),
             ),
         },
+      ),
+      bottomNavigationBar: SizedBox(
+        height: 75,
+        child: AdmobNativeAd(
+          factoryId: 'listTile',
+          adUnitId: admobInteractor.nativeAdUnitIDListTile,
+        ),
       ),
     );
   }
