@@ -41,15 +41,15 @@ dependencies:
   cloud_firestore: ^5.4.4
   flutter_modular: ^6.3.4
   shared_preferences: ^2.3.2
-  just_audio: ^0.9.41
+  just_audio: ^0.9.42
   google_fonts: ^6.2.1
   url_launcher: ^6.3.1
   wakelock_plus: ^1.2.8
   circular_countdown_timer: ^0.2.4
   google_mobile_ads: ^5.2.0
   permission_handler: ^11.3.1
-  webview_flutter: ^4.8.0
-  syncfusion_flutter_pdfviewer: ^27.1.56
+  webview_flutter: ^4.9.0
+  syncfusion_flutter_pdfviewer: ^27.1.58
   async_wallpaper: ^2.1.0
 
 dev_dependencies:
