@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/answer_entity.dart';
 import '../../../../../shared/themes/app_colors.dart';
-import '../../../interactor/quiz_interactor.dart';
 
 class ButtonQuizQuestionsWidget extends StatefulWidget {
   final AnswerEntity answerEntity;
@@ -19,7 +17,6 @@ class ButtonQuizQuestionsWidget extends StatefulWidget {
 class _ButtonQuizQuestionsWidgetState extends State<ButtonQuizQuestionsWidget> {
   final _color = ValueNotifier<Color>(Colors.white);
   final _showIcon = ValueNotifier<bool>(false);
-  final _quizInteractor = Modular.get<QuizInteractor>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +31,8 @@ class _ButtonQuizQuestionsWidgetState extends State<ButtonQuizQuestionsWidget> {
             _showIcon.value = true;
             if (widget.answerEntity.isCorrect) {
               _color.value = Colors.green;
-              _quizInteractor.playSoundRightAnswer();
             } else {
               _color.value = Colors.red;
-              _quizInteractor.playSoundWrongAnswer();
             }
             await Future.delayed(const Duration(milliseconds: 500));
             widget.onPressedButton(widget.answerEntity);

@@ -29,10 +29,10 @@ class _QuizResultPageState extends State<QuizResultPage>
 
   @override
   void initState() {
-    super.initState();
     _animationController = AnimationController(
       vsync: this,
     );
+    super.initState();
   }
 
   @override

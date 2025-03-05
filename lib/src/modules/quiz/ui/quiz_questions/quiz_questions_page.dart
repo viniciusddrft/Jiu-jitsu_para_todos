@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,15 +24,38 @@ class QuizQuestionsPage extends StatefulWidget {
 class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
   final _quizInteractor = Modular.get<QuizInteractor>();
   final _pageController = PageController();
+  final _timer = ValueNotifier<int>(10);
 
   @override
   void initState() {
     _quizInteractor.loadQuestions(widget.difficulty);
+    // _quizInteractor.playSoundTimer();
+    _quizInteractor.addListener(() {
+      if (_quizInteractor.value is QuizSuccess) {
+        Timer.periodic(const Duration(seconds: 1), (timer) {
+          if (mounted) {
+            _timer.value--;
+            if (_timer.value == 0) {
+              _quizInteractor.onTimerFailed();
+              _timer.value = 10;
+              next();
+              // _quizInteractor.playSoundTimer();
+            }
+          }
+        });
+      }
+    });
     super.initState();
   }
 
   void onPressedButton(AnswerEntity answerEntity) {
+    _timer.value = 10;
     _quizInteractor.onPressed(answerEntity);
+    next();
+    // _quizInteractor.playSoundTimer();
+  }
+
+  void next() {
     if (_pageController.page! + 1 == _quizInteractor.totalQuestions) {
       Modular.to.pushReplacementNamed('/quiz/result', arguments: {
         'score': _quizInteractor.score,
@@ -56,7 +81,7 @@ class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
       backgroundColor: AppColors.background,
       body: ValueListenableBuilder(
         valueListenable: _quizInteractor,
-        builder: (context, value, child) => switch (_quizInteractor.value) {
+        builder: (_, value, __) => switch (value) {
           QuizFailed() => Center(
               key: const Key('quizStateFailed'),
               child: Column(
@@ -81,67 +106,93 @@ class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
               child: CircularProgressIndicator(),
             ),
           QuizSuccess(questions: final List<QuestionEntity> questions) =>
-            PageView(
-              key: const Key('quizStateSuccess'),
-              controller: _pageController,
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                for (QuestionEntity question in questions)
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            ValueListenableBuilder(
+                valueListenable: _timer,
+                builder: (_, value, __) {
+                  return PageView(
+                    key: const Key('quizStateSuccess'),
+                    controller: _pageController,
+                    physics: const NeverScrollableScrollPhysics(),
                     children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: size.width * 0.07,
-                            bottom: size.height * 0.01),
-                        child: Text(
-                            'Quiz ${widget.difficulty == Difficult.easy ? AppLocalizations.of(context)!.text_difficultyname_white_belt : widget.difficulty == Difficult.medium ? AppLocalizations.of(context)!.text_difficultyname_blue_belt : AppLocalizations.of(context)!.text_difficultyname_black_belt}',
-                            style: GoogleFonts.yatraOne(
-                                fontSize: 20, color: Colors.grey[700])),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: size.width * 0.07),
-                        child: Text(
-                            '${AppLocalizations.of(context)!.text_question} ${_quizInteractor.numberQuestion}/${_quizInteractor.totalQuestions}',
-                            style: GoogleFonts.ubuntu(
-                                fontSize: 22, color: Colors.white)),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(
-                            left: size.width * 0.07, right: size.width * 0.07),
-                        width: size.width,
-                        height: 1,
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                              colors: [Colors.white, AppColors.background],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            top: size.height * 0.02,
-                            left: size.width * 0.07,
-                            right: size.width * 0.07),
-                        child: Text(question.question,
-                            style: GoogleFonts.ubuntu(
-                                fontSize: 18, color: Colors.white)),
-                      ),
-                      const Spacer(),
-                      for (AnswerEntity answerEntity in question.options)
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: size.width * 0.07,
-                              right: size.width * 0.07),
-                          child: ButtonQuizQuestionsWidget(
-                            answerEntity: answerEntity,
-                            onPressedButton: onPressedButton,
-                          ),
+                      for (QuestionEntity question in questions)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: size.width * 0.07,
+                                      bottom: size.height * 0.01),
+                                  child: Text(
+                                      'Quiz ${widget.difficulty == Difficult.easy ? AppLocalizations.of(context)!.text_difficultyname_white_belt : widget.difficulty == Difficult.medium ? AppLocalizations.of(context)!.text_difficultyname_blue_belt : AppLocalizations.of(context)!.text_difficultyname_black_belt}',
+                                      style: GoogleFonts.yatraOne(
+                                          fontSize: 20,
+                                          color: Colors.grey[700])),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: size.width * 0.4,
+                                      bottom: size.height * 0.01),
+                                  child: Text(value.toString(),
+                                      style: GoogleFonts.yatraOne(
+                                          fontSize: 22,
+                                          color: value > 7
+                                              ? Colors.green
+                                              : value > 3
+                                                  ? Colors.yellow
+                                                  : Colors.red)),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: size.width * 0.07),
+                              child: Text(
+                                  '${AppLocalizations.of(context)!.text_question} ${_quizInteractor.numberQuestion}/${_quizInteractor.totalQuestions}',
+                                  style: GoogleFonts.ubuntu(
+                                      fontSize: 22, color: Colors.white)),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(
+                                  left: size.width * 0.07,
+                                  right: size.width * 0.07),
+                              width: size.width,
+                              height: 1,
+                              decoration: const BoxDecoration(
+                                gradient: LinearGradient(
+                                    colors: [
+                                      Colors.white,
+                                      AppColors.background
+                                    ],
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: size.height * 0.02,
+                                  left: size.width * 0.07,
+                                  right: size.width * 0.07),
+                              child: Text(question.question,
+                                  style: GoogleFonts.ubuntu(
+                                      fontSize: 18, color: Colors.white)),
+                            ),
+                            const Spacer(),
+                            for (AnswerEntity answerEntity in question.options)
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    left: size.width * 0.07,
+                                    right: size.width * 0.07),
+                                child: ButtonQuizQuestionsWidget(
+                                  answerEntity: answerEntity,
+                                  onPressedButton: onPressedButton,
+                                ),
+                              )
+                          ],
                         )
                     ],
-                  )
-              ],
-            )
+                  );
+                })
         },
       ),
     );
@@ -151,6 +202,7 @@ class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
   void dispose() {
     _quizInteractor.dispose();
     _pageController.dispose();
+    _timer.dispose();
     super.dispose();
   }
 }
