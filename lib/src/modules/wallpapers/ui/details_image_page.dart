@@ -161,7 +161,7 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
             ),
           ),
           SizedBox(
-            height: size.height * 0.2,
+            height: size.height * 0.18,
             child: Center(
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(

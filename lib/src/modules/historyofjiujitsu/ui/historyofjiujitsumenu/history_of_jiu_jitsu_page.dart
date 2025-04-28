@@ -22,15 +22,31 @@ class HistoryOfJiuJitsuPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 16),
+              child: Text(
+                AppLocalizations.of(context)!.history_of_jiujitsu_page_summary,
+                style: const TextStyle(fontSize: 16),
+              ),
+            ),
+            ButtonMenu(
+              imageButton: AppIconsPath.japao,
+              text:
+                  '    ${AppLocalizations.of(context)!.button_jiujitsu_in_japao}',
+              onPressed: () =>
+                  Modular.to.pushNamed('/historyojiujitsu/originofjiujitsu'),
+            ),
             ButtonMenu(
               imageButton: AppIconsPath.india,
-              text: AppLocalizations.of(context)!.button_origin_of_jiujitsu,
+              text:
+                  '    ${AppLocalizations.of(context)!.button_jiujitsu_in_india}',
               onPressed: () =>
                   Modular.to.pushNamed('/historyojiujitsu/originofjiujitsu'),
             ),
             ButtonMenu(
               imageButton: AppIconsPath.brasil,
-              text: AppLocalizations.of(context)!.button_jiujitsu_in_brazil,
+              text:
+                  '    ${AppLocalizations.of(context)!.button_jiujitsu_in_brazil}',
               onPressed: () =>
                   Modular.to.pushNamed('/historyojiujitsu/jiujitsuinbrazil'),
             ),

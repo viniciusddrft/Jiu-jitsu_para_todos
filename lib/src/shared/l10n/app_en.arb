@@ -26,9 +26,11 @@
     "text_the_application_was_developed_in_flutter":"The application was developed in flutter.",
     "text_if_you_want_to_know_both_the_flutter_and_the_flaticon_just_click_on_the_icons":"If you want to know both the Flutter and the Flaticon, just click on the icons.",
 
+    "history_of_jiujitsu_page_summary":"Jiu-jitsu has several stories about its origins. The most accepted one is that it originated in Japan, while another, less recognized, suggests that its roots are in India. Here, you will learn about both versions in detail.",
     "title_appbar_history_of_jiujitsu_page":"History of Jiu-jitsu",
-    "button_origin_of_jiujitsu":"Origin of Jiu-jitsu",
-    "button_jiujitsu_in_brazil":"The Brazilian Jiu-jitsu",
+    "button_jiujitsu_in_japao":"Jiu-jitsu in Japan",
+    "button_jiujitsu_in_india":"Jiu-jitsu in India",
+    "button_jiujitsu_in_brazil":"Jiu-jitsu in Brazil",
 
     "title_appbar_rule_page":"Rules",
     "button_basic_rules":"Basic rules",

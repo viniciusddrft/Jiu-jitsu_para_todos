@@ -23,11 +23,15 @@ class QuizInteractor extends ValueNotifier<QuizState> {
   }
 
   void playSoundRightAnswer() {
-    _soundInterface.play('assets/music/right_answer.mp3');
+    _soundInterface
+        .play('assets/music/right_answer.mp3')
+        .whenComplete(playSoundTimer);
   }
 
   void playSoundWrongAnswer() {
-    _soundInterface.play('assets/music/wrong_answer.mp3');
+    _soundInterface
+        .play('assets/music/wrong_answer.mp3')
+        .whenComplete(playSoundTimer);
   }
 
   void loadQuestions(Difficult selectDifficult) async {
@@ -43,6 +47,7 @@ class QuizInteractor extends ValueNotifier<QuizState> {
   }
 
   void onPressed(AnswerEntity answerEntity) {
+    _soundInterface.pause();
     numberQuestion++;
 
     if (answerEntity.isCorrect) {
@@ -54,8 +59,8 @@ class QuizInteractor extends ValueNotifier<QuizState> {
   }
 
   void onTimerFailed() {
+    _soundInterface.pause();
     numberQuestion++;
-
     playSoundWrongAnswer();
   }
 

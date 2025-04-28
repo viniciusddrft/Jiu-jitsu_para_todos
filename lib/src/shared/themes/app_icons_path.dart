@@ -7,6 +7,7 @@ class AppIconsPath {
   static const String wallpapers = 'assets/images/iconsbutton/wallpapers.png';
   static const String india = 'assets/images/iconsbutton/india.png';
   static const String brasil = 'assets/images/iconsbutton/brasil.png';
+  static const String japao = 'assets/images/iconsbutton/japao.png';
   static const String faixaBranca = 'assets/images/iconsbutton/faixabranca.png';
   static const String faixaAzul = 'assets/images/iconsbutton/faixaazul.png';
   static const String faixaPreta = 'assets/images/iconsbutton/faixapreta.png';

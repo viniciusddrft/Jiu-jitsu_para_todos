@@ -29,7 +29,7 @@ class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
   @override
   void initState() {
     _quizInteractor.loadQuestions(widget.difficulty);
-    // _quizInteractor.playSoundTimer();
+    _quizInteractor.playSoundTimer();
     _quizInteractor.addListener(() {
       if (_quizInteractor.value is QuizSuccess) {
         Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -39,7 +39,6 @@ class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
               _quizInteractor.onTimerFailed();
               _timer.value = 10;
               next();
-              // _quizInteractor.playSoundTimer();
             }
           }
         });
@@ -52,7 +51,6 @@ class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
     _timer.value = 10;
     _quizInteractor.onPressed(answerEntity);
     next();
-    // _quizInteractor.playSoundTimer();
   }
 
   void next() {

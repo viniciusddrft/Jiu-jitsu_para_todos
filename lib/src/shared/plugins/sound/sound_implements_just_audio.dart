@@ -9,9 +9,12 @@ class JustAudio implements SoundInterface {
   void dispose() => _audioPlayer.dispose();
 
   @override
-  void play(String soundPath) =>
+  Future<void> play(String soundPath) =>
       _audioPlayer.setAsset(soundPath).then((_) => _audioPlayer.play());
 
   @override
   void stop() => _audioPlayer.stop();
+
+  @override
+  void pause() => _audioPlayer.pause();
 }
