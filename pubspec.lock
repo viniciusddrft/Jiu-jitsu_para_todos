@@ -910,10 +910,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_windows
-      sha256: "3284b6d2ac454cf34f114e1d3319866fdd1e19cdc329999057e44ffe936cfa77"
+      sha256: "712c70ab1b99744ff066053cbe3e80c73332b38d46e5e945c98689b2e66fc15f"
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.4"
+    version: "3.1.5"
   uuid:
     dependency: transitive
     description:

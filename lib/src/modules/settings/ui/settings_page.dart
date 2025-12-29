@@ -272,7 +272,7 @@ class _SettingsPageState extends State<SettingsPage> with OpenLink {
         height: 60,
         child: Center(
           child: Text(
-            '${AppLocalizations.of(context)!.text_version} 3.1.4',
+            '${AppLocalizations.of(context)!.text_version} 3.1.5',
             style: GoogleFonts.yatraOne(color: Colors.grey[700]),
           ),
         ),

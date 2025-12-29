@@ -10,12 +10,12 @@ plugins {
 def localProperties = new Properties()
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '54'
+    flutterVersionCode = '55'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '54.0'
+    flutterVersionName = '55.0'
 }
 
 
