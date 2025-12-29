@@ -4,8 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/home/home_module.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/home/ui/home_page.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/components/button_menu.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   testWidgets('Teste homePage', (WidgetTester tester) async {

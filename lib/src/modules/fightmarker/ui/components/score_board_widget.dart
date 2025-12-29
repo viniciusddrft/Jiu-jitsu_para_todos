@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/interactor/scorreboard_interactor.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
 
 class Scoreboard extends StatefulWidget {
   const Scoreboard({super.key});

@@ -36,20 +36,20 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   flutter_localizations:
     sdk: flutter
-  intl: ^0.19.0
-  firebase_core: ^3.12.1
-  cloud_firestore: ^5.6.5
-  flutter_modular: ^6.3.4
-  shared_preferences: ^2.5.2
-  just_audio: ^0.9.46
-  google_fonts: ^6.2.1
-  url_launcher: ^6.3.1
-  wakelock_plus: ^1.2.8
+  intl: ^0.20.2
+  firebase_core: ^4.3.0
+  cloud_firestore: ^6.1.1
+  flutter_modular: ^6.4.1
+  shared_preferences: ^2.5.4
+  just_audio: ^0.10.5
+  google_fonts: ^6.3.3
+  url_launcher: ^6.3.2
+  wakelock_plus: ^1.4.0
   circular_countdown_timer: ^0.2.4
-  google_mobile_ads: ^5.3.1
-  permission_handler: ^11.4.0
-  webview_flutter: ^4.10.0
-  syncfusion_flutter_pdfviewer: ^28.2.9
+  google_mobile_ads: ^7.0.0
+  permission_handler: ^12.0.1
+  webview_flutter: ^4.13.0
+  syncfusion_flutter_pdfviewer: ^32.1.20
   async_wallpaper: ^2.1.0
 
 dev_dependencies:
@@ -61,9 +61,9 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^4.0.0
-  flutter_launcher_icons: ^0.13.1
-  flutter_native_splash: ^2.4.1
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: ^2.4.7
   mocktail: ^1.0.4
 
 flutter_native_splash:

@@ -28,8 +28,8 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "com.jiu_jitsu_para_todos"
-    compileSdkVersion 35
-    ndkVersion "26.3.11579264" 
+    compileSdkVersion 36
+    ndkVersion "29.0.14033849"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -49,8 +49,8 @@ android {
         applicationId "com.jiu_jitsu_para_todos"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 23
-        targetSdkVersion 35
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
