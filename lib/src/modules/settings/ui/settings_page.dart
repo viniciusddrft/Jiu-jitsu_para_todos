@@ -273,7 +273,7 @@ class _SettingsPageState extends State<SettingsPage> {
         height: 60,
         child: Center(
           child: Text(
-            '${AppLocalizations.of(context)!.text_version} 3.1.5',
+            '${AppLocalizations.of(context)!.text_version} 3.2.0',
             style: GoogleFonts.yatraOne(color: Colors.grey[700]),
           ),
         ),

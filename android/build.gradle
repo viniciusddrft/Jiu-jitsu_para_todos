@@ -13,6 +13,19 @@ subprojects {
     project.evaluationDependsOn(':app')
 }
 
+// O plugin async_wallpaper referencia @mipmap/ic_launcher no seu wallpaper.xml,
+// recurso que existe no app mas nao no proprio modulo da biblioteca. A task
+// verifyReleaseResources valida os recursos da biblioteca isoladamente e falha
+// (falso negativo). O APK final mescla os recursos do app, entao desabilitamos
+// apenas essa verificacao para esse subprojeto.
+subprojects {
+    if (project.name == 'async_wallpaper') {
+        project.tasks.matching { it.name == 'verifyReleaseResources' }.all {
+            it.enabled = false
+        }
+    }
+}
+
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
