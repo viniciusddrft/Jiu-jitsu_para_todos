@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/interfaces/ifirebase_quiz.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/admob/admob_interactor.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/plugins/in_app_review/in_app_review_interactor.dart';
 import '../../../../shared/themes/app_colors.dart';
 
 class QuizResultPage extends StatefulWidget {
@@ -26,21 +27,55 @@ class _QuizResultPageState extends State<QuizResultPage>
   late final AnimationController _animationController;
 
   final admobInteractor = Modular.get<AdmobInteractor>();
+  final inAppReviewInteractor = Modular.get<InAppReviewInteractor>();
+
+  bool _dependenciesInitialized = false;
 
   @override
   void initState() {
-    _animationController = AnimationController(
-      vsync: this,
-    );
     super.initState();
+
+    _scorePercentage = widget.score / widget.totalQuestions;
+    _scorePercentageText = _scorePercentage == 1.0
+        ? '100'
+        : (_scorePercentage * 100).toStringAsPrecision(2);
+
+    _animationController = AnimationController(vsync: this);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      _animationController
+          .animateTo(
+            _scorePercentage,
+            duration: const Duration(seconds: 2),
+            curve: Curves.elasticInOut,
+          )
+          .whenComplete(_handleAfterAnimation);
+    });
+  }
+
+  Future<void> _handleAfterAnimation() async {
+    await Future.delayed(const Duration(seconds: 1));
+    if (!mounted) return;
+
+    final bool reviewHandled = await inAppReviewInteractor
+        .registerQuizCompletionAndMaybeReview(
+            scorePercentage: _scorePercentage);
+    if (!mounted) return;
+
+    if (!reviewHandled) admobInteractor.showInterstitialAd();
   }
 
   @override
   void didChangeDependencies() {
-    _scorePercentage = widget.score / widget.totalQuestions;
-    _scorePercentageText = (_scorePercentage * 100).toStringAsPrecision(2);
+    super.didChangeDependencies();
+
+    // didChangeDependencies pode ser chamado várias vezes (mudança de
+    // MediaQuery/Localizations). Só inicializa os textos/ícone uma vez.
+    if (_dependenciesInitialized) return;
+    _dependenciesInitialized = true;
+
     if (_scorePercentage == 1.0) {
-      _scorePercentageText = '100';
       _iconPath = 'assets/quiz/iconsresultquiz/victory.png';
       _textMessage = AppLocalizations.of(context)!.text_message_quiz_very_well;
     } else if (_scorePercentage >= 0.75 && _scorePercentage < 1.0) {
@@ -62,19 +97,6 @@ class _QuizResultPageState extends State<QuizResultPage>
       _textShowResult =
           AppLocalizations.of(context)!.text_result_quiz_black_belt;
     }
-
-    _animationController
-        .animateTo(
-          _scorePercentage,
-          duration: const Duration(seconds: 2),
-          curve: Curves.elasticInOut,
-        )
-        .whenComplete(
-          () => Future.delayed(
-              const Duration(seconds: 1), admobInteractor.showInterstitialAd),
-        );
-
-    super.didChangeDependencies();
   }
 
   @override

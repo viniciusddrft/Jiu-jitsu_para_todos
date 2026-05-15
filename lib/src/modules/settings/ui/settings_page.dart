@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
 import '../../../shared/components/app_bar_gradient.dart';
-import '../../../shared/mixins/launch_link.dart';
+import '../../../shared/plugins/in_app_review/in_app_review_interactor.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_icons_languages_path.dart';
 import '../interactor/settings_interactor.dart';
@@ -14,7 +14,7 @@ class SettingsPage extends StatefulWidget {
   State<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> with OpenLink {
+class _SettingsPageState extends State<SettingsPage> {
   final _settingsInteractor = Modular.get<SettingsInteractor>();
 
   @override
@@ -215,8 +215,9 @@ class _SettingsPageState extends State<SettingsPage> with OpenLink {
                               ),
                               side: const BorderSide(color: Colors.white),
                             ),
-                            onPressed: () => openLink(
-                                'https://play.google.com/store/apps/details?id=com.jiu_jitsu_para_todos'),
+                            onPressed: () =>
+                                Modular.get<InAppReviewInteractor>()
+                                    .openStoreListing(),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [

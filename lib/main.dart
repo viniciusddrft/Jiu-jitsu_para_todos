@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl_standalone.dart';
 import 'package:jiu_jitsu_para_todos/core/app_core_module.dart';
+
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'firebase_options.dart';
 import 'src/shared/l10n/locale_app.dart';
 import 'src/shared/plugins/admob/admob_interactor.dart';
+import 'src/shared/plugins/analytics/analytics_interactor.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +31,13 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final localeApp = Modular.get<LocaleInteractor>();
+  final analytics = Modular.get<AnalyticsInteractor>();
+
+  @override
+  void initState() {
+    super.initState();
+    Modular.setObservers([analytics.observer]);
+  }
 
   @override
   void didChangeDependencies() {

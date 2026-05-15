@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/components/button_menu.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
 import '../../../shared/components/app_bar_gradient.dart';
+import '../../../shared/plugins/analytics/analytics_interactor.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_icons_path.dart';
 
@@ -12,6 +13,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final analytics = Modular.get<AnalyticsInteractor>();
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: const AppBarGradient(),
@@ -20,7 +22,10 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
-            onPressed: () => Modular.to.pushNamed('/settings/settings'),
+            onPressed: () {
+              analytics.logFeatureAccess('settings');
+              Modular.to.pushNamed('/settings/settings');
+            },
           ),
         ],
       ),
@@ -35,29 +40,43 @@ class HomePage extends StatelessWidget {
                 imageButton: AppIconsPath.iconHistoryOfJiujitsu,
                 text: AppLocalizations.of(context)!
                     .button_history_of_jiujitsu_home_page,
-                onPressed: () =>
-                    Modular.to.pushNamed('/historyojiujitsu/historyojiujitsu'),
+                onPressed: () {
+                  analytics.logFeatureAccess('history');
+                  Modular.to.pushNamed('/historyojiujitsu/historyojiujitsu');
+                },
               ),
               ButtonMenu(
                 imageButton: AppIconsPath.rules,
                 text: AppLocalizations.of(context)!.button_rules_home_page,
-                onPressed: () => Modular.to.pushNamed('/rules/rules'),
+                onPressed: () {
+                  analytics.logFeatureAccess('rules');
+                  Modular.to.pushNamed('/rules/rules');
+                },
               ),
               ButtonMenu(
                 imageButton: AppIconsPath.quiz,
                 text: AppLocalizations.of(context)!.button_quiz_home_page,
-                onPressed: () => Modular.to.pushNamed('/quiz/menu'),
+                onPressed: () {
+                  analytics.logFeatureAccess('quiz');
+                  Modular.to.pushNamed('/quiz/menu');
+                },
               ),
               ButtonMenu(
                 imageButton: AppIconsPath.fightMarker,
                 text:
                     AppLocalizations.of(context)!.button_fight_marker_home_page,
-                onPressed: () => Modular.to.pushNamed('/fightmaker/fightmaker'),
+                onPressed: () {
+                  analytics.logFeatureAccess('fightmarker');
+                  Modular.to.pushNamed('/fightmaker/fightmaker');
+                },
               ),
               ButtonMenu(
                 imageButton: AppIconsPath.wallpapers,
                 text: AppLocalizations.of(context)!.button_wallpapers_home_page,
-                onPressed: () => Modular.to.pushNamed('/wallpaper/wallpapers'),
+                onPressed: () {
+                  analytics.logFeatureAccess('wallpaper');
+                  Modular.to.pushNamed('/wallpaper/wallpapers');
+                },
               ),
             ],
           ),

@@ -9,8 +9,16 @@ class JustAudio implements SoundInterface {
   void dispose() => _audioPlayer.dispose();
 
   @override
-  Future<void> play(String soundPath) =>
-      _audioPlayer.setAsset(soundPath).then((_) => _audioPlayer.play());
+  Future<void> play(String soundPath) async {
+    try {
+      await _audioPlayer.setAsset(soundPath);
+      await _audioPlayer.play();
+    } on PlayerInterruptedException {
+      // Som substituído por outro / player liberado — esperado, ignorar.
+    } catch (_) {
+      // Outros erros de áudio são silenciados para não derrubar o fluxo.
+    }
+  }
 
   @override
   void stop() => _audioPlayer.stop();
