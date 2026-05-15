@@ -28,12 +28,16 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
     super.didChangeDependencies();
   }
 
-  void _setWallpaper({required int wallpaperLocation}) {
+  void _setWallpaper({required WallpaperTarget target}) {
     admobInteractor.showInterstitialAd();
     AsyncWallpaper.setWallpaper(
-            url: widget.imageUrl, wallpaperLocation: wallpaperLocation)
-        .then((isSetWallpaperSuccess) {
-      if (isSetWallpaperSuccess) {
+      WallpaperRequest(
+        target: target,
+        sourceType: WallpaperSourceType.url,
+        source: widget.imageUrl,
+      ),
+    ).then((result) {
+      if (result.isSuccess) {
         _showDialogSuccess();
       }
     });
@@ -74,7 +78,7 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       side: const BorderSide(color: Colors.white)),
-                  onPressed: () => _setWallpaper(wallpaperLocation: 1),
+                  onPressed: () => _setWallpaper(target: WallpaperTarget.home),
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.text_popup_set_home,
@@ -92,7 +96,7 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       side: const BorderSide(color: Colors.white)),
-                  onPressed: () => _setWallpaper(wallpaperLocation: 2),
+                  onPressed: () => _setWallpaper(target: WallpaperTarget.lock),
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.text_popup_set_block,
@@ -110,7 +114,7 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       side: const BorderSide(color: Colors.white)),
-                  onPressed: () => _setWallpaper(wallpaperLocation: 3),
+                  onPressed: () => _setWallpaper(target: WallpaperTarget.both),
                   child: Center(
                     child: Text(
                       AppLocalizations.of(context)!.text_popup_set_both,
