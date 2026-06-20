@@ -14,12 +14,14 @@ import 'src/shared/plugins/analytics/analytics_interactor.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  AdmobInteractor.initialize();
 
   runApp(ModularApp(
     module: AppCoreModule(),
     child: const MyApp(),
   ));
+
+  // AdMob inicializa após o runApp para não atrasar o primeiro frame.
+  AdmobInteractor.initialize();
 }
 
 class MyApp extends StatefulWidget {
@@ -37,13 +39,15 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     Modular.setObservers([analytics.observer]);
+    _initLocale();
   }
 
-  @override
-  void didChangeDependencies() {
-    localeApp.getLocalePreference();
-    findSystemLocale();
-    super.didChangeDependencies();
+  // Roda uma única vez (antes ficava em didChangeDependencies, que dispara
+  // várias vezes). findSystemLocale precisa terminar antes de
+  // getLocalePreference usar Intl.systemLocale no primeiro acesso.
+  Future<void> _initLocale() async {
+    await findSystemLocale();
+    await localeApp.getLocalePreference();
   }
 
   @override

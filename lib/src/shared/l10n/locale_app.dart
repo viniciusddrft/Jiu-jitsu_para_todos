@@ -8,21 +8,21 @@ class LocaleInteractor extends ValueNotifier<Locale> {
 
   LocaleInteractor(this._localStorage) : super(const Locale('en', 'Us'));
 
-  void getLocalePreference() =>
-      _localStorage.getValue<String>('locale').then((String? preference) {
-        if (preference != null) {
-          value = Locale(preference.split('_')[0], preference.split('_')[1]);
-        } else {
-          value = AppLocalizations.supportedLocales.contains(Locale(
-                  Intl.systemLocale.split('_')[0],
-                  Intl.systemLocale.split('_')[1]))
-              ? Locale(
-                  Intl.systemLocale.split('_')[0],
-                  Intl.systemLocale.split('_')[1],
-                )
-              : const Locale('en', 'Us');
-        }
-      });
+  Future<void> getLocalePreference() async {
+    final String? preference = await _localStorage.getValue<String>('locale');
+    if (preference != null) {
+      value = Locale(preference.split('_')[0], preference.split('_')[1]);
+    } else {
+      value = AppLocalizations.supportedLocales.contains(Locale(
+              Intl.systemLocale.split('_')[0],
+              Intl.systemLocale.split('_')[1]))
+          ? Locale(
+              Intl.systemLocale.split('_')[0],
+              Intl.systemLocale.split('_')[1],
+            )
+          : const Locale('en', 'Us');
+    }
+  }
 
   void changeLocale(Locale newLocale) {
     value = newLocale;

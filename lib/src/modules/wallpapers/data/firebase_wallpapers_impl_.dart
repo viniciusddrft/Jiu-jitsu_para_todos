@@ -5,8 +5,16 @@ import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interactor/wallpaper
 import 'adapters/wallpapers_adapter.dart';
 
 class FirebaseWallpapersImpl implements IFirebaseWallpapers {
+  // Cache em memória (vive enquanto a data source for singleton). Evita
+  // re-fetch e o flash de shimmer ao reentrar na tela na mesma sessão.
+  List<WallpaperEntity>? _cache;
+
   @override
-  Future<WallpaperState> loadWallpapers() async {
+  Future<WallpaperState> loadWallpapers({bool forceRefresh = false}) async {
+    final cached = _cache;
+    if (!forceRefresh && cached != null) {
+      return WallpaperSuccess(cached);
+    }
     try {
       final questionsRef = FirebaseFirestore.instance
           .collection('wallpapers')
@@ -16,11 +24,13 @@ class FirebaseWallpapersImpl implements IFirebaseWallpapers {
             toFirestore: (question, _) => WallpaperAdapter.toJson(question),
           );
 
-      final QuerySnapshot querySnapshot = await questionsRef.get();
+      final QuerySnapshot querySnapshot =
+          await questionsRef.get().timeout(const Duration(seconds: 30));
 
       final List<WallpaperEntity> wallpapers = List<WallpaperEntity>.from(
           querySnapshot.docs.map((doc) => doc.data()));
 
+      _cache = wallpapers;
       return WallpaperSuccess(wallpapers);
     } catch (e) {
       return const WallpaperFailed();

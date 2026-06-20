@@ -21,11 +21,18 @@ class DetailsImagePage extends StatefulWidget {
 
 class _DetailsImagePageState extends State<DetailsImagePage> {
   final admobInteractor = Modular.get<AdmobInteractor>();
+  // Mesmo provider para precache e exibição (cache hit garantido, sem carga
+  // dupla). `late` adia a inicialização para depois de `widget` existir.
+  late final ImageProvider _imageProvider = NetworkImage(widget.imageUrl);
+  bool _precached = false;
 
   @override
   void didChangeDependencies() {
-    precacheImage(Image.network(widget.imageUrl).image, context);
     super.didChangeDependencies();
+    if (!_precached) {
+      _precached = true;
+      precacheImage(_imageProvider, context);
+    }
   }
 
   void _setWallpaper({required WallpaperTarget target}) {
@@ -157,7 +164,7 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
                     bottomRight: Radius.circular(30),
                   ),
                   image: DecorationImage(
-                    image: NetworkImage(widget.imageUrl),
+                    image: _imageProvider,
                     fit: BoxFit.cover,
                   ),
                 ),

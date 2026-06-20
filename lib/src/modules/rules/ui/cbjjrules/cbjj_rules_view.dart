@@ -22,6 +22,9 @@ class _CbjjrulesPageState extends State<CbjjrulesPage> {
   final rulesInteractor = Modular.get<RulesInteractor>();
   late final WebViewController controller;
   final urlPdf = ValueNotifier<String?>(null);
+  // Reaproveitado entre os AnimatedBuilder de body e FAB (não recria por build).
+  late final Listenable _bodyListenable =
+      Listenable.merge([urlPdf, rulesInteractor]);
 
   @override
   void initState() {
@@ -71,19 +74,21 @@ class _CbjjrulesPageState extends State<CbjjrulesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: Listenable.merge([urlPdf, rulesInteractor]),
-      builder: (context, child) => Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          title: Text(
-            AppLocalizations.of(context)!.title_appbar_cbjj_rules_page,
-            style: GoogleFonts.yatraOne(color: Colors.grey[700]),
-          ),
+    // AppBar e bottomNavigationBar (que contém o anúncio) ficam fora do
+    // AnimatedBuilder — só body e FAB dependem de urlPdf/rulesInteractor.
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        title: Text(
+          AppLocalizations.of(context)!.title_appbar_cbjj_rules_page,
+          style: GoogleFonts.yatraOne(color: Colors.grey[700]),
         ),
-        backgroundColor: AppColors.background,
-        body: urlPdf.value == null
+      ),
+      backgroundColor: AppColors.background,
+      body: AnimatedBuilder(
+        animation: _bodyListenable,
+        builder: (context, child) => urlPdf.value == null
             ? WebViewWidget(controller: controller)
             : Stack(children: [
                 SfPdfViewer.network(urlPdf.value!),
@@ -99,20 +104,23 @@ class _CbjjrulesPageState extends State<CbjjrulesPage> {
                     ),
                   )
               ]),
-        floatingActionButton:
+      ),
+      floatingActionButton: AnimatedBuilder(
+        animation: _bodyListenable,
+        builder: (context, child) =>
             urlPdf.value != null && rulesInteractor.value is! LoadingDownload
                 ? FloatingActionButton(
                     onPressed: () => rulesInteractor.downloadPDf(urlPdf.value!),
                     backgroundColor: AppColors.background,
                     child: const Icon(Icons.download),
                   )
-                : null,
-        bottomNavigationBar: SizedBox(
-          height: 75,
-          child: AdmobNativeAd(
-            factoryId: 'listTile',
-            adUnitId: admobInteractor.nativeAdUnitIDListTile,
-          ),
+                : const SizedBox.shrink(),
+      ),
+      bottomNavigationBar: SizedBox(
+        height: 75,
+        child: AdmobNativeAd(
+          factoryId: 'listTile',
+          adUnitId: admobInteractor.nativeAdUnitIDListTile,
         ),
       ),
     );

@@ -8,9 +8,10 @@ class WallpaperInteractor extends ValueNotifier<WallpaperState> {
 
   final IFirebaseWallpapers firebaseWallpapers;
 
-  void loadWallpapers() async {
+  void loadWallpapers({bool forceRefresh = false}) async {
     value = const WallpaperLoading();
-    final newState = await firebaseWallpapers.loadWallpapers();
+    final newState =
+        await firebaseWallpapers.loadWallpapers(forceRefresh: forceRefresh);
     value = newState;
   }
 }

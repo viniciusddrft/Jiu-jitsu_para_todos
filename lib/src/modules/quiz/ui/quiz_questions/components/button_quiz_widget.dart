@@ -41,8 +41,8 @@ class _ButtonQuizQuestionsWidgetState extends State<ButtonQuizQuestionsWidget> {
             elevation: 7,
             foregroundColor: _color.value,
             backgroundColor: AppColors.background,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15.0)),
             ),
             side: BorderSide(color: _color.value),
             padding: const EdgeInsets.all(8),
@@ -62,7 +62,7 @@ class _ButtonQuizQuestionsWidgetState extends State<ButtonQuizQuestionsWidget> {
                 width: size.height * 0.03,
                 decoration: BoxDecoration(
                   color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: const BorderRadius.all(Radius.circular(50)),
                   border: Border.all(color: _color.value),
                 ),
                 child: Visibility(

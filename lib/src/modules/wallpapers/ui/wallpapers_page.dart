@@ -8,6 +8,7 @@ import 'package:jiu_jitsu_para_todos/src/shared/components/admob_native_ad.dart'
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/admob/admob_interactor.dart';
 import '../../../shared/components/app_bar_gradient.dart';
+import '../../../shared/shimmer/shimmer_effect.dart';
 import '../../../shared/shimmer/shimmer_widget.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_images.dart';
@@ -23,6 +24,8 @@ class _WallpapersViewState extends State<WallpapersPage> {
   final _wallpaperInteractor = Modular.get<WallpaperInteractor>();
   final admobInteractor = Modular.get<AdmobInteractor>();
 
+  bool _adRequested = false;
+
   @override
   void initState() {
     _wallpaperInteractor.loadWallpapers();
@@ -31,8 +34,13 @@ class _WallpapersViewState extends State<WallpapersPage> {
 
   @override
   void didChangeDependencies() {
-    admobInteractor.createInterstitialAd();
     super.didChangeDependencies();
+    // didChangeDependencies pode disparar mais de uma vez; criar o anúncio só
+    // uma vez para não disparar requests duplicados.
+    if (!_adRequested) {
+      _adRequested = true;
+      admobInteractor.createInterstitialAd();
+    }
   }
 
   @override
@@ -47,26 +55,33 @@ class _WallpapersViewState extends State<WallpapersPage> {
       ),
       backgroundColor: AppColors.background,
       body: RefreshIndicator(
-        onRefresh: () async => _wallpaperInteractor.loadWallpapers(),
+        onRefresh: () async =>
+            _wallpaperInteractor.loadWallpapers(forceRefresh: true),
         child: ValueListenableBuilder(
           valueListenable: _wallpaperInteractor,
           builder: (context, value, child) =>
               switch (_wallpaperInteractor.value) {
-            WallpaperLoading() => GridView.builder(
-                itemCount: 18,
-                padding: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.05,
-                    vertical: size.height * 0.03),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                ),
-                itemBuilder: (context, index) => ShimmerWidget(
-                  width: 100,
-                  height: 100,
-                  shapeBorder: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+            // Um único Shimmer envolve a grade inteira: 1 controller e 1
+            // ShaderMaskLayer por frame, em vez de um por placeholder.
+            WallpaperLoading() => Shimmer(
+                gradient: ShimmerWidget.shimmerGradient,
+                period: const Duration(seconds: 3),
+                child: GridView.builder(
+                  itemCount: 18,
+                  padding: EdgeInsets.symmetric(
+                      horizontal: size.width * 0.05,
+                      vertical: size.height * 0.03),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                  ),
+                  itemBuilder: (context, index) => ShimmerWidget(
+                    width: 100,
+                    height: 100,
+                    shapeBorder: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                   ),
                 ),
               ),
@@ -118,6 +133,10 @@ class _WallpapersViewState extends State<WallpapersPage> {
                         fit: BoxFit.cover,
                         width: 100,
                         height: 100,
+                        // Decodifica em ~3x o tamanho de exibição (DPR) em vez
+                        // da resolução cheia do wallpaper. Só cacheWidth para
+                        // preservar a proporção. Grande economia de RAM.
+                        cacheWidth: 300,
                         loadingBuilder: (BuildContext context, Widget child,
                                 ImageChunkEvent? loadingProgress) =>
                             (loadingProgress == null)

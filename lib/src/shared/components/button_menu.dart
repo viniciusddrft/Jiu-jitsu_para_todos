@@ -13,6 +13,30 @@ class ButtonMenu extends StatelessWidget {
   final String text, imageButton;
   final VoidCallback onPressed;
 
+  // Valores fixos extraídos do build: evita realocar decoration/style/gradiente
+  // e o TextStyle a cada reconstrução (componente reusado em vários menus).
+  static const _radius = BorderRadius.all(Radius.circular(8.0));
+  static const _cardDecoration = BoxDecoration(
+    shape: BoxShape.rectangle,
+    borderRadius: _radius,
+    boxShadow: <BoxShadow>[
+      BoxShadow(color: Colors.black, blurRadius: 10.0, offset: Offset(0.0, 1.0))
+    ],
+  );
+  static const _inkDecoration = BoxDecoration(
+    gradient: LinearGradient(
+        colors: [AppColors.background, Colors.indigo],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight),
+    borderRadius: _radius,
+  );
+  static final _buttonStyle = ElevatedButton.styleFrom(
+    elevation: 7,
+    padding: EdgeInsets.zero,
+    shape: const RoundedRectangleBorder(borderRadius: _radius),
+  );
+  static final _textStyle = GoogleFonts.ubuntu(fontSize: 18, color: Colors.white);
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
@@ -28,38 +52,16 @@ class ButtonMenu extends StatelessWidget {
             height: size.height * 0.13,
             width: size.width * 0.65,
             margin: EdgeInsets.only(left: size.width * 0.173),
-            decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(8.0),
-              boxShadow: const <BoxShadow>[
-                BoxShadow(
-                    color: Colors.black,
-                    blurRadius: 10.0,
-                    offset: Offset(0.0, 1.0))
-              ],
-            ),
+            decoration: _cardDecoration,
             child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                elevation: 7,
-                padding: const EdgeInsets.all(0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-              ),
+              style: _buttonStyle,
               onPressed: onPressed,
               child: Ink(
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                      colors: [AppColors.background, Colors.indigo],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
+                decoration: _inkDecoration,
                 child: Center(
                   child: Text(
                     text,
-                    style:
-                        GoogleFonts.ubuntu(fontSize: 18, color: Colors.white),
+                    style: _textStyle,
                   ),
                 ),
               ),

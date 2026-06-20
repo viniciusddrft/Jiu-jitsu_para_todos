@@ -8,8 +8,10 @@ import 'ui/wallpapers_page.dart';
 class WallpaperModule extends Module {
   @override
   void binds(i) {
+    // Interactor segue factory (a página o descarta no dispose). A data source
+    // vira singleton para o cache em memória sobreviver entre visitas.
     i.add(WallpaperInteractor.new);
-    i.add<IFirebaseWallpapers>(FirebaseWallpapersImpl.new);
+    i.addSingleton<IFirebaseWallpapers>(FirebaseWallpapersImpl.new);
   }
 
   @override

@@ -16,13 +16,18 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   final _settingsInteractor = Modular.get<SettingsInteractor>();
+  bool _initialized = false;
 
   @override
   void didChangeDependencies() {
-    _settingsInteractor.loadLanguage();
-    precacheImage(Image.asset(AppIconsLanguages.unitedStates).image, context);
-    precacheImage(Image.asset(AppIconsLanguages.brasil).image, context);
     super.didChangeDependencies();
+    // didChangeDependencies pode disparar várias vezes; rodar só uma vez.
+    if (!_initialized) {
+      _initialized = true;
+      _settingsInteractor.loadLanguage();
+      precacheImage(Image.asset(AppIconsLanguages.unitedStates).image, context);
+      precacheImage(Image.asset(AppIconsLanguages.brasil).image, context);
+    }
   }
 
   List<Map<String, Object>> get allLocales => [
@@ -40,6 +45,8 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Future<void> _changeLanguageMenu() async {
     final Size size = MediaQuery.sizeOf(context);
+    // Computa a lista uma vez (era um getter recriado a cada acesso no builder).
+    final locales = allLocales;
 
     return showDialog<void>(
       context: context,
@@ -54,7 +61,7 @@ class _SettingsPageState extends State<SettingsPage> {
           width: size.width * 0.7,
           height: size.height * 0.4,
           child: ListView.builder(
-            itemCount: allLocales.length,
+            itemCount: locales.length,
             itemBuilder: (context, index) => Padding(
               padding: EdgeInsets.only(
                   top: size.height * 0.02,
@@ -71,7 +78,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   side: const BorderSide(color: Colors.white),
                 ),
                 onPressed: () {
-                  _settingsInteractor.saveLanguage(allLocales[index]);
+                  _settingsInteractor.saveLanguage(locales[index]);
                   Navigator.pop(context);
                 },
                 child: Container(
@@ -79,9 +86,9 @@ class _SettingsPageState extends State<SettingsPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(allLocales[index]['text'] as String),
+                      Text(locales[index]['text'] as String),
                       Image.asset(
-                        allLocales[index]['icon'] as String,
+                        locales[index]['icon'] as String,
                         width: 40,
                       ),
                     ],

@@ -17,7 +17,8 @@ class FirebaseQuizImpl implements IFirebaseQuiz {
             toFirestore: (question, _) => QuestionAdapter.toJson(question),
           );
 
-      final QuerySnapshot querySnapshot = await questionsRef.get();
+      final QuerySnapshot querySnapshot =
+          await questionsRef.get().timeout(const Duration(seconds: 30));
 
       final questions = List<QuestionEntity>.from(
           querySnapshot.docs.map((doc) => doc.data()));

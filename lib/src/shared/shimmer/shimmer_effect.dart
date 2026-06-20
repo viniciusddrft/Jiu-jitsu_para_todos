@@ -33,20 +33,11 @@ class Shimmer extends StatefulWidget {
   }) : gradient = LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.centerRight,
-            colors: <Color>[
-              baseColor,
-              baseColor,
-              highlightColor,
-              baseColor,
-              baseColor
-            ],
-            stops: const <double>[
-              0.0,
-              0.35,
-              0.5,
-              0.65,
-              1.0
-            ]);
+            // 3 stops em vez de 5: com TileMode.clamp (padrão) os trechos
+            // antes de 0.35 e depois de 0.65 ficam sólidos em baseColor,
+            // produzindo o mesmo resultado visual com um shader mais barato.
+            colors: <Color>[baseColor, highlightColor, baseColor],
+            stops: const <double>[0.35, 0.5, 0.65]);
 
   @override
   State<Shimmer> createState() => _ShimmerState();
@@ -91,24 +82,39 @@ class _ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
 
   @override
   void didUpdateWidget(Shimmer oldWidget) {
-    if (widget.enabled) {
-      _controller.forward();
-    } else {
-      _controller.stop();
-    }
     super.didUpdateWidget(oldWidget);
+    if (widget.period != oldWidget.period) {
+      _controller.duration = widget.period;
+    }
+    if (widget.enabled != oldWidget.enabled) {
+      if (widget.enabled) {
+        _count = 0;
+        _controller.forward(from: 0.0);
+      } else {
+        _controller.stop();
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      child: widget.child,
-      builder: (BuildContext context, Widget? child) => _Shimmer(
-        direction: widget.direction,
-        gradient: widget.gradient,
-        percent: _controller.value,
-        child: child,
+    // Desabilitado: devolve o filho puro, evitando o AnimatedBuilder, a
+    // ShaderMaskLayer e o custo de compositing por completo.
+    if (!widget.enabled) {
+      return widget.child;
+    }
+    // RepaintBoundary isola o repaint por frame da animação ao subtree do
+    // shimmer, impedindo que ele se propague para irmãos/pais.
+    return RepaintBoundary(
+      child: AnimatedBuilder(
+        animation: _controller,
+        child: widget.child,
+        builder: (BuildContext context, Widget? child) => _Shimmer(
+          direction: widget.direction,
+          gradient: widget.gradient,
+          percent: _controller.value,
+          child: child,
+        ),
       ),
     );
   }
@@ -178,7 +184,9 @@ class _ShimmerFilter extends RenderProxyBox {
       return;
     }
     _direction = newDirection;
-    markNeedsLayout();
+    // A direção só altera o cálculo do rect no paint; o tamanho não muda,
+    // então basta repintar (markNeedsPaint) sem forçar um novo layout.
+    markNeedsPaint();
   }
 
   @override

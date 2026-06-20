@@ -52,9 +52,10 @@ class _AdmobNativeAdState extends State<AdmobNativeAd> {
                   ad: _nativeAd,
                 )
               : const Stack(
+                  alignment: Alignment.center,
                   children: [
-                    Center(child: Text('Ad')),
-                    Center(child: CircularProgressIndicator()),
+                    Text('Ad'),
+                    CircularProgressIndicator(),
                   ],
                 ),
     );
