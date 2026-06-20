@@ -75,6 +75,12 @@ android {
    buildTypes {
        release {
            signingConfig signingConfigs.release
+           // R8: minifica o bytecode e remove recursos não usados.
+           // Requer validar um build release real (Firebase/AdMob usam
+           // reflection — ver proguard-rules.pro se algo for removido).
+           minifyEnabled true
+           shrinkResources true
+           proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         ndk {
                 abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86' ,'x86_64'
             }
