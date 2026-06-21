@@ -162,71 +162,50 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
-
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: Column(
-        children: [
-          SizedBox(
-            height: size.height * 0.7,
-            child: PageView.builder(
-              controller: _pageController,
-              itemCount: widget.wallpapers.length,
-              onPageChanged: (i) {
-                _currentIndex = i;
-                _precacheAround(i);
-              },
-              itemBuilder: (context, i) => Hero(
-                transitionOnUserGestures: true,
-                tag: 'logo$i',
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
-                  ),
-                  child: Image.network(
-                    widget.wallpapers[i].url,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    loadingBuilder: (ctx, child, progress) => progress == null
-                        ? child
-                        : const Center(child: CircularProgressIndicator()),
-                  ),
-                ),
-              ),
-            ),
+      // Wallpaper em tela cheia; arraste para cima/baixo para trocar.
+      body: PageView.builder(
+        scrollDirection: Axis.vertical,
+        controller: _pageController,
+        itemCount: widget.wallpapers.length,
+        onPageChanged: (i) {
+          _currentIndex = i;
+          _precacheAround(i);
+        },
+        itemBuilder: (context, i) => Hero(
+          transitionOnUserGestures: true,
+          tag: 'logo$i',
+          child: Image.network(
+            widget.wallpapers[i].url,
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+            loadingBuilder: (ctx, child, progress) => progress == null
+                ? child
+                : const Center(child: CircularProgressIndicator()),
           ),
-          SizedBox(
-            height: size.height * 0.18,
-            child: Center(
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                    fixedSize: const Size(200, 50),
-                    foregroundColor: Colors.white,
-                    elevation: 7,
-                    backgroundColor: AppColors.background,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    side: const BorderSide(color: Colors.white)),
-                onPressed: () async {
-                  final PermissionStatus status =
-                      await Permission.storage.status;
-                  if (status.isDenied) await Permission.storage.request();
-                  showDialogSetWallpaper();
-                },
-                child: Center(
-                  child: Text(
-                    AppLocalizations.of(context)!.text_popup_save_wallpaper,
-                    style: GoogleFonts.yatraOne(fontSize: 16),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
+      // Botão "usar wallpaper" como pílula flutuante sobre a imagem,
+      // centralizado acima do anúncio (libera a área antes ocupada por ele).
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () async {
+          final PermissionStatus status = await Permission.storage.status;
+          if (status.isDenied) await Permission.storage.request();
+          showDialogSetWallpaper();
+        },
+        backgroundColor: AppColors.background,
+        foregroundColor: Colors.white,
+        elevation: 7,
+        shape: const StadiumBorder(side: BorderSide(color: Colors.white)),
+        icon: const Icon(Icons.wallpaper_outlined),
+        label: Text(
+          AppLocalizations.of(context)!.text_popup_save_wallpaper,
+          style: GoogleFonts.yatraOne(fontSize: 16),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       bottomNavigationBar: SizedBox(
         height: 75,
         child: AdmobNativeAd(
