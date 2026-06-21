@@ -5,8 +5,6 @@ import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interactor/wallpaper
 import 'adapters/wallpapers_adapter.dart';
 
 class FirebaseWallpapersImpl implements IFirebaseWallpapers {
-  // Cache em memória (vive enquanto a data source for singleton). Evita
-  // re-fetch e o flash de shimmer ao reentrar na tela na mesma sessão.
   List<WallpaperEntity>? _cache;
 
   @override

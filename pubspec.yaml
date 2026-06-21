@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 3.2.0+57
+version: 3.3.0+58
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
@@ -37,20 +37,20 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.20.2
-  firebase_core: ^4.3.0
-  cloud_firestore: ^6.1.1
-  firebase_analytics: ^12.4.1
+  firebase_core: ^4.11.0
+  cloud_firestore: ^6.6.0
+  firebase_analytics: ^12.4.3
   flutter_modular: ^6.4.1
-  shared_preferences: ^2.5.4
+  shared_preferences: ^2.5.5
   just_audio: ^0.10.5
   google_fonts: ^8.1.0
   url_launcher: ^6.3.2
-  wakelock_plus: ^1.5.2
+  wakelock_plus: ^1.6.1
   circular_countdown_timer: ^0.2.4
-  google_mobile_ads: ^8.0.0
-  permission_handler: ^12.0.1
-  webview_flutter: ^4.13.1
-  syncfusion_flutter_pdfviewer: ^33.2.6
+  google_mobile_ads: ^9.0.0
+  permission_handler: ^12.0.3
+  webview_flutter: ^4.14.0
+  syncfusion_flutter_pdfviewer: ^33.2.13+1
   async_wallpaper: ^3.1.0
   in_app_review: ^2.0.12
 
@@ -65,7 +65,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
   flutter_launcher_icons: ^0.14.4
-  flutter_native_splash: ^2.4.7
+  flutter_native_splash: ^2.4.8
   mocktail: ^1.0.5
 
 flutter_native_splash:

@@ -9,8 +9,6 @@ class LocalStorageSharedPreferrence implements ILocalStorage {
 
   factory LocalStorageSharedPreferrence() => _instance;
 
-  // Instância cacheada: obtida do lado nativo só uma vez e reutilizada em
-  // todas as chamadas, em vez de chamar getInstance() a cada operação.
   static SharedPreferences? _prefs;
 
   static Future<SharedPreferences> _preferences() async =>

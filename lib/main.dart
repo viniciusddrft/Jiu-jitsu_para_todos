@@ -20,7 +20,6 @@ void main() async {
     child: const MyApp(),
   ));
 
-  // AdMob inicializa após o runApp para não atrasar o primeiro frame.
   AdmobInteractor.initialize();
 }
 
@@ -42,9 +41,6 @@ class _MyAppState extends State<MyApp> {
     _initLocale();
   }
 
-  // Roda uma única vez (antes ficava em didChangeDependencies, que dispara
-  // várias vezes). findSystemLocale precisa terminar antes de
-  // getLocalePreference usar Intl.systemLocale no primeiro acesso.
   Future<void> _initLocale() async {
     await findSystemLocale();
     await localeApp.getLocalePreference();

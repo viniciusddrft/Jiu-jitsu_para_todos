@@ -13,8 +13,6 @@ class ButtonMenu extends StatelessWidget {
   final String text, imageButton;
   final VoidCallback onPressed;
 
-  // Valores fixos extraídos do build: evita realocar decoration/style/gradiente
-  // e o TextStyle a cada reconstrução (componente reusado em vários menus).
   static const _radius = BorderRadius.all(Radius.circular(8.0));
   static const _cardDecoration = BoxDecoration(
     shape: BoxShape.rectangle,
@@ -35,7 +33,8 @@ class ButtonMenu extends StatelessWidget {
     padding: EdgeInsets.zero,
     shape: const RoundedRectangleBorder(borderRadius: _radius),
   );
-  static final _textStyle = GoogleFonts.ubuntu(fontSize: 18, color: Colors.white);
+  static final _textStyle =
+      GoogleFonts.ubuntu(fontSize: 18, color: Colors.white);
 
   @override
   Widget build(BuildContext context) {

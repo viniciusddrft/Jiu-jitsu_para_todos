@@ -15,20 +15,12 @@ class InAppReviewInteractor with OpenLink {
   static const _playStoreUrl =
       'https://play.google.com/store/apps/details?id=com.jiu_jitsu_para_todos';
 
-  // Minimum number of finished quizzes before the prompt may appear.
   static const _minCompletions = 3;
 
-  // Minimum score (75%) for the quiz result to count as a satisfaction peak.
   static const _minScore = 0.75;
 
-  // Do not ask again within this window even if conditions are met again.
   static const _cooldown = Duration(days: 90);
 
-  /// Counts a finished quiz and, when the user is engaged and just had a good
-  /// result, asks for a store review.
-  ///
-  /// Returns `true` when the review prompt was handled (so the caller can skip
-  /// the interstitial ad this time), `false` otherwise.
   Future<bool> registerQuizCompletionAndMaybeReview({
     required double scorePercentage,
   }) async {
@@ -56,7 +48,6 @@ class InAppReviewInteractor with OpenLink {
     }
   }
 
-  /// Opens the native store listing; falls back to the Play Store URL.
   Future<void> openStoreListing() async {
     try {
       if (await _inAppReview.isAvailable()) {

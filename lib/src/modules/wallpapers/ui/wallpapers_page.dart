@@ -121,7 +121,7 @@ class _WallpapersViewState extends State<WallpapersPage> {
                       context, '/wallpaper/detailsimage',
                       arguments: {
                         'index': index,
-                        'imageUrl': wallpapers[index].url,
+                        'wallpapers': wallpapers,
                       }),
                   child: Hero(
                     transitionOnUserGestures: true,

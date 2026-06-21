@@ -22,7 +22,6 @@ class _CbjjrulesPageState extends State<CbjjrulesPage> {
   final rulesInteractor = Modular.get<RulesInteractor>();
   late final WebViewController controller;
   final urlPdf = ValueNotifier<String?>(null);
-  // Reaproveitado entre os AnimatedBuilder de body e FAB (não recria por build).
   late final Listenable _bodyListenable =
       Listenable.merge([urlPdf, rulesInteractor]);
 
@@ -74,8 +73,6 @@ class _CbjjrulesPageState extends State<CbjjrulesPage> {
 
   @override
   Widget build(BuildContext context) {
-    // AppBar e bottomNavigationBar (que contém o anúncio) ficam fora do
-    // AnimatedBuilder — só body e FAB dependem de urlPdf/rulesInteractor.
     return Scaffold(
       appBar: AppBar(
         elevation: 0,

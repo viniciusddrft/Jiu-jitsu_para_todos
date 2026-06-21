@@ -56,12 +56,14 @@ class QuizInteractor extends ValueNotifier<QuizState> {
     } else {
       playSoundWrongAnswer();
     }
+    notifyListeners();
   }
 
   void onTimerFailed() {
     _soundInterface.pause();
     numberQuestion++;
     playSoundWrongAnswer();
+    notifyListeners();
   }
 
   @override

@@ -4,7 +4,6 @@ import io.flutter.embedding.android.FlutterActivity
 import com.jiu_jitsu_para_todos.ListTileNativeAdFactory
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugins.googlemobileads.GoogleMobileAdsPlugin
-import io.flutter.plugins.googlemobileads.GoogleMobileAdsPlugin.NativeAdFactory
 
 class MainActivity: FlutterActivity() {
 

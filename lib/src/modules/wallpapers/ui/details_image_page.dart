@@ -7,13 +7,14 @@ import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../../../shared/plugins/admob/admob_interactor.dart';
+import '../interactor/wallpaper_entity.dart';
 
 class DetailsImagePage extends StatefulWidget {
-  final String imageUrl;
-  final int index;
+  final List<WallpaperEntity> wallpapers;
+  final int initialIndex;
 
   const DetailsImagePage(
-      {super.key, required this.imageUrl, required this.index});
+      {super.key, required this.wallpapers, required this.initialIndex});
 
   @override
   State<DetailsImagePage> createState() => _DetailsImagePageState();
@@ -21,9 +22,9 @@ class DetailsImagePage extends StatefulWidget {
 
 class _DetailsImagePageState extends State<DetailsImagePage> {
   final admobInteractor = Modular.get<AdmobInteractor>();
-  // Mesmo provider para precache e exibição (cache hit garantido, sem carga
-  // dupla). `late` adia a inicialização para depois de `widget` existir.
-  late final ImageProvider _imageProvider = NetworkImage(widget.imageUrl);
+  late final PageController _pageController =
+      PageController(initialPage: widget.initialIndex);
+  late int _currentIndex = widget.initialIndex;
   bool _precached = false;
 
   @override
@@ -31,8 +32,23 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
     super.didChangeDependencies();
     if (!_precached) {
       _precached = true;
-      precacheImage(_imageProvider, context);
+      _precacheAround(widget.initialIndex);
     }
+  }
+
+  // Pré-carrega a página atual e os vizinhos para a troca ficar suave.
+  void _precacheAround(int index) {
+    for (final i in [index, index - 1, index + 1]) {
+      if (i >= 0 && i < widget.wallpapers.length) {
+        precacheImage(NetworkImage(widget.wallpapers[i].url), context);
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   void _setWallpaper({required WallpaperTarget target}) {
@@ -41,7 +57,7 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
       WallpaperRequest(
         target: target,
         sourceType: WallpaperSourceType.url,
-        source: widget.imageUrl,
+        source: widget.wallpapers[_currentIndex].url,
       ),
     ).then((result) {
       if (result.isSuccess) {
@@ -154,18 +170,28 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
         children: [
           SizedBox(
             height: size.height * 0.7,
-            child: Hero(
-              transitionOnUserGestures: true,
-              tag: 'logo${widget.index}',
-              child: Container(
-                decoration: BoxDecoration(
+            child: PageView.builder(
+              controller: _pageController,
+              itemCount: widget.wallpapers.length,
+              onPageChanged: (i) {
+                _currentIndex = i;
+                _precacheAround(i);
+              },
+              itemBuilder: (context, i) => Hero(
+                transitionOnUserGestures: true,
+                tag: 'logo$i',
+                child: ClipRRect(
                   borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(30),
                     bottomRight: Radius.circular(30),
                   ),
-                  image: DecorationImage(
-                    image: _imageProvider,
+                  child: Image.network(
+                    widget.wallpapers[i].url,
                     fit: BoxFit.cover,
+                    width: double.infinity,
+                    loadingBuilder: (ctx, child, progress) => progress == null
+                        ? child
+                        : const Center(child: CircularProgressIndicator()),
                   ),
                 ),
               ),
