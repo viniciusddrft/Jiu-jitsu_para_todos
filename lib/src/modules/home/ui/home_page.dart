@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final analytics = Modular.get<AnalyticsInteractor>();
+    final analytics = inject<AnalyticsInteractor>();
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: const AppBarGradient(),
@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
             icon: const Icon(Icons.settings),
             onPressed: () {
               analytics.logFeatureAccess('settings');
-              Modular.to.pushNamed('/settings/settings');
+              context.pushNamed('/settings/settings');
             },
           ),
         ],
@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
                     .button_history_of_jiujitsu_home_page,
                 onPressed: () {
                   analytics.logFeatureAccess('history');
-                  Modular.to.pushNamed('/historyojiujitsu/historyojiujitsu');
+                  context.pushNamed('/historyojiujitsu/historyojiujitsu');
                 },
               ),
               ButtonMenu(
@@ -50,7 +50,7 @@ class HomePage extends StatelessWidget {
                 text: AppLocalizations.of(context)!.button_rules_home_page,
                 onPressed: () {
                   analytics.logFeatureAccess('rules');
-                  Modular.to.pushNamed('/rules/rules');
+                  context.pushNamed('/rules/rules');
                 },
               ),
               ButtonMenu(
@@ -58,7 +58,7 @@ class HomePage extends StatelessWidget {
                 text: AppLocalizations.of(context)!.button_quiz_home_page,
                 onPressed: () {
                   analytics.logFeatureAccess('quiz');
-                  Modular.to.pushNamed('/quiz/menu');
+                  context.pushNamed('/quiz/menu');
                 },
               ),
               ButtonMenu(
@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
                     AppLocalizations.of(context)!.button_fight_marker_home_page,
                 onPressed: () {
                   analytics.logFeatureAccess('fightmarker');
-                  Modular.to.pushNamed('/fightmaker/fightmaker');
+                  context.pushNamed('/fightmaker/fightmaker');
                 },
               ),
               ButtonMenu(
@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
                 text: AppLocalizations.of(context)!.button_wallpapers_home_page,
                 onPressed: () {
                   analytics.logFeatureAccess('wallpaper');
-                  Modular.to.pushNamed('/wallpaper/wallpapers');
+                  context.pushNamed('/wallpaper/wallpapers');
                 },
               ),
             ],

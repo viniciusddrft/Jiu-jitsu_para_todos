@@ -1,4 +1,4 @@
-import 'package:async_wallpaper/async_wallpaper.dart';
+import '../../../shared/plugins/wallpaper/wallpaper_setter.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,7 +21,7 @@ class DetailsImagePage extends StatefulWidget {
 }
 
 class _DetailsImagePageState extends State<DetailsImagePage> {
-  final admobInteractor = Modular.get<AdmobInteractor>();
+  final admobInteractor = inject<AdmobInteractor>();
   late final PageController _pageController =
       PageController(initialPage: widget.initialIndex);
   late int _currentIndex = widget.initialIndex;
@@ -68,16 +68,9 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
 
   void _setWallpaper({required WallpaperTarget target}) {
     admobInteractor.showInterstitialAd();
-    AsyncWallpaper.setWallpaper(
-      WallpaperRequest(
-        target: target,
-        sourceType: WallpaperSourceType.url,
-        source: widget.wallpapers[_currentIndex].url,
-      ),
-    ).then((result) {
-      if (result.isSuccess) {
-        _showDialogSuccess();
-      }
+    WallpaperSetter.setFromUrl(widget.wallpapers[_currentIndex].url, target)
+        .then((success) {
+      if (success && mounted) _showDialogSuccess();
     });
   }
 

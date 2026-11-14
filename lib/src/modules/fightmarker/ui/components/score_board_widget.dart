@@ -11,7 +11,7 @@ class Scoreboard extends StatefulWidget {
 }
 
 class _ScoreboardState extends State<Scoreboard> {
-  final _scoreboardInteractor = Modular.get<ScoreboardInteractor>();
+  final _scoreboardInteractor = inject<ScoreboardInteractor>();
 
   @override
   Widget build(BuildContext context) {

@@ -15,7 +15,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  final _settingsInteractor = Modular.get<SettingsInteractor>();
+  final _settingsInteractor = inject<SettingsInteractor>();
   bool _initialized = false;
 
   @override
@@ -223,7 +223,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               side: const BorderSide(color: Colors.white),
                             ),
                             onPressed: () =>
-                                Modular.get<InAppReviewInteractor>()
+                                inject<InAppReviewInteractor>()
                                     .openStoreListing(),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -255,7 +255,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               side: const BorderSide(color: Colors.white),
                             ),
                             onPressed: () =>
-                                Modular.to.pushNamed('/credits/credits'),
+                                context.pushNamed('/credits/credits'),
                             child: Center(
                               child: Text(
                                 AppLocalizations.of(context)!

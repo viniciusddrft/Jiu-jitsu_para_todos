@@ -1,11 +1,12 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import '../../shared/transitions/app_transitions.dart';
 import 'ui/credits.dart';
 
-class CreditsModule extends Module {
-  @override
-  void routes(r) {
-    r.child('/credits',
-        child: (context) => const CreditsPage(),
-        transition: TransitionType.downToUp);
-  }
-}
+final creditsModule = createModule(
+  path: '/credits',
+  register: (c) => c.route(
+    '/credits',
+    child: (context, state) => const CreditsPage(),
+    transition: AppTransitions.downToUp,
+  ),
+);

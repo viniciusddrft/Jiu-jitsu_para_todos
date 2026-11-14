@@ -7,7 +7,7 @@ class ClockInteractor extends ChangeNotifier {
   int time = 0;
   bool isPause = true;
   final controller = CountDownController();
-  final _soundInterface = Modular.get<SoundInterface>();
+  final _soundInterface = inject<SoundInterface>();
 
   void playSound() => _soundInterface.play('assets/music/alarm_sound.mp3');
 

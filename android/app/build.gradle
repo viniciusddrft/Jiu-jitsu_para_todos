@@ -35,7 +35,7 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "com.jiu_jitsu_para_todos"
-    compileSdkVersion 36
+    compileSdkVersion 37
     ndkVersion "29.0.14033849"
 
     compileOptions {
@@ -90,4 +90,16 @@ android {
 
 flutter {
     source '../..'
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.11.0"
+    implementation "androidx.annotation:annotation:1.11.0"
+}
+
+// Preserva os nomes dos parâmetros no bytecode para os bindings JNIgen.
+kotlin {
+    compilerOptions {
+        javaParameters = true
+    }
 }

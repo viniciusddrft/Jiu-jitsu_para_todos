@@ -26,8 +26,8 @@ class _QuizResultPageState extends State<QuizResultPage>
   late final double _scorePercentage;
   late final AnimationController _animationController;
 
-  final admobInteractor = Modular.get<AdmobInteractor>();
-  final inAppReviewInteractor = Modular.get<InAppReviewInteractor>();
+  final admobInteractor = inject<AdmobInteractor>();
+  final inAppReviewInteractor = inject<InAppReviewInteractor>();
 
   bool _dependenciesInitialized = false;
 

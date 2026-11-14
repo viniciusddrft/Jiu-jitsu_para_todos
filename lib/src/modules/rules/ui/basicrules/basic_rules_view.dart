@@ -13,7 +13,7 @@ class BasicRulesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
 
-    final admobInteractor = Modular.get<AdmobInteractor>();
+    final admobInteractor = inject<AdmobInteractor>();
 
     return Scaffold(
       appBar: AppBar(

@@ -1,14 +1,13 @@
-import 'package:material_ui/material_ui.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/data/firebase_quiz_impl.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/interfaces/ifirebase_quiz.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/quiz_interactor.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/quiz_state.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/ui/quiz_questions/quiz_questions_page.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/locale_app.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/local_storage/interface/local_storage_interface.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/plugins/local_storage/local_storage_shared_preferrence.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/plugins/sound/interface/sound_interface.dart';
+import 'package:material_ui/material_ui.dart';
 
 class MockQuizInteractor extends QuizInteractor {
   MockQuizInteractor({required super.firebaseQuiz});
@@ -19,27 +18,53 @@ class MockQuizInteractor extends QuizInteractor {
   static QuizState newState = const QuizLoading();
 }
 
-class MockModule extends Module {
+class FakeFirebaseQuiz implements IFirebaseQuiz {
   @override
-  void binds(i) {
-    i.add<QuizInteractor>(MockQuizInteractor.new);
-    i.add<IFirebaseQuiz>(FirebaseQuizImpl.new);
-    i.addSingleton<ILocalStorage>(LocalStorageSharedPreferrence.new);
-    i.addSingleton(LocaleInteractor.new);
-  }
+  Future<QuizState> loadQuestions(Difficult difficult, String languageCode) =>
+      Future.value(const QuizLoading());
 }
+
+class FakeLocalStorage implements ILocalStorage {
+  @override
+  Future<T?> getValue<T>(String key) async => null;
+  @override
+  void saveValue<T>(String key, T value) {}
+  @override
+  void remove(String key) {}
+}
+
+class FakeSound implements SoundInterface {
+  @override
+  void dispose() {}
+  @override
+  Future<void> play(String soundPath) async {}
+  @override
+  void stop() {}
+  @override
+  void pause() {}
+}
+
+final mockModule = createModule(
+  register: (c) => c
+    ..add<QuizInteractor>(MockQuizInteractor.new)
+    ..add<IFirebaseQuiz>(FakeFirebaseQuiz.new)
+    ..add<SoundInterface>(FakeSound.new)
+    ..addSingleton<ILocalStorage>(FakeLocalStorage.new)
+    ..addSingleton(LocaleInteractor.new),
+);
+
+Widget app() => ModularApp(
+      module: mockModule,
+      child: const MaterialApp(
+        home: QuizQuestionsPage(difficulty: Difficult.easy),
+      ),
+    );
 
 void main() {
   group('Testes de stados do quiz -> ', () {
     testWidgets('loading ', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        ModularApp(
-          module: MockModule(),
-          child: const MaterialApp(
-            home: QuizQuestionsPage(difficulty: Difficult.easy),
-          ),
-        ),
-      );
+      MockQuizInteractor.newState = const QuizLoading();
+      await tester.pumpWidget(app());
 
       expect(find.byKey(const Key('quizStateFailed')), findsNothing);
       expect(find.byKey(const Key('quizStateSuccess')), findsNothing);
@@ -48,14 +73,7 @@ void main() {
 
     testWidgets('failed ', (WidgetTester tester) async {
       MockQuizInteractor.newState = const QuizFailed();
-      await tester.pumpWidget(
-        ModularApp(
-          module: MockModule(),
-          child: const MaterialApp(
-            home: QuizQuestionsPage(difficulty: Difficult.easy),
-          ),
-        ),
-      );
+      await tester.pumpWidget(app());
 
       expect(find.byKey(const Key('quizStateFailed')), findsOneWidget);
       expect(find.byKey(const Key('quizStateSuccess')), findsNothing);
@@ -64,14 +82,7 @@ void main() {
 
     testWidgets('success ', (WidgetTester tester) async {
       MockQuizInteractor.newState = const QuizSuccess([]);
-      await tester.pumpWidget(
-        ModularApp(
-          module: MockModule(),
-          child: const MaterialApp(
-            home: QuizQuestionsPage(difficulty: Difficult.easy),
-          ),
-        ),
-      );
+      await tester.pumpWidget(app());
 
       expect(find.byKey(const Key('quizStateFailed')), findsNothing);
       expect(find.byKey(const Key('quizStateSuccess')), findsOneWidget);

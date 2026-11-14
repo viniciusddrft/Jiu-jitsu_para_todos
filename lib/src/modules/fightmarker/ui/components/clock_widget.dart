@@ -15,7 +15,7 @@ class Clock extends StatefulWidget {
 }
 
 class _ClockState extends State<Clock> {
-  final _clockInteractor = Modular.get<ClockInteractor>();
+  final _clockInteractor = inject<ClockInteractor>();
 
   @override
   Widget build(BuildContext context) {

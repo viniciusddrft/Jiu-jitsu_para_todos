@@ -18,8 +18,8 @@ class CbjjrulesPage extends StatefulWidget {
 }
 
 class _CbjjrulesPageState extends State<CbjjrulesPage> {
-  final admobInteractor = Modular.get<AdmobInteractor>();
-  final rulesInteractor = Modular.get<RulesInteractor>();
+  final admobInteractor = inject<AdmobInteractor>();
+  final rulesInteractor = inject<RulesInteractor>();
   late final WebViewController controller;
   final urlPdf = ValueNotifier<String?>(null);
   late final Listenable _bodyListenable =

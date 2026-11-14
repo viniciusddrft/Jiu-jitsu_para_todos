@@ -21,8 +21,8 @@ class WallpapersPage extends StatefulWidget {
 }
 
 class _WallpapersViewState extends State<WallpapersPage> {
-  final _wallpaperInteractor = Modular.get<WallpaperInteractor>();
-  final admobInteractor = Modular.get<AdmobInteractor>();
+  final _wallpaperInteractor = inject<WallpaperInteractor>();
+  final admobInteractor = inject<AdmobInteractor>();
 
   bool _adRequested = false;
 
@@ -117,8 +117,7 @@ class _WallpapersViewState extends State<WallpapersPage> {
                   mainAxisSpacing: 10,
                 ),
                 itemBuilder: (context, index) => RawMaterialButton(
-                  onPressed: () => Navigator.pushNamed(
-                      context, '/wallpaper/detailsimage',
+                  onPressed: () => context.pushNamed('/wallpaper/detailsimage',
                       arguments: {
                         'index': index,
                         'wallpapers': wallpapers,

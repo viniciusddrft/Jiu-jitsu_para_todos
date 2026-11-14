@@ -4,7 +4,7 @@ import '../../../shared/l10n/locale_app.dart';
 import '../../../shared/themes/app_icons_languages_path.dart';
 
 class SettingsInteractor {
-  final _localeAppNotifier = Modular.get<LocaleInteractor>();
+  final _localeAppNotifier = inject<LocaleInteractor>();
   final iconPath = ValueNotifier<String?>(null);
 
   void loadLanguage() {

@@ -34,21 +34,21 @@ class HistoryOfJiuJitsuPage extends StatelessWidget {
               text:
                   '    ${AppLocalizations.of(context)!.button_jiujitsu_in_japao}',
               onPressed: () =>
-                  Modular.to.pushNamed('/historyojiujitsu/jiujitsuinjapan'),
+                  context.pushNamed('/historyojiujitsu/jiujitsuinjapan'),
             ),
             ButtonMenu(
               imageButton: AppIconsPath.india,
               text:
                   '    ${AppLocalizations.of(context)!.button_jiujitsu_in_india}',
               onPressed: () =>
-                  Modular.to.pushNamed('/historyojiujitsu/jiujitsuinindia'),
+                  context.pushNamed('/historyojiujitsu/jiujitsuinindia'),
             ),
             ButtonMenu(
               imageButton: AppIconsPath.brasil,
               text:
                   '    ${AppLocalizations.of(context)!.button_jiujitsu_in_brazil}',
               onPressed: () =>
-                  Modular.to.pushNamed('/historyojiujitsu/jiujitsuinbrazil'),
+                  context.pushNamed('/historyojiujitsu/jiujitsuinbrazil'),
             ),
           ],
         ),

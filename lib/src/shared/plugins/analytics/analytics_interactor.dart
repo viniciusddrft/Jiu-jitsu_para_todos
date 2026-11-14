@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 class AnalyticsInteractor {
   final FirebaseAnalytics _analytics = FirebaseAnalytics.instance;
 
-  late final FirebaseAnalyticsObserver observer =
-      FirebaseAnalyticsObserver(analytics: _analytics);
+  static final FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance);
 
   Future<void> logFeatureAccess(String feature) async {
     try {
