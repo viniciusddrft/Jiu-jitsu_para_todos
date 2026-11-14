@@ -10,7 +10,11 @@ import '../../../shared/themes/app_icons_languages_path.dart';
 import '../interactor/settings_interactor.dart';
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+  const SettingsPage({super.key, this.appVersion});
+
+  /// Permite exibir a versão fornecida pelo host em previews e testes.
+  /// No Android, o padrão continua sendo a versão instalada via JNI.
+  final String? appVersion;
   @override
   State<SettingsPage> createState() => _SettingsPageState();
 }
@@ -165,10 +169,13 @@ class _SettingsPageState extends State<SettingsPage> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text(
-                                  AppLocalizations.of(context)!
-                                      .button_language_settings_page,
-                                  style: GoogleFonts.yatraOne(fontSize: 16),
+                                Flexible(
+                                  child: Text(
+                                    AppLocalizations.of(context)!
+                                        .button_language_settings_page,
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.yatraOne(fontSize: 16),
+                                  ),
                                 ),
                                 ValueListenableBuilder(
                                   valueListenable: _settingsInteractor.iconPath,
@@ -223,16 +230,18 @@ class _SettingsPageState extends State<SettingsPage> {
                               ),
                               side: const BorderSide(color: Colors.white),
                             ),
-                            onPressed: () =>
-                                inject<InAppReviewInteractor>()
-                                    .openStoreListing(),
+                            onPressed: () => inject<InAppReviewInteractor>()
+                                .openStoreListing(),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text(
-                                  AppLocalizations.of(context)!
-                                      .text_rate_the_app,
-                                  style: GoogleFonts.yatraOne(fontSize: 16),
+                                Flexible(
+                                  child: Text(
+                                    AppLocalizations.of(context)!
+                                        .text_rate_the_app,
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.yatraOne(fontSize: 16),
+                                  ),
                                 ),
                                 const Icon(Icons.rate_review_outlined)
                               ],
@@ -281,7 +290,7 @@ class _SettingsPageState extends State<SettingsPage> {
         height: 60,
         child: Center(
           child: Text(
-            '${AppLocalizations.of(context)!.text_version} ${AppInfo.version}',
+            '${AppLocalizations.of(context)!.text_version} ${widget.appVersion ?? AppInfo.version}',
             style: GoogleFonts.yatraOne(color: Colors.grey[700]),
           ),
         ),

@@ -16,6 +16,6 @@ class QuestionAdapter {
         'question': questionEntity.question,
         'pathImage': questionEntity.pathImage,
         'pathVideo': questionEntity.pathVideo,
-        'options': questionEntity.options
+        'options': questionEntity.options.map(AnswerAdapter.toJson).toList()
       };
 }

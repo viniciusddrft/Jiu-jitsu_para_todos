@@ -65,6 +65,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.4
   flutter_native_splash: ^2.4.8
   mocktail: ^1.0.5
+  firebase_core_platform_interface: ^8.1.1
   jnigen: ^1.0.1
 
 flutter_native_splash:

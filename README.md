@@ -78,3 +78,27 @@ No final para usar cada imagens ou som eu retirei todos metadados dos arquivos p
 # fase atual
 
 reecrevendo os testes, app finalmente migrado para firebase e agora de arquitetura nova
+
+## Testes e cobertura
+
+Execute a suíte completa com cobertura:
+
+```sh
+flutter test --coverage
+```
+
+O relatório bruto é gerado em `coverage/lcov.info` (não versionado).
+`test/coverage_test.dart` importa os arquivos do app para que arquivos sem testes
+também entrem na medição. Atualize essa lista ao adicionar arquivos em `lib/`.
+
+A meta é **80% de cobertura de linhas** do código escrito para o app, incluindo
+telas, módulos, interactors, adaptadores e wrappers nativos de `lib/`.
+Ao calcular o percentual a partir do relatório bruto, exclua somente código
+gerado: bindings JNIgen (`*.g.dart`), localizações
+Flutter (`app_localizations.dart`, `app_localizations_en.dart` e
+`app_localizations_pt.dart`) e configuração FlutterFire (`firebase_options.dart`).
+A cobertura mede execução de linhas Dart; não substitui testes em dispositivo
+para JNI, anúncios, áudio, WebView ou serviços Firebase reais.
+
+Os testes unitários e de widgets usam armazenamento em memória, canais nativos
+simulados e imagens locais, sem depender de rede ou de um aparelho Android.
