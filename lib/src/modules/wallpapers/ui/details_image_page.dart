@@ -1,11 +1,13 @@
-import '../../../shared/plugins/wallpaper/wallpaper_setter.dart';
-import 'package:material_ui/material_ui.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/components/admob_native_ad.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
+import 'package:material_ui/material_ui.dart';
+
+import '../../../shared/components/app_card.dart';
+import '../../../shared/components/native_ad_slot.dart';
+import '../../../shared/l10n/app_localizations.dart';
 import '../../../shared/plugins/admob/admob_interactor.dart';
+import '../../../shared/plugins/wallpaper/wallpaper_setter.dart';
+import '../../../shared/themes/app_colors.dart';
+import '../../../shared/themes/app_text_styles.dart';
 import '../interactor/wallpaper_entity.dart';
 
 class DetailsImagePage extends StatefulWidget {
@@ -23,7 +25,7 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
   final admobInteractor = inject<AdmobInteractor>();
   late final PageController _pageController =
       PageController(initialPage: widget.initialIndex);
-  late int _currentIndex = widget.initialIndex;
+  late final _currentIndex = ValueNotifier<int>(widget.initialIndex);
   bool _precached = false;
 
   // Largura de decodificação (em pixels físicos). A imagem ocupa a tela
@@ -35,7 +37,8 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     final size = MediaQuery.sizeOf(context);
-    _decodeWidth = (size.width * MediaQuery.devicePixelRatioOf(context)).round();
+    _decodeWidth =
+        (size.width * MediaQuery.devicePixelRatioOf(context)).round();
     if (!_precached) {
       _precached = true;
       _precacheAround(widget.initialIndex);
@@ -62,138 +65,183 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
   @override
   void dispose() {
     _pageController.dispose();
+    _currentIndex.dispose();
     super.dispose();
   }
 
-  void _setWallpaper({required WallpaperTarget target}) {
+  void _setWallpaper(WallpaperTarget target) {
+    Navigator.pop(context);
     admobInteractor.showInterstitialAd();
-    WallpaperSetter.setFromUrl(widget.wallpapers[_currentIndex].url, target)
+    final l10n = AppLocalizations.of(context)!;
+    WallpaperSetter.setFromUrl(
+            widget.wallpapers[_currentIndex.value].url, target)
         .then((success) {
-      if (success && mounted) _showDialogSuccess();
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Row(
+          children: [
+            Icon(success ? Icons.check_circle_rounded : Icons.error_rounded,
+                color: success ? AppColors.success : AppColors.accent),
+            const SizedBox(width: 12),
+            Expanded(
+                child: Text(
+                    success ? l10n.text_popup_saved : l10n.text_popup_error)),
+          ],
+        ),
+      ));
     });
   }
 
-  void _showDialogSuccess() => showDialog<void>(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text(AppLocalizations.of(context)!.text_popup_saved),
-            backgroundColor: AppColors.background,
-          );
-        },
-      );
-
-  // Botão de destino do wallpaper (tela inicial / bloqueio / ambas) com o
-  // estilo compartilhado pelas três opções do diálogo.
-  Widget _targetButton(WallpaperTarget target, String label) => OutlinedButton(
-        style: OutlinedButton.styleFrom(
-            fixedSize: const Size(200, 50),
-            foregroundColor: Colors.white,
-            elevation: 7,
-            backgroundColor: AppColors.background,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-            side: const BorderSide(color: Colors.white)),
-        onPressed: () => _setWallpaper(target: target),
-        child: Center(
-          child: Text(
-            label,
-            style: GoogleFonts.yatraOne(fontSize: 16),
-          ),
-        ),
-      );
-
-  void showDialogSetWallpaper() => showDialog<void>(
-        context: context,
-        builder: (BuildContext context) => FractionallySizedBox(
-          heightFactor: 0.5,
-          child: AlertDialog(
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(20.0))),
-            backgroundColor: AppColors.background,
-            title: Text(
-              AppLocalizations.of(context)!.title_popup_wallpaper,
-              style: GoogleFonts.ubuntu(),
-            ),
-            content: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _targetButton(
-                  WallpaperTarget.home,
-                  AppLocalizations.of(context)!.text_popup_set_home,
-                ),
-                _targetButton(
-                  WallpaperTarget.lock,
-                  AppLocalizations.of(context)!.text_popup_set_block,
-                ),
-                _targetButton(
-                  WallpaperTarget.both,
-                  AppLocalizations.of(context)!.text_popup_set_both,
-                ),
-              ],
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text(
-                  AppLocalizations.of(context)!.text_cancel,
-                  style: GoogleFonts.ubuntu(),
-                ),
-              )
+  void _showTargetSheet() {
+    final l10n = AppLocalizations.of(context)!;
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (context) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 0, 8, 14),
+                child: Text(l10n.title_popup_wallpaper.toUpperCase(),
+                    style: AppTextStyles.display(28)),
+              ),
+              Row(
+                children: [
+                  for (final (target, icon, label) in [
+                    (
+                      WallpaperTarget.home,
+                      Icons.smartphone_rounded,
+                      l10n.text_popup_set_home
+                    ),
+                    (
+                      WallpaperTarget.lock,
+                      Icons.lock_outline_rounded,
+                      l10n.text_popup_set_block
+                    ),
+                    (
+                      WallpaperTarget.both,
+                      Icons.copy_all_rounded,
+                      l10n.text_popup_set_both
+                    ),
+                  ]) ...[
+                    if (target != WallpaperTarget.home)
+                      const SizedBox(width: 8),
+                    Expanded(
+                      child: AppCard(
+                        color: target == WallpaperTarget.both
+                            ? AppColors.text
+                            : AppColors.surfaceHigh,
+                        radius: 18,
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        onTap: () => _setWallpaper(target),
+                        child: Column(
+                          children: [
+                            Icon(icon,
+                                size: 26,
+                                color: target == WallpaperTarget.both
+                                    ? AppColors.background
+                                    : AppColors.text),
+                            const SizedBox(height: 10),
+                            Text(label,
+                                textAlign: TextAlign.center,
+                                style: AppTextStyles.label(
+                                    size: 13,
+                                    color: target == WallpaperTarget.both
+                                        ? AppColors.background
+                                        : AppColors.text)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ],
+              ),
             ],
           ),
         ),
-      );
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      backgroundColor: AppColors.background,
-      // Wallpaper em tela cheia; arraste para cima/baixo para trocar.
-      body: PageView.builder(
-        scrollDirection: Axis.vertical,
-        controller: _pageController,
-        itemCount: widget.wallpapers.length,
-        onPageChanged: (i) {
-          _currentIndex = i;
-          _precacheAround(i);
-        },
-        itemBuilder: (context, i) => Hero(
-          transitionOnUserGestures: true,
-          tag: 'logo$i',
-          child: Image(
-            image: _imageProvider(widget.wallpapers[i].url),
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
-            loadingBuilder: (ctx, child, progress) => progress == null
-                ? child
-                : const Center(child: CircularProgressIndicator()),
+      backgroundColor: Colors.black,
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          // Wallpaper em tela cheia; arraste para cima/baixo para trocar.
+          PageView.builder(
+            scrollDirection: Axis.vertical,
+            controller: _pageController,
+            itemCount: widget.wallpapers.length,
+            onPageChanged: (i) {
+              _currentIndex.value = i;
+              _precacheAround(i);
+            },
+            itemBuilder: (context, i) => Hero(
+              transitionOnUserGestures: true,
+              tag: 'logo$i',
+              child: Image(
+                image: _imageProvider(widget.wallpapers[i].url),
+                fit: BoxFit.cover,
+                loadingBuilder: (ctx, child, progress) => progress == null
+                    ? child
+                    : const Center(child: CircularProgressIndicator()),
+              ),
+            ),
           ),
-        ),
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Row(
+                children: [
+                  IconButton.filled(
+                    tooltip:
+                        MaterialLocalizations.of(context).backButtonTooltip,
+                    onPressed: () => Navigator.of(context).maybePop(),
+                    style: IconButton.styleFrom(
+                        backgroundColor: const Color(0x990D1017),
+                        foregroundColor: AppColors.text),
+                    icon: const Icon(Icons.arrow_back_rounded),
+                  ),
+                  const Spacer(),
+                  ValueListenableBuilder<int>(
+                    valueListenable: _currentIndex,
+                    builder: (_, index, __) => Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: const Color(0x990D1017),
+                        borderRadius: BorderRadius.circular(999),
+                      ),
+                      child: Text('${index + 1} / ${widget.wallpapers.length}',
+                          style: AppTextStyles.label(size: 12)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            left: 16,
+            right: 16,
+            bottom: 16,
+            child: AppButton(
+              icon: Icons.wallpaper_outlined,
+              label: l10n.text_popup_save_wallpaper,
+              onPressed: _showTargetSheet,
+            ),
+          ),
+        ],
       ),
-      // Botão "usar wallpaper" como pílula flutuante sobre a imagem,
-      // centralizado acima do anúncio (libera a área antes ocupada por ele).
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: showDialogSetWallpaper,
-        backgroundColor: AppColors.background,
-        foregroundColor: Colors.white,
-        elevation: 7,
-        shape: const StadiumBorder(side: BorderSide(color: Colors.white)),
-        icon: const Icon(Icons.wallpaper_outlined),
-        label: Text(
-          AppLocalizations.of(context)!.text_popup_save_wallpaper,
-          style: GoogleFonts.yatraOne(fontSize: 16),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      bottomNavigationBar: SizedBox(
-        height: 75,
-        child: AdmobNativeAd(
-          factoryId: 'listTile',
-          adUnitId: admobInteractor.nativeAdUnitIDListTile,
-        ),
+      bottomNavigationBar: const ColoredBox(
+        color: AppColors.background,
+        child: NativeAdSlot(),
       ),
     );
   }

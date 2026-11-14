@@ -1,81 +1,27 @@
 import 'package:material_ui/material_ui.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
-import '../../../../shared/components/admob_native_ad.dart';
-import '../../../../shared/plugins/admob/admob_interactor.dart';
-import '../../../../shared/themes/app_colors.dart';
+
+import '../../../../shared/l10n/app_localizations.dart';
+import '../components/history_article.dart';
 
 class JiujitsuInIndiaView extends StatelessWidget {
   const JiujitsuInIndiaView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
-    final admobInteractor = inject<AdmobInteractor>();
-
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: Text(
-          AppLocalizations.of(context)!
-              .title_appbar_origin_of_jiujitsu_india_page,
-          style: GoogleFonts.yatraOne(color: Colors.grey[700]),
-        ),
-      ),
-      backgroundColor: AppColors.background,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
-          child: Column(
-            children: [
-              Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: size.height * 0.03),
-                    child: Text(
-                      AppLocalizations.of(context)!
-                          .text_origin_of_jiujitsu_india_paragraph1,
-                      style: GoogleFonts.ubuntu(fontSize: 16),
-                    ),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!
-                        .text_origin_of_jiujitsu_india_paragraph2,
-                    style: GoogleFonts.ubuntu(fontSize: 16),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!
-                        .text_origin_of_jiujitsu_india_paragraph3,
-                    style: GoogleFonts.ubuntu(fontSize: 16),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!
-                        .text_origin_of_jiujitsu_india_paragraph4,
-                    style: GoogleFonts.ubuntu(fontSize: 16),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: size.height * 0.05),
-                    child: Text(
-                      AppLocalizations.of(context)!
-                          .text_origin_of_jiujitsu_india_paragraph5,
-                      style: GoogleFonts.ubuntu(fontSize: 16),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-      bottomNavigationBar: SizedBox(
-        height: 75,
-        child: AdmobNativeAd(
-          factoryId: 'listTile',
-          adUnitId: admobInteractor.nativeAdUnitIDListTile,
-        ),
-      ),
+    final l10n = AppLocalizations.of(context)!;
+    return HistoryArticle(
+      chapter: 2,
+      tag: l10n.history_india_tag,
+      title: l10n.button_jiujitsu_in_india,
+      paragraphs: [
+        l10n.text_origin_of_jiujitsu_india_paragraph1,
+        l10n.text_origin_of_jiujitsu_india_paragraph2,
+        l10n.text_origin_of_jiujitsu_india_paragraph3,
+        l10n.text_origin_of_jiujitsu_india_paragraph4,
+        l10n.text_origin_of_jiujitsu_india_paragraph5,
+      ],
+      nextTitle: l10n.button_jiujitsu_in_brazil,
+      nextRoute: '/historyojiujitsu/jiujitsuinbrazil',
     );
   }
 }

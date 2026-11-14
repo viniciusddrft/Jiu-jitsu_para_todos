@@ -7,6 +7,8 @@ import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interactor/wallpaper
 import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interactor/wallpaper_state.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/ui/wallpapers_page.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/ui/details_image_page.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/components/app_card.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/components/offline_state.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/admob/admob_interactor.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/shimmer/shimmer_widget.dart';
@@ -40,6 +42,7 @@ void main() {
     final interactor = WallpaperInteractor(firebaseWallpapers: repository);
     final ads = RecordingAds();
     await mount(tester, const WallpapersPage(),
+        size: const Size(1000, 2400),
         register: (c) => c
           ..addInstance<WallpaperInteractor>(interactor)
           ..addInstance<AdmobInteractor>(ads));
@@ -47,7 +50,7 @@ void main() {
     expect(ads.loads, 1);
     interactor.value = const WallpaperFailed();
     await tester.pump();
-    expect(find.text('Sem internet'), findsOneWidget);
+    expect(find.byType(OfflineState), findsOneWidget);
     repository.response = const WallpaperSuccess(wallpapers);
     interactor.loadWallpapers();
     await tester.pump();
@@ -79,7 +82,7 @@ void main() {
                 return const Text('Detalhes');
               })));
     await tester.pump();
-    await tester.tap(find.byType(RawMaterialButton).at(1));
+    await tester.tap(find.byType(Hero).at(1));
     await tester.pump(const Duration(seconds: 1));
     await tester.pump();
     expect(arguments, {'index': 1, 'wallpapers': wallpapers});
@@ -101,14 +104,16 @@ void main() {
     expect(page.controller!.page, 2);
     final l =
         AppLocalizations.of(tester.element(find.byType(DetailsImagePage)))!;
-    await tester.tap(find.byType(FloatingActionButton));
+    await tester.tap(find.byType(AppButton));
     await tester.pump(const Duration(seconds: 1));
+    expect(find.text(l.title_popup_wallpaper.toUpperCase()), findsOneWidget);
     expect(find.text(l.text_popup_set_home), findsOneWidget);
     expect(find.text(l.text_popup_set_block), findsOneWidget);
     expect(find.text(l.text_popup_set_both), findsOneWidget);
-    await tester.tap(find.text(l.text_cancel));
+    // Fecha o painel tocando fora dele.
+    await tester.tapAt(const Offset(500, 100));
     await tester.pump(const Duration(seconds: 1));
-    expect(find.byType(AlertDialog), findsNothing);
+    expect(find.byType(BottomSheet), findsNothing);
     await unmount(tester);
   });
 }

@@ -19,22 +19,22 @@ void main() {
   )>[
     (
       const JiujitsuinBrazilPage(),
-      (l) => l.title_appbar_jiujitsu_in_brazil_page,
+      (l) => l.button_jiujitsu_in_brazil.toUpperCase(),
       (l) => l.text_jiujitsu_in_brazil_paragraph3
     ),
     (
       const JiujitsuInIndiaView(),
-      (l) => l.title_appbar_origin_of_jiujitsu_india_page,
+      (l) => l.button_jiujitsu_in_india.toUpperCase(),
       (l) => l.text_origin_of_jiujitsu_india_paragraph5
     ),
     (
       const JiujitsuInJapanView(),
-      (l) => l.title_appbar_jiujitsu_in_japan_page,
+      (l) => l.button_jiujitsu_in_japao.toUpperCase(),
       (l) => l.text_jiujitsu_in_japan_paragraph7
     ),
     (
       const BasicRulesPage(),
-      (l) => l.title_appbar_basic_rules_page,
+      (l) => l.title_appbar_basic_rules_page.toUpperCase(),
       (l) => l.text_advantage_and_penalties
     ),
   ];
@@ -48,10 +48,10 @@ void main() {
         final l =
             AppLocalizations.of(tester.element(find.byType(page.runtimeType)))!;
         expect(find.text(title(l)), findsOneWidget);
+        // O conteúdo é uma lista preguiçosa: rola até o último parágrafo.
+        await tester.scrollUntilVisible(find.text(paragraph(l)), 300,
+            scrollable: find.byType(Scrollable).first);
         expect(find.text(paragraph(l)), findsOneWidget);
-        await tester.drag(
-            find.byType(SingleChildScrollView), const Offset(0, -500));
-        await tester.pump();
         expect(tester.takeException(), isNull);
         await unmount(tester);
       });

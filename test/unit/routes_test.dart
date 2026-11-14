@@ -6,7 +6,6 @@ import 'package:material_ui/material_ui.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:jiu_jitsu_para_todos/core/app_core_module.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/home/ui/home_page.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/credits/ui/credits.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/ui/fightmarker_page.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/settings/ui/settings_page.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/rules/ui/rulesmenu/rules_view.dart';
@@ -49,7 +48,6 @@ void main() {
     final destinations = {
       '/': HomePage,
       '/settings/settings': SettingsPage,
-      '/credits/credits': CreditsPage,
       '/fightmaker/fightmaker': FightMakerPage,
       '/rules/rules': RulesPage,
       '/rules/basicrules': BasicRulesPage,

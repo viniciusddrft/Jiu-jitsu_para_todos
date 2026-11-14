@@ -148,12 +148,6 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get title_appbar_settings_page;
 
-  /// No description provided for @button_credits_settings_page.
-  ///
-  /// In en_US, this message translates to:
-  /// **'Credits'**
-  String get button_credits_settings_page;
-
   /// No description provided for @button_language_settings_page.
   ///
   /// In en_US, this message translates to:
@@ -214,31 +208,6 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get text_cancel;
 
-  /// No description provided for @title_appbar_credits_page.
-  ///
-  /// In en_US, this message translates to:
-  /// **'Credits'**
-  String get title_appbar_credits_page;
-
-  /// No description provided for @text_all_application_icons_are_from_flaticon.
-  ///
-  /// In en_US, this message translates to:
-  /// **'All application icons are from Flaticon.'**
-  String get text_all_application_icons_are_from_flaticon;
-
-  /// No description provided for @text_the_application_was_developed_in_flutter.
-  ///
-  /// In en_US, this message translates to:
-  /// **'The application was developed in flutter.'**
-  String get text_the_application_was_developed_in_flutter;
-
-  /// No description provided for @text_if_you_want_to_know_both_the_flutter_and_the_flaticon_just_click_on_the_icons.
-  ///
-  /// In en_US, this message translates to:
-  /// **'If you want to know both the Flutter and the Flaticon, just click on the icons.'**
-  String
-      get text_if_you_want_to_know_both_the_flutter_and_the_flaticon_just_click_on_the_icons;
-
   /// No description provided for @history_of_jiujitsu_page_summary.
   ///
   /// In en_US, this message translates to:
@@ -254,19 +223,19 @@ abstract class AppLocalizations {
   /// No description provided for @button_jiujitsu_in_japao.
   ///
   /// In en_US, this message translates to:
-  /// **'O Jiu-jitsu no Japão'**
+  /// **'Jiu-jitsu in Japan'**
   String get button_jiujitsu_in_japao;
 
   /// No description provided for @button_jiujitsu_in_india.
   ///
   /// In en_US, this message translates to:
-  /// **'O Jiu-jitsu na India'**
+  /// **'Jiu-jitsu in India'**
   String get button_jiujitsu_in_india;
 
   /// No description provided for @button_jiujitsu_in_brazil.
   ///
   /// In en_US, this message translates to:
-  /// **'O Jiu-jitsu no Brasil'**
+  /// **'Jiu-jitsu in Brazil'**
   String get button_jiujitsu_in_brazil;
 
   /// No description provided for @title_appbar_rule_page.
@@ -404,7 +373,7 @@ abstract class AppLocalizations {
   /// No description provided for @title_appbar_jiujitsu_in_japan_page.
   ///
   /// In en_US, this message translates to:
-  /// **'Origem do Jiu-jitsu(Japan)'**
+  /// **'Origin of Jiu-jitsu (Japan)'**
   String get title_appbar_jiujitsu_in_japan_page;
 
   /// No description provided for @text_jiujitsu_in_japan_paragraph1.
@@ -656,19 +625,19 @@ abstract class AppLocalizations {
   /// No description provided for @text_result_quiz_white_belt.
   ///
   /// In en_US, this message translates to:
-  /// **'His black white quiz score was:'**
+  /// **'Your white belt quiz score was:'**
   String get text_result_quiz_white_belt;
 
   /// No description provided for @text_result_quiz_blue_belt.
   ///
   /// In en_US, this message translates to:
-  /// **'His blue belt quiz score was:'**
+  /// **'Your blue belt quiz score was:'**
   String get text_result_quiz_blue_belt;
 
   /// No description provided for @text_result_quiz_black_belt.
   ///
   /// In en_US, this message translates to:
-  /// **'His black belt quiz score was:'**
+  /// **'Your black belt quiz score was:'**
   String get text_result_quiz_black_belt;
 
   /// No description provided for @text_message_quiz_very_well.
@@ -688,6 +657,258 @@ abstract class AppLocalizations {
   /// In en_US, this message translates to:
   /// **'It was not this time.'**
   String get text_message_quiz_sad;
+
+  /// No description provided for @text_offline.
+  ///
+  /// In en_US, this message translates to:
+  /// **'No internet'**
+  String get text_offline;
+
+  /// No description provided for @text_try_again.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Try again'**
+  String get text_try_again;
+
+  /// No description provided for @home_greeting.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Oss!'**
+  String get home_greeting;
+
+  /// No description provided for @home_greeting_subtitle.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Ready to learn?'**
+  String get home_greeting_subtitle;
+
+  /// No description provided for @home_quiz_title.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Test your game'**
+  String get home_quiz_title;
+
+  /// No description provided for @home_quiz_subtitle.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Three difficulty levels'**
+  String get home_quiz_subtitle;
+
+  /// No description provided for @home_history_subtitle.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Japan, India and Brazil'**
+  String get home_history_subtitle;
+
+  /// No description provided for @home_rules_subtitle.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Basics and CBJJ'**
+  String get home_rules_subtitle;
+
+  /// No description provided for @home_fightmarker_subtitle.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Time and points'**
+  String get home_fightmarker_subtitle;
+
+  /// No description provided for @home_wallpapers_subtitle.
+  ///
+  /// In en_US, this message translates to:
+  /// **'For your screen'**
+  String get home_wallpapers_subtitle;
+
+  /// No description provided for @history_heading.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Where the gentle art comes from'**
+  String get history_heading;
+
+  /// No description provided for @history_japan_tag.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Most accepted origin'**
+  String get history_japan_tag;
+
+  /// No description provided for @history_india_tag.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Alternative theory'**
+  String get history_india_tag;
+
+  /// No description provided for @history_brazil_tag.
+  ///
+  /// In en_US, this message translates to:
+  /// **'The arrival'**
+  String get history_brazil_tag;
+
+  /// No description provided for @history_next.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Next'**
+  String get history_next;
+
+  /// No description provided for @rules_heading.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Understand the scoring'**
+  String get rules_heading;
+
+  /// No description provided for @rules_summary_2.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Takedown, knee on belly, sweep'**
+  String get rules_summary_2;
+
+  /// No description provided for @rules_summary_3.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Guard pass'**
+  String get rules_summary_3;
+
+  /// No description provided for @rules_summary_4.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Mount, back control'**
+  String get rules_summary_4;
+
+  /// No description provided for @rules_basic_subtitle.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Points, advantages and penalties'**
+  String get rules_basic_subtitle;
+
+  /// No description provided for @rules_cbjj_subtitle.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Official rule book (PDF)'**
+  String get rules_cbjj_subtitle;
+
+  /// No description provided for @rules_cbjj_save.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Save to Downloads'**
+  String get rules_cbjj_save;
+
+  /// No description provided for @quiz_menu_heading.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Choose the quiz level'**
+  String get quiz_menu_heading;
+
+  /// No description provided for @quiz_menu_description.
+  ///
+  /// In en_US, this message translates to:
+  /// **'The belt color shows how hard the questions are.'**
+  String get quiz_menu_description;
+
+  /// No description provided for @quiz_level_easy.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Easy questions'**
+  String get quiz_level_easy;
+
+  /// No description provided for @quiz_level_medium.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Intermediate questions'**
+  String get quiz_level_medium;
+
+  /// No description provided for @quiz_level_hard.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Hard questions'**
+  String get quiz_level_hard;
+
+  /// No description provided for @quiz_play_again.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Play again'**
+  String get quiz_play_again;
+
+  /// No description provided for @quiz_back_home.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Back to home'**
+  String get quiz_back_home;
+
+  /// No description provided for @quiz_correct_count.
+  ///
+  /// In en_US, this message translates to:
+  /// **'{score} of {total} correct'**
+  String quiz_correct_count(int score, int total);
+
+  /// No description provided for @quiz_media_image.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Image'**
+  String get quiz_media_image;
+
+  /// No description provided for @quiz_media_video.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Video'**
+  String get quiz_media_video;
+
+  /// No description provided for @quiz_video_replay.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Watch again'**
+  String get quiz_video_replay;
+
+  /// No description provided for @quiz_video_slow.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Slow motion'**
+  String get quiz_video_slow;
+
+  /// No description provided for @wallpapers_heading.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Take the mat to your screen'**
+  String get wallpapers_heading;
+
+  /// No description provided for @fightmarker_athlete.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Athlete {number}'**
+  String fightmarker_athlete(int number);
+
+  /// No description provided for @fightmarker_advantage.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Advantage'**
+  String get fightmarker_advantage;
+
+  /// No description provided for @fightmarker_penalty.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Penalty'**
+  String get fightmarker_penalty;
+
+  /// No description provided for @fightmarker_hold_to_remove.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Hold a button to undo'**
+  String get fightmarker_hold_to_remove;
+
+  /// No description provided for @fightmarker_presets.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Presets · adult'**
+  String get fightmarker_presets;
+
+  /// No description provided for @fightmarker_minutes.
+  ///
+  /// In en_US, this message translates to:
+  /// **'min'**
+  String get fightmarker_minutes;
+
+  /// No description provided for @fightmarker_set_time.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Set time'**
+  String get fightmarker_set_time;
 }
 
 class _AppLocalizationsDelegate

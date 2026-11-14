@@ -1,16 +1,23 @@
 import 'dart:async';
-import 'package:material_ui/material_ui.dart';
+
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/interfaces/ifirebase_quiz.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/question_entity.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/quiz_interactor.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/quiz_state.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_images.dart';
+import 'package:material_ui/material_ui.dart';
+
+import '../../../../shared/components/app_card.dart';
+import '../../../../shared/components/app_top_bar.dart';
+import '../../../../shared/components/belt.dart';
+import '../../../../shared/components/offline_state.dart';
+import '../../../../shared/l10n/app_localizations.dart';
 import '../../../../shared/themes/app_colors.dart';
+import '../../../../shared/themes/app_text_styles.dart';
 import '../../interactor/answer_entity.dart';
+import '../../interactor/interfaces/ifirebase_quiz.dart';
+import '../../interactor/question_entity.dart';
+import '../../interactor/quiz_interactor.dart';
+import '../../interactor/quiz_state.dart';
+import '../difficulty_ui.dart';
 import 'components/button_quiz_widget.dart';
+import 'components/quiz_media.dart';
 
 class QuizQuestionsPage extends StatefulWidget {
   final Difficult difficulty;
@@ -21,18 +28,13 @@ class QuizQuestionsPage extends StatefulWidget {
 }
 
 class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
+  static const _secondsPerQuestion = 10;
+
   final _quizInteractor = inject<QuizInteractor>();
   final _pageController = PageController();
-  final _timer = ValueNotifier<int>(10);
+  final _timer = ValueNotifier<int>(_secondsPerQuestion);
   Timer? _countdownTimer;
   late final VoidCallback _stateListener;
-
-  // Estilos fixos extraídos para não realocar TextStyle a cada rebuild.
-  final _titleStyle = GoogleFonts.yatraOne(fontSize: 20, color: Colors.grey[700]);
-  final _questionNumberStyle =
-      GoogleFonts.ubuntu(fontSize: 22, color: Colors.white);
-  final _questionTextStyle =
-      GoogleFonts.ubuntu(fontSize: 18, color: Colors.white);
 
   @override
   void initState() {
@@ -57,14 +59,14 @@ class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
       _timer.value--;
       if (_timer.value == 0) {
         _quizInteractor.onTimerFailed();
-        _timer.value = 10;
+        _timer.value = _secondsPerQuestion;
         next();
       }
     });
   }
 
   void onPressedButton(AnswerEntity answerEntity) {
-    _timer.value = 10;
+    _timer.value = _secondsPerQuestion;
     _quizInteractor.onPressed(answerEntity);
     next();
   }
@@ -78,129 +80,58 @@ class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
       });
     } else {
       _pageController.animateToPage(_quizInteractor.numberQuestion,
-          duration: const Duration(seconds: 1),
+          duration: const Duration(milliseconds: 600),
           curve: Curves.easeInOutCubicEmphasized);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
-
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      backgroundColor: AppColors.background,
-      body: ValueListenableBuilder(
-        valueListenable: _quizInteractor,
-        builder: (_, value, __) => switch (value) {
-          QuizFailed() => Center(
-              key: const Key('quizStateFailed'),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    AppImages.withoutInternet,
-                    width: 200,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 20),
-                    child: Text(
-                      'Sem internet',
-                      style: TextStyle(fontSize: 24),
-                    ),
-                  )
-                ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            AppTopBar(
+              close: true,
+              trailing: BeltChip(
+                belt: Belt(belt: widget.difficulty.belt),
+                label: widget.difficulty.beltName(context),
               ),
             ),
-          QuizLoading() => const Center(
-              key: Key('quizStateLoading'),
-              child: CircularProgressIndicator(),
+            Expanded(
+              child: ValueListenableBuilder(
+                valueListenable: _quizInteractor,
+                builder: (_, value, __) => switch (value) {
+                  QuizFailed() => const OfflineState(
+                      key: Key('quizStateFailed'),
+                    ),
+                  QuizLoading() => const Center(
+                      key: Key('quizStateLoading'),
+                      child: CircularProgressIndicator(),
+                    ),
+                  QuizSuccess(
+                    questions: final List<QuestionEntity> questions
+                  ) =>
+                    PageView(
+                      key: const Key('quizStateSuccess'),
+                      controller: _pageController,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: [
+                        for (var i = 0; i < questions.length; i++)
+                          _QuestionView(
+                            question: questions[i],
+                            index: i,
+                            total: questions.length,
+                            timer: _timer,
+                            onAnswer: onPressedButton,
+                          ),
+                      ],
+                    ),
+                },
+              ),
             ),
-          QuizSuccess(questions: final List<QuestionEntity> questions) =>
-            PageView(
-              key: const Key('quizStateSuccess'),
-              controller: _pageController,
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                for (QuestionEntity question in questions)
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: size.width * 0.07,
-                                bottom: size.height * 0.01),
-                            child: Text(
-                                'Quiz ${widget.difficulty == Difficult.easy ? AppLocalizations.of(context)!.text_difficultyname_white_belt : widget.difficulty == Difficult.medium ? AppLocalizations.of(context)!.text_difficultyname_blue_belt : AppLocalizations.of(context)!.text_difficultyname_black_belt}',
-                                style: _titleStyle),
-                          ),
-                          // Só o contador escuta o _timer: cada tique (1×/s)
-                          // reconstrói este Text, não a PageView inteira.
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: size.width * 0.4,
-                                bottom: size.height * 0.01),
-                            child: ValueListenableBuilder<int>(
-                              valueListenable: _timer,
-                              builder: (_, value, __) => Text(value.toString(),
-                                  style: GoogleFonts.yatraOne(
-                                      fontSize: 22,
-                                      color: value > 7
-                                          ? Colors.green
-                                          : value > 3
-                                              ? Colors.yellow
-                                              : Colors.red)),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: size.width * 0.07),
-                        child: Text(
-                            '${AppLocalizations.of(context)!.text_question} ${_quizInteractor.numberQuestion}/${_quizInteractor.totalQuestions}',
-                            style: _questionNumberStyle),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(
-                            left: size.width * 0.07, right: size.width * 0.07),
-                        width: size.width,
-                        height: 1,
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                              colors: [Colors.white, AppColors.background],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            top: size.height * 0.02,
-                            left: size.width * 0.07,
-                            right: size.width * 0.07),
-                        child:
-                            Text(question.question, style: _questionTextStyle),
-                      ),
-                      const Spacer(),
-                      for (AnswerEntity answerEntity in question.options)
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: size.width * 0.07,
-                              right: size.width * 0.07),
-                          child: ButtonQuizQuestionsWidget(
-                            answerEntity: answerEntity,
-                            onPressedButton: onPressedButton,
-                          ),
-                        )
-                    ],
-                  )
-              ],
-            )
-        },
+          ],
+        ),
       ),
     );
   }
@@ -213,5 +144,127 @@ class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
     _pageController.dispose();
     _timer.dispose();
     super.dispose();
+  }
+}
+
+class _QuestionView extends StatelessWidget {
+  const _QuestionView({
+    required this.question,
+    required this.index,
+    required this.total,
+    required this.timer,
+    required this.onAnswer,
+  });
+
+  final QuestionEntity question;
+  final int index, total;
+  final ValueNotifier<int> timer;
+  final void Function(AnswerEntity) onAnswer;
+
+  /// Respostas curtas (pontos, "Vantagem"...) viram uma grade 2×2.
+  bool get _compact =>
+      question.options.length == 4 &&
+      question.options.every((o) => o.text.length <= 12);
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final hasMedia = QuizMedia.hasMedia(question);
+    const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Expanded(
+                child: Text.rich(
+                  TextSpan(children: [
+                    TextSpan(text: '${l10n.text_question.toUpperCase()} '),
+                    TextSpan(
+                        text: '${index + 1}',
+                        style: const TextStyle(color: AppColors.text)),
+                    TextSpan(text: ' / $total'),
+                  ]),
+                  style: AppTextStyles.title(20, color: AppColors.textMuted),
+                ),
+              ),
+              ValueListenableBuilder<int>(
+                valueListenable: timer,
+                builder: (_, seconds, __) => Text(
+                  '0:${seconds.toString().padLeft(2, '0')}',
+                  style: AppTextStyles.display(28,
+                      color: seconds <= 3 ? AppColors.accent : AppColors.text),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Row(
+            children: [
+              for (var i = 0; i < total; i++) ...[
+                if (i > 0) const SizedBox(width: 4),
+                Expanded(
+                  child: Container(
+                    height: 4,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(2),
+                      color: i < index
+                          ? AppColors.text
+                          : i == index
+                              ? AppColors.accent
+                              : AppColors.line,
+                    ),
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+        if (hasMedia) ...[
+          const SizedBox(height: 20),
+          QuizMedia(question: question),
+        ],
+        Padding(
+          padding: EdgeInsets.fromLTRB(8, hasMedia ? 20 : 32, 8, 0),
+          child: Text(question.question.toUpperCase(),
+              style: AppTextStyles.title(hasMedia ? 28 : 32)),
+        ),
+        const SizedBox(height: 24),
+        if (_compact)
+          GridView.count(
+            crossAxisCount: 2,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            childAspectRatio: 2.2,
+            children: [
+              for (final option in question.options)
+                ButtonQuizQuestionsWidget(
+                  answerEntity: option,
+                  onPressedButton: onAnswer,
+                  compact: true,
+                ),
+            ],
+          )
+        else
+          for (var i = 0; i < question.options.length; i++)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: ButtonQuizQuestionsWidget(
+                answerEntity: question.options[i],
+                onPressedButton: onAnswer,
+                letter: letters[i % letters.length],
+              ),
+            ),
+      ],
+    );
   }
 }

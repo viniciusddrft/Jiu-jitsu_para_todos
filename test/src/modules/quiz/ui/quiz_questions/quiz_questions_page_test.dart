@@ -7,6 +7,7 @@ import 'package:jiu_jitsu_para_todos/src/modules/quiz/ui/quiz_questions/quiz_que
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/locale_app.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/local_storage/interface/local_storage_interface.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/sound/interface/sound_interface.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
 import 'package:material_ui/material_ui.dart';
 
 class MockQuizInteractor extends QuizInteractor {
@@ -56,6 +57,11 @@ final mockModule = createModule(
 Widget app() => ModularApp(
       module: mockModule,
       child: const MaterialApp(
+        localizationsDelegates: [
+          AppLocalizations.delegate,
+          ...GlobalMaterialLocalizations.delegates,
+        ],
+        supportedLocales: AppLocalizations.supportedLocales,
         home: QuizQuestionsPage(difficulty: Difficult.easy),
       ),
     );

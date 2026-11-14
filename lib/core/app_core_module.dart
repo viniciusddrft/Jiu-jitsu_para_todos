@@ -1,5 +1,4 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import '../src/modules/credits/credits_module.dart';
 import '../src/modules/fightmarker/fightmarker_module.dart';
 import '../src/modules/historyofjiujitsu/historyodjiujitsu_module.dart';
 import '../src/modules/home/home_module.dart';
@@ -30,7 +29,6 @@ final appCoreModule = createModule(
     ..module(homeModule)
     ..module(historyOfJiujitsuModule)
     ..module(rulesModule)
-    ..module(creditsModule)
     ..module(fightmakerModule)
     ..module(settingsModule)
     ..module(quizModule)

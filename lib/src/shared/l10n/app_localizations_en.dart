@@ -33,9 +33,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get title_appbar_settings_page => 'Settings';
 
   @override
-  String get button_credits_settings_page => 'Credits';
-
-  @override
   String get button_language_settings_page => 'Languages';
 
   @override
@@ -65,21 +62,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get text_cancel => 'Cancel';
-
-  @override
-  String get title_appbar_credits_page => 'Credits';
-
-  @override
-  String get text_all_application_icons_are_from_flaticon =>
-      'All application icons are from Flaticon.';
-
-  @override
-  String get text_the_application_was_developed_in_flutter =>
-      'The application was developed in flutter.';
-
-  @override
-  String get text_if_you_want_to_know_both_the_flutter_and_the_flaticon_just_click_on_the_icons =>
-      'If you want to know both the Flutter and the Flaticon, just click on the icons.';
 
   @override
   String get history_of_jiujitsu_page_summary =>
@@ -165,7 +147,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get title_appbar_jiujitsu_in_japan_page =>
-      'Origem do Jiu-jitsu(Japan)';
+      'Origin of Jiu-jitsu (Japan)';
 
   @override
   String get text_jiujitsu_in_japan_paragraph1 =>
@@ -320,13 +302,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get text_question => 'Question';
 
   @override
-  String get text_result_quiz_white_belt => 'His black white quiz score was:';
+  String get text_result_quiz_white_belt => 'Your white belt quiz score was:';
 
   @override
-  String get text_result_quiz_blue_belt => 'His blue belt quiz score was:';
+  String get text_result_quiz_blue_belt => 'Your blue belt quiz score was:';
 
   @override
-  String get text_result_quiz_black_belt => 'His black belt quiz score was:';
+  String get text_result_quiz_black_belt => 'Your black belt quiz score was:';
 
   @override
   String get text_message_quiz_very_well => 'Oss, did very well!!!';
@@ -336,6 +318,137 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get text_message_quiz_sad => 'It was not this time.';
+
+  @override
+  String get text_offline => 'No internet';
+
+  @override
+  String get text_try_again => 'Try again';
+
+  @override
+  String get home_greeting => 'Oss!';
+
+  @override
+  String get home_greeting_subtitle => 'Ready to learn?';
+
+  @override
+  String get home_quiz_title => 'Test your game';
+
+  @override
+  String get home_quiz_subtitle => 'Three difficulty levels';
+
+  @override
+  String get home_history_subtitle => 'Japan, India and Brazil';
+
+  @override
+  String get home_rules_subtitle => 'Basics and CBJJ';
+
+  @override
+  String get home_fightmarker_subtitle => 'Time and points';
+
+  @override
+  String get home_wallpapers_subtitle => 'For your screen';
+
+  @override
+  String get history_heading => 'Where the gentle art comes from';
+
+  @override
+  String get history_japan_tag => 'Most accepted origin';
+
+  @override
+  String get history_india_tag => 'Alternative theory';
+
+  @override
+  String get history_brazil_tag => 'The arrival';
+
+  @override
+  String get history_next => 'Next';
+
+  @override
+  String get rules_heading => 'Understand the scoring';
+
+  @override
+  String get rules_summary_2 => 'Takedown, knee on belly, sweep';
+
+  @override
+  String get rules_summary_3 => 'Guard pass';
+
+  @override
+  String get rules_summary_4 => 'Mount, back control';
+
+  @override
+  String get rules_basic_subtitle => 'Points, advantages and penalties';
+
+  @override
+  String get rules_cbjj_subtitle => 'Official rule book (PDF)';
+
+  @override
+  String get rules_cbjj_save => 'Save to Downloads';
+
+  @override
+  String get quiz_menu_heading => 'Choose the quiz level';
+
+  @override
+  String get quiz_menu_description =>
+      'The belt color shows how hard the questions are.';
+
+  @override
+  String get quiz_level_easy => 'Easy questions';
+
+  @override
+  String get quiz_level_medium => 'Intermediate questions';
+
+  @override
+  String get quiz_level_hard => 'Hard questions';
+
+  @override
+  String get quiz_play_again => 'Play again';
+
+  @override
+  String get quiz_back_home => 'Back to home';
+
+  @override
+  String quiz_correct_count(int score, int total) {
+    return '$score of $total correct';
+  }
+
+  @override
+  String get quiz_media_image => 'Image';
+
+  @override
+  String get quiz_media_video => 'Video';
+
+  @override
+  String get quiz_video_replay => 'Watch again';
+
+  @override
+  String get quiz_video_slow => 'Slow motion';
+
+  @override
+  String get wallpapers_heading => 'Take the mat to your screen';
+
+  @override
+  String fightmarker_athlete(int number) {
+    return 'Athlete $number';
+  }
+
+  @override
+  String get fightmarker_advantage => 'Advantage';
+
+  @override
+  String get fightmarker_penalty => 'Penalty';
+
+  @override
+  String get fightmarker_hold_to_remove => 'Hold a button to undo';
+
+  @override
+  String get fightmarker_presets => 'Presets · adult';
+
+  @override
+  String get fightmarker_minutes => 'min';
+
+  @override
+  String get fightmarker_set_time => 'Set time';
 }
 
 /// The translations for English, as used in the United States (`en_US`).
@@ -365,9 +478,6 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
 
   @override
   String get title_appbar_settings_page => 'Settings';
-
-  @override
-  String get button_credits_settings_page => 'Credits';
 
   @override
   String get button_language_settings_page => 'Languages';
@@ -401,21 +511,6 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
   String get text_cancel => 'Cancel';
 
   @override
-  String get title_appbar_credits_page => 'Credits';
-
-  @override
-  String get text_all_application_icons_are_from_flaticon =>
-      'All application icons are from Flaticon.';
-
-  @override
-  String get text_the_application_was_developed_in_flutter =>
-      'The application was developed in flutter.';
-
-  @override
-  String get text_if_you_want_to_know_both_the_flutter_and_the_flaticon_just_click_on_the_icons =>
-      'If you want to know both the Flutter and the Flaticon, just click on the icons.';
-
-  @override
   String get history_of_jiujitsu_page_summary =>
       'Jiu-jitsu has several stories about its origins. The most accepted one is that it originated in Japan, while another, less recognized, suggests that its roots are in India. Here, you will learn about both versions in detail.';
 
@@ -423,13 +518,13 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
   String get title_appbar_history_of_jiujitsu_page => 'History of Jiu-jitsu';
 
   @override
-  String get button_jiujitsu_in_japao => 'O Jiu-jitsu no Japão';
+  String get button_jiujitsu_in_japao => 'Jiu-jitsu in Japan';
 
   @override
-  String get button_jiujitsu_in_india => 'O Jiu-jitsu na India';
+  String get button_jiujitsu_in_india => 'Jiu-jitsu in India';
 
   @override
-  String get button_jiujitsu_in_brazil => 'O Jiu-jitsu no Brasil';
+  String get button_jiujitsu_in_brazil => 'Jiu-jitsu in Brazil';
 
   @override
   String get title_appbar_rule_page => 'Rules';
@@ -499,7 +594,7 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
 
   @override
   String get title_appbar_jiujitsu_in_japan_page =>
-      'Origem do Jiu-jitsu(Japan)';
+      'Origin of Jiu-jitsu (Japan)';
 
   @override
   String get text_jiujitsu_in_japan_paragraph1 =>
@@ -654,13 +749,13 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
   String get text_question => 'Question';
 
   @override
-  String get text_result_quiz_white_belt => 'His black white quiz score was:';
+  String get text_result_quiz_white_belt => 'Your white belt quiz score was:';
 
   @override
-  String get text_result_quiz_blue_belt => 'His blue belt quiz score was:';
+  String get text_result_quiz_blue_belt => 'Your blue belt quiz score was:';
 
   @override
-  String get text_result_quiz_black_belt => 'His black belt quiz score was:';
+  String get text_result_quiz_black_belt => 'Your black belt quiz score was:';
 
   @override
   String get text_message_quiz_very_well => 'Oss, did very well!!!';
@@ -670,4 +765,135 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
 
   @override
   String get text_message_quiz_sad => 'It was not this time.';
+
+  @override
+  String get text_offline => 'No internet';
+
+  @override
+  String get text_try_again => 'Try again';
+
+  @override
+  String get home_greeting => 'Oss!';
+
+  @override
+  String get home_greeting_subtitle => 'Ready to learn?';
+
+  @override
+  String get home_quiz_title => 'Test your game';
+
+  @override
+  String get home_quiz_subtitle => 'Three difficulty levels';
+
+  @override
+  String get home_history_subtitle => 'Japan, India and Brazil';
+
+  @override
+  String get home_rules_subtitle => 'Basics and CBJJ';
+
+  @override
+  String get home_fightmarker_subtitle => 'Time and points';
+
+  @override
+  String get home_wallpapers_subtitle => 'For your screen';
+
+  @override
+  String get history_heading => 'Where the gentle art comes from';
+
+  @override
+  String get history_japan_tag => 'Most accepted origin';
+
+  @override
+  String get history_india_tag => 'Alternative theory';
+
+  @override
+  String get history_brazil_tag => 'The arrival';
+
+  @override
+  String get history_next => 'Next';
+
+  @override
+  String get rules_heading => 'Understand the scoring';
+
+  @override
+  String get rules_summary_2 => 'Takedown, knee on belly, sweep';
+
+  @override
+  String get rules_summary_3 => 'Guard pass';
+
+  @override
+  String get rules_summary_4 => 'Mount, back control';
+
+  @override
+  String get rules_basic_subtitle => 'Points, advantages and penalties';
+
+  @override
+  String get rules_cbjj_subtitle => 'Official rule book (PDF)';
+
+  @override
+  String get rules_cbjj_save => 'Save to Downloads';
+
+  @override
+  String get quiz_menu_heading => 'Choose the quiz level';
+
+  @override
+  String get quiz_menu_description =>
+      'The belt color shows how hard the questions are.';
+
+  @override
+  String get quiz_level_easy => 'Easy questions';
+
+  @override
+  String get quiz_level_medium => 'Intermediate questions';
+
+  @override
+  String get quiz_level_hard => 'Hard questions';
+
+  @override
+  String get quiz_play_again => 'Play again';
+
+  @override
+  String get quiz_back_home => 'Back to home';
+
+  @override
+  String quiz_correct_count(int score, int total) {
+    return '$score of $total correct';
+  }
+
+  @override
+  String get quiz_media_image => 'Image';
+
+  @override
+  String get quiz_media_video => 'Video';
+
+  @override
+  String get quiz_video_replay => 'Watch again';
+
+  @override
+  String get quiz_video_slow => 'Slow motion';
+
+  @override
+  String get wallpapers_heading => 'Take the mat to your screen';
+
+  @override
+  String fightmarker_athlete(int number) {
+    return 'Athlete $number';
+  }
+
+  @override
+  String get fightmarker_advantage => 'Advantage';
+
+  @override
+  String get fightmarker_penalty => 'Penalty';
+
+  @override
+  String get fightmarker_hold_to_remove => 'Hold a button to undo';
+
+  @override
+  String get fightmarker_presets => 'Presets · adult';
+
+  @override
+  String get fightmarker_minutes => 'min';
+
+  @override
+  String get fightmarker_set_time => 'Set time';
 }

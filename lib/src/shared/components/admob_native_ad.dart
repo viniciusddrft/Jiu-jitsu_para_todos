@@ -51,12 +51,10 @@ class _AdmobNativeAdState extends State<AdmobNativeAd> {
               ? AdWidget(
                   ad: _nativeAd,
                 )
-              : const Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Text('Ad'),
-                    CircularProgressIndicator(),
-                  ],
+              // Placeholder discreto enquanto o anúncio carrega.
+              : const Center(
+                  child: Text('Ad',
+                      style: TextStyle(color: Color(0xffA3ABB9), fontSize: 12)),
                 ),
     );
   }

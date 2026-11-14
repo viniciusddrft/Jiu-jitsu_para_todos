@@ -1,11 +1,16 @@
-import 'package:material_ui/material_ui.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/interfaces/ifirebase_quiz.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/plugins/admob/admob_interactor.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/plugins/in_app_review/in_app_review_interactor.dart';
+import 'package:material_ui/material_ui.dart';
+
+import '../../../../shared/components/app_card.dart';
+import '../../../../shared/components/app_top_bar.dart';
+import '../../../../shared/components/belt.dart';
+import '../../../../shared/l10n/app_localizations.dart';
+import '../../../../shared/plugins/admob/admob_interactor.dart';
+import '../../../../shared/plugins/in_app_review/in_app_review_interactor.dart';
 import '../../../../shared/themes/app_colors.dart';
+import '../../../../shared/themes/app_text_styles.dart';
+import '../../interactor/interfaces/ifirebase_quiz.dart';
+import '../difficulty_ui.dart';
 
 class QuizResultPage extends StatefulWidget {
   final int score, totalQuestions;
@@ -22,23 +27,20 @@ class QuizResultPage extends StatefulWidget {
 
 class _QuizResultPageState extends State<QuizResultPage>
     with SingleTickerProviderStateMixin {
-  late String _iconPath, _textShowResult, _textMessage, _scorePercentageText;
   late final double _scorePercentage;
+  late final String _scorePercentageText;
   late final AnimationController _animationController;
 
   final admobInteractor = inject<AdmobInteractor>();
   final inAppReviewInteractor = inject<InAppReviewInteractor>();
 
-  bool _dependenciesInitialized = false;
-
   @override
   void initState() {
     super.initState();
 
-    _scorePercentage = widget.score / widget.totalQuestions;
-    _scorePercentageText = _scorePercentage == 1.0
-        ? '100'
-        : (_scorePercentage * 100).toStringAsPrecision(2);
+    _scorePercentage =
+        widget.totalQuestions == 0 ? 0 : widget.score / widget.totalQuestions;
+    _scorePercentageText = (_scorePercentage * 100).round().toString();
 
     _animationController = AnimationController(vsync: this);
 
@@ -47,8 +49,8 @@ class _QuizResultPageState extends State<QuizResultPage>
       _animationController
           .animateTo(
             _scorePercentage,
-            duration: const Duration(seconds: 2),
-            curve: Curves.elasticInOut,
+            duration: const Duration(milliseconds: 1400),
+            curve: Curves.easeOutCubic,
           )
           .whenComplete(_handleAfterAnimation);
     });
@@ -58,117 +60,110 @@ class _QuizResultPageState extends State<QuizResultPage>
     await Future.delayed(const Duration(seconds: 1));
     if (!mounted) return;
 
-    final bool reviewHandled = await inAppReviewInteractor
-        .registerQuizCompletionAndMaybeReview(
+    final bool reviewHandled =
+        await inAppReviewInteractor.registerQuizCompletionAndMaybeReview(
             scorePercentage: _scorePercentage);
     if (!mounted) return;
 
     if (!reviewHandled) admobInteractor.showInterstitialAd();
   }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    // didChangeDependencies pode ser chamado várias vezes (mudança de
-    // MediaQuery/Localizations). Só inicializa os textos/ícone uma vez.
-    if (_dependenciesInitialized) return;
-    _dependenciesInitialized = true;
-
-    if (_scorePercentage == 1.0) {
-      _iconPath = 'assets/quiz/iconsresultquiz/victory.png';
-      _textMessage = AppLocalizations.of(context)!.text_message_quiz_very_well;
-    } else if (_scorePercentage >= 0.75 && _scorePercentage < 1.0) {
-      _iconPath = 'assets/quiz/iconsresultquiz/reading-book.png';
-      _textMessage = AppLocalizations.of(context)!.text_message_quiz_almost;
-    } else {
-      _iconPath = 'assets/quiz/iconsresultquiz/sad.png';
-      _textMessage = AppLocalizations.of(context)!.text_message_quiz_sad;
-    }
-    precacheImage(Image.asset(_iconPath).image, context);
-
-    if (widget.difficult == Difficult.easy) {
-      _textShowResult =
-          AppLocalizations.of(context)!.text_result_quiz_white_belt;
-    } else if (widget.difficult == Difficult.medium) {
-      _textShowResult =
-          AppLocalizations.of(context)!.text_result_quiz_blue_belt;
-    } else if (widget.difficult == Difficult.hard) {
-      _textShowResult =
-          AppLocalizations.of(context)!.text_result_quiz_black_belt;
-    }
+  String _message(AppLocalizations l10n) {
+    if (_scorePercentage == 1.0) return l10n.text_message_quiz_very_well;
+    if (_scorePercentage >= 0.75) return l10n.text_message_quiz_almost;
+    return l10n.text_message_quiz_sad;
   }
+
+  String _resultLabel(AppLocalizations l10n) => switch (widget.difficult) {
+        Difficult.easy => l10n.text_result_quiz_white_belt,
+        Difficult.medium => l10n.text_result_quiz_blue_belt,
+        Difficult.hard => l10n.text_result_quiz_black_belt,
+      };
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      backgroundColor: AppColors.background,
-      body: SizedBox(
-        width: size.width,
+      body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              _iconPath,
-              height: 100,
-              width: 100,
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: size.height * 0.05),
-              child: Text(
-                _textMessage,
-                style: GoogleFonts.ubuntu(fontSize: 20),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: size.height * 0.05),
-              child: SizedBox(
-                width: size.width * 0.7,
-                child: Center(
-                  child: Text(
-                    _textShowResult,
-                    style: GoogleFonts.ubuntu(fontSize: 20),
+            AppTopBar(close: true, onBack: () => context.navigate('/')),
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                children: [
+                  const SizedBox(height: 8),
+                  Center(
+                    child: BeltChip(
+                      belt: Belt(belt: widget.difficult.belt),
+                      label:
+                          '${l10n.title_appbar_quiz_page} ${widget.difficult.beltName(context)}',
+                    ),
                   ),
-                ),
+                  const SizedBox(height: 18),
+                  Text(_resultLabel(l10n),
+                      textAlign: TextAlign.center, style: AppTextStyles.body()),
+                  const SizedBox(height: 24),
+                  Center(
+                    child: SizedBox(
+                      width: 220,
+                      height: 220,
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          AnimatedBuilder(
+                            animation: _animationController,
+                            builder: (_, __) => CircularProgressIndicator(
+                              value: _animationController.value,
+                              strokeWidth: 16,
+                              strokeCap: StrokeCap.butt,
+                              trackGap: 0,
+                              color: AppColors.accent,
+                              backgroundColor: AppColors.surfaceHigh,
+                            ),
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('$_scorePercentageText%',
+                                  style: AppTextStyles.display(72)),
+                              const SizedBox(height: 6),
+                              Text(
+                                  l10n.quiz_correct_count(
+                                      widget.score, widget.totalQuestions),
+                                  style: AppTextStyles.body(
+                                      size: 14, color: AppColors.textMuted)),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Text(_message(l10n).toUpperCase(),
+                      textAlign: TextAlign.center,
+                      style: AppTextStyles.display(40)),
+                ],
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: size.height * 0.1),
-              child: SizedBox(
-                height: 150,
-                width: 150,
-                child: Stack(
-                  children: [
-                    SizedBox(
-                      height: 150,
-                      width: 150,
-                      child: AnimatedBuilder(
-                        animation: _animationController,
-                        builder: (BuildContext context, Widget? child) =>
-                            CircularProgressIndicator(
-                          strokeWidth: 7,
-                          value: _animationController.value,
-                          backgroundColor: const Color(0xff313959),
-                          valueColor:
-                              const AlwaysStoppedAnimation<Color>(Colors.green),
-                        ),
-                      ),
-                    ),
-                    Center(
-                      child: Text(
-                        '$_scorePercentageText%',
-                        style: GoogleFonts.ubuntu(fontSize: 30),
-                      ),
-                    ),
-                  ],
-                ),
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+              child: Column(
+                children: [
+                  AppButton(
+                    icon: Icons.replay_rounded,
+                    label: l10n.quiz_play_again,
+                    onPressed: () => context.replace('/quiz/questions',
+                        arguments: widget.difficult),
+                  ),
+                  const SizedBox(height: 10),
+                  AppButton(
+                    primary: false,
+                    label: l10n.quiz_back_home,
+                    onPressed: () => context.navigate('/'),
+                  ),
+                ],
               ),
             ),
           ],

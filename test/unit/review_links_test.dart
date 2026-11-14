@@ -2,8 +2,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/in_app_review/in_app_review_interactor.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/mixins/launch_link.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/credits/ui/credits.dart';
-import 'package:material_ui/material_ui.dart';
 import '../support/test_app.dart';
 
 class LinkOpener with OpenLink {}
@@ -100,16 +98,5 @@ void main() {
     expect(errors, 1);
     await LinkOpener().openLink('https://example.com');
     expect(links, hasLength(2));
-  });
-  testWidgets('créditos abrem sites de atribuição', (tester) async {
-    await mount(tester, const CreditsPage());
-    expect(find.byKey(const Key('text flaticon')), findsOneWidget);
-    await tester.tap(find.byKey(const Key('icon flaticon')));
-    await tester.pump();
-    await tester.tap(find.byKey(const Key('icon flutter')));
-    await tester.pump();
-    expect(links.map((c) => c.arguments['url']),
-        ['https://www.flaticon.com/', 'https://flutter.dev/']);
-    await unmount(tester);
   });
 }

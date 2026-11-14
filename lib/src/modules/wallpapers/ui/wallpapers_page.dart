@@ -1,17 +1,17 @@
-import 'package:material_ui/material_ui.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interactor/wallpaper_entity.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interactor/wallpaper_interactor.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interactor/wallpaper_state.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/components/admob_native_ad.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/plugins/admob/admob_interactor.dart';
-import '../../../shared/components/app_bar_gradient.dart';
+import 'package:material_ui/material_ui.dart';
+
+import '../../../shared/components/app_top_bar.dart';
+import '../../../shared/components/native_ad_slot.dart';
+import '../../../shared/components/offline_state.dart';
+import '../../../shared/l10n/app_localizations.dart';
+import '../../../shared/plugins/admob/admob_interactor.dart';
 import '../../../shared/shimmer/shimmer_effect.dart';
 import '../../../shared/shimmer/shimmer_widget.dart';
 import '../../../shared/themes/app_colors.dart';
-import '../../../shared/themes/app_images.dart';
+import '../interactor/wallpaper_entity.dart';
+import '../interactor/wallpaper_interactor.dart';
+import '../interactor/wallpaper_state.dart';
 
 class WallpapersPage extends StatefulWidget {
   const WallpapersPage({super.key});
@@ -21,6 +21,14 @@ class WallpapersPage extends StatefulWidget {
 }
 
 class _WallpapersViewState extends State<WallpapersPage> {
+  static const _gridDelegate = SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2,
+    crossAxisSpacing: 10,
+    mainAxisSpacing: 10,
+    childAspectRatio: 0.6,
+  );
+  static const _gridPadding = EdgeInsets.fromLTRB(16, 20, 16, 24);
+
   final _wallpaperInteractor = inject<WallpaperInteractor>();
   final admobInteractor = inject<AdmobInteractor>();
 
@@ -44,135 +52,122 @@ class _WallpapersViewState extends State<WallpapersPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
-
-    return Scaffold(
-      appBar: AppBar(
-        flexibleSpace: const AppBarGradient(),
-        title: Text(AppLocalizations.of(context)!.title_appbar_wallpapers,
-            style: GoogleFonts.yatraOne()),
-      ),
-      backgroundColor: AppColors.background,
-      body: RefreshIndicator(
-        onRefresh: () async =>
-            _wallpaperInteractor.loadWallpapers(forceRefresh: true),
-        child: ValueListenableBuilder(
-          valueListenable: _wallpaperInteractor,
-          builder: (context, value, child) =>
-              switch (_wallpaperInteractor.value) {
-            // Um único Shimmer envolve a grade inteira: 1 controller e 1
-            // ShaderMaskLayer por frame, em vez de um por placeholder.
-            WallpaperLoading() => Shimmer(
-                gradient: ShimmerWidget.shimmerGradient,
-                period: const Duration(seconds: 3),
-                child: GridView.builder(
-                  itemCount: 18,
-                  padding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.05,
-                      vertical: size.height * 0.03),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                  ),
-                  itemBuilder: (context, index) => ShimmerWidget(
-                    width: 100,
-                    height: 100,
-                    shapeBorder: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
-                ),
-              ),
-            WallpaperFailed() => Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      AppImages.withoutInternet,
-                      width: 200,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 20),
-                      child: Text(
-                        'Sem internet',
-                        style: TextStyle(fontSize: 24),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            WallpaperSuccess(
-              wallpapers: final List<WallpaperEntity> wallpapers
-            ) =>
-              GridView.builder(
-                itemCount: wallpapers.length,
-                padding: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.05,
-                    vertical: size.height * 0.03),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                ),
-                itemBuilder: (context, index) => RawMaterialButton(
-                  onPressed: () => context.pushNamed('/wallpaper/detailsimage',
-                      arguments: {
-                        'index': index,
-                        'wallpapers': wallpapers,
-                      }),
-                  child: Hero(
-                    transitionOnUserGestures: true,
-                    tag: 'logo$index',
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Image.network(
-                        wallpapers[index].url,
-                        fit: BoxFit.cover,
-                        width: 100,
-                        height: 100,
-                        // Decodifica em ~3x o tamanho de exibição (DPR) em vez
-                        // da resolução cheia do wallpaper. Só cacheWidth para
-                        // preservar a proporção. Grande economia de RAM.
-                        cacheWidth: 300,
-                        loadingBuilder: (BuildContext context, Widget child,
-                                ImageChunkEvent? loadingProgress) =>
-                            (loadingProgress == null)
-                                ? child
-                                : Center(
-                                    child: CircularProgressIndicator(
-                                      value:
-                                          loadingProgress.expectedTotalBytes !=
-                                                  null
-                                              ? loadingProgress
-                                                      .cumulativeBytesLoaded /
-                                                  loadingProgress
-                                                      .expectedTotalBytes!
-                                              : null,
-                                    ),
-                                  ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-          },
-        ),
-      ),
-      bottomNavigationBar: SizedBox(
-        height: 75,
-        child: AdmobNativeAd(
-          factoryId: 'listTile',
-          adUnitId: admobInteractor.nativeAdUnitIDListTile,
-        ),
-      ),
-    );
-  }
-
-  @override
   void dispose() {
     _wallpaperInteractor.dispose();
     super.dispose();
   }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final decodeWidth = (MediaQuery.sizeOf(context).width /
+            2 *
+            MediaQuery.devicePixelRatioOf(context))
+        .round();
+
+    return Scaffold(
+      body: SafeArea(
+        bottom: false,
+        child: RefreshIndicator(
+          onRefresh: () async =>
+              _wallpaperInteractor.loadWallpapers(forceRefresh: true),
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: AppTopBar(eyebrow: l10n.title_appbar_wallpapers),
+              ),
+              SliverToBoxAdapter(child: PageHeading(l10n.wallpapers_heading)),
+              ValueListenableBuilder(
+                valueListenable: _wallpaperInteractor,
+                builder: (context, value, _) => switch (value) {
+                  // Um único Shimmer envolve a grade inteira: 1 controller e 1
+                  // ShaderMaskLayer por frame, em vez de um por placeholder.
+                  WallpaperLoading() => SliverPadding(
+                      padding: _gridPadding,
+                      sliver: SliverToBoxAdapter(
+                        child: Shimmer(
+                          gradient: ShimmerWidget.shimmerGradient,
+                          period: const Duration(seconds: 3),
+                          child: GridView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: 4,
+                            gridDelegate: _gridDelegate,
+                            itemBuilder: (_, __) => ShimmerWidget(
+                              width: double.infinity,
+                              height: double.infinity,
+                              shapeBorder: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  WallpaperFailed() => SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: OfflineState(
+                        onRetry: () => _wallpaperInteractor.loadWallpapers(
+                            forceRefresh: true),
+                      ),
+                    ),
+                  WallpaperSuccess(
+                    wallpapers: final List<WallpaperEntity> wallpapers
+                  ) =>
+                    SliverPadding(
+                      padding: _gridPadding,
+                      sliver: SliverGrid.builder(
+                        gridDelegate: _gridDelegate,
+                        itemCount: wallpapers.length,
+                        itemBuilder: (context, index) => _Thumbnail(
+                          index: index,
+                          url: wallpapers[index].url,
+                          decodeWidth: decodeWidth,
+                          onTap: () => context
+                              .pushNamed('/wallpaper/detailsimage', arguments: {
+                            'index': index,
+                            'wallpapers': wallpapers,
+                          }),
+                        ),
+                      ),
+                    ),
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: const NativeAdSlot(),
+    );
+  }
+}
+
+class _Thumbnail extends StatelessWidget {
+  const _Thumbnail({
+    required this.index,
+    required this.url,
+    required this.decodeWidth,
+    required this.onTap,
+  });
+
+  final int index, decodeWidth;
+  final String url;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) => Hero(
+        transitionOnUserGestures: true,
+        tag: 'logo$index',
+        child: Material(
+          color: AppColors.surfaceHigh,
+          borderRadius: BorderRadius.circular(20),
+          clipBehavior: Clip.antiAlias,
+          child: Ink.image(
+            // Decodifica na largura exibida (meia tela × DPR), não na
+            // resolução cheia do wallpaper: grande economia de RAM.
+            image: ResizeImage(NetworkImage(url), width: decodeWidth),
+            fit: BoxFit.cover,
+            child: InkWell(onTap: onTap),
+          ),
+        ),
+      );
 }

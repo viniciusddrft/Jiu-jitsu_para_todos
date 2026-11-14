@@ -17,9 +17,9 @@ class ShimmerWidget extends StatelessWidget {
     begin: Alignment.topLeft,
     end: Alignment.centerRight,
     colors: <Color>[
-      AppColors.shimmerEffcetBackground,
-      AppColors.shimmerEffcetHigh,
-      AppColors.shimmerEffcetBackground,
+      AppColors.shimmerBase,
+      AppColors.shimmerHighlight,
+      AppColors.shimmerBase,
     ],
     stops: <double>[0.35, 0.5, 0.65],
   );
@@ -50,8 +50,8 @@ class ShimmerWidget extends StatelessWidget {
     return Container(
       width: width,
       height: height,
-      decoration: ShapeDecoration(
-          shape: shapeBorder, color: AppColors.shimmerEffcetBackground),
+      decoration:
+          ShapeDecoration(shape: shapeBorder, color: AppColors.shimmerBase),
     );
   }
 }

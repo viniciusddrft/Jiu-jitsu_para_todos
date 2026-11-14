@@ -1,9 +1,13 @@
 import 'package:material_ui/material_ui.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
+
+import '../../../../../shared/components/belt.dart';
+import '../../../../../shared/l10n/app_localizations.dart';
+import '../../../../../shared/themes/app_colors.dart';
+import '../../../../../shared/themes/app_text_styles.dart';
 import '../../../interactor/clock_interactor.dart';
 
+/// Definir o tempo da luta: atalhos por faixa (tempos da categoria adulto)
+/// ou minutos e segundos livres.
 class SetTimerWidget extends StatefulWidget {
   const SetTimerWidget({super.key, required this.clockInteractor});
 
@@ -14,145 +18,168 @@ class SetTimerWidget extends StatefulWidget {
 }
 
 class _SetTimerWidgetState extends State<SetTimerWidget> {
-  final _pageControllerMinutes = PageController();
-  final _pageControllerSeconds = PageController();
+  static const _presets = [
+    (BeltColor.white, 5),
+    (BeltColor.blue, 6),
+    (BeltColor.purple, 7),
+    (BeltColor.brown, 8),
+    (BeltColor.black, 10),
+  ];
 
-  @override
-  Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
-
-    return AlertDialog(
-      backgroundColor: AppColors.background,
-      title: Text(
-        AppLocalizations.of(context)!.text_label_time_popup,
-      ),
-      content: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: size.height * 0.35,
-            width: size.width * 0.07,
-            child: Column(
-              children: [
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  splashRadius: size.width * 0.02,
-                  onPressed: () => _pageControllerMinutes.nextPage(
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.elasticOut),
-                  icon: Icon(
-                    Icons.keyboard_arrow_up,
-                    size: size.height * 0.1,
-                  ),
-                ),
-                SizedBox(
-                  height: size.height * 0.1,
-                  child: PageView.builder(
-                    controller: _pageControllerMinutes,
-                    itemCount: 60,
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (BuildContext context, int index) => Center(
-                      child: Text(
-                        '$index',
-                        style: GoogleFonts.ubuntu(fontSize: 30),
-                      ),
-                    ),
-                  ),
-                ),
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  splashRadius: size.width * 0.02,
-                  onPressed: () => _pageControllerMinutes.previousPage(
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.elasticOut),
-                  icon: Icon(
-                    Icons.keyboard_arrow_down,
-                    size: size.height * 0.1,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
-            child: Text(
-              ':',
-              style: GoogleFonts.ubuntu(fontSize: 30),
-            ),
-          ),
-          SizedBox(
-            height: size.height * 0.35,
-            width: size.width * 0.07,
-            child: Column(
-              children: [
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  splashRadius: size.width * 0.02,
-                  onPressed: () => _pageControllerSeconds.nextPage(
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.elasticOut),
-                  icon: Icon(
-                    Icons.keyboard_arrow_up,
-                    size: size.height * 0.1,
-                  ),
-                ),
-                SizedBox(
-                  height: size.height * 0.1,
-                  child: PageView.builder(
-                    controller: _pageControllerSeconds,
-                    itemCount: 60,
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (BuildContext context, int index) => Center(
-                      child: Text(
-                        '$index',
-                        style: GoogleFonts.ubuntu(fontSize: 30),
-                      ),
-                    ),
-                  ),
-                ),
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  splashRadius: size.width * 0.02,
-                  onPressed: () => _pageControllerSeconds.previousPage(
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.elasticOut),
-                  icon: Icon(
-                    Icons.keyboard_arrow_down,
-                    size: size.height * 0.1,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: Text(
-            AppLocalizations.of(context)!.text_label_cancel_popup,
-            style: GoogleFonts.ubuntu(fontSize: 16),
-          ),
-        ),
-        TextButton(
-          onPressed: () {
-            widget.clockInteractor.setTime(_pageControllerMinutes.page!.toInt(),
-                _pageControllerSeconds.page!.toInt());
-            Navigator.pop(context);
-          },
-          child: Text(
-            AppLocalizations.of(context)!.text_label_continue,
-            style: GoogleFonts.ubuntu(fontSize: 16),
-          ),
-        ),
-      ],
-    );
-  }
+  late final _minutes = FixedExtentScrollController(
+      initialItem: widget.clockInteractor.time ~/ 60);
+  late final _seconds = FixedExtentScrollController(
+      initialItem: widget.clockInteractor.time % 60);
 
   @override
   void dispose() {
-    _pageControllerMinutes.dispose();
-    _pageControllerSeconds.dispose();
+    _minutes.dispose();
+    _seconds.dispose();
     super.dispose();
   }
+
+  void _applyPreset(int minutes) {
+    _minutes.animateToItem(minutes,
+        duration: const Duration(milliseconds: 250), curve: Curves.easeOut);
+    _seconds.animateToItem(0,
+        duration: const Duration(milliseconds: 250), curve: Curves.easeOut);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return Dialog(
+      insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 640),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(l10n.text_label_time_popup.toUpperCase(),
+                        style: AppTextStyles.display(28)),
+                    const SizedBox(height: 14),
+                    Text(l10n.fightmarker_presets.toUpperCase(),
+                        style: AppTextStyles.eyebrow()),
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 6,
+                      runSpacing: 6,
+                      children: [
+                        for (final (belt, minutes) in _presets)
+                          Material(
+                            color: AppColors.surfaceHigh,
+                            borderRadius: BorderRadius.circular(14),
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(14),
+                              onTap: () => _applyPreset(minutes),
+                              child: SizedBox(
+                                width: 66,
+                                height: 60,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Belt(belt: belt, width: 40, height: 7),
+                                    const SizedBox(height: 8),
+                                    Text('$minutes ${l10n.fightmarker_minutes}',
+                                        style: AppTextStyles.title(17)),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 20),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _Wheel(controller: _minutes),
+                      Text(':', style: AppTextStyles.display(44)),
+                      _Wheel(controller: _seconds),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: TextButton.styleFrom(
+                            foregroundColor: AppColors.text),
+                        child: Text(l10n.text_label_cancel_popup),
+                      ),
+                      const SizedBox(width: 8),
+                      FilledButton(
+                        style: FilledButton.styleFrom(
+                            backgroundColor: AppColors.accent,
+                            foregroundColor: AppColors.background),
+                        onPressed: () {
+                          widget.clockInteractor.setTime(
+                              _minutes.selectedItem, _seconds.selectedItem);
+                          Navigator.pop(context);
+                        },
+                        child: Text(l10n.text_label_continue),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _Wheel extends StatelessWidget {
+  const _Wheel({required this.controller});
+
+  final FixedExtentScrollController controller;
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+        width: 80,
+        height: 150,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            // Faixa de seleção atrás do valor escolhido.
+            Container(
+              height: 52,
+              decoration: BoxDecoration(
+                color: AppColors.surfaceHigh,
+                borderRadius: BorderRadius.circular(14),
+              ),
+            ),
+            ListWheelScrollView.useDelegate(
+              controller: controller,
+              itemExtent: 52,
+              physics: const FixedExtentScrollPhysics(),
+              perspective: 0.004,
+              diameterRatio: 1.4,
+              overAndUnderCenterOpacity: 0.3,
+              childDelegate: ListWheelChildBuilderDelegate(
+                childCount: 60,
+                builder: (context, i) => Center(
+                  child: Text(i.toString().padLeft(2, '0'),
+                      style: AppTextStyles.display(40)),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
 }

@@ -1,12 +1,15 @@
-import 'package:material_ui/material_ui.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
-import '../../../shared/components/app_bar_gradient.dart';
+import 'package:material_ui/material_ui.dart';
+
+import '../../../shared/components/app_top_bar.dart';
+import '../../../shared/components/belt.dart';
+import '../../../shared/l10n/app_localizations.dart';
+import '../../../shared/l10n/locale_app.dart';
 import '../../../shared/plugins/app_info/app_info.dart';
 import '../../../shared/plugins/in_app_review/in_app_review_interactor.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_icons_languages_path.dart';
+import '../../../shared/themes/app_text_styles.dart';
 import '../interactor/settings_interactor.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -21,286 +24,174 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   final _settingsInteractor = inject<SettingsInteractor>();
-  bool _initialized = false;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // didChangeDependencies pode disparar várias vezes; rodar só uma vez.
-    if (!_initialized) {
-      _initialized = true;
-      _settingsInteractor.loadLanguage();
-      precacheImage(Image.asset(AppIconsLanguages.unitedStates).image, context);
-      precacheImage(Image.asset(AppIconsLanguages.brasil).image, context);
-    }
-  }
-
-  List<Map<String, Object>> get allLocales => [
-        {
-          'locale': const Locale('pt', 'BR'),
-          'icon': AppIconsLanguages.brasil,
-          'text': AppLocalizations.of(context)!.text_brazilian_portuguese
-        },
-        {
-          'locale': const Locale('en', 'US'),
-          'icon': AppIconsLanguages.unitedStates,
-          'text': AppLocalizations.of(context)!.text_english_united_states
-        },
-      ];
-
-  Future<void> _changeLanguageMenu() async {
-    final Size size = MediaQuery.sizeOf(context);
-    // Computa a lista uma vez (era um getter recriado a cada acesso no builder).
-    final locales = allLocales;
-
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) => AlertDialog(
-        contentPadding: const EdgeInsets.all(0),
-        backgroundColor: AppColors.background,
-        scrollable: true,
-        title:
-            Text(AppLocalizations.of(context)!.button_language_settings_page),
-        content: SizedBox(
-          width: size.width * 0.7,
-          height: size.height * 0.4,
-          child: ListView.builder(
-            itemCount: locales.length,
-            itemBuilder: (context, index) => Padding(
-              padding: EdgeInsets.only(
-                  top: size.height * 0.02,
-                  left: size.width * 0.02,
-                  right: size.width * 0.02),
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  backgroundColor: AppColors.background,
-                  foregroundColor: Colors.white,
-                  elevation: 7,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  side: const BorderSide(color: Colors.white),
-                ),
-                onPressed: () {
-                  _settingsInteractor.saveLanguage(locales[index]);
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  color: Colors.transparent,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(locales[index]['text'] as String),
-                      Image.asset(
-                        locales[index]['icon'] as String,
-                        width: 40,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(AppLocalizations.of(context)!.text_cancel),
-          )
-        ],
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
-
-    return Scaffold(
-      appBar: AppBar(
-        flexibleSpace: const AppBarGradient(),
-        title: Text(AppLocalizations.of(context)!.title_appbar_settings_page,
-            style: GoogleFonts.yatraOne()),
-      ),
-      backgroundColor: AppColors.background,
-      body: SizedBox(
-        width: size.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            const Spacer(),
-            Flexible(
-              flex: 10,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                color: AppColors.cardColor,
-                child: SizedBox(
-                  width: size.width * 0.85,
-                  child: Column(
-                    children: [
-                      const Spacer(),
-                      Flexible(
-                        child: Text(
-                          AppLocalizations.of(context)!
-                              .button_language_settings_page,
-                          style: GoogleFonts.yatraOne(fontSize: 20),
-                        ),
-                      ),
-                      const Spacer(),
-                      Flexible(
-                        flex: 3,
-                        child: OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            fixedSize: const Size(200, 50),
-                            backgroundColor: AppColors.background,
-                            foregroundColor: Colors.white,
-                            elevation: 7,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            side: const BorderSide(color: Colors.white),
-                          ),
-                          onPressed: _changeLanguageMenu,
-                          child: Container(
-                            color: Colors.transparent,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Flexible(
-                                  child: Text(
-                                    AppLocalizations.of(context)!
-                                        .button_language_settings_page,
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.yatraOne(fontSize: 16),
-                                  ),
-                                ),
-                                ValueListenableBuilder(
-                                  valueListenable: _settingsInteractor.iconPath,
-                                  builder: (BuildContext context, String? value,
-                                          Widget? child) =>
-                                      Image.asset(
-                                    value!,
-                                    width: 40,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      const Spacer(),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Flexible(
-              flex: 15,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                color: AppColors.cardColor,
-                child: SizedBox(
-                  width: size.width * 0.85,
-                  child: Column(
-                    children: [
-                      const Spacer(),
-                      Flexible(
-                        child: Text(
-                          AppLocalizations.of(context)!.text_about_the_app,
-                          style: GoogleFonts.yatraOne(fontSize: 20),
-                        ),
-                      ),
-                      const Spacer(),
-                      Flexible(
-                        flex: 3,
-                        child: SizedBox(
-                          child: OutlinedButton(
-                            style: OutlinedButton.styleFrom(
-                              fixedSize: const Size(200, 50),
-                              backgroundColor: AppColors.background,
-                              foregroundColor: Colors.white,
-                              elevation: 7,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              side: const BorderSide(color: Colors.white),
-                            ),
-                            onPressed: () => inject<InAppReviewInteractor>()
-                                .openStoreListing(),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Flexible(
-                                  child: Text(
-                                    AppLocalizations.of(context)!
-                                        .text_rate_the_app,
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.yatraOne(fontSize: 16),
-                                  ),
-                                ),
-                                const Icon(Icons.rate_review_outlined)
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      const Spacer(),
-                      Flexible(
-                        flex: 3,
-                        child: SizedBox(
-                          child: OutlinedButton(
-                            style: OutlinedButton.styleFrom(
-                              fixedSize: const Size(200, 50),
-                              backgroundColor: AppColors.background,
-                              foregroundColor: Colors.white,
-                              elevation: 7,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              side: const BorderSide(color: Colors.white),
-                            ),
-                            onPressed: () =>
-                                context.pushNamed('/credits/credits'),
-                            child: Center(
-                              child: Text(
-                                AppLocalizations.of(context)!
-                                    .button_credits_settings_page,
-                                style: GoogleFonts.yatraOne(fontSize: 16),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const Spacer(),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            const Spacer(flex: 10),
-          ],
-        ),
-      ),
-      bottomNavigationBar: SizedBox(
-        height: 60,
-        child: Center(
-          child: Text(
-            '${AppLocalizations.of(context)!.text_version} ${widget.appVersion ?? AppInfo.version}',
-            style: GoogleFonts.yatraOne(color: Colors.grey[700]),
-          ),
-        ),
-      ),
-    );
-  }
+  final _locale = inject<LocaleInteractor>();
 
   @override
   void dispose() {
     _settingsInteractor.dispose();
     super.dispose();
   }
+
+  void _select(Locale locale, String icon) =>
+      _settingsInteractor.saveLanguage({'locale': locale, 'icon': icon});
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.only(bottom: 24),
+                children: [
+                  const AppTopBar(),
+                  PageHeading(l10n.title_appbar_settings_page),
+                  _SectionLabel(l10n.button_language_settings_page),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: ValueListenableBuilder<Locale>(
+                      valueListenable: _locale,
+                      builder: (_, locale, __) {
+                        final isPt = locale.languageCode == 'pt';
+                        return Container(
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: AppColors.surface,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: _LanguageOption(
+                                  label: l10n.text_brazilian_portuguese,
+                                  selected: isPt,
+                                  onTap: () => _select(const Locale('pt', 'BR'),
+                                      AppIconsLanguages.brasil),
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                              Expanded(
+                                child: _LanguageOption(
+                                  label: l10n.text_english_united_states,
+                                  selected: !isPt,
+                                  onTap: () => _select(const Locale('en', 'US'),
+                                      AppIconsLanguages.unitedStates),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  _SectionLabel(l10n.text_about_the_app),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Material(
+                      color: AppColors.surface,
+                      borderRadius: BorderRadius.circular(20),
+                      clipBehavior: Clip.antiAlias,
+                      child: ListTile(
+                        minTileHeight: 60,
+                        leading: const Icon(Icons.star_outline_rounded,
+                            color: AppColors.accent),
+                        title: Text(l10n.text_rate_the_app,
+                            style:
+                                AppTextStyles.label(weight: FontWeight.w500)),
+                        trailing: const Icon(Icons.chevron_right_rounded,
+                            color: AppColors.textMuted),
+                        onTap: () =>
+                            inject<InAppReviewInteractor>().openStoreListing(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 24),
+              child: Column(
+                children: [
+                  const BrandBelt(),
+                  const SizedBox(height: 10),
+                  Text(l10n.title_appbar_home_page.toUpperCase(),
+                      style: AppTextStyles.display(18)),
+                  const SizedBox(height: 6),
+                  Text(
+                    '${l10n.text_version} ${widget.appVersion ?? AppInfo.version}',
+                    style: AppTextStyles.body(
+                        size: 13, color: AppColors.textMuted),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _SectionLabel extends StatelessWidget {
+  const _SectionLabel(this.text);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.fromLTRB(24, 28, 24, 10),
+        child: Text(text.toUpperCase(), style: AppTextStyles.eyebrow()),
+      );
+}
+
+class _LanguageOption extends StatelessWidget {
+  const _LanguageOption({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) => Material(
+        color: selected ? AppColors.text : Colors.transparent,
+        borderRadius: BorderRadius.circular(14),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(14),
+          onTap: onTap,
+          child: Semantics(
+            selected: selected,
+            button: true,
+            child: SizedBox(
+              height: 52,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (selected) ...[
+                    const Icon(Icons.check_rounded,
+                        size: 18, color: AppColors.background),
+                    const SizedBox(width: 6),
+                  ],
+                  Flexible(
+                    child: Text(label,
+                        textAlign: TextAlign.center,
+                        style: AppTextStyles.label(
+                            size: 14,
+                            weight:
+                                selected ? FontWeight.w600 : FontWeight.w500,
+                            color: selected
+                                ? AppColors.background
+                                : AppColors.text)),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
 }

@@ -37,40 +37,44 @@ void main() {
     final timer = tester
         .widget<CircularCountDownTimer>(find.byType(CircularCountDownTimer));
     final firstBoard = find.byType(Scoreboard).first;
-    for (var index = 0; index < 5; index++) {
-      final add = find
-          .descendant(of: firstBoard, matching: find.byIcon(Icons.add))
-          .at(index);
-      await tester.tap(add);
+    final l = AppLocalizations.of(tester.element(firstBoard))!;
+    Finder inFirst(String text) =>
+        find.descendant(of: firstBoard, matching: find.text(text));
+    String points(int athlete) =>
+        tester.widget<Text>(find.byKey(Key('points_$athlete'))).data!;
+    // Toque soma: 2 + 3 + 4 pontos, 1 vantagem e 1 punição.
+    for (final label in [
+      '+2',
+      '+3',
+      '+4',
+      l.fightmarker_advantage,
+      l.fightmarker_penalty
+    ]) {
+      await tester.tap(inFirst(label));
       await tester.pump();
     }
-    final totals = find.descendant(of: firstBoard, matching: find.byType(Text));
-    expect(tester.widget<Text>(totals.at(0)).data, '9');
-    expect(tester.widget<Text>(totals.at(1)).data, '1');
-    expect(tester.widget<Text>(totals.at(2)).data, '1');
-    final otherTotals = find.descendant(
-        of: find.byType(Scoreboard).last, matching: find.byType(Text));
-    expect(tester.widget<Text>(otherTotals.first).data, '0');
-    for (var index = 0; index < 5; index++) {
-      await tester.tap(find
-          .descendant(of: firstBoard, matching: find.byIcon(Icons.remove))
-          .at(index));
+    expect(points(1), '9');
+    expect(inFirst('1'), findsNWidgets(2)); // vantagens e punições
+    expect(points(2), '0'); // o outro atleta não é afetado
+    // Segurar desfaz.
+    for (final label in [
+      '+2',
+      '+3',
+      '+4',
+      l.fightmarker_advantage,
+      l.fightmarker_penalty
+    ]) {
+      await tester.longPress(inFirst(label));
       await tester.pump();
     }
-    expect(tester.widget<Text>(totals.at(0)).data, '0');
-    await tester.tap(find.byIcon(Icons.refresh_rounded));
+    expect(points(1), '0');
+    expect(inFirst('1'), findsNothing);
+    await tester.tap(find.byIcon(Icons.replay_rounded));
     await tester.tap(find.byType(CircularCountDownTimer));
     await tester.pumpAndSettle();
-    final l = AppLocalizations.of(tester.element(find.byType(SetTimerWidget)))!;
-    await tester.tap(find.byIcon(Icons.keyboard_arrow_up).first);
-    await tester.pumpAndSettle();
-    await tester.tap(find.byIcon(Icons.keyboard_arrow_down).first);
-    await tester.pumpAndSettle();
-    await tester.tap(find.byIcon(Icons.keyboard_arrow_up).last);
-    await tester.pumpAndSettle();
-    await tester.tap(find.byIcon(Icons.keyboard_arrow_down).last);
-    await tester.pumpAndSettle();
-    await tester.tap(find.byIcon(Icons.keyboard_arrow_up).last);
+    // Roda dos segundos: desce um item (00 -> 01).
+    await tester.drag(
+        find.byType(ListWheelScrollView).last, const Offset(0, -48));
     await tester.pumpAndSettle();
     final interactor = tester
         .widget<SetTimerWidget>(find.byType(SetTimerWidget))
@@ -79,18 +83,18 @@ void main() {
     await tester.pumpAndSettle();
     expect(interactor.time, 1);
     expect(timer.controller!.getTime(), '00:01');
-    await tester.tap(find.byIcon(Icons.play_arrow));
+    await tester.tap(find.byIcon(Icons.play_arrow_rounded));
     await tester.pump();
     expect(interactor.isPause, isFalse);
-    await tester.tap(find.byIcon(Icons.pause));
+    await tester.tap(find.byIcon(Icons.pause_rounded));
     await tester.pump();
     expect(interactor.isPause, isTrue);
-    await tester.tap(find.byIcon(Icons.refresh_rounded));
+    await tester.tap(find.byIcon(Icons.replay_rounded));
     await tester.pump();
     expect(interactor.isPause, isTrue);
-    await tester.tap(find.byIcon(Icons.play_arrow));
+    await tester.tap(find.byIcon(Icons.play_arrow_rounded));
     await tester.pump();
-    await tester.tap(find.byIcon(Icons.refresh_rounded));
+    await tester.tap(find.byIcon(Icons.replay_rounded));
     await tester.pump();
     expect(interactor.isPause, isTrue);
     await tester.tap(find.byType(CircularCountDownTimer));
@@ -98,7 +102,7 @@ void main() {
     await tester.tap(find.text(l.text_label_cancel_popup));
     await tester.pumpAndSettle();
     expect(interactor.time, 1);
-    await tester.tap(find.byIcon(Icons.play_arrow));
+    await tester.tap(find.byIcon(Icons.play_arrow_rounded));
     await tester.pump();
     await tester.pump(const Duration(seconds: 2));
     await tester.pump(const Duration(milliseconds: 300));

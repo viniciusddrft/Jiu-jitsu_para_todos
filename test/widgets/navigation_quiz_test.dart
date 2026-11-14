@@ -9,7 +9,6 @@ import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/quiz_state.dart
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/interfaces/ifirebase_quiz.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/historyofjiujitsu/ui/historyofjiujitsumenu/history_of_jiu_jitsu_page.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/rules/ui/rulesmenu/rules_view.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/components/button_menu.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/analytics/analytics_interactor.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/sound/interface/sound_interface.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/locale_app.dart';
@@ -18,33 +17,45 @@ import '../support/test_app.dart';
 import '../support/quiz_fixture.dart';
 
 void main() {
-  final menus = <(Widget, List<String>)>[
+  // (página, [(chave do item tocável, rota esperada)])
+  final menus = <(Widget, List<(String, String)>)>[
     (
       const HomePage(),
       [
-        '/historyojiujitsu/historyojiujitsu',
-        '/rules/rules',
-        '/quiz/menu',
-        '/fightmaker/fightmaker',
-        '/wallpaper/wallpapers'
+        ('home_history', '/historyojiujitsu/historyojiujitsu'),
+        ('home_rules', '/rules/rules'),
+        ('quizCard', '/quiz/menu'),
+        ('home_fightmarker', '/fightmaker/fightmaker'),
+        ('home_wallpapers', '/wallpaper/wallpapers'),
       ]
     ),
     (
       const QuizMenuPage(),
-      ['/quiz/questions', '/quiz/questions', '/quiz/questions']
+      [
+        ('quizLevel_easy', '/quiz/questions'),
+        ('quizLevel_medium', '/quiz/questions'),
+        ('quizLevel_hard', '/quiz/questions'),
+      ]
     ),
-    (const RulesPage(), ['/rules/basicrules', '/rules/cbjjrules']),
+    (
+      const RulesPage(),
+      [
+        ('rules_basic', '/rules/basicrules'),
+        ('rules_cbjj', '/rules/cbjjrules'),
+      ]
+    ),
     (
       const HistoryOfJiuJitsuPage(),
       [
-        '/historyojiujitsu/jiujitsuinjapan',
-        '/historyojiujitsu/jiujitsuinindia',
-        '/historyojiujitsu/jiujitsuinbrazil'
+        ('history_0', '/historyojiujitsu/jiujitsuinjapan'),
+        ('history_1', '/historyojiujitsu/jiujitsuinindia'),
+        ('history_2', '/historyojiujitsu/jiujitsuinbrazil'),
       ]
     ),
   ];
-  for (final (page, routes) in menus) {
-    for (var index = 0; index < routes.length; index++) {
+  for (final (page, items) in menus) {
+    final routes = [for (final (_, route) in items) route];
+    for (var index = 0; index < items.length; index++) {
       testWidgets(
           '${page.runtimeType} opção $index navega com argumentos corretos',
           (tester) async {
@@ -60,7 +71,7 @@ void main() {
             }, transition: AppTransitions.rightToLeft);
           }
         }));
-        final button = find.byType(ButtonMenu).at(index);
+        final button = find.byKey(Key(items[index].$1));
         await tester.ensureVisible(button);
         await tester.tap(button);
         await tester.pumpAndSettle();
@@ -85,7 +96,7 @@ void main() {
               ..route('/', child: (_, __) => const HomePage())
               ..route('/settings/settings',
                   child: (_, __) => const Text('settings destination'))));
-    await tester.tap(find.byIcon(Icons.settings));
+    await tester.tap(find.byKey(const Key('settingsButton')));
     await tester.pumpAndSettle();
     expect(analytics.features, ['settings']);
     expect(find.text('settings destination'), findsOneWidget);
@@ -118,7 +129,7 @@ void main() {
       repository.response.complete(const QuizSuccess([question, question]));
       await tester.pump();
       await tester.pump();
-      expect(find.text('Qual posição?'), findsWidgets);
+      expect(find.text('QUAL POSIÇÃO?'), findsWidgets);
       await tester.tap(find.text('Guarda').first);
       await tester.pump(const Duration(milliseconds: 500));
       await tester.pump(const Duration(seconds: 1));
