@@ -1,5 +1,5 @@
-import 'package:async_wallpaper/async_wallpaper.dart';
-import 'package:flutter/material.dart';
+import '../../../shared/plugins/wallpaper/wallpaper_setter.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/components/admob_native_ad.dart';
@@ -21,26 +21,41 @@ class DetailsImagePage extends StatefulWidget {
 }
 
 class _DetailsImagePageState extends State<DetailsImagePage> {
-  final admobInteractor = Modular.get<AdmobInteractor>();
+  final admobInteractor = inject<AdmobInteractor>();
   late final PageController _pageController =
       PageController(initialPage: widget.initialIndex);
   late int _currentIndex = widget.initialIndex;
   bool _precached = false;
 
+  // Largura de decodificação (em pixels físicos). A imagem ocupa a tela
+  // inteira, então decodificá-la na resolução nativa do arquivo só
+  // desperdiçaria memória — basta o tamanho da tela.
+  int? _decodeWidth;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    final size = MediaQuery.sizeOf(context);
+    _decodeWidth = (size.width * MediaQuery.devicePixelRatioOf(context)).round();
     if (!_precached) {
       _precached = true;
       _precacheAround(widget.initialIndex);
     }
   }
 
+  // Provider único usado na exibição e no precache, para que ambos
+  // compartilhem a mesma chave de cache e a imagem decodifique uma só vez.
+  ImageProvider _imageProvider(String url) {
+    final width = _decodeWidth;
+    if (width == null) return NetworkImage(url);
+    return ResizeImage(NetworkImage(url), width: width);
+  }
+
   // Pré-carrega a página atual e os vizinhos para a troca ficar suave.
   void _precacheAround(int index) {
     for (final i in [index, index - 1, index + 1]) {
       if (i >= 0 && i < widget.wallpapers.length) {
-        precacheImage(NetworkImage(widget.wallpapers[i].url), context);
+        precacheImage(_imageProvider(widget.wallpapers[i].url), context);
       }
     }
   }
@@ -53,16 +68,9 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
 
   void _setWallpaper({required WallpaperTarget target}) {
     admobInteractor.showInterstitialAd();
-    AsyncWallpaper.setWallpaper(
-      WallpaperRequest(
-        target: target,
-        sourceType: WallpaperSourceType.url,
-        source: widget.wallpapers[_currentIndex].url,
-      ),
-    ).then((result) {
-      if (result.isSuccess) {
-        _showDialogSuccess();
-      }
+    WallpaperSetter.setFromUrl(widget.wallpapers[_currentIndex].url, target)
+        .then((success) {
+      if (success && mounted) _showDialogSuccess();
     });
   }
 
@@ -74,6 +82,27 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
             backgroundColor: AppColors.background,
           );
         },
+      );
+
+  // Botão de destino do wallpaper (tela inicial / bloqueio / ambas) com o
+  // estilo compartilhado pelas três opções do diálogo.
+  Widget _targetButton(WallpaperTarget target, String label) => OutlinedButton(
+        style: OutlinedButton.styleFrom(
+            fixedSize: const Size(200, 50),
+            foregroundColor: Colors.white,
+            elevation: 7,
+            backgroundColor: AppColors.background,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            side: const BorderSide(color: Colors.white)),
+        onPressed: () => _setWallpaper(target: target),
+        child: Center(
+          child: Text(
+            label,
+            style: GoogleFonts.yatraOne(fontSize: 16),
+          ),
+        ),
       );
 
   void showDialogSetWallpaper() => showDialog<void>(
@@ -91,59 +120,17 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
             content: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                      fixedSize: const Size(200, 50),
-                      foregroundColor: Colors.white,
-                      elevation: 7,
-                      backgroundColor: AppColors.background,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      side: const BorderSide(color: Colors.white)),
-                  onPressed: () => _setWallpaper(target: WallpaperTarget.home),
-                  child: Center(
-                    child: Text(
-                      AppLocalizations.of(context)!.text_popup_set_home,
-                      style: GoogleFonts.yatraOne(fontSize: 16),
-                    ),
-                  ),
+                _targetButton(
+                  WallpaperTarget.home,
+                  AppLocalizations.of(context)!.text_popup_set_home,
                 ),
-                OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                      fixedSize: const Size(200, 50),
-                      foregroundColor: Colors.white,
-                      elevation: 7,
-                      backgroundColor: AppColors.background,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      side: const BorderSide(color: Colors.white)),
-                  onPressed: () => _setWallpaper(target: WallpaperTarget.lock),
-                  child: Center(
-                    child: Text(
-                      AppLocalizations.of(context)!.text_popup_set_block,
-                      style: GoogleFonts.yatraOne(fontSize: 16),
-                    ),
-                  ),
+                _targetButton(
+                  WallpaperTarget.lock,
+                  AppLocalizations.of(context)!.text_popup_set_block,
                 ),
-                OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                      fixedSize: const Size(200, 50),
-                      foregroundColor: Colors.white,
-                      elevation: 7,
-                      backgroundColor: AppColors.background,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      side: const BorderSide(color: Colors.white)),
-                  onPressed: () => _setWallpaper(target: WallpaperTarget.both),
-                  child: Center(
-                    child: Text(
-                      AppLocalizations.of(context)!.text_popup_set_both,
-                      style: GoogleFonts.yatraOne(fontSize: 16),
-                    ),
-                  ),
+                _targetButton(
+                  WallpaperTarget.both,
+                  AppLocalizations.of(context)!.text_popup_set_both,
                 ),
               ],
             ),
@@ -176,8 +163,8 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
         itemBuilder: (context, i) => Hero(
           transitionOnUserGestures: true,
           tag: 'logo$i',
-          child: Image.network(
-            widget.wallpapers[i].url,
+          child: Image(
+            image: _imageProvider(widget.wallpapers[i].url),
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,

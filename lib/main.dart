@@ -1,5 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl_standalone.dart';
 import 'package:jiu_jitsu_para_todos/core/app_core_module.dart';
@@ -16,7 +16,8 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(ModularApp(
-    module: AppCoreModule(),
+    module: appCoreModule,
+    navigatorObservers: [AnalyticsInteractor.observer],
     child: const MyApp(),
   ));
 
@@ -31,13 +32,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final localeApp = Modular.get<LocaleInteractor>();
-  final analytics = Modular.get<AnalyticsInteractor>();
+  final localeApp = inject<LocaleInteractor>();
+  final analytics = inject<AnalyticsInteractor>();
 
   @override
   void initState() {
     super.initState();
-    Modular.setObservers([analytics.observer]);
     _initLocale();
   }
 
@@ -52,14 +52,23 @@ class _MyAppState extends State<MyApp> {
       valueListenable: localeApp,
       builder: (_, value, __) => MaterialApp.router(
         title: 'Jiu-jitsu para todos',
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          ...GlobalMaterialLocalizations.delegates,
+        ],
         supportedLocales: AppLocalizations.supportedLocales,
         locale: value,
+        // Pacotes que ainda usam package:flutter/material.dart (AdMob,
+        // circular_countdown_timer) precisam do Theme/Localizations legado.
+        // Remover quando esses pacotes migrarem para o material_ui.
+        builder: (context, child) =>
+            // ignore: deprecated_member_use
+            MaterialUiCompatibilityBridge(child: child!),
         theme: ThemeData(
           primaryColor: AppColors.primary,
           brightness: Brightness.dark,
         ),
-        routerConfig: Modular.routerConfig,
+        routerConfig: ModularApp.routerConfigOf(context),
       ),
     );
   }

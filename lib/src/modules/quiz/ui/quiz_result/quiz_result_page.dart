@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/interfaces/ifirebase_quiz.dart';
@@ -26,8 +26,8 @@ class _QuizResultPageState extends State<QuizResultPage>
   late final double _scorePercentage;
   late final AnimationController _animationController;
 
-  final admobInteractor = Modular.get<AdmobInteractor>();
-  final inAppReviewInteractor = Modular.get<InAppReviewInteractor>();
+  final admobInteractor = inject<AdmobInteractor>();
+  final inAppReviewInteractor = inject<InAppReviewInteractor>();
 
   bool _dependenciesInitialized = false;
 

@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
 import '../../../shared/components/app_bar_gradient.dart';
+import '../../../shared/plugins/app_info/app_info.dart';
 import '../../../shared/plugins/in_app_review/in_app_review_interactor.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_icons_languages_path.dart';
@@ -15,7 +16,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  final _settingsInteractor = Modular.get<SettingsInteractor>();
+  final _settingsInteractor = inject<SettingsInteractor>();
   bool _initialized = false;
 
   @override
@@ -223,7 +224,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               side: const BorderSide(color: Colors.white),
                             ),
                             onPressed: () =>
-                                Modular.get<InAppReviewInteractor>()
+                                inject<InAppReviewInteractor>()
                                     .openStoreListing(),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -255,7 +256,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               side: const BorderSide(color: Colors.white),
                             ),
                             onPressed: () =>
-                                Modular.to.pushNamed('/credits/credits'),
+                                context.pushNamed('/credits/credits'),
                             child: Center(
                               child: Text(
                                 AppLocalizations.of(context)!
@@ -280,7 +281,7 @@ class _SettingsPageState extends State<SettingsPage> {
         height: 60,
         child: Center(
           child: Text(
-            '${AppLocalizations.of(context)!.text_version} 3.3.1',
+            '${AppLocalizations.of(context)!.text_version} ${AppInfo.version}',
             style: GoogleFonts.yatraOne(color: Colors.grey[700]),
           ),
         ),

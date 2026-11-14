@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/rules/interactor/rules_interactor.dart';
@@ -18,8 +18,8 @@ class CbjjrulesPage extends StatefulWidget {
 }
 
 class _CbjjrulesPageState extends State<CbjjrulesPage> {
-  final admobInteractor = Modular.get<AdmobInteractor>();
-  final rulesInteractor = Modular.get<RulesInteractor>();
+  final admobInteractor = inject<AdmobInteractor>();
+  final rulesInteractor = inject<RulesInteractor>();
   late final WebViewController controller;
   final urlPdf = ValueNotifier<String?>(null);
   late final Listenable _bodyListenable =

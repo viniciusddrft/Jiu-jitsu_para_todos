@@ -1,5 +1,5 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,7 +15,7 @@ class Clock extends StatefulWidget {
 }
 
 class _ClockState extends State<Clock> {
-  final _clockInteractor = Modular.get<ClockInteractor>();
+  final _clockInteractor = inject<ClockInteractor>();
 
   @override
   Widget build(BuildContext context) {

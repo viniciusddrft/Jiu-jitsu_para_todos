@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
@@ -13,7 +13,7 @@ class BasicRulesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
 
-    final admobInteractor = Modular.get<AdmobInteractor>();
+    final admobInteractor = inject<AdmobInteractor>();
 
     return Scaffold(
       appBar: AppBar(

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/interactor/wallpaper_entity.dart';
@@ -21,8 +21,8 @@ class WallpapersPage extends StatefulWidget {
 }
 
 class _WallpapersViewState extends State<WallpapersPage> {
-  final _wallpaperInteractor = Modular.get<WallpaperInteractor>();
-  final admobInteractor = Modular.get<AdmobInteractor>();
+  final _wallpaperInteractor = inject<WallpaperInteractor>();
+  final admobInteractor = inject<AdmobInteractor>();
 
   bool _adRequested = false;
 
@@ -117,8 +117,7 @@ class _WallpapersViewState extends State<WallpapersPage> {
                   mainAxisSpacing: 10,
                 ),
                 itemBuilder: (context, index) => RawMaterialButton(
-                  onPressed: () => Navigator.pushNamed(
-                      context, '/wallpaper/detailsimage',
+                  onPressed: () => context.pushNamed('/wallpaper/detailsimage',
                       arguments: {
                         'index': index,
                         'wallpapers': wallpapers,

@@ -10,9 +10,9 @@ class QuizInteractor extends ValueNotifier<QuizState> {
   QuizInteractor({required this.firebaseQuiz}) : super(const QuizLoading());
 
   final IFirebaseQuiz firebaseQuiz;
-  final _localeAppNotifier = Modular.get<LocaleInteractor>();
+  final _localeAppNotifier = inject<LocaleInteractor>();
   late final Difficult difficult;
-  final _soundInterface = Modular.get<SoundInterface>();
+  final _soundInterface = inject<SoundInterface>();
 
   int score = 0;
   int numberQuestion = 0;

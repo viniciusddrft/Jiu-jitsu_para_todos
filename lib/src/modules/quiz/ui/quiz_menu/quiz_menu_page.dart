@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,19 +26,19 @@ class QuizMenuPage extends StatelessWidget {
             ButtonMenu(
               imageButton: AppIconsPath.faixaBranca,
               text: AppLocalizations.of(context)!.button_white_belt_level,
-              onPressed: () => Modular.to
+              onPressed: () => context
                   .pushNamed('/quiz/questions', arguments: Difficult.easy),
             ),
             ButtonMenu(
               imageButton: AppIconsPath.faixaAzul,
               text: AppLocalizations.of(context)!.button_blue_belt_level,
-              onPressed: () => Modular.to
+              onPressed: () => context
                   .pushNamed('/quiz/questions', arguments: Difficult.medium),
             ),
             ButtonMenu(
               imageButton: AppIconsPath.faixaPreta,
               text: AppLocalizations.of(context)!.button_black_belt_level,
-              onPressed: () => Modular.to
+              onPressed: () => context
                   .pushNamed('/quiz/questions', arguments: Difficult.hard),
             ),
           ],

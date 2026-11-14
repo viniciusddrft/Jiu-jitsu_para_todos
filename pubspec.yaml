@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 3.3.1+59
+version: 3.3.3+60
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
@@ -31,28 +31,27 @@ dependencies:
   flutter:
     sdk: flutter
 
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   flutter_localizations:
     sdk: flutter
   intl: ^0.20.2
-  firebase_core: ^4.11.0
-  cloud_firestore: ^6.6.0
-  firebase_analytics: ^12.4.3
-  flutter_modular: ^6.4.1
+  firebase_core: ^5.1.0
+  cloud_firestore: ^7.1.0
+  firebase_analytics: ^13.0.1
+  flutter_modular: ^7.1.1
   shared_preferences: ^2.5.5
   just_audio: ^0.10.5
-  google_fonts: ^8.1.0
+  google_fonts: ^9.0.0
   url_launcher: ^6.3.2
   wakelock_plus: ^1.6.1
   circular_countdown_timer: ^0.2.4
   google_mobile_ads: ^9.0.0
-  permission_handler: ^12.0.3
+  permission_handler: ^13.0.2
   webview_flutter: ^4.14.0
-  syncfusion_flutter_pdfviewer: ^33.2.13+1
-  async_wallpaper: ^3.1.0
+  syncfusion_flutter_pdfviewer: ^35.1.46
   in_app_review: ^2.0.12
+  material_ui: ^1.11.0
+  jni: ^1.1.2
+  jni_flutter: ^1.0.4+1
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +66,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.4
   flutter_native_splash: ^2.4.8
   mocktail: ^1.0.5
+  jnigen: ^1.0.1
 
 flutter_native_splash:
   color: "#202848"
@@ -80,7 +80,7 @@ flutter_native_splash:
 
 flutter_icons:
   image_path: 'assets/images/application_icon/res/mipmap-xxxhdpi/iconindigo.png'
-  ios: true
+  ios: false
   android: true
 
 

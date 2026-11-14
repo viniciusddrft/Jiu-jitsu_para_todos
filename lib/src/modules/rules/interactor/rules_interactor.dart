@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/rules/interactor/interfaces/rules_service_interface.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/rules/interactor/rules_state.dart';
 import 'package:permission_handler/permission_handler.dart';

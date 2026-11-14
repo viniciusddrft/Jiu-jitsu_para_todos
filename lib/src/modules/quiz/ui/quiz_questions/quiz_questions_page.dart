@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/interfaces/ifirebase_quiz.dart';
@@ -21,7 +21,7 @@ class QuizQuestionsPage extends StatefulWidget {
 }
 
 class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
-  final _quizInteractor = Modular.get<QuizInteractor>();
+  final _quizInteractor = inject<QuizInteractor>();
   final _pageController = PageController();
   final _timer = ValueNotifier<int>(10);
   Timer? _countdownTimer;
@@ -71,7 +71,7 @@ class _QuizQuestionsPageState extends State<QuizQuestionsPage> {
 
   void next() {
     if (_pageController.page! + 1 == _quizInteractor.totalQuestions) {
-      Modular.to.pushReplacementNamed('/quiz/result', arguments: {
+      context.replace('/quiz/result', arguments: {
         'score': _quizInteractor.score,
         'totalQuestions': _quizInteractor.totalQuestions,
         'difficult': _quizInteractor.difficult

@@ -1,36 +1,33 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/interfaces/ifirebase_quiz.dart';
 import '../../shared/plugins/sound/interface/sound_interface.dart';
 import '../../shared/plugins/sound/sound_implements_just_audio.dart';
+import '../../shared/transitions/app_transitions.dart';
 import 'data/firebase_quiz_impl.dart';
+import 'interactor/interfaces/ifirebase_quiz.dart';
 import 'interactor/quiz_interactor.dart';
 import 'ui/quiz_menu/quiz_menu_page.dart';
 import 'ui/quiz_questions/quiz_questions_page.dart';
 import 'ui/quiz_result/quiz_result_page.dart';
 
-class QuizModule extends Module {
-  @override
-  void binds(i) {
-    i.add(QuizInteractor.new);
-    i.add<SoundInterface>(JustAudio.new);
-    i.add<IFirebaseQuiz>(FirebaseQuizImpl.new);
-  }
-
-  @override
-  void routes(r) {
-    r.child('/menu',
-        child: (context) => const QuizMenuPage(),
-        transition: TransitionType.rightToLeft);
-    r.child('/questions',
-        child: (context) =>
-            QuizQuestionsPage(difficulty: r.args.data as Difficult),
-        transition: TransitionType.rightToLeft);
-    r.child('/result',
-        child: (context) => QuizResultPage(
-              difficult: r.args.data['difficult'],
-              score: r.args.data['score'],
-              totalQuestions: r.args.data['totalQuestions'],
-            ),
-        transition: TransitionType.downToUp);
-  }
-}
+final quizModule = createModule(
+  path: '/quiz',
+  register: (c) => c
+    ..add(QuizInteractor.new)
+    ..add<SoundInterface>(JustAudio.new)
+    ..add<IFirebaseQuiz>(FirebaseQuizImpl.new)
+    ..route('/menu',
+        child: (context, state) => const QuizMenuPage(),
+        transition: AppTransitions.rightToLeft)
+    ..route('/questions',
+        child: (context, state) =>
+            QuizQuestionsPage(difficulty: state.arguments as Difficult),
+        transition: AppTransitions.rightToLeft)
+    ..route('/result', child: (context, state) {
+      final args = state.arguments as Map<String, dynamic>;
+      return QuizResultPage(
+        difficult: args['difficult'],
+        score: args['score'],
+        totalQuestions: args['totalQuestions'],
+      );
+    }, transition: AppTransitions.downToUp),
+);

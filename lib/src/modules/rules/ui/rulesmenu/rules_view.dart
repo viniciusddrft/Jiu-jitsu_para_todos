@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/components/button_menu.dart';
@@ -24,12 +24,12 @@ class RulesPage extends StatelessWidget {
             ButtonMenu(
               imageButton: AppIconsPath.regrasBasicas,
               text: AppLocalizations.of(context)!.button_basic_rules,
-              onPressed: () => Modular.to.pushNamed('/rules/basicrules'),
+              onPressed: () => context.pushNamed('/rules/basicrules'),
             ),
             ButtonMenu(
                 imageButton: AppIconsPath.cbjjRules,
                 text: AppLocalizations.of(context)!.button_cbjj_Rules,
-                onPressed: () => Modular.to.pushNamed('/rules/cbjjrules')),
+                onPressed: () => context.pushNamed('/rules/cbjjrules')),
           ],
         ),
       ),
