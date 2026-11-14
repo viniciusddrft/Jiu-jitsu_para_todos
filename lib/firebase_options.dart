@@ -26,7 +26,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -55,16 +58,5 @@ class DefaultFirebaseOptions {
     messagingSenderId: '670110302747',
     projectId: 'jiujitsu-para-todos',
     storageBucket: 'jiujitsu-para-todos.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCZSyaxlu43IfgRgBabbMUVRNz4BiCiK9k',
-    appId: '1:670110302747:ios:1956025d40eed340006ebe',
-    messagingSenderId: '670110302747',
-    projectId: 'jiujitsu-para-todos',
-    storageBucket: 'jiujitsu-para-todos.appspot.com',
-    iosClientId:
-        '670110302747-kl0v9rd22n933dlhq3d34jtcavs1h2ql.apps.googleusercontent.com',
-    iosBundleId: 'com.example.jiuJitsuParaTodos',
   );
 }
