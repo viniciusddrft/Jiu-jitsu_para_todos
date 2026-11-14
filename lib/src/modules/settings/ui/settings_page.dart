@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
 import '../../../shared/components/app_bar_gradient.dart';
+import '../../../shared/plugins/app_info/app_info.dart';
 import '../../../shared/plugins/in_app_review/in_app_review_interactor.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_icons_languages_path.dart';
@@ -280,7 +281,7 @@ class _SettingsPageState extends State<SettingsPage> {
         height: 60,
         child: Center(
           child: Text(
-            '${AppLocalizations.of(context)!.text_version} 3.3.1',
+            '${AppLocalizations.of(context)!.text_version} ${AppInfo.version}',
             style: GoogleFonts.yatraOne(color: Colors.grey[700]),
           ),
         ),
