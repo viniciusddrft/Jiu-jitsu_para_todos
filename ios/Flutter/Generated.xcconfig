@@ -1,11 +1,12 @@
 // This is a generated file; do not edit or check into version control.
 FLUTTER_ROOT=/home/viniciusddrft/Downloads/flutter
 FLUTTER_APPLICATION_PATH=/home/viniciusddrft/Meus projetos/projectAppJiujitsu/jiu_jitsu_para_todos
+FLUTTER_FRAMEWORK_SWIFT_PACKAGE_PATH=/home/viniciusddrft/Meus projetos/projectAppJiujitsu/jiu_jitsu_para_todos/ios/Flutter/ephemeral/Packages/.packages/FlutterFramework
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_TARGET=lib/main.dart
 FLUTTER_BUILD_DIR=build
-FLUTTER_BUILD_NAME=3.2.0
-FLUTTER_BUILD_NUMBER=57
+FLUTTER_BUILD_NAME=3.3.3
+FLUTTER_BUILD_NUMBER=60
 EXCLUDED_ARCHS[sdk=iphonesimulator*]=i386
 EXCLUDED_ARCHS[sdk=iphoneos*]=armv7
 DART_OBFUSCATION=false

@@ -12,22 +12,10 @@
 @import audio_session;
 #endif
 
-#if __has_include(<cloud_firestore/FLTFirebaseFirestorePlugin.h>)
-#import <cloud_firestore/FLTFirebaseFirestorePlugin.h>
-#else
-@import cloud_firestore;
-#endif
-
 #if __has_include(<device_info_plus/FPPDeviceInfoPlusPlugin.h>)
 #import <device_info_plus/FPPDeviceInfoPlusPlugin.h>
 #else
 @import device_info_plus;
-#endif
-
-#if __has_include(<firebase_analytics/FirebaseAnalyticsPlugin.h>)
-#import <firebase_analytics/FirebaseAnalyticsPlugin.h>
-#else
-@import firebase_analytics;
 #endif
 
 #if __has_include(<firebase_core/FLTFirebaseCorePlugin.h>)
@@ -36,16 +24,16 @@
 @import firebase_core;
 #endif
 
-#if __has_include(<flutter_native_splash/FlutterNativeSplashPlugin.h>)
-#import <flutter_native_splash/FlutterNativeSplashPlugin.h>
+#if __has_include(<cloud_firestore/FLTFirebaseFirestorePlugin.h>)
+#import <cloud_firestore/FLTFirebaseFirestorePlugin.h>
 #else
-@import flutter_native_splash;
+@import cloud_firestore;
 #endif
 
-#if __has_include(<google_mobile_ads/FLTGoogleMobileAdsPlugin.h>)
-#import <google_mobile_ads/FLTGoogleMobileAdsPlugin.h>
+#if __has_include(<firebase_analytics/FirebaseAnalyticsPlugin.h>)
+#import <firebase_analytics/FirebaseAnalyticsPlugin.h>
 #else
-@import google_mobile_ads;
+@import firebase_analytics;
 #endif
 
 #if __has_include(<in_app_review/InAppReviewPlugin.h>)
@@ -102,16 +90,20 @@
 @import webview_flutter_wkwebview;
 #endif
 
+#if __has_include(<google_mobile_ads/FLTGoogleMobileAdsPlugin.h>)
+#import <google_mobile_ads/FLTGoogleMobileAdsPlugin.h>
+#else
+@import google_mobile_ads;
+#endif
+
 @implementation GeneratedPluginRegistrant
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
   [AudioSessionPlugin registerWithRegistrar:[registry registrarForPlugin:@"AudioSessionPlugin"]];
-  [FLTFirebaseFirestorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseFirestorePlugin"]];
   [FPPDeviceInfoPlusPlugin registerWithRegistrar:[registry registrarForPlugin:@"FPPDeviceInfoPlusPlugin"]];
-  [FirebaseAnalyticsPlugin registerWithRegistrar:[registry registrarForPlugin:@"FirebaseAnalyticsPlugin"]];
   [FLTFirebaseCorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseCorePlugin"]];
-  [FlutterNativeSplashPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterNativeSplashPlugin"]];
-  [FLTGoogleMobileAdsPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTGoogleMobileAdsPlugin"]];
+  [FLTFirebaseFirestorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseFirestorePlugin"]];
+  [FirebaseAnalyticsPlugin registerWithRegistrar:[registry registrarForPlugin:@"FirebaseAnalyticsPlugin"]];
   [InAppReviewPlugin registerWithRegistrar:[registry registrarForPlugin:@"InAppReviewPlugin"]];
   [JustAudioPlugin registerWithRegistrar:[registry registrarForPlugin:@"JustAudioPlugin"]];
   [FPPPackageInfoPlusPlugin registerWithRegistrar:[registry registrarForPlugin:@"FPPPackageInfoPlusPlugin"]];
@@ -121,6 +113,7 @@
   [URLLauncherPlugin registerWithRegistrar:[registry registrarForPlugin:@"URLLauncherPlugin"]];
   [WakelockPlusPlugin registerWithRegistrar:[registry registrarForPlugin:@"WakelockPlusPlugin"]];
   [WebViewFlutterPlugin registerWithRegistrar:[registry registrarForPlugin:@"WebViewFlutterPlugin"]];
+  [FLTGoogleMobileAdsPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTGoogleMobileAdsPlugin"]];
 }
 
 @end

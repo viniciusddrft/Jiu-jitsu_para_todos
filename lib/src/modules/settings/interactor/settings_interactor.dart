@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../../shared/l10n/locale_app.dart';
 import '../../../shared/themes/app_icons_languages_path.dart';
