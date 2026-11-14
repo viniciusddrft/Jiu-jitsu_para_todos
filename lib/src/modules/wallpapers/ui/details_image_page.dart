@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/components/admob_native_ad.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
-import 'package:permission_handler/permission_handler.dart';
 import '../../../shared/plugins/admob/admob_interactor.dart';
 import '../interactor/wallpaper_entity.dart';
 
@@ -177,11 +176,7 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
       // Botão "usar wallpaper" como pílula flutuante sobre a imagem,
       // centralizado acima do anúncio (libera a área antes ocupada por ele).
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () async {
-          final PermissionStatus status = await Permission.storage.status;
-          if (status.isDenied) await Permission.storage.request();
-          showDialogSetWallpaper();
-        },
+        onPressed: showDialogSetWallpaper,
         backgroundColor: AppColors.background,
         foregroundColor: Colors.white,
         elevation: 7,

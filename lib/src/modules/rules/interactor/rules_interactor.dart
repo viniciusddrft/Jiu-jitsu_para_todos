@@ -2,7 +2,6 @@ import 'dart:math';
 import 'package:material_ui/material_ui.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/rules/interactor/interfaces/rules_service_interface.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/rules/interactor/rules_state.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class RulesInteractor extends ValueNotifier<RulesState> {
   RulesInteractor(this.rulesService) : super(const InitialRules());
@@ -11,8 +10,6 @@ class RulesInteractor extends ValueNotifier<RulesState> {
 
   void downloadPDf(String url) async {
     value = const LoadingDownload();
-    final PermissionStatus status = await Permission.storage.status;
-    if (status.isDenied) await Permission.storage.request();
     final newState = await rulesService.downloadPDf(url, generateName());
     value = newState;
   }

@@ -17,21 +17,29 @@ const _androidSdkMembers = {
 };
 
 void main() async {
-  // Código Kotlin do próprio app.
-  await JniGenerator(
-    input: Input(
-      classes: ['com.jiu_jitsu_para_todos.WallpaperSetter'],
-      classPath: [Uri.directory(_kotlinClasses)],
-      androidSdk: AndroidSdk(addGradleDeps: true),
-    ),
-    output: Output(
-      dart: DartOutput(
-        path: Uri.file(
-            'lib/src/shared/plugins/wallpaper/wallpaper_bindings.g.dart'),
-        structure: OutputStructure.singleFile,
+  // Código Kotlin do próprio app: classe -> arquivo de bindings.
+  const kotlinBindings = {
+    'com.jiu_jitsu_para_todos.WallpaperSetter':
+        'lib/src/shared/plugins/wallpaper/wallpaper_bindings.g.dart',
+    'com.jiu_jitsu_para_todos.PdfDownloader':
+        'lib/src/modules/rules/data/pdf_downloader_bindings.g.dart',
+  };
+  for (final MapEntry(key: className, value: output)
+      in kotlinBindings.entries) {
+    await JniGenerator(
+      input: Input(
+        classes: [className],
+        classPath: [Uri.directory(_kotlinClasses)],
+        androidSdk: AndroidSdk(addGradleDeps: true),
       ),
-    ),
-  ).generate();
+      output: Output(
+        dart: DartOutput(
+          path: Uri.file(output),
+          structure: OutputStructure.singleFile,
+        ),
+      ),
+    ).generate();
+  }
 
   // Classes do Android SDK, sem código Kotlin próprio.
   Set<String> allowed = const {};

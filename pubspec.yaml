@@ -45,7 +45,6 @@ dependencies:
   wakelock_plus: ^1.6.1
   circular_countdown_timer: ^0.2.4
   google_mobile_ads: ^9.0.0
-  permission_handler: ^13.0.2
   webview_flutter: ^4.14.0
   syncfusion_flutter_pdfviewer: ^35.1.46
   in_app_review: ^2.0.12
