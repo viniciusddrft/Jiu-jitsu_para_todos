@@ -1,4 +1,3 @@
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../../../shared/l10n/app_localizations.dart';
@@ -10,32 +9,24 @@ import '../../interactor/scorreboard_interactor.dart';
 /// Placar de um atleta. Toque soma; o botão ↶ desfaz a última ação.
 /// O atleta 1 usa o cartão claro e o 2 o escuro, para os dois lados serem
 /// distinguíveis de longe (sem faixas: elas indicariam um nível que não existe).
-class Scoreboard extends StatefulWidget {
-  const Scoreboard({super.key, required this.athlete, this.light = false});
+class Scoreboard extends StatelessWidget {
+  const Scoreboard({
+    super.key,
+    required this.athlete,
+    required this.interactor,
+    this.light = false,
+  });
 
   final int athlete;
+  final ScoreboardInteractor interactor;
   final bool light;
-
-  @override
-  State<Scoreboard> createState() => _ScoreboardState();
-}
-
-class _ScoreboardState extends State<Scoreboard> {
-  final _scoreboardInteractor = inject<ScoreboardInteractor>();
-
-  @override
-  void dispose() {
-    _scoreboardInteractor.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final light = widget.light;
     final fg = light ? AppColors.background : AppColors.text;
     final muted = light ? const Color(0xff4A505C) : AppColors.textSoft;
-    final s = _scoreboardInteractor;
+    final s = interactor;
 
     return Container(
       padding: const EdgeInsets.all(14),
@@ -52,12 +43,12 @@ class _ScoreboardState extends State<Scoreboard> {
             Row(
               children: [
                 Expanded(
-                  child: Text(l10n.fightmarker_athlete(widget.athlete),
+                  child: Text(l10n.fightmarker_athlete(athlete),
                       style: AppTextStyles.label(size: 13, color: fg)),
                 ),
                 // Desfaz a última ação deste atleta, em um toque.
                 TextButton.icon(
-                  key: Key('undo_${widget.athlete}'),
+                  key: Key('undo_$athlete'),
                   onPressed: s.canUndo
                       ? () {
                           AppHaptics.undo();
@@ -84,7 +75,7 @@ class _ScoreboardState extends State<Scoreboard> {
                       alignment: Alignment.centerLeft,
                       fit: BoxFit.scaleDown,
                       child: Text('${s.fighterPoints}',
-                          key: Key('points_${widget.athlete}'),
+                          key: Key('points_$athlete'),
                           style: AppTextStyles.display(110, color: fg)
                               .copyWith(height: 1)),
                     ),

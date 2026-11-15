@@ -461,6 +461,9 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get settings_haptics_subtitle => 'No placar, no quiz e ao salvar';
+
+  @override
+  String get fightmarker_time_up => 'Fim do tempo';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -920,4 +923,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get settings_haptics_subtitle => 'No placar, no quiz e ao salvar';
+
+  @override
+  String get fightmarker_time_up => 'Fim do tempo';
 }

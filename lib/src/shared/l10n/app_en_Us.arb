@@ -153,5 +153,6 @@
     "fightmarker_undo":"Undo",
     "settings_haptics_section":"Vibration",
     "settings_haptics_label":"Vibrate on touch",
-    "settings_haptics_subtitle":"In the scoreboard, quiz and when saving"
+    "settings_haptics_subtitle":"In the scoreboard, quiz and when saving",
+    "fightmarker_time_up":"Time's up"
 }

@@ -927,6 +927,12 @@ abstract class AppLocalizations {
   /// In en_US, this message translates to:
   /// **'In the scoreboard, quiz and when saving'**
   String get settings_haptics_subtitle;
+
+  /// No description provided for @fightmarker_time_up.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Time\'s up'**
+  String get fightmarker_time_up;
 }
 
 class _AppLocalizationsDelegate

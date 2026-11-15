@@ -456,6 +456,9 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get settings_haptics_subtitle =>
       'In the scoreboard, quiz and when saving';
+
+  @override
+  String get fightmarker_time_up => 'Time\'s up';
 }
 
 /// The translations for English, as used in the United States (`en_US`).
@@ -910,4 +913,7 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
   @override
   String get settings_haptics_subtitle =>
       'In the scoreboard, quiz and when saving';
+
+  @override
+  String get fightmarker_time_up => 'Time\'s up';
 }

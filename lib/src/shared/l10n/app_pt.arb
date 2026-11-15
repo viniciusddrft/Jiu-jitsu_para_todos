@@ -136,5 +136,6 @@
     "fightmarker_undo":"Desfazer",
     "settings_haptics_section":"Vibração",
     "settings_haptics_label":"Vibrar ao tocar",
-    "settings_haptics_subtitle":"No placar, no quiz e ao salvar"
+    "settings_haptics_subtitle":"No placar, no quiz e ao salvar",
+    "fightmarker_time_up":"Fim do tempo"
 }

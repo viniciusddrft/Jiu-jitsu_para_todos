@@ -114,11 +114,28 @@ void main() {
     await tester.tap(find.text(l.text_label_cancel_popup));
     await tester.pumpAndSettle();
     expect(interactor.time, 1);
+    // Pontos do atleta 2 antes do fim, para conferir o placar final.
+    final secondBoard = find.byType(Scoreboard).last;
+    await tester.tap(
+        find.descendant(of: secondBoard, matching: find.text('+3')));
+    await tester.tap(find.descendant(
+        of: secondBoard, matching: find.text(l.fightmarker_advantage)));
+    await tester.pump();
     await tester.tap(find.byIcon(Icons.play_arrow_rounded));
     await tester.pump();
     await tester.pump(const Duration(seconds: 2));
     await tester.pump(const Duration(milliseconds: 300));
     expect(sound.played, contains('assets/music/alarm_sound.mp3'));
+    // Aviso de fim do tempo com o placar final (não mais "00:00").
+    expect(find.text(l.fightmarker_time_up.toUpperCase()), findsOneWidget);
+    String finalPoints(int athlete) =>
+        tester.widget<Text>(find.byKey(Key('final_points_$athlete'))).data!;
+    expect(finalPoints(1), '0');
+    expect(finalPoints(2), '3');
+    expect(
+        find.text('1 ${l.text_abbreviated_advantage}  ·  '
+            '0 ${l.text_abbreviated_punishment}'),
+        findsOneWidget);
     // Fim do tempo: alarme com três vibrações longas.
     await tester.pump(const Duration(seconds: 2));
     expect(haptics.where((h) => h == null), hasLength(3));
