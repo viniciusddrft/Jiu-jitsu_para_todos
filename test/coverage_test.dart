@@ -1,5 +1,5 @@
 // Mantém arquivos ainda sem testes no denominador da cobertura.
-// Atualize os imports ao adicionar arquivos em lib/.
+// Atualizado por tool/coverage.py.
 // ignore_for_file: unused_import
 import 'package:jiu_jitsu_para_todos/core/app_core_module.dart';
 import 'package:jiu_jitsu_para_todos/main.dart';
@@ -11,6 +11,7 @@ import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/ui/components/compo
 import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/ui/components/score_board_widget.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/ui/fightmarker_page.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/historyofjiujitsu/historyodjiujitsu_module.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/historyofjiujitsu/ui/components/history_article.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/historyofjiujitsu/ui/historyofjiujitsumenu/history_of_jiu_jitsu_page.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/historyofjiujitsu/ui/jiujitsuinbrazil/jiu_jitsu_in_brazil_view.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/historyofjiujitsu/ui/jiujitsuinindia/jiujitsu_in_india_view.dart';
@@ -26,8 +27,10 @@ import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/question_entity
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/quiz_interactor.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/quiz_state.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/quiz_module.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/ui/difficulty_ui.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/ui/quiz_menu/quiz_menu_page.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/ui/quiz_questions/components/button_quiz_widget.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/ui/quiz_questions/components/quiz_media.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/ui/quiz_questions/quiz_questions_page.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/ui/quiz_result/quiz_result_page.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/rules/data/rules_service_impl.dart';
@@ -51,12 +54,18 @@ import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/ui/details_image_pag
 import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/ui/wallpapers_page.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/wallpaper_module.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/components/admob_native_ad.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/components/app_card.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/components/app_top_bar.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/components/belt.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/components/native_ad_slot.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/components/offline_state.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/locale_app.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/mixins/device_orientation.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/mixins/launch_link.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/admob/admob_interactor.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/analytics/analytics_interactor.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/app_info/app_info.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/plugins/haptics/app_haptics.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/in_app_review/in_app_review_interactor.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/local_storage/interface/local_storage_interface.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/local_storage/local_storage_shared_preferrence.dart';
@@ -67,17 +76,9 @@ import 'package:jiu_jitsu_para_todos/src/shared/shimmer/shimmer_effect.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/shimmer/shimmer_widget.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_languages_path.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/transitions/app_transitions.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/historyofjiujitsu/ui/components/history_article.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/ui/difficulty_ui.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/quiz/ui/quiz_questions/components/quiz_media.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/components/app_card.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/components/app_top_bar.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/components/belt.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/components/native_ad_slot.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/components/offline_state.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_text_styles.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_theme.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/transitions/app_transitions.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

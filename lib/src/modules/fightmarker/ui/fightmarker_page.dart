@@ -1,9 +1,11 @@
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../../shared/l10n/app_localizations.dart';
 import '../../../shared/mixins/device_orientation.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_text_styles.dart';
+import '../interactor/scorreboard_interactor.dart';
 import 'components/clock_widget.dart';
 import 'components/score_board_widget.dart';
 
@@ -17,6 +19,11 @@ class FightMakerPage extends StatefulWidget {
 
 class _FightMakerPageState extends State<FightMakerPage>
     with DeviceOrientationApp {
+  // A página é dona dos dois placares: cada cartão mostra o seu e o relógio
+  // recebe os dois para exibir o resultado no fim do tempo.
+  final _athlete1 = inject<ScoreboardInteractor>();
+  final _athlete2 = inject<ScoreboardInteractor>();
+
   @override
   void initState() {
     configLandscape();
@@ -33,8 +40,10 @@ class _FightMakerPageState extends State<FightMakerPage>
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Expanded(
-                  flex: 5, child: Scoreboard(athlete: 1, light: true)),
+              Expanded(
+                  flex: 5,
+                  child: Scoreboard(
+                      athlete: 1, interactor: _athlete1, light: true)),
               Expanded(
                 flex: 4,
                 child: Column(
@@ -57,11 +66,14 @@ class _FightMakerPageState extends State<FightMakerPage>
                         ),
                       ],
                     ),
-                    const Expanded(child: Clock()),
+                    Expanded(
+                        child: Clock(athletes: (_athlete1, _athlete2))),
                   ],
                 ),
               ),
-              const Expanded(flex: 5, child: Scoreboard(athlete: 2)),
+              Expanded(
+                  flex: 5,
+                  child: Scoreboard(athlete: 2, interactor: _athlete2)),
             ],
           ),
         ),
@@ -72,6 +84,8 @@ class _FightMakerPageState extends State<FightMakerPage>
   @override
   void dispose() {
     configPortrait();
+    _athlete1.dispose();
+    _athlete2.dispose();
     super.dispose();
   }
 }

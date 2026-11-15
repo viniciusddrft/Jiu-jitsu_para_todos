@@ -6,6 +6,7 @@ import '../../../shared/components/belt.dart';
 import '../../../shared/l10n/app_localizations.dart';
 import '../../../shared/l10n/locale_app.dart';
 import '../../../shared/plugins/app_info/app_info.dart';
+import '../../../shared/plugins/haptics/app_haptics.dart';
 import '../../../shared/plugins/in_app_review/in_app_review_interactor.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_icons_languages_path.dart';
@@ -32,8 +33,12 @@ class _SettingsPageState extends State<SettingsPage> {
     super.dispose();
   }
 
-  void _select(Locale locale, String icon) =>
-      _settingsInteractor.saveLanguage({'locale': locale, 'icon': icon});
+  void _select(Locale locale, String icon) {
+    if (locale.languageCode != _locale.value.languageCode) {
+      AppHaptics.selection();
+    }
+    _settingsInteractor.saveLanguage({'locale': locale, 'icon': icon});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +89,33 @@ class _SettingsPageState extends State<SettingsPage> {
                           ),
                         );
                       },
+                    ),
+                  ),
+                  _SectionLabel(l10n.settings_haptics_section),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Material(
+                      color: AppColors.surface,
+                      borderRadius: BorderRadius.circular(20),
+                      clipBehavior: Clip.antiAlias,
+                      child: ValueListenableBuilder<bool>(
+                        valueListenable: AppHaptics.enabled,
+                        builder: (_, enabled, __) => SwitchListTile(
+                          key: const Key('hapticsSwitch'),
+                          value: enabled,
+                          onChanged: AppHaptics.setEnabled,
+                          activeThumbColor: AppColors.background,
+                          activeTrackColor: AppColors.accent,
+                          secondary: const Icon(Icons.vibration_rounded,
+                              color: AppColors.text),
+                          title: Text(l10n.settings_haptics_label,
+                              style: AppTextStyles.label(
+                                  weight: FontWeight.w500)),
+                          subtitle: Text(l10n.settings_haptics_subtitle,
+                              style: AppTextStyles.body(
+                                  size: 13, color: AppColors.textMuted)),
+                        ),
+                      ),
                     ),
                   ),
                   _SectionLabel(l10n.text_about_the_app),

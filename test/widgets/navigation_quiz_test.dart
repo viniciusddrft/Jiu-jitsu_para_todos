@@ -72,7 +72,9 @@ void main() {
           }
         }));
         final button = find.byKey(Key(items[index].$1));
+        await tester.pumpAndSettle();
         await tester.ensureVisible(button);
+        await tester.pumpAndSettle();
         await tester.tap(button);
         await tester.pumpAndSettle();
         expect(find.text(routes[index]), findsOneWidget);

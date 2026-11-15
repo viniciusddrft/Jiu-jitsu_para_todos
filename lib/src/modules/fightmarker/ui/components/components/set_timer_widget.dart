@@ -2,6 +2,7 @@ import 'package:material_ui/material_ui.dart';
 
 import '../../../../../shared/components/belt.dart';
 import '../../../../../shared/l10n/app_localizations.dart';
+import '../../../../../shared/plugins/haptics/app_haptics.dart';
 import '../../../../../shared/themes/app_colors.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../../interactor/clock_interactor.dart';
@@ -38,11 +39,24 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
     super.dispose();
   }
 
-  void _applyPreset(int minutes) {
-    _minutes.animateToItem(minutes,
-        duration: const Duration(milliseconds: 250), curve: Curves.easeOut);
-    _seconds.animateToItem(0,
-        duration: const Duration(milliseconds: 250), curve: Curves.easeOut);
+  // Enquanto um atalho anima as rodas, os "tiques" de cada número ficam
+  // desligados: o atalho já vibrou uma vez.
+  bool _animatingPreset = false;
+
+  Future<void> _applyPreset(int minutes) async {
+    AppHaptics.selection();
+    _animatingPreset = true;
+    await Future.wait([
+      _minutes.animateToItem(minutes,
+          duration: const Duration(milliseconds: 250), curve: Curves.easeOut),
+      _seconds.animateToItem(0,
+          duration: const Duration(milliseconds: 250), curve: Curves.easeOut),
+    ]);
+    _animatingPreset = false;
+  }
+
+  void _onWheelTick(int _) {
+    if (!_animatingPreset) AppHaptics.selection();
   }
 
   @override
@@ -105,9 +119,9 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      _Wheel(controller: _minutes),
+                      _Wheel(controller: _minutes, onTick: _onWheelTick),
                       Text(':', style: AppTextStyles.display(44)),
-                      _Wheel(controller: _seconds),
+                      _Wheel(controller: _seconds, onTick: _onWheelTick),
                     ],
                   ),
                   const SizedBox(height: 12),
@@ -145,9 +159,10 @@ class _SetTimerWidgetState extends State<SetTimerWidget> {
 }
 
 class _Wheel extends StatelessWidget {
-  const _Wheel({required this.controller});
+  const _Wheel({required this.controller, required this.onTick});
 
   final FixedExtentScrollController controller;
+  final ValueChanged<int> onTick;
 
   @override
   Widget build(BuildContext context) => SizedBox(
@@ -168,6 +183,7 @@ class _Wheel extends StatelessWidget {
               controller: controller,
               itemExtent: 52,
               physics: const FixedExtentScrollPhysics(),
+              onSelectedItemChanged: onTick,
               perspective: 0.004,
               diameterRatio: 1.4,
               overAndUnderCenterOpacity: 0.3,

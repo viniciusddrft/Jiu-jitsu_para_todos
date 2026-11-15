@@ -3,14 +3,19 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../../../shared/l10n/app_localizations.dart';
+import '../../../../shared/plugins/haptics/app_haptics.dart';
 import '../../../../shared/themes/app_colors.dart';
 import '../../../../shared/themes/app_text_styles.dart';
 import '../../interactor/clock_interactor.dart';
+import '../../interactor/scorreboard_interactor.dart';
 import 'components/set_timer_widget.dart';
 
 /// Relógio da luta: toque no tempo para definir; play/pausa e reiniciar.
+/// No fim do tempo, mostra o placar final dos dois [athletes].
 class Clock extends StatefulWidget {
-  const Clock({super.key});
+  const Clock({super.key, required this.athletes});
+
+  final (ScoreboardInteractor, ScoreboardInteractor) athletes;
   @override
   State<Clock> createState() => _ClockState();
 }
@@ -25,11 +30,17 @@ class _ClockState extends State<Clock> {
 
   void _onComplete() {
     _clockInteractor.playSound();
+    AppHaptics.alarm();
     showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) => AlertDialog(
-        title: Text('00:00', style: AppTextStyles.display(56)),
+        title: Text(
+            AppLocalizations.of(context)!.fightmarker_time_up.toUpperCase(),
+            textAlign: TextAlign.center,
+            style: AppTextStyles.display(40)),
+        content: _FinalScore(athletes: widget.athletes),
+        actionsAlignment: MainAxisAlignment.center,
         actions: <Widget>[
           FilledButton.icon(
             style: FilledButton.styleFrom(
@@ -102,7 +113,10 @@ class _ClockState extends State<Clock> {
                     children: [
                       IconButton.filled(
                         tooltip: paused ? 'Play' : 'Pause',
-                        onPressed: _clockInteractor.startAndPauseButton,
+                        onPressed: () {
+                          AppHaptics.key();
+                          _clockInteractor.startAndPauseButton();
+                        },
                         style: IconButton.styleFrom(
                           backgroundColor: AppColors.accent,
                           foregroundColor: AppColors.background,
@@ -116,7 +130,10 @@ class _ClockState extends State<Clock> {
                       IconButton.filled(
                         tooltip: MaterialLocalizations.of(context)
                             .refreshIndicatorSemanticLabel,
-                        onPressed: _clockInteractor.restartButton,
+                        onPressed: () {
+                          AppHaptics.key();
+                          _clockInteractor.restartButton();
+                        },
                         style: IconButton.styleFrom(
                           backgroundColor: AppColors.surface,
                           foregroundColor: AppColors.text,
@@ -143,6 +160,49 @@ class _ClockState extends State<Clock> {
           ],
         );
       },
+    );
+  }
+}
+
+/// Placar final no aviso de fim do tempo: pontos em destaque e, abaixo,
+/// vantagens e punições (o critério de desempate).
+class _FinalScore extends StatelessWidget {
+  const _FinalScore({required this.athletes});
+
+  final (ScoreboardInteractor, ScoreboardInteractor) athletes;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    Widget side(int athlete, ScoreboardInteractor s) => Expanded(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(l10n.fightmarker_athlete(athlete),
+                  style: AppTextStyles.label(
+                      size: 13, color: AppColors.textMuted)),
+              Text('${s.fighterPoints}',
+                  key: Key('final_points_$athlete'),
+                  style: AppTextStyles.display(64).copyWith(height: 1.1)),
+              Text(
+                  '${s.advantagesOfTheFighter} ${l10n.text_abbreviated_advantage}'
+                  '  ·  '
+                  '${s.punishmentsOfTheFighter} ${l10n.text_abbreviated_punishment}',
+                  style: AppTextStyles.label(
+                      size: 13, color: AppColors.textSoft)),
+            ],
+          ),
+        );
+    return SizedBox(
+      width: 340,
+      child: Row(
+        children: [
+          side(1, athletes.$1),
+          Text('×',
+              style: AppTextStyles.display(32, color: AppColors.textMuted)),
+          side(2, athletes.$2),
+        ],
+      ),
     );
   }
 }

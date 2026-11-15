@@ -163,7 +163,7 @@ abstract class AppLocalizations {
   /// No description provided for @text_english_united_states.
   ///
   /// In en_US, this message translates to:
-  /// **'Englis United States'**
+  /// **'English (United States)'**
   String get text_english_united_states;
 
   /// No description provided for @text_notice_popup.
@@ -331,7 +331,7 @@ abstract class AppLocalizations {
   /// No description provided for @title_popup_wallpaper.
   ///
   /// In en_US, this message translates to:
-  /// **'Use how?'**
+  /// **'Set as?'**
   String get title_popup_wallpaper;
 
   /// No description provided for @text_popup_save_wallpaper.
@@ -457,7 +457,7 @@ abstract class AppLocalizations {
   /// No description provided for @title_appbar_jiujitsu_in_brazil_page.
   ///
   /// In en_US, this message translates to:
-  /// **'The Brazilian Jiu-jitsu'**
+  /// **'Jiu-jitsu in Brazil'**
   String get title_appbar_jiujitsu_in_brazil_page;
 
   /// No description provided for @text_jiujitsu_in_brazil_paragraph1.
@@ -499,7 +499,7 @@ abstract class AppLocalizations {
   /// No description provided for @text_scores_title.
   ///
   /// In en_US, this message translates to:
-  /// **'Scores'**
+  /// **'Scoring'**
   String get text_scores_title;
 
   /// No description provided for @text_scores.
@@ -511,7 +511,7 @@ abstract class AppLocalizations {
   /// No description provided for @text_moves_that_gives_2_scores_title.
   ///
   /// In en_US, this message translates to:
-  /// **'Moves that gives 2 scores'**
+  /// **'Moves worth 2 points'**
   String get text_moves_that_gives_2_scores_title;
 
   /// No description provided for @text_throws.
@@ -535,13 +535,13 @@ abstract class AppLocalizations {
   /// No description provided for @text_moves_that_gives_3_scores_title.
   ///
   /// In en_US, this message translates to:
-  /// **'Moves that gives 3 scores'**
+  /// **'Move worth 3 points'**
   String get text_moves_that_gives_3_scores_title;
 
   /// No description provided for @text_moves_that_gives_3_scores.
   ///
   /// In en_US, this message translates to:
-  /// **'In jiu-jitsu there is only one move that gives 3 scores.'**
+  /// **'In jiu-jitsu there is only one move worth 3 points.'**
   String get text_moves_that_gives_3_scores;
 
   /// No description provided for @text_guard_pass.
@@ -553,7 +553,7 @@ abstract class AppLocalizations {
   /// No description provided for @text_moves_that_gives_4_scores_title.
   ///
   /// In en_US, this message translates to:
-  /// **'Moves that gives 4 scores'**
+  /// **'Moves worth 4 points'**
   String get text_moves_that_gives_4_scores_title;
 
   /// No description provided for @text_mount.
@@ -571,7 +571,7 @@ abstract class AppLocalizations {
   /// No description provided for @text_advantage_and_penalties_title.
   ///
   /// In en_US, this message translates to:
-  /// **'Advantage and penalties'**
+  /// **'Advantages and penalties'**
   String get text_advantage_and_penalties_title;
 
   /// No description provided for @text_advantage_and_penalties.
@@ -589,7 +589,7 @@ abstract class AppLocalizations {
   /// No description provided for @title_cbjj_successDownload.
   ///
   /// In en_US, this message translates to:
-  /// **'Save successfully!'**
+  /// **'Saved successfully!'**
   String get title_cbjj_successDownload;
 
   /// No description provided for @title_cbjj_failedDownload.
@@ -643,19 +643,19 @@ abstract class AppLocalizations {
   /// No description provided for @text_message_quiz_very_well.
   ///
   /// In en_US, this message translates to:
-  /// **'Oss, did very well!!!'**
+  /// **'Oss, great job!!!'**
   String get text_message_quiz_very_well;
 
   /// No description provided for @text_message_quiz_almost.
   ///
   /// In en_US, this message translates to:
-  /// **'Almost, study more.'**
+  /// **'So close, keep studying.'**
   String get text_message_quiz_almost;
 
   /// No description provided for @text_message_quiz_sad.
   ///
   /// In en_US, this message translates to:
-  /// **'It was not this time.'**
+  /// **'Not this time.'**
   String get text_message_quiz_sad;
 
   /// No description provided for @text_offline.
@@ -909,6 +909,30 @@ abstract class AppLocalizations {
   /// In en_US, this message translates to:
   /// **'Undo'**
   String get fightmarker_undo;
+
+  /// No description provided for @settings_haptics_section.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Vibration'**
+  String get settings_haptics_section;
+
+  /// No description provided for @settings_haptics_label.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Vibrate on touch'**
+  String get settings_haptics_label;
+
+  /// No description provided for @settings_haptics_subtitle.
+  ///
+  /// In en_US, this message translates to:
+  /// **'In the scoreboard, quiz and when saving'**
+  String get settings_haptics_subtitle;
+
+  /// No description provided for @fightmarker_time_up.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Time\'s up'**
+  String get fightmarker_time_up;
 }
 
 class _AppLocalizationsDelegate

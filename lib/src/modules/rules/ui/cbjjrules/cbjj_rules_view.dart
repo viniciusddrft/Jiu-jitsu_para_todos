@@ -7,6 +7,7 @@ import '../../../../shared/components/app_card.dart';
 import '../../../../shared/components/app_top_bar.dart';
 import '../../../../shared/components/native_ad_slot.dart';
 import '../../../../shared/l10n/app_localizations.dart';
+import '../../../../shared/plugins/haptics/app_haptics.dart';
 import '../../../../shared/themes/app_colors.dart';
 import '../../interactor/rules_interactor.dart';
 import '../../interactor/rules_state.dart';
@@ -55,6 +56,7 @@ class _CbjjrulesPageState extends State<CbjjrulesPage> {
     };
     if (message == null) return;
     final success = rulesInteractor.value is SuccessDownload;
+    success ? AppHaptics.success() : AppHaptics.error();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Row(
         children: [
