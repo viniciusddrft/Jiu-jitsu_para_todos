@@ -5,6 +5,7 @@ import '../../../shared/components/app_card.dart';
 import '../../../shared/components/native_ad_slot.dart';
 import '../../../shared/l10n/app_localizations.dart';
 import '../../../shared/plugins/admob/admob_interactor.dart';
+import '../../../shared/plugins/haptics/app_haptics.dart';
 import '../../../shared/plugins/wallpaper/wallpaper_setter.dart';
 import '../../../shared/themes/app_colors.dart';
 import '../../../shared/themes/app_text_styles.dart';
@@ -77,6 +78,7 @@ class _DetailsImagePageState extends State<DetailsImagePage> {
             widget.wallpapers[_currentIndex.value].url, target)
         .then((success) {
       if (!mounted) return;
+      success ? AppHaptics.success() : AppHaptics.error();
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Row(
           children: [

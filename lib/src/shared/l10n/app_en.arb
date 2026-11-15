@@ -133,5 +133,8 @@
     "fightmarker_presets":"Presets · adult",
     "fightmarker_minutes":"min",
     "fightmarker_set_time":"Set time",
-    "fightmarker_undo":"Undo"
+    "fightmarker_undo":"Undo",
+    "settings_haptics_section":"Vibration",
+    "settings_haptics_label":"Vibrate on touch",
+    "settings_haptics_subtitle":"In the scoreboard, quiz and when saving"
 }

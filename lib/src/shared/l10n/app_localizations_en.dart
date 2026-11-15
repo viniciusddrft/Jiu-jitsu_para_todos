@@ -446,6 +446,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get fightmarker_undo => 'Undo';
+
+  @override
+  String get settings_haptics_section => 'Vibration';
+
+  @override
+  String get settings_haptics_label => 'Vibrate on touch';
+
+  @override
+  String get settings_haptics_subtitle =>
+      'In the scoreboard, quiz and when saving';
 }
 
 /// The translations for English, as used in the United States (`en_US`).
@@ -890,4 +900,14 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
 
   @override
   String get fightmarker_undo => 'Undo';
+
+  @override
+  String get settings_haptics_section => 'Vibration';
+
+  @override
+  String get settings_haptics_label => 'Vibrate on touch';
+
+  @override
+  String get settings_haptics_subtitle =>
+      'In the scoreboard, quiz and when saving';
 }

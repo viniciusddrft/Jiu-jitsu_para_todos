@@ -133,5 +133,8 @@
     "fightmarker_presets":"Atalhos · adulto",
     "fightmarker_minutes":"min",
     "fightmarker_set_time":"Definir tempo",
-    "fightmarker_undo":"Desfazer"
+    "fightmarker_undo":"Desfazer",
+    "settings_haptics_section":"Vibração",
+    "settings_haptics_label":"Vibrar ao tocar",
+    "settings_haptics_subtitle":"No placar, no quiz e ao salvar"
 }

@@ -11,6 +11,7 @@ import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/admob/admob_interactor.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/in_app_review/in_app_review_interactor.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/plugins/haptics/app_haptics.dart';
 import '../support/test_app.dart';
 
 void main() {
@@ -120,6 +121,14 @@ void main() {
     await tester.pumpAndSettle();
     expect(locale.value, const Locale('en', 'US'));
     expect(storage.values['locale'], 'en_US');
+    // Vibração: ligada por padrão, desliga e salva a preferência.
+    expect(AppHaptics.enabled.value, isTrue);
+    await tester.tap(find.byKey(const Key('hapticsSwitch')));
+    await tester.pump();
+    expect(AppHaptics.enabled.value, isFalse);
+    await tester.tap(find.byKey(const Key('hapticsSwitch')));
+    await tester.pump();
+    expect(AppHaptics.enabled.value, isTrue);
     await tester.tap(find.text(l.text_rate_the_app));
     await tester.pump();
     expect(review.storeRequests, 1);

@@ -43,6 +43,8 @@ class PendingWallpapers implements IFirebaseWallpapers {
 }
 
 void main() {
+  // O quiz vibra (HapticFeedback) ao responder; precisa do binding.
+  TestWidgetsFlutterBinding.ensureInitialized();
   late MemoryStorage storage;
   late LocaleInteractor locale;
   late RecordingSound sound;

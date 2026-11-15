@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../../../shared/l10n/app_localizations.dart';
+import '../../../../shared/plugins/haptics/app_haptics.dart';
 import '../../../../shared/themes/app_colors.dart';
 import '../../../../shared/themes/app_text_styles.dart';
 import '../../interactor/clock_interactor.dart';
@@ -25,6 +26,7 @@ class _ClockState extends State<Clock> {
 
   void _onComplete() {
     _clockInteractor.playSound();
+    AppHaptics.alarm();
     showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -102,7 +104,10 @@ class _ClockState extends State<Clock> {
                     children: [
                       IconButton.filled(
                         tooltip: paused ? 'Play' : 'Pause',
-                        onPressed: _clockInteractor.startAndPauseButton,
+                        onPressed: () {
+                          AppHaptics.key();
+                          _clockInteractor.startAndPauseButton();
+                        },
                         style: IconButton.styleFrom(
                           backgroundColor: AppColors.accent,
                           foregroundColor: AppColors.background,
@@ -116,7 +121,10 @@ class _ClockState extends State<Clock> {
                       IconButton.filled(
                         tooltip: MaterialLocalizations.of(context)
                             .refreshIndicatorSemanticLabel,
-                        onPressed: _clockInteractor.restartButton,
+                        onPressed: () {
+                          AppHaptics.key();
+                          _clockInteractor.restartButton();
+                        },
                         style: IconButton.styleFrom(
                           backgroundColor: AppColors.surface,
                           foregroundColor: AppColors.text,

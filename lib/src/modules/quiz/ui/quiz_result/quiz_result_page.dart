@@ -6,6 +6,7 @@ import '../../../../shared/components/app_top_bar.dart';
 import '../../../../shared/components/belt.dart';
 import '../../../../shared/l10n/app_localizations.dart';
 import '../../../../shared/plugins/admob/admob_interactor.dart';
+import '../../../../shared/plugins/haptics/app_haptics.dart';
 import '../../../../shared/plugins/in_app_review/in_app_review_interactor.dart';
 import '../../../../shared/themes/app_colors.dart';
 import '../../../../shared/themes/app_text_styles.dart';
@@ -57,6 +58,8 @@ class _QuizResultPageState extends State<QuizResultPage>
   }
 
   Future<void> _handleAfterAnimation() async {
+    // Nota máxima: confirmação, como uma conquista.
+    if (_scorePercentage == 1.0) AppHaptics.success();
     await Future.delayed(const Duration(seconds: 1));
     if (!mounted) return;
 

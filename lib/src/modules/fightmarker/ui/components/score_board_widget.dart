@@ -2,6 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../../../shared/l10n/app_localizations.dart';
+import '../../../../shared/plugins/haptics/app_haptics.dart';
 import '../../../../shared/themes/app_colors.dart';
 import '../../../../shared/themes/app_text_styles.dart';
 import '../../interactor/scorreboard_interactor.dart';
@@ -57,7 +58,12 @@ class _ScoreboardState extends State<Scoreboard> {
                 // Desfaz a última ação deste atleta, em um toque.
                 TextButton.icon(
                   key: Key('undo_${widget.athlete}'),
-                  onPressed: s.canUndo ? s.undo : null,
+                  onPressed: s.canUndo
+                      ? () {
+                          AppHaptics.undo();
+                          s.undo();
+                        }
+                      : null,
                   style: TextButton.styleFrom(
                     foregroundColor: fg,
                     disabledForegroundColor: fg.withValues(alpha: 0.3),
@@ -112,7 +118,10 @@ class _ScoreboardState extends State<Scoreboard> {
                       label: '+$points',
                       big: true,
                       light: light,
-                      onTap: () => s.addPoints(points),
+                      onTap: () {
+                        AppHaptics.key();
+                        s.addPoints(points);
+                      },
                     ),
                   ),
                 ],
@@ -126,7 +135,10 @@ class _ScoreboardState extends State<Scoreboard> {
                     label: l10n.fightmarker_advantage,
                     outlined: true,
                     light: light,
-                    onTap: s.addAdvantages,
+                    onTap: () {
+                      AppHaptics.key();
+                      s.addAdvantages();
+                    },
                   ),
                 ),
                 const SizedBox(width: 6),
@@ -135,7 +147,10 @@ class _ScoreboardState extends State<Scoreboard> {
                     label: l10n.fightmarker_penalty,
                     outlined: true,
                     light: light,
-                    onTap: s.addPunishments,
+                    onTap: () {
+                      AppHaptics.key();
+                      s.addPunishments();
+                    },
                   ),
                 ),
               ],

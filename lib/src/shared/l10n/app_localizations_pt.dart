@@ -452,6 +452,15 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get fightmarker_undo => 'Desfazer';
+
+  @override
+  String get settings_haptics_section => 'Vibração';
+
+  @override
+  String get settings_haptics_label => 'Vibrar ao tocar';
+
+  @override
+  String get settings_haptics_subtitle => 'No placar, no quiz e ao salvar';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -902,4 +911,13 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get fightmarker_undo => 'Desfazer';
+
+  @override
+  String get settings_haptics_section => 'Vibração';
+
+  @override
+  String get settings_haptics_label => 'Vibrar ao tocar';
+
+  @override
+  String get settings_haptics_subtitle => 'No placar, no quiz e ao salvar';
 }

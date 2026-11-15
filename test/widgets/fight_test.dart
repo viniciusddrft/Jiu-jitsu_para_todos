@@ -17,6 +17,7 @@ void main() {
       (tester) async {
     final sound = RecordingSound();
     final orientations = <Object?>[];
+    final haptics = <Object?>[];
     final messenger =
         TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
     messenger.setMockMessageHandler(
@@ -26,6 +27,7 @@ void main() {
       if (call.method == 'SystemChrome.setPreferredOrientations') {
         orientations.add(call.arguments);
       }
+      if (call.method == 'HapticFeedback.vibrate') haptics.add(call.arguments);
       return null;
     });
     await mount(tester, const FightMakerPage(),
@@ -56,6 +58,9 @@ void main() {
     expect(points(1), '9');
     expect(inFirst('1'), findsNWidgets(2)); // vantagens e punições
     expect(points(2), '0'); // o outro atleta não é afetado
+    // Cada toque de pontuação vibra como tecla (VIRTUAL_KEY).
+    expect(haptics, List.filled(5, 'HapticFeedbackType.lightImpact'));
+    haptics.clear();
     // O botão ↶ desfaz uma ação por toque, da última para a primeira.
     final undo = find.byKey(const Key('undo_1'));
     await tester.tap(undo); // punição
@@ -70,6 +75,8 @@ void main() {
     await tester.tap(undo); // +2
     await tester.pump();
     expect(points(1), '0');
+    // Desfazer tem vibração própria, diferente de somar.
+    expect(haptics, List.filled(5, 'HapticFeedbackType.mediumImpact'));
     // Sem histórico, o botão fica desativado.
     expect(tester.widget<ButtonStyleButton>(undo).onPressed, isNull);
     await tester.tap(find.byIcon(Icons.replay_rounded));
@@ -82,6 +89,8 @@ void main() {
     final interactor = tester
         .widget<SetTimerWidget>(find.byType(SetTimerWidget))
         .clockInteractor;
+    // A roda dá um "tique" por número.
+    expect(haptics, contains('HapticFeedbackType.selectionClick'));
     await tester.tap(find.text(l.text_label_continue));
     await tester.pumpAndSettle();
     expect(interactor.time, 1);
@@ -110,6 +119,9 @@ void main() {
     await tester.pump(const Duration(seconds: 2));
     await tester.pump(const Duration(milliseconds: 300));
     expect(sound.played, contains('assets/music/alarm_sound.mp3'));
+    // Fim do tempo: alarme com três vibrações longas.
+    await tester.pump(const Duration(seconds: 2));
+    expect(haptics.where((h) => h == null), hasLength(3));
     await tester.tap(find.text(l.text_button_stopsound));
     await tester.pumpAndSettle();
     expect(sound.stops, 1);

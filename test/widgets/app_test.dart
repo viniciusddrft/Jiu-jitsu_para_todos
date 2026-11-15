@@ -4,17 +4,23 @@ import 'package:material_ui/material_ui.dart';
 import 'package:jiu_jitsu_para_todos/main.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/locale_app.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/analytics/analytics_interactor.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/plugins/haptics/app_haptics.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/plugins/local_storage/interface/local_storage_interface.dart';
 import '../support/test_app.dart';
 
 void main() {
   testWidgets(
       'app restaura idioma salvo e reconstrói localização ao mudar preferência',
       (tester) async {
-    final storage = MemoryStorage()..values['locale'] = 'pt_BR';
+    final storage = MemoryStorage()
+      ..values['locale'] = 'pt_BR'
+      ..values[AppHaptics.storageKey] = 0;
+    addTearDown(() => AppHaptics.enabled.value = true);
     final locale = LocaleInteractor(storage);
     await tester.pumpWidget(ModularApp(
       module: createModule(
           register: (c) => c
+            ..addInstance<ILocalStorage>(storage)
             ..addInstance<LocaleInteractor>(locale)
             ..addInstance<AnalyticsInteractor>(RecordingAnalytics())
             ..route('/',
@@ -24,6 +30,8 @@ void main() {
     ));
     await tester.pumpAndSettle();
     expect(find.text('Página inicial'), findsOneWidget);
+    // A preferência de vibração salva é carregada na abertura.
+    expect(AppHaptics.enabled.value, isFalse);
     expect(tester.widget<MaterialApp>(find.byType(MaterialApp)).locale,
         const Locale('pt', 'BR'));
     locale.changeLocale(const Locale('en', 'US'));

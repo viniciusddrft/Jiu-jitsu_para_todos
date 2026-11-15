@@ -10,6 +10,8 @@ import 'firebase_options.dart';
 import 'src/shared/l10n/locale_app.dart';
 import 'src/shared/plugins/admob/admob_interactor.dart';
 import 'src/shared/plugins/analytics/analytics_interactor.dart';
+import 'src/shared/plugins/haptics/app_haptics.dart';
+import 'src/shared/plugins/local_storage/interface/local_storage_interface.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,6 +41,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     _initLocale();
+    AppHaptics.load(inject<ILocalStorage>());
   }
 
   Future<void> _initLocale() async {

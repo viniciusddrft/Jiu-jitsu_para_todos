@@ -909,6 +909,24 @@ abstract class AppLocalizations {
   /// In en_US, this message translates to:
   /// **'Undo'**
   String get fightmarker_undo;
+
+  /// No description provided for @settings_haptics_section.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Vibration'**
+  String get settings_haptics_section;
+
+  /// No description provided for @settings_haptics_label.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Vibrate on touch'**
+  String get settings_haptics_label;
+
+  /// No description provided for @settings_haptics_subtitle.
+  ///
+  /// In en_US, this message translates to:
+  /// **'In the scoreboard, quiz and when saving'**
+  String get settings_haptics_subtitle;
 }
 
 class _AppLocalizationsDelegate

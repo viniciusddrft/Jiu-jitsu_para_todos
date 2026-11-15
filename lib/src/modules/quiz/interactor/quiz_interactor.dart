@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/quiz/interactor/quiz_state.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/locale_app.dart';
+import '../../../shared/plugins/haptics/app_haptics.dart';
 import '../../../shared/plugins/sound/interface/sound_interface.dart';
 import 'answer_entity.dart';
 import 'interfaces/ifirebase_quiz.dart';
@@ -51,9 +52,11 @@ class QuizInteractor extends ValueNotifier<QuizState> {
     numberQuestion++;
 
     if (answerEntity.isCorrect) {
+      AppHaptics.success();
       playSoundRightAnswer();
       score++;
     } else {
+      AppHaptics.error();
       playSoundWrongAnswer();
     }
     notifyListeners();
@@ -62,6 +65,7 @@ class QuizInteractor extends ValueNotifier<QuizState> {
   void onTimerFailed() {
     _soundInterface.pause();
     numberQuestion++;
+    AppHaptics.error();
     playSoundWrongAnswer();
     notifyListeners();
   }
