@@ -5,7 +5,7 @@ import 'package:intl/intl_standalone.dart';
 import 'package:jiu_jitsu_para_todos/core/app_core_module.dart';
 
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_theme.dart';
 import 'firebase_options.dart';
 import 'src/shared/l10n/locale_app.dart';
 import 'src/shared/plugins/admob/admob_interactor.dart';
@@ -64,10 +64,10 @@ class _MyAppState extends State<MyApp> {
         builder: (context, child) =>
             // ignore: deprecated_member_use
             MaterialUiCompatibilityBridge(child: child!),
-        theme: ThemeData(
-          primaryColor: AppColors.primary,
-          brightness: Brightness.dark,
-        ),
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.dark,
+        darkTheme: AppTheme.dark,
+        themeMode: ThemeMode.dark,
         routerConfig: ModularApp.routerConfigOf(context),
       ),
     );

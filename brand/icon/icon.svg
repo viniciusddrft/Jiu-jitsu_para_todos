@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Ícone do app Jiu-jitsu para todos">
+  <!-- Ícone opção B "Tatame": fundo Lona + faixa preta contornada.
+       Os PNGs usados no app são gerados por tool/generate_brand_assets.py. -->
+  <rect width="1024" height="1024" fill="#161B24"/>
+  <rect x="184" y="421" width="656" height="182" fill="#2A3240"/>
+  <rect x="192" y="429" width="640" height="166" fill="#050608"/>
+  <rect x="563" y="429" width="211" height="166" fill="#E5484D"/>
+  <rect x="622" y="429" width="23" height="166" fill="#FFFFFF"/>
+  <rect x="692" y="429" width="23" height="166" fill="#FFFFFF"/>
+</svg>

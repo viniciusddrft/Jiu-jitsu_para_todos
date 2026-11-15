@@ -1,13 +1,14 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:material_ui/material_ui.dart';
 
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/interactor/clock_interactor.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
+import '../../../../shared/l10n/app_localizations.dart';
 import '../../../../shared/themes/app_colors.dart';
+import '../../../../shared/themes/app_text_styles.dart';
+import '../../interactor/clock_interactor.dart';
 import 'components/set_timer_widget.dart';
 
+/// Relógio da luta: toque no tempo para definir; play/pausa e reiniciar.
 class Clock extends StatefulWidget {
   const Clock({super.key});
   @override
@@ -17,113 +18,32 @@ class Clock extends StatefulWidget {
 class _ClockState extends State<Clock> {
   final _clockInteractor = inject<ClockInteractor>();
 
-  @override
-  Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
+  void _openSetTime() => showDialog<void>(
+        context: context,
+        builder: (_) => SetTimerWidget(clockInteractor: _clockInteractor),
+      );
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        GestureDetector(
-          child: CircularCountDownTimer(
-            duration: _clockInteractor.time,
-            controller: _clockInteractor.controller,
-            autoStart: false,
-            width: size.width * 0.33,
-            height: size.height * 0.33,
-            textFormat: CountdownTextFormat.MM_SS,
-            ringColor: Colors.white,
-            fillColor: Colors.green,
-            backgroundColor: null,
-            strokeWidth: 5.0,
-            strokeCap: StrokeCap.butt,
-            textStyle: GoogleFonts.yatraOne(fontSize: 30),
-            isReverse: true,
-            isReverseAnimation: false,
-            isTimerTextShown: true,
-            onComplete: () {
-              _clockInteractor.playSound();
-              showDialog<void>(
-                context: context,
-                barrierDismissible: false,
-                builder: (BuildContext context) => AlertDialog(
-                  backgroundColor: AppColors.background,
-                  actions: <Widget>[
-                    TextButton(
-                      child: Text(
-                          AppLocalizations.of(context)!.text_button_stopsound),
-                      onPressed: () {
-                        _clockInteractor.stopSound();
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ],
-                ),
-              );
+  void _onComplete() {
+    _clockInteractor.playSound();
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text('00:00', style: AppTextStyles.display(56)),
+        actions: <Widget>[
+          FilledButton.icon(
+            style: FilledButton.styleFrom(
+                backgroundColor: AppColors.accent,
+                foregroundColor: AppColors.background),
+            icon: const Icon(Icons.volume_off_rounded),
+            label: Text(AppLocalizations.of(context)!.text_button_stopsound),
+            onPressed: () {
+              _clockInteractor.stopSound();
+              Navigator.of(context).pop();
             },
           ),
-          onTap: () => showDialog<void>(
-            context: context,
-            builder: (BuildContext context) => SetTimerWidget(
-              clockInteractor: _clockInteractor,
-            ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: size.height * 0.05),
-          child: SizedBox(
-            width: size.width * 0.15,
-            child: AnimatedBuilder(
-              animation: _clockInteractor,
-              builder: (BuildContext context, Widget? child) => OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                    foregroundColor:
-                        _clockInteractor.isPause ? Colors.green : Colors.red,
-                    elevation: 7,
-                    backgroundColor: AppColors.background,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    side: BorderSide(
-                        color: _clockInteractor.isPause
-                            ? Colors.green
-                            : Colors.red)),
-                onPressed: _clockInteractor.startAndPauseButton,
-                child: Center(
-                  child: Icon(
-                      _clockInteractor.isPause ? Icons.play_arrow : Icons.pause,
-                      color:
-                          _clockInteractor.isPause ? Colors.green : Colors.red),
-                ),
-              ),
-            ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: size.height * 0.01),
-          child: SizedBox(
-            width: size.width * 0.15,
-            child: OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                elevation: 7,
-                foregroundColor: Colors.yellow,
-                backgroundColor: AppColors.background,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                side: const BorderSide(color: Colors.yellow),
-              ),
-              onPressed: _clockInteractor.restartButton,
-              child: const Center(
-                child: Icon(
-                  Icons.refresh_rounded,
-                  color: Colors.yellow,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -131,5 +51,98 @@ class _ClockState extends State<Clock> {
   void dispose() {
     _clockInteractor.dispose();
     super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final ring = (constraints.maxHeight - 64)
+            .clamp(80.0, constraints.maxWidth * 0.9);
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Semantics(
+              button: true,
+              label: l10n.fightmarker_set_time,
+              child: GestureDetector(
+                onTap: _openSetTime,
+                child: CircularCountDownTimer(
+                  duration: _clockInteractor.time,
+                  controller: _clockInteractor.controller,
+                  autoStart: false,
+                  width: ring,
+                  height: ring,
+                  textFormat: CountdownTextFormat.MM_SS,
+                  ringColor: AppColors.surfaceHigh,
+                  fillColor: AppColors.accent,
+                  backgroundColor: null,
+                  strokeWidth: 6,
+                  strokeCap: StrokeCap.round,
+                  textStyle: AppTextStyles.display(ring * 0.24),
+                  isReverse: true,
+                  isReverseAnimation: false,
+                  isTimerTextShown: true,
+                  onComplete: _onComplete,
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            AnimatedBuilder(
+              animation: _clockInteractor,
+              builder: (context, _) {
+                final paused = _clockInteractor.isPause;
+                // Encolhe em vez de estourar enquanto a tela gira para
+                // paisagem (a coluna central fica estreita por um instante).
+                return FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton.filled(
+                        tooltip: paused ? 'Play' : 'Pause',
+                        onPressed: _clockInteractor.startAndPauseButton,
+                        style: IconButton.styleFrom(
+                          backgroundColor: AppColors.accent,
+                          foregroundColor: AppColors.background,
+                          fixedSize: const Size(52, 44),
+                        ),
+                        icon: Icon(paused
+                            ? Icons.play_arrow_rounded
+                            : Icons.pause_rounded),
+                      ),
+                      const SizedBox(width: 8),
+                      IconButton.filled(
+                        tooltip: MaterialLocalizations.of(context)
+                            .refreshIndicatorSemanticLabel,
+                        onPressed: _clockInteractor.restartButton,
+                        style: IconButton.styleFrom(
+                          backgroundColor: AppColors.surface,
+                          foregroundColor: AppColors.text,
+                          fixedSize: const Size(52, 44),
+                        ),
+                        icon: const Icon(Icons.replay_rounded),
+                      ),
+                      const SizedBox(width: 8),
+                      IconButton.filled(
+                        tooltip: l10n.fightmarker_set_time,
+                        onPressed: _openSetTime,
+                        style: IconButton.styleFrom(
+                          backgroundColor: AppColors.surface,
+                          foregroundColor: AppColors.text,
+                          fixedSize: const Size(52, 44),
+                        ),
+                        icon: const Icon(Icons.timer_outlined),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

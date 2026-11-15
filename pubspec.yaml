@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 3.3.3+60
+version: 4.0.0+61
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
@@ -51,6 +51,7 @@ dependencies:
   material_ui: ^1.11.0
   jni: ^1.1.2
   jni_flutter: ^1.0.4+1
+  video_player: ^2.14.1
 
 dev_dependencies:
   flutter_test:
@@ -67,19 +68,24 @@ dev_dependencies:
   mocktail: ^1.0.5
   firebase_core_platform_interface: ^8.1.1
   jnigen: ^1.0.1
+  video_player_platform_interface: ^6.9.0
+  plugin_platform_interface: ^2.1.8
 
 flutter_native_splash:
-  color: "#202848"
+  color: "#0D1017"
   image: assets/splash/splash.png
 
   android_12:
-    image: assets/splash/splash.png
-    icon_background_color: "#202848"
-    image_dark: assets/splash/splash.png
-    icon_background_color_dark: "#202848"
+    color: "#0D1017"
+    image: assets/splash/splash_icon.png
+    icon_background_color: "#161B24"
 
 flutter_icons:
-  image_path: 'assets/images/application_icon/res/mipmap-xxxhdpi/iconindigo.png'
+  image_path: assets/images/application_icon/icon.png
+  adaptive_icon_background: "#161B24"
+  adaptive_icon_foreground: assets/images/application_icon/icon_foreground.png
+  adaptive_icon_monochrome: assets/images/application_icon/icon_monochrome.png
+  min_sdk_android: 29
   ios: false
   android: true
 
@@ -104,9 +110,6 @@ flutter:
     - assets/music/
     - assets/splash/
     - assets/images/
-    - assets/images/iconsbutton/
-    - assets/quiz/iconsresultquiz/
-    - assets/images/iconscredits/
     - assets/images/languages/
 
   # An image asset can refer to one or more resolution-specific "variants", see

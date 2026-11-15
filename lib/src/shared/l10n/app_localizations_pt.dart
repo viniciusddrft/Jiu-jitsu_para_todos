@@ -33,9 +33,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get title_appbar_settings_page => 'Configurações';
 
   @override
-  String get button_credits_settings_page => 'Créditos';
-
-  @override
   String get button_language_settings_page => 'Idiomas';
 
   @override
@@ -65,21 +62,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get text_cancel => 'Cancelar';
-
-  @override
-  String get title_appbar_credits_page => 'Créditos';
-
-  @override
-  String get text_all_application_icons_are_from_flaticon =>
-      'Todos ícones do aplicativo são da Flaticon.';
-
-  @override
-  String get text_the_application_was_developed_in_flutter =>
-      'O aplicativo foi desenvolvido em Flutter.';
-
-  @override
-  String get text_if_you_want_to_know_both_the_flutter_and_the_flaticon_just_click_on_the_icons =>
-      'Caso queira conhecer tanto o Flutter quanto a Flaticon basta cliclar nos ícones.';
 
   @override
   String get history_of_jiujitsu_page_summary =>
@@ -339,6 +321,137 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get text_message_quiz_sad => 'Não foi dessa vez.';
+
+  @override
+  String get text_offline => 'Sem internet';
+
+  @override
+  String get text_try_again => 'Tentar de novo';
+
+  @override
+  String get home_greeting => 'Oss!';
+
+  @override
+  String get home_greeting_subtitle => 'Bora aprender?';
+
+  @override
+  String get home_quiz_title => 'Teste seu jogo';
+
+  @override
+  String get home_quiz_subtitle => 'Três níveis de dificuldade';
+
+  @override
+  String get home_history_subtitle => 'Japão, Índia e Brasil';
+
+  @override
+  String get home_rules_subtitle => 'Básicas e CBJJ';
+
+  @override
+  String get home_fightmarker_subtitle => 'Tempo e pontos';
+
+  @override
+  String get home_wallpapers_subtitle => 'Para sua tela';
+
+  @override
+  String get history_heading => 'De onde vem a arte suave';
+
+  @override
+  String get history_japan_tag => 'Origem mais aceita';
+
+  @override
+  String get history_india_tag => 'Teoria alternativa';
+
+  @override
+  String get history_brazil_tag => 'A chegada';
+
+  @override
+  String get history_next => 'Próximo';
+
+  @override
+  String get rules_heading => 'Entenda a pontuação';
+
+  @override
+  String get rules_summary_2 => 'Queda, joelho na barriga, raspagem';
+
+  @override
+  String get rules_summary_3 => 'Passagem de guarda';
+
+  @override
+  String get rules_summary_4 => 'Montada, pegada nas costas';
+
+  @override
+  String get rules_basic_subtitle => 'Pontos, vantagens e punições';
+
+  @override
+  String get rules_cbjj_subtitle => 'Livro oficial em PDF';
+
+  @override
+  String get rules_cbjj_save => 'Salvar em Downloads';
+
+  @override
+  String get quiz_menu_heading => 'Escolha o nível do quiz';
+
+  @override
+  String get quiz_menu_description =>
+      'A cor da faixa indica a dificuldade das perguntas.';
+
+  @override
+  String get quiz_level_easy => 'Perguntas fáceis';
+
+  @override
+  String get quiz_level_medium => 'Perguntas intermediárias';
+
+  @override
+  String get quiz_level_hard => 'Perguntas difíceis';
+
+  @override
+  String get quiz_play_again => 'Jogar de novo';
+
+  @override
+  String get quiz_back_home => 'Voltar ao início';
+
+  @override
+  String quiz_correct_count(int score, int total) {
+    return '$score de $total certas';
+  }
+
+  @override
+  String get quiz_media_image => 'Imagem';
+
+  @override
+  String get quiz_media_video => 'Vídeo';
+
+  @override
+  String get quiz_video_replay => 'Ver de novo';
+
+  @override
+  String get quiz_video_slow => 'Câmera lenta';
+
+  @override
+  String get wallpapers_heading => 'Leve o tatame para a tela';
+
+  @override
+  String fightmarker_athlete(int number) {
+    return 'Atleta $number';
+  }
+
+  @override
+  String get fightmarker_advantage => 'Vantagem';
+
+  @override
+  String get fightmarker_penalty => 'Punição';
+
+  @override
+  String get fightmarker_presets => 'Atalhos · adulto';
+
+  @override
+  String get fightmarker_minutes => 'min';
+
+  @override
+  String get fightmarker_set_time => 'Definir tempo';
+
+  @override
+  String get fightmarker_undo => 'Desfazer';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -370,9 +483,6 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get title_appbar_settings_page => 'Configurações';
 
   @override
-  String get button_credits_settings_page => 'Créditos';
-
-  @override
   String get button_language_settings_page => 'Idiomas';
 
   @override
@@ -402,21 +512,6 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get text_cancel => 'Cancelar';
-
-  @override
-  String get title_appbar_credits_page => 'Créditos';
-
-  @override
-  String get text_all_application_icons_are_from_flaticon =>
-      'Todos ícones do aplicativo são da Flaticon.';
-
-  @override
-  String get text_the_application_was_developed_in_flutter =>
-      'O aplicativo foi desenvolvido em Flutter.';
-
-  @override
-  String get text_if_you_want_to_know_both_the_flutter_and_the_flaticon_just_click_on_the_icons =>
-      'Caso queira conhecer tanto o Flutter quanto a Flaticon basta cliclar nos ícones.';
 
   @override
   String get history_of_jiujitsu_page_summary =>
@@ -676,4 +771,135 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get text_message_quiz_sad => 'Não foi dessa vez.';
+
+  @override
+  String get text_offline => 'Sem internet';
+
+  @override
+  String get text_try_again => 'Tentar de novo';
+
+  @override
+  String get home_greeting => 'Oss!';
+
+  @override
+  String get home_greeting_subtitle => 'Bora aprender?';
+
+  @override
+  String get home_quiz_title => 'Teste seu jogo';
+
+  @override
+  String get home_quiz_subtitle => 'Três níveis de dificuldade';
+
+  @override
+  String get home_history_subtitle => 'Japão, Índia e Brasil';
+
+  @override
+  String get home_rules_subtitle => 'Básicas e CBJJ';
+
+  @override
+  String get home_fightmarker_subtitle => 'Tempo e pontos';
+
+  @override
+  String get home_wallpapers_subtitle => 'Para sua tela';
+
+  @override
+  String get history_heading => 'De onde vem a arte suave';
+
+  @override
+  String get history_japan_tag => 'Origem mais aceita';
+
+  @override
+  String get history_india_tag => 'Teoria alternativa';
+
+  @override
+  String get history_brazil_tag => 'A chegada';
+
+  @override
+  String get history_next => 'Próximo';
+
+  @override
+  String get rules_heading => 'Entenda a pontuação';
+
+  @override
+  String get rules_summary_2 => 'Queda, joelho na barriga, raspagem';
+
+  @override
+  String get rules_summary_3 => 'Passagem de guarda';
+
+  @override
+  String get rules_summary_4 => 'Montada, pegada nas costas';
+
+  @override
+  String get rules_basic_subtitle => 'Pontos, vantagens e punições';
+
+  @override
+  String get rules_cbjj_subtitle => 'Livro oficial em PDF';
+
+  @override
+  String get rules_cbjj_save => 'Salvar em Downloads';
+
+  @override
+  String get quiz_menu_heading => 'Escolha o nível do quiz';
+
+  @override
+  String get quiz_menu_description =>
+      'A cor da faixa indica a dificuldade das perguntas.';
+
+  @override
+  String get quiz_level_easy => 'Perguntas fáceis';
+
+  @override
+  String get quiz_level_medium => 'Perguntas intermediárias';
+
+  @override
+  String get quiz_level_hard => 'Perguntas difíceis';
+
+  @override
+  String get quiz_play_again => 'Jogar de novo';
+
+  @override
+  String get quiz_back_home => 'Voltar ao início';
+
+  @override
+  String quiz_correct_count(int score, int total) {
+    return '$score de $total certas';
+  }
+
+  @override
+  String get quiz_media_image => 'Imagem';
+
+  @override
+  String get quiz_media_video => 'Vídeo';
+
+  @override
+  String get quiz_video_replay => 'Ver de novo';
+
+  @override
+  String get quiz_video_slow => 'Câmera lenta';
+
+  @override
+  String get wallpapers_heading => 'Leve o tatame para a tela';
+
+  @override
+  String fightmarker_athlete(int number) {
+    return 'Atleta $number';
+  }
+
+  @override
+  String get fightmarker_advantage => 'Vantagem';
+
+  @override
+  String get fightmarker_penalty => 'Punição';
+
+  @override
+  String get fightmarker_presets => 'Atalhos · adulto';
+
+  @override
+  String get fightmarker_minutes => 'min';
+
+  @override
+  String get fightmarker_set_time => 'Definir tempo';
+
+  @override
+  String get fightmarker_undo => 'Desfazer';
 }

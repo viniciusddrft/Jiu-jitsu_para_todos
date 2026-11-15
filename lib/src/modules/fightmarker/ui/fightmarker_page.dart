@@ -1,11 +1,13 @@
 import 'package:material_ui/material_ui.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
+
+import '../../../shared/l10n/app_localizations.dart';
 import '../../../shared/mixins/device_orientation.dart';
 import '../../../shared/themes/app_colors.dart';
+import '../../../shared/themes/app_text_styles.dart';
 import 'components/clock_widget.dart';
 import 'components/score_board_widget.dart';
 
+/// Marcador de luta (em paisagem): Atleta 1 | relógio | Atleta 2.
 class FightMakerPage extends StatefulWidget {
   const FightMakerPage({super.key});
 
@@ -23,31 +25,46 @@ class _FightMakerPageState extends State<FightMakerPage>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: Text(
-          AppLocalizations.of(context)!.title_appbar_fightmarker_page,
-          style: GoogleFonts.yatraOne(),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(8, 8, 12, 12),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Expanded(
+                  flex: 5, child: Scoreboard(athlete: 1, light: true)),
+              Expanded(
+                flex: 4,
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        IconButton(
+                          tooltip: MaterialLocalizations.of(context)
+                              .backButtonTooltip,
+                          onPressed: () => Navigator.of(context).maybePop(),
+                          icon: const Icon(Icons.arrow_back_rounded,
+                              color: AppColors.text),
+                        ),
+                        Expanded(
+                          child: Text(
+                            l10n.title_appbar_fightmarker_page.toUpperCase(),
+                            overflow: TextOverflow.ellipsis,
+                            style: AppTextStyles.eyebrow(),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Expanded(child: Clock()),
+                  ],
+                ),
+              ),
+              const Expanded(flex: 5, child: Scoreboard(athlete: 2)),
+            ],
+          ),
         ),
-      ),
-      backgroundColor: AppColors.background,
-      body: const Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Flexible(
-            flex: 2,
-            child: Scoreboard(),
-          ),
-          Flexible(
-            child: Clock(),
-          ),
-          Flexible(
-            flex: 2,
-            child: Scoreboard(),
-          ),
-        ],
       ),
     );
   }

@@ -91,6 +91,28 @@ void main() {
     expect(notifications, 13);
   });
 
+  test('placar desfaz a última ação, uma de cada vez', () {
+    final score = ScoreboardInteractor();
+    addTearDown(score.dispose);
+    expect(score.canUndo, isFalse);
+    score.undo(); // sem histórico não faz nada
+    score
+      ..addPoints(2)
+      ..addAdvantages()
+      ..addPoints(4)
+      ..addPunishments();
+    expect(score.canUndo, isTrue);
+    score.undo();
+    expect(score.punishmentsOfTheFighter, 0);
+    score.undo();
+    expect(score.fighterPoints, 2);
+    score.undo();
+    expect(score.advantagesOfTheFighter, 0);
+    score.undo();
+    expect(score.fighterPoints, 0);
+    expect(score.canUndo, isFalse);
+  });
+
   for (final difficulty in Difficult.values) {
     test(
         'quiz carrega $difficulty no idioma selecionado e contabiliza respostas e timeout',

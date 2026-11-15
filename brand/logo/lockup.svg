@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 220" role="img" aria-label="Jiu-jitsu para todos">
+  <!-- Assinatura: símbolo + nome em Barlow Condensed ExtraBold, caixa alta.
+       Fundo Tatame. Fonte: https://fonts.google.com/specimen/Barlow+Condensed -->
+  <rect width="560" height="220" fill="#0D1017"/>
+  <g transform="translate(40 40)">
+    <rect x="0" y="0" width="120" height="20" rx="3" fill="#050608" stroke="#2A3240" stroke-width="1.5"/>
+    <rect x="70" y="0.75" width="40" height="18.5" fill="#E5484D"/>
+    <rect x="82" y="0.75" width="4" height="18.5" fill="#F4F1EA"/>
+    <rect x="95" y="0.75" width="4" height="18.5" fill="#F4F1EA"/>
+  </g>
+  <text x="40" y="128" fill="#F4F1EA" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-weight="800" font-size="72" letter-spacing="-0.5">JIU-JITSU</text>
+  <text x="40" y="192" fill="#E5484D" font-family="'Barlow Condensed', 'Arial Narrow', sans-serif" font-weight="800" font-size="72" letter-spacing="-0.5">PARA TODOS</text>
+</svg>

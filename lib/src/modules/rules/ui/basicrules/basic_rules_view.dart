@@ -1,140 +1,135 @@
 import 'package:material_ui/material_ui.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/plugins/admob/admob_interactor.dart';
-import '../../../../shared/components/admob_native_ad.dart';
+
+import '../../../../shared/components/app_card.dart';
+import '../../../../shared/components/app_top_bar.dart';
+import '../../../../shared/components/native_ad_slot.dart';
+import '../../../../shared/l10n/app_localizations.dart';
 import '../../../../shared/themes/app_colors.dart';
+import '../../../../shared/themes/app_text_styles.dart';
 
 class BasicRulesPage extends StatelessWidget {
   const BasicRulesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
-
-    final admobInteractor = inject<AdmobInteractor>();
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: Text(
-          AppLocalizations.of(context)!.title_appbar_basic_rules_page,
-          style: GoogleFonts.yatraOne(color: Colors.grey[700]),
+      body: SafeArea(
+        bottom: false,
+        child: ListView(
+          padding: const EdgeInsets.only(bottom: 32),
+          children: [
+            AppTopBar(eyebrow: l10n.title_appbar_basic_rules_page),
+            _Section(title: l10n.text_overview_title, body: l10n.text_overview),
+            _Section(title: l10n.text_scores_title, body: l10n.text_scores),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
+              child: Column(
+                children: [
+                  _PointsCard(
+                    points: 2,
+                    title: l10n.text_moves_that_gives_2_scores_title,
+                    items: [
+                      l10n.text_throws,
+                      l10n.text_knee_in_belly,
+                      l10n.text_sweep,
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  _PointsCard(
+                    points: 3,
+                    title: l10n.text_moves_that_gives_3_scores_title,
+                    items: [
+                      l10n.text_moves_that_gives_3_scores,
+                      l10n.text_guard_pass,
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  _PointsCard(
+                    points: 4,
+                    highlighted: true,
+                    title: l10n.text_moves_that_gives_4_scores_title,
+                    items: [l10n.text_mount, l10n.text_backward_grip],
+                  ),
+                ],
+              ),
+            ),
+            _Section(
+              title: l10n.text_advantage_and_penalties_title,
+              body: l10n.text_advantage_and_penalties,
+            ),
+          ],
         ),
       ),
-      backgroundColor: AppColors.background,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
-                child: Text(
-                  AppLocalizations.of(context)!.text_overview_title,
-                  style: GoogleFonts.ubuntu(fontSize: 18),
-                ),
-              ),
-              Text(
-                AppLocalizations.of(context)!.text_overview,
-                style: GoogleFonts.ubuntu(fontSize: 16),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
-                child: Text(
-                  AppLocalizations.of(context)!.text_scores_title,
-                  style: GoogleFonts.ubuntu(fontSize: 18),
-                ),
-              ),
-              Text(
-                AppLocalizations.of(context)!.text_scores,
-                style: GoogleFonts.ubuntu(fontSize: 16),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
-                child: Text(
-                  AppLocalizations.of(context)!
-                      .text_moves_that_gives_2_scores_title,
-                  style: GoogleFonts.ubuntu(fontSize: 18),
-                ),
-              ),
-              Text(
-                AppLocalizations.of(context)!.text_throws,
-                style: GoogleFonts.ubuntu(fontSize: 16),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
-                child: Text(
-                  AppLocalizations.of(context)!.text_knee_in_belly,
-                  style: GoogleFonts.ubuntu(fontSize: 16),
-                ),
-              ),
-              Text(
-                AppLocalizations.of(context)!.text_sweep,
-                style: GoogleFonts.ubuntu(fontSize: 16),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
-                child: Text(
-                  AppLocalizations.of(context)!
-                      .text_moves_that_gives_3_scores_title,
-                  style: GoogleFonts.ubuntu(fontSize: 18),
-                ),
-              ),
-              Text(
-                AppLocalizations.of(context)!.text_moves_that_gives_3_scores,
-                style: GoogleFonts.ubuntu(fontSize: 16),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
-                child: Text(
-                  AppLocalizations.of(context)!.text_guard_pass,
-                  style: GoogleFonts.ubuntu(fontSize: 16),
-                ),
-              ),
-              Text(
-                AppLocalizations.of(context)!
-                    .text_moves_that_gives_4_scores_title,
-                style: GoogleFonts.ubuntu(fontSize: 18),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
-                child: Text(
-                  AppLocalizations.of(context)!.text_mount,
-                  style: GoogleFonts.ubuntu(fontSize: 16),
-                ),
-              ),
-              Text(
-                AppLocalizations.of(context)!.text_backward_grip,
-                style: GoogleFonts.ubuntu(fontSize: 16),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: size.height * 0.03),
-                child: Text(
-                  AppLocalizations.of(context)!
-                      .text_advantage_and_penalties_title,
-                  style: GoogleFonts.ubuntu(fontSize: 18),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: size.height * 0.05),
-                child: Text(
-                  AppLocalizations.of(context)!.text_advantage_and_penalties,
-                  style: GoogleFonts.ubuntu(fontSize: 16),
-                ),
-              ),
-            ],
+      bottomNavigationBar: const NativeAdSlot(),
+    );
+  }
+}
+
+class _Section extends StatelessWidget {
+  const _Section({required this.title, required this.body});
+
+  final String title, body;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.fromLTRB(24, 20, 24, 12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(title.toUpperCase(), style: AppTextStyles.display(34)),
+            const SizedBox(height: 10),
+            Text(body, style: AppTextStyles.body(size: 15)),
+          ],
+        ),
+      );
+}
+
+class _PointsCard extends StatelessWidget {
+  const _PointsCard({
+    required this.points,
+    required this.title,
+    required this.items,
+    this.highlighted = false,
+  });
+
+  final int points;
+  final String title;
+  final List<String> items;
+  final bool highlighted;
+
+  @override
+  Widget build(BuildContext context) {
+    final color = highlighted ? AppColors.accent : AppColors.text;
+    return AppCard(
+      radius: 18,
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+      borderColor: highlighted ? AppColors.accent : null,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 32,
+            child:
+                Text('$points', style: AppTextStyles.display(44, color: color)),
           ),
-        ),
-      ),
-      bottomNavigationBar: SizedBox(
-        height: 75,
-        child: AdmobNativeAd(
-          factoryId: 'listTile',
-          adUnitId: admobInteractor.nativeAdUnitIDListTile,
-        ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title.toUpperCase(), style: AppTextStyles.title(20)),
+                for (final item in items) ...[
+                  const SizedBox(height: 8),
+                  Text(item,
+                      style: AppTextStyles.body(
+                          size: 14, color: AppColors.textMuted, height: 1.5)),
+                ],
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

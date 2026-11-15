@@ -1,10 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/home/ui/home_page.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/components/button_menu.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/analytics/analytics_interactor.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_theme.dart';
 import 'package:material_ui/material_ui.dart';
 
 class FakeAnalytics implements AnalyticsInteractor {
@@ -31,18 +30,15 @@ void main() {
           ],
           supportedLocales: AppLocalizations.supportedLocales,
           locale: const Locale('en', 'Us'),
-          theme: ThemeData(
-            primaryColor: AppColors.primary,
-            brightness: Brightness.dark,
-            useMaterial3: true,
-          ),
+          theme: AppTheme.dark,
           home: const HomePage(),
         ),
       ),
     );
     await tester.pumpAndSettle();
 
-    expect(find.byType(AppBar), findsOneWidget);
-    expect(find.byType(ButtonMenu), findsNWidgets(5));
+    expect(find.byKey(const Key('settingsButton')), findsOneWidget);
+    expect(find.byKey(const Key('quizCard')), findsOneWidget);
+    expect(find.byType(FeatureCard), findsNWidgets(4));
   });
 }

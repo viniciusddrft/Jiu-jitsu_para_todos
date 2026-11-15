@@ -10,6 +10,7 @@ import 'package:jiu_jitsu_para_todos/src/shared/l10n/locale_app.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/app_localizations.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/admob/admob_interactor.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/plugins/in_app_review/in_app_review_interactor.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import '../support/test_app.dart';
 
 void main() {
@@ -25,9 +26,13 @@ void main() {
                   answerEntity: answer, onPressedButton: (a) => selected = a)));
       await tester.tap(find.text('Resposta'));
       await tester.pump();
-      expect(find.byIcon(correct ? Icons.done : Icons.close), findsOneWidget);
-      final text = tester.widget<Text>(find.text('Resposta'));
-      expect(text.style!.color, correct ? Colors.green : Colors.red);
+      expect(find.byIcon(correct ? Icons.check_rounded : Icons.close_rounded),
+          findsOneWidget);
+      final material = tester.widget<Material>(find
+          .ancestor(of: find.text('Resposta'), matching: find.byType(Material))
+          .first);
+      expect(material.color,
+          correct ? AppColors.successSurface : AppColors.errorSurface);
       expect(selected, isNull);
       await tester.pump(const Duration(milliseconds: 500));
       expect(selected, same(answer));
@@ -35,9 +40,19 @@ void main() {
     });
   }
   for (final scenario in [
-    (4, Difficult.easy, '100%', 'victory.png'),
-    (3, Difficult.medium, '75%', 'reading-book.png'),
-    (1, Difficult.hard, '25%', 'sad.png')
+    (
+      4,
+      Difficult.easy,
+      '100%',
+      (AppLocalizations l) => l.text_message_quiz_very_well
+    ),
+    (
+      3,
+      Difficult.medium,
+      '75%',
+      (AppLocalizations l) => l.text_message_quiz_almost
+    ),
+    (1, Difficult.hard, '25%', (AppLocalizations l) => l.text_message_quiz_sad)
   ]) {
     for (final handled in [true, false]) {
       testWidgets(
@@ -53,9 +68,10 @@ void main() {
               ..addInstance<AdmobInteractor>(ads)
               ..addInstance<InAppReviewInteractor>(review));
         expect(find.text(scenario.$3), findsOneWidget);
-        final asset =
-            tester.widget<Image>(find.byType(Image).first).image as AssetImage;
-        expect(asset.assetName, endsWith(scenario.$4));
+        final l =
+            AppLocalizations.of(tester.element(find.byType(QuizResultPage)))!;
+        expect(find.text(scenario.$4(l).toUpperCase()), findsOneWidget);
+        expect(find.text(l.quiz_correct_count(scenario.$1, 4)), findsOneWidget);
         expect(ads.shows, 0);
         await tester.pump(const Duration(milliseconds: 1));
         await tester.pump(const Duration(seconds: 2));
@@ -84,8 +100,7 @@ void main() {
     expect(review.scores, isEmpty);
     expect(ads.shows, 0);
   });
-  testWidgets(
-      'configurações mostram versão, trocam idioma, cancelam e abrem avaliação',
+  testWidgets('configurações mostram versão, trocam idioma e abrem avaliação',
       (tester) async {
     final storage = MemoryStorage();
     final locale = LocaleInteractor(storage);
@@ -97,19 +112,14 @@ void main() {
           ..addInstance<InAppReviewInteractor>(review));
     final l = AppLocalizations.of(tester.element(find.byType(SettingsPage)))!;
     expect(find.text('${l.text_version} 3.3.3'), findsOneWidget);
-    final language =
-        find.widgetWithText(OutlinedButton, l.button_language_settings_page);
-    await tester.tap(language);
-    await tester.pumpAndSettle();
     await tester.tap(find.text(l.text_brazilian_portuguese));
     await tester.pumpAndSettle();
     expect(locale.value, const Locale('pt', 'BR'));
     expect(storage.values['locale'], 'pt_BR');
-    await tester.tap(language);
+    await tester.tap(find.text(l.text_english_united_states));
     await tester.pumpAndSettle();
-    await tester.tap(find.text(l.text_cancel));
-    await tester.pumpAndSettle();
-    expect(locale.value, const Locale('pt', 'BR'));
+    expect(locale.value, const Locale('en', 'US'));
+    expect(storage.values['locale'], 'en_US');
     await tester.tap(find.text(l.text_rate_the_app));
     await tester.pump();
     expect(review.storeRequests, 1);

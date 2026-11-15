@@ -3,8 +3,6 @@
 // ignore_for_file: unused_import
 import 'package:jiu_jitsu_para_todos/core/app_core_module.dart';
 import 'package:jiu_jitsu_para_todos/main.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/credits/credits_module.dart';
-import 'package:jiu_jitsu_para_todos/src/modules/credits/ui/credits.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/fightmarker_module.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/interactor/clock_interactor.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/fightmarker/interactor/scorreboard_interactor.dart';
@@ -53,8 +51,6 @@ import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/ui/details_image_pag
 import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/ui/wallpapers_page.dart';
 import 'package:jiu_jitsu_para_todos/src/modules/wallpapers/wallpaper_module.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/components/admob_native_ad.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/components/app_bar_gradient.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/components/button_menu.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/l10n/locale_app.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/mixins/device_orientation.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/mixins/launch_link.dart';
@@ -71,9 +67,17 @@ import 'package:jiu_jitsu_para_todos/src/shared/shimmer/shimmer_effect.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/shimmer/shimmer_widget.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_colors.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_languages_path.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_icons_path.dart';
-import 'package:jiu_jitsu_para_todos/src/shared/themes/app_images.dart';
 import 'package:jiu_jitsu_para_todos/src/shared/transitions/app_transitions.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/historyofjiujitsu/ui/components/history_article.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/ui/difficulty_ui.dart';
+import 'package:jiu_jitsu_para_todos/src/modules/quiz/ui/quiz_questions/components/quiz_media.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/components/app_card.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/components/app_top_bar.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/components/belt.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/components/native_ad_slot.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/components/offline_state.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_text_styles.dart';
+import 'package:jiu_jitsu_para_todos/src/shared/themes/app_theme.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
