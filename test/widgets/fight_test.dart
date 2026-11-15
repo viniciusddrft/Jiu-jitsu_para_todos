@@ -56,19 +56,22 @@ void main() {
     expect(points(1), '9');
     expect(inFirst('1'), findsNWidgets(2)); // vantagens e punições
     expect(points(2), '0'); // o outro atleta não é afetado
-    // Segurar desfaz.
-    for (final label in [
-      '+2',
-      '+3',
-      '+4',
-      l.fightmarker_advantage,
-      l.fightmarker_penalty
-    ]) {
-      await tester.longPress(inFirst(label));
-      await tester.pump();
-    }
-    expect(points(1), '0');
+    // O botão ↶ desfaz uma ação por toque, da última para a primeira.
+    final undo = find.byKey(const Key('undo_1'));
+    await tester.tap(undo); // punição
+    await tester.pump();
+    await tester.tap(undo); // vantagem
+    await tester.pump();
     expect(inFirst('1'), findsNothing);
+    await tester.tap(undo); // +4
+    await tester.pump();
+    expect(points(1), '5');
+    await tester.tap(undo); // +3
+    await tester.tap(undo); // +2
+    await tester.pump();
+    expect(points(1), '0');
+    // Sem histórico, o botão fica desativado.
+    expect(tester.widget<ButtonStyleButton>(undo).onPressed, isNull);
     await tester.tap(find.byIcon(Icons.replay_rounded));
     await tester.tap(find.byType(CircularCountDownTimer));
     await tester.pumpAndSettle();

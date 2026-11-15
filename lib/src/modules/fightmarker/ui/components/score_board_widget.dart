@@ -6,7 +6,7 @@ import '../../../../shared/themes/app_colors.dart';
 import '../../../../shared/themes/app_text_styles.dart';
 import '../../interactor/scorreboard_interactor.dart';
 
-/// Placar de um atleta. Toque soma; segurar desfaz.
+/// Placar de um atleta. Toque soma; o botão ↶ desfaz a última ação.
 /// O atleta 1 usa o cartão claro e o 2 o escuro, para os dois lados serem
 /// distinguíveis de longe (sem faixas: elas indicariam um nível que não existe).
 class Scoreboard extends StatefulWidget {
@@ -48,8 +48,28 @@ class _ScoreboardState extends State<Scoreboard> {
         builder: (context, _) => Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(l10n.fightmarker_athlete(widget.athlete),
-                style: AppTextStyles.label(size: 13, color: fg)),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(l10n.fightmarker_athlete(widget.athlete),
+                      style: AppTextStyles.label(size: 13, color: fg)),
+                ),
+                // Desfaz a última ação deste atleta, em um toque.
+                TextButton.icon(
+                  key: Key('undo_${widget.athlete}'),
+                  onPressed: s.canUndo ? s.undo : null,
+                  style: TextButton.styleFrom(
+                    foregroundColor: fg,
+                    disabledForegroundColor: fg.withValues(alpha: 0.3),
+                    visualDensity: VisualDensity.compact,
+                    minimumSize: const Size(44, 40),
+                    textStyle: AppTextStyles.label(size: 13),
+                  ),
+                  icon: const Icon(Icons.undo_rounded, size: 20),
+                  label: Text(l10n.fightmarker_undo),
+                ),
+              ],
+            ),
             Expanded(
               child: Row(
                 children: [
@@ -93,7 +113,6 @@ class _ScoreboardState extends State<Scoreboard> {
                       big: true,
                       light: light,
                       onTap: () => s.addPoints(points),
-                      onLongPress: () => s.removePoints(points),
                     ),
                   ),
                 ],
@@ -108,7 +127,6 @@ class _ScoreboardState extends State<Scoreboard> {
                     outlined: true,
                     light: light,
                     onTap: s.addAdvantages,
-                    onLongPress: s.removeAdvantages,
                   ),
                 ),
                 const SizedBox(width: 6),
@@ -118,7 +136,6 @@ class _ScoreboardState extends State<Scoreboard> {
                     outlined: true,
                     light: light,
                     onTap: s.addPunishments,
-                    onLongPress: s.removePunishments,
                   ),
                 ),
               ],
@@ -160,14 +177,13 @@ class _ScoreButton extends StatelessWidget {
     required this.label,
     required this.light,
     required this.onTap,
-    required this.onLongPress,
     this.big = false,
     this.outlined = false,
   });
 
   final String label;
   final bool light, big, outlined;
-  final VoidCallback onTap, onLongPress;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -187,7 +203,6 @@ class _ScoreButton extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onTap,
-        onLongPress: onLongPress,
         child: SizedBox(
           height: big ? 44 : 40,
           child: Center(

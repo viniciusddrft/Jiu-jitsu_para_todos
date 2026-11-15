@@ -58,10 +58,6 @@ class _FightMakerPageState extends State<FightMakerPage>
                       ],
                     ),
                     const Expanded(child: Clock()),
-                    Text(l10n.fightmarker_hold_to_remove,
-                        textAlign: TextAlign.center,
-                        style: AppTextStyles.body(
-                            size: 11, color: AppColors.textMuted, height: 1.3)),
                   ],
                 ),
               ),

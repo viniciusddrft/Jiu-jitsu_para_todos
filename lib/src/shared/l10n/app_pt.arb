@@ -130,8 +130,8 @@
     "fightmarker_athlete":"Atleta {number}",
     "fightmarker_advantage":"Vantagem",
     "fightmarker_penalty":"Punição",
-    "fightmarker_hold_to_remove":"Segure um botão para desfazer",
     "fightmarker_presets":"Atalhos · adulto",
     "fightmarker_minutes":"min",
-    "fightmarker_set_time":"Definir tempo"
+    "fightmarker_set_time":"Definir tempo",
+    "fightmarker_undo":"Desfazer"
 }

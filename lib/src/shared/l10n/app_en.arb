@@ -130,8 +130,8 @@
     "fightmarker_athlete":"Athlete {number}",
     "fightmarker_advantage":"Advantage",
     "fightmarker_penalty":"Penalty",
-    "fightmarker_hold_to_remove":"Hold a button to undo",
     "fightmarker_presets":"Presets · adult",
     "fightmarker_minutes":"min",
-    "fightmarker_set_time":"Set time"
+    "fightmarker_set_time":"Set time",
+    "fightmarker_undo":"Undo"
 }

@@ -442,9 +442,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get fightmarker_penalty => 'Punição';
 
   @override
-  String get fightmarker_hold_to_remove => 'Segure um botão para desfazer';
-
-  @override
   String get fightmarker_presets => 'Atalhos · adulto';
 
   @override
@@ -452,6 +449,9 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get fightmarker_set_time => 'Definir tempo';
+
+  @override
+  String get fightmarker_undo => 'Desfazer';
 }
 
 /// The translations for Portuguese, as used in Brazil (`pt_BR`).
@@ -892,9 +892,6 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get fightmarker_penalty => 'Punição';
 
   @override
-  String get fightmarker_hold_to_remove => 'Segure um botão para desfazer';
-
-  @override
   String get fightmarker_presets => 'Atalhos · adulto';
 
   @override
@@ -902,4 +899,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get fightmarker_set_time => 'Definir tempo';
+
+  @override
+  String get fightmarker_undo => 'Desfazer';
 }

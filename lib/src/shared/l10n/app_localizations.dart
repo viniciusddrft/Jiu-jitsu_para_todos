@@ -886,12 +886,6 @@ abstract class AppLocalizations {
   /// **'Penalty'**
   String get fightmarker_penalty;
 
-  /// No description provided for @fightmarker_hold_to_remove.
-  ///
-  /// In en_US, this message translates to:
-  /// **'Hold a button to undo'**
-  String get fightmarker_hold_to_remove;
-
   /// No description provided for @fightmarker_presets.
   ///
   /// In en_US, this message translates to:
@@ -909,6 +903,12 @@ abstract class AppLocalizations {
   /// In en_US, this message translates to:
   /// **'Set time'**
   String get fightmarker_set_time;
+
+  /// No description provided for @fightmarker_undo.
+  ///
+  /// In en_US, this message translates to:
+  /// **'Undo'**
+  String get fightmarker_undo;
 }
 
 class _AppLocalizationsDelegate

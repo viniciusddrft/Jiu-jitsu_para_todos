@@ -439,9 +439,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fightmarker_penalty => 'Penalty';
 
   @override
-  String get fightmarker_hold_to_remove => 'Hold a button to undo';
-
-  @override
   String get fightmarker_presets => 'Presets · adult';
 
   @override
@@ -449,6 +446,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get fightmarker_set_time => 'Set time';
+
+  @override
+  String get fightmarker_undo => 'Undo';
 }
 
 /// The translations for English, as used in the United States (`en_US`).
@@ -886,9 +886,6 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
   String get fightmarker_penalty => 'Penalty';
 
   @override
-  String get fightmarker_hold_to_remove => 'Hold a button to undo';
-
-  @override
   String get fightmarker_presets => 'Presets · adult';
 
   @override
@@ -896,4 +893,7 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
 
   @override
   String get fightmarker_set_time => 'Set time';
+
+  @override
+  String get fightmarker_undo => 'Undo';
 }

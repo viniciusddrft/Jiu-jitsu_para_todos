@@ -21,7 +21,7 @@ linguagem visual.
 4. **Ícones de traço.** Linha de ~1,75 px, cantos arredondados. Sem ilustrações
    coloridas.
 5. **Usabilidade sem cliques extras.** Ações frequentes em um toque (ex.: placar:
-   tocar soma, segurar desfaz).
+   tocar soma, “Desfazer” volta a última ação do atleta).
 
 ## Cores
 
