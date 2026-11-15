@@ -80,7 +80,7 @@ class HomePage extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 mainAxisSpacing: 12,
                 crossAxisSpacing: 12,
-                childAspectRatio: 1.25,
+                childAspectRatio: 1.15,
                 children: [
                   FeatureCard(
                     key: const Key('home_history'),
@@ -226,7 +226,7 @@ class FeatureCard extends StatelessWidget {
             Icon(icon, color: AppColors.text, size: 26),
             const Spacer(),
             Text(title.toUpperCase(),
-                maxLines: 1,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: AppTextStyles.title(22)),
             const SizedBox(height: 2),

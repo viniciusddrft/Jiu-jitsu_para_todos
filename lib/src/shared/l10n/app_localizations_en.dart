@@ -39,7 +39,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get text_brazilian_portuguese => 'Brazilian Portuguese';
 
   @override
-  String get text_english_united_states => 'Englis United States';
+  String get text_english_united_states => 'English (United States)';
 
   @override
   String get text_notice_popup =>
@@ -125,7 +125,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get title_appbar_wallpapers => 'Wallpapers';
 
   @override
-  String get title_popup_wallpaper => 'Use how?';
+  String get title_popup_wallpaper => 'Set as?';
 
   @override
   String get text_popup_save_wallpaper => 'Use wallpaper';
@@ -202,7 +202,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'The jiu-jitsu was forbidden in Japan by a while as a crime against your own country. With the introduction of Western culture in Japan promote by the emperor Mutso Hito(1867-1912) the martial arts was forgotten. Until later, when the Western started to appreciate and “import” this fight types.';
 
   @override
-  String get title_appbar_jiujitsu_in_brazil_page => 'The Brazilian Jiu-jitsu';
+  String get title_appbar_jiujitsu_in_brazil_page => 'Jiu-jitsu in Brazil';
 
   @override
   String get text_jiujitsu_in_brazil_paragraph1 =>
@@ -227,15 +227,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'In this category you will learn the basic about the rules of jiu-jitsu championship, to start you need to understand that the fights are divided by weight, belt and age and thereby the rules also has a small change, and It’s essential to say that in jiu-jitsu, traditional attacks isn’t allowed like kicks, punches, knees, elbows and infinity others attacks aren’t allowed too, also exist in championships the famous “absolute” that is a weightless category, only divided by belt and age, remembering that in any fight the completion gives the direct victory and if the time is over without any completions, the fights will be decided by the score, advantages and penalties, in case everything’s tied the decision will be the judge’s.';
 
   @override
-  String get text_scores_title => 'Scores';
+  String get text_scores_title => 'Scoring';
 
   @override
   String get text_scores =>
       'In jiu-jitsu, the score is divided into 2 score, 3 score and 4 score, also exist the advantages and penalties but we will talk about theirs later.';
 
   @override
-  String get text_moves_that_gives_2_scores_title =>
-      'Moves that gives 2 scores';
+  String get text_moves_that_gives_2_scores_title => 'Moves worth 2 points';
 
   @override
   String get text_throws =>
@@ -250,20 +249,18 @@ class AppLocalizationsEn extends AppLocalizations {
       'Sweep → a sweep is basically turn over the position from a full guard. Imagine that you are doing the full guard, therefore you are below and you opponent above, in sweep you turn over the position staying above, It’s important that the postion starts with a guard type, you can sweep and stay on top mounted in the opponents guard or with any other way that you prefer, It doesn’t interfere with anything, you just need to let your opponent with your back to mat and stay above, It’s needed to stabilize for 3 seconds to win the throw scores';
 
   @override
-  String get text_moves_that_gives_3_scores_title =>
-      'Moves that gives 3 scores';
+  String get text_moves_that_gives_3_scores_title => 'Move worth 3 points';
 
   @override
   String get text_moves_that_gives_3_scores =>
-      'In jiu-jitsu there is only one move that gives 3 scores.';
+      'In jiu-jitsu there is only one move worth 3 points.';
 
   @override
   String get text_guard_pass =>
       'Guard pass → goes for absolutely any guard type, you will need to get on side control, mount or north south, to win scores it’s need the 3 seconds stabilization';
 
   @override
-  String get text_moves_that_gives_4_scores_title =>
-      'Moves that gives 4 scores';
+  String get text_moves_that_gives_4_scores_title => 'Moves worth 4 points';
 
   @override
   String get text_mount =>
@@ -274,7 +271,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Backward grip → you need to get on opponent back and put the hooks, it’s needed the 3 seconds stabilization';
 
   @override
-  String get text_advantage_and_penalties_title => 'Advantage and penalties';
+  String get text_advantage_and_penalties_title => 'Advantages and penalties';
 
   @override
   String get text_advantage_and_penalties =>
@@ -284,7 +281,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get title_appbar_cbjj_rules_page => 'CBJJ rules';
 
   @override
-  String get title_cbjj_successDownload => 'Save successfully!';
+  String get title_cbjj_successDownload => 'Saved successfully!';
 
   @override
   String get title_cbjj_failedDownload => 'Unable to save PDF :/';
@@ -311,13 +308,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get text_result_quiz_black_belt => 'Your black belt quiz score was:';
 
   @override
-  String get text_message_quiz_very_well => 'Oss, did very well!!!';
+  String get text_message_quiz_very_well => 'Oss, great job!!!';
 
   @override
-  String get text_message_quiz_almost => 'Almost, study more.';
+  String get text_message_quiz_almost => 'So close, keep studying.';
 
   @override
-  String get text_message_quiz_sad => 'It was not this time.';
+  String get text_message_quiz_sad => 'Not this time.';
 
   @override
   String get text_offline => 'No internet';
@@ -486,7 +483,7 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
   String get text_brazilian_portuguese => 'Brazilian Portuguese';
 
   @override
-  String get text_english_united_states => 'Englis United States';
+  String get text_english_united_states => 'English (United States)';
 
   @override
   String get text_notice_popup =>
@@ -572,7 +569,7 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
   String get title_appbar_wallpapers => 'Wallpapers';
 
   @override
-  String get title_popup_wallpaper => 'Use how?';
+  String get title_popup_wallpaper => 'Set as?';
 
   @override
   String get text_popup_save_wallpaper => 'Use wallpaper';
@@ -649,7 +646,7 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
       'The jiu-jitsu was forbidden in Japan by a while as a crime against your own country. With the introduction of Western culture in Japan promote by the emperor Mutso Hito(1867-1912) the martial arts was forgotten. Until later, when the Western started to appreciate and “import” this fight types.';
 
   @override
-  String get title_appbar_jiujitsu_in_brazil_page => 'The Brazilian Jiu-jitsu';
+  String get title_appbar_jiujitsu_in_brazil_page => 'Jiu-jitsu in Brazil';
 
   @override
   String get text_jiujitsu_in_brazil_paragraph1 =>
@@ -674,15 +671,14 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
       'In this category you will learn the basic about the rules of jiu-jitsu championship, to start you need to understand that the fights are divided by weight, belt and age and thereby the rules also has a small change, and It’s essential to say that in jiu-jitsu, traditional attacks isn’t allowed like kicks, punches, knees, elbows and infinity others attacks aren’t allowed too, also exist in championships the famous “absolute” that is a weightless category, only divided by belt and age, remembering that in any fight the completion gives the direct victory and if the time is over without any completions, the fights will be decided by the score, advantages and penalties, in case everything’s tied the decision will be the judge’s.';
 
   @override
-  String get text_scores_title => 'Scores';
+  String get text_scores_title => 'Scoring';
 
   @override
   String get text_scores =>
       'In jiu-jitsu, the score is divided into 2 score, 3 score and 4 score, also exist the advantages and penalties but we will talk about theirs later.';
 
   @override
-  String get text_moves_that_gives_2_scores_title =>
-      'Moves that gives 2 scores';
+  String get text_moves_that_gives_2_scores_title => 'Moves worth 2 points';
 
   @override
   String get text_throws =>
@@ -697,20 +693,18 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
       'Sweep → a sweep is basically turn over the position from a full guard. Imagine that you are doing the full guard, therefore you are below and you opponent above, in sweep you turn over the position staying above, It’s important that the postion starts with a guard type, you can sweep and stay on top mounted in the opponents guard or with any other way that you prefer, It doesn’t interfere with anything, you just need to let your opponent with your back to mat and stay above, It’s needed to stabilize for 3 seconds to win the throw scores';
 
   @override
-  String get text_moves_that_gives_3_scores_title =>
-      'Moves that gives 3 scores';
+  String get text_moves_that_gives_3_scores_title => 'Move worth 3 points';
 
   @override
   String get text_moves_that_gives_3_scores =>
-      'In jiu-jitsu there is only one move that gives 3 scores.';
+      'In jiu-jitsu there is only one move worth 3 points.';
 
   @override
   String get text_guard_pass =>
       'Guard pass → goes for absolutely any guard type, you will need to get on side control, mount or north south, to win scores it’s need the 3 seconds stabilization';
 
   @override
-  String get text_moves_that_gives_4_scores_title =>
-      'Moves that gives 4 scores';
+  String get text_moves_that_gives_4_scores_title => 'Moves worth 4 points';
 
   @override
   String get text_mount =>
@@ -721,7 +715,7 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
       'Backward grip → you need to get on opponent back and put the hooks, it’s needed the 3 seconds stabilization';
 
   @override
-  String get text_advantage_and_penalties_title => 'Advantage and penalties';
+  String get text_advantage_and_penalties_title => 'Advantages and penalties';
 
   @override
   String get text_advantage_and_penalties =>
@@ -731,7 +725,7 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
   String get title_appbar_cbjj_rules_page => 'CBJJ rules';
 
   @override
-  String get title_cbjj_successDownload => 'Save successfully!';
+  String get title_cbjj_successDownload => 'Saved successfully!';
 
   @override
   String get title_cbjj_failedDownload => 'Unable to save PDF :/';
@@ -758,13 +752,13 @@ class AppLocalizationsEnUs extends AppLocalizationsEn {
   String get text_result_quiz_black_belt => 'Your black belt quiz score was:';
 
   @override
-  String get text_message_quiz_very_well => 'Oss, did very well!!!';
+  String get text_message_quiz_very_well => 'Oss, great job!!!';
 
   @override
-  String get text_message_quiz_almost => 'Almost, study more.';
+  String get text_message_quiz_almost => 'So close, keep studying.';
 
   @override
-  String get text_message_quiz_sad => 'It was not this time.';
+  String get text_message_quiz_sad => 'Not this time.';
 
   @override
   String get text_offline => 'No internet';

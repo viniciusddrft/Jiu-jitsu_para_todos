@@ -15,7 +15,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get title_appbar_home_page => 'Jiu-jitsu para todos';
 
   @override
-  String get button_history_of_jiujitsu_home_page => 'Hístoria';
+  String get button_history_of_jiujitsu_home_page => 'História';
 
   @override
   String get button_rules_home_page => 'Regras';
@@ -27,7 +27,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get button_fight_marker_home_page => 'Marcador de luta';
 
   @override
-  String get button_wallpapers_home_page => 'Papeis de parede';
+  String get button_wallpapers_home_page => 'Papéis de parede';
 
   @override
   String get title_appbar_settings_page => 'Configurações';
@@ -68,13 +68,13 @@ class AppLocalizationsPt extends AppLocalizations {
       'O jiu-jitsu possui diversas histórias sobre suas origens. A mais aceita é a de que ele surgiu no Japão, enquanto outra, menos reconhecida, sugere que suas raízes estão na Índia. Aqui, você vai conhecer as duas versões em detalhes.';
 
   @override
-  String get title_appbar_history_of_jiujitsu_page => 'Hístoria do Jiu-jitsu';
+  String get title_appbar_history_of_jiujitsu_page => 'História do Jiu-jitsu';
 
   @override
   String get button_jiujitsu_in_japao => 'O Jiu-jitsu no Japão';
 
   @override
-  String get button_jiujitsu_in_india => 'O Jiu-jitsu na India';
+  String get button_jiujitsu_in_india => 'O Jiu-jitsu na Índia';
 
   @override
   String get button_jiujitsu_in_brazil => 'O Jiu-jitsu no Brasil';
@@ -122,7 +122,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get text_abbreviated_punishment => 'P';
 
   @override
-  String get title_appbar_wallpapers => 'Papeis de parede';
+  String get title_appbar_wallpapers => 'Papéis de parede';
 
   @override
   String get title_popup_wallpaper => 'Usar como?';
@@ -147,7 +147,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get title_appbar_jiujitsu_in_japan_page =>
-      'Origem do Jiu-jitsu(Japão)';
+      'Origem do Jiu-jitsu (Japão)';
 
   @override
   String get text_jiujitsu_in_japan_paragraph1 =>
@@ -179,7 +179,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get title_appbar_origin_of_jiujitsu_india_page =>
-      'Origem do Jiu-jitsu(India)';
+      'Origem do Jiu-jitsu (Índia)';
 
   @override
   String get text_origin_of_jiujitsu_india_paragraph1 =>
@@ -251,7 +251,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get text_moves_that_gives_3_scores_title =>
-      'Movimento que vale 3 ponto';
+      'Movimento que vale 3 pontos';
 
   @override
   String get text_moves_that_gives_3_scores =>
@@ -296,7 +296,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get text_difficultyname_blue_belt => 'Faixa Azul';
 
   @override
-  String get text_difficultyname_black_belt => 'Faixa preta';
+  String get text_difficultyname_black_belt => 'Faixa Preta';
 
   @override
   String get text_question => 'Questão';
@@ -465,7 +465,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get title_appbar_home_page => 'Jiu-jitsu para todos';
 
   @override
-  String get button_history_of_jiujitsu_home_page => 'Hístoria';
+  String get button_history_of_jiujitsu_home_page => 'História';
 
   @override
   String get button_rules_home_page => 'Regras';
@@ -477,7 +477,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get button_fight_marker_home_page => 'Marcador de luta';
 
   @override
-  String get button_wallpapers_home_page => 'Papeis de parede';
+  String get button_wallpapers_home_page => 'Papéis de parede';
 
   @override
   String get title_appbar_settings_page => 'Configurações';
@@ -518,13 +518,13 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
       'O jiu-jitsu possui diversas histórias sobre suas origens. A mais aceita é a de que ele surgiu no Japão, enquanto outra, menos reconhecida, sugere que suas raízes estão na Índia. Aqui, você vai conhecer as duas versões em detalhes.';
 
   @override
-  String get title_appbar_history_of_jiujitsu_page => 'Hístoria do Jiu-jitsu';
+  String get title_appbar_history_of_jiujitsu_page => 'História do Jiu-jitsu';
 
   @override
   String get button_jiujitsu_in_japao => 'O Jiu-jitsu no Japão';
 
   @override
-  String get button_jiujitsu_in_india => 'O Jiu-jitsu na India';
+  String get button_jiujitsu_in_india => 'O Jiu-jitsu na Índia';
 
   @override
   String get button_jiujitsu_in_brazil => 'O Jiu-jitsu no Brasil';
@@ -572,7 +572,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get text_abbreviated_punishment => 'P';
 
   @override
-  String get title_appbar_wallpapers => 'Papeis de parede';
+  String get title_appbar_wallpapers => 'Papéis de parede';
 
   @override
   String get title_popup_wallpaper => 'Usar como?';
@@ -597,7 +597,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get title_appbar_jiujitsu_in_japan_page =>
-      'Origem do Jiu-jitsu(Japão)';
+      'Origem do Jiu-jitsu (Japão)';
 
   @override
   String get text_jiujitsu_in_japan_paragraph1 =>
@@ -629,7 +629,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get title_appbar_origin_of_jiujitsu_india_page =>
-      'Origem do Jiu-jitsu(India)';
+      'Origem do Jiu-jitsu (Índia)';
 
   @override
   String get text_origin_of_jiujitsu_india_paragraph1 =>
@@ -701,7 +701,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
 
   @override
   String get text_moves_that_gives_3_scores_title =>
-      'Movimento que vale 3 ponto';
+      'Movimento que vale 3 pontos';
 
   @override
   String get text_moves_that_gives_3_scores =>
@@ -746,7 +746,7 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get text_difficultyname_blue_belt => 'Faixa Azul';
 
   @override
-  String get text_difficultyname_black_belt => 'Faixa preta';
+  String get text_difficultyname_black_belt => 'Faixa Preta';
 
   @override
   String get text_question => 'Questão';
